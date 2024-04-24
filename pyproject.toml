@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "cim-to-owl"
+version = "0.1.0"
+description = "Converting ES-DOC Common Information Model (CIM) to OWL"
+authors = ["Miguel Ceriani <miguel.ceriani@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+package-mode = true
+
+packages = [
+    { include = "cim_to_owl", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+jq = "^1.7.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+run = 'cim_to_owl.convert:run'
