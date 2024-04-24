@@ -1,0 +1,3 @@
+[submodule "esdoc"]
+	path = esdoc
+	url = https://github.com/ES-DOC/esdoc-cim-v2-schema
