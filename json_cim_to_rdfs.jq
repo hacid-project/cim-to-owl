@@ -6,6 +6,17 @@
 
 {} as $context |
 
+def singularize:
+    if test("ies$") then
+        sub("ies$"; "y")
+    elif test("es$") then
+        sub("s$"; "")
+    elif test("s$") then
+        sub("s$"; "")
+    else
+        .
+    end;
+
 def get_base_mapping:
     if ("@base" | in ($namespaceMap))
         then $namespaceMap["@base"]
@@ -53,12 +64,12 @@ def convert_class_name:
         ((.[0:1] | ascii_upcase) + .[1:])
     ] | join(""));
 
-def convert_class_name_expanded:
+def convert_enum_name:
     split(".") |
-    (.[0] | get_ns_mapping | .extension) +
+    (.[0] | get_ns_mapping | .prefix) + ":" +
     ([.[1] | split("_") | .[] |
         ((.[0:1] | ascii_upcase) + .[1:])
-    ] | join(""));
+    ] | join("")) | singularize;
 
 def convert_shape_name:
     split(".") |
@@ -67,17 +78,22 @@ def convert_shape_name:
         ((.[0:1] | ascii_upcase) + .[1:])
     ] | join(""));
 
-def convert_property_name:
+def convert_enum_shape_name:
     split(".") |
-    .[0] as $namespace |
-    .[1] as $className |
-    .[2] | split("_") |
+    (.[0] | get_ns_mapping | .shapePrefix) + ":" +
+    ([.[1] | split("_") | .[] |
+        ((.[0:1] | ascii_upcase) + .[1:])
+    ] | join("")) | singularize;
+
+def convert_property_name(namespace; is_plural):
+    split("_") |
     .[0] as $firstPart |
-    ($namespace | get_base_mapping | .prefix) + ":" +
+    (namespace | get_base_mapping | .prefix) + ":" +
     $firstPart + ([
         .[1:] | .[] |
         ((.[0:1] | ascii_upcase) + .[1:])
-    ] | join(""));
+    ] | join("")) |
+    (if is_plural then singularize else . end);
 
 ([
     to_entries | .[] | [
@@ -87,7 +103,14 @@ def convert_property_name:
         ($namespace + "." + $localname) as $className |
         {
             key: $className,
-            value: ($className | convert_class_name)
+            value: (
+                .type as $type |
+                $className |
+                if ($type == "class")
+                    then convert_class_name
+                    else convert_enum_name
+                end
+            )
         }
     ]
 ] | flatten | from_entries )
@@ -97,11 +120,33 @@ as $classMap |
     to_entries | .[] | [
         .key as $namespace |
         .value | to_entries | .[] |
+        select(.value.type == "class") |
+        .key as $localname |
+        ($namespace + "." + $localname) as $className |
+        {
+            key: $className, 
+            value: [ .value.properties | .[] | .[0] ]
+        }
+    ]
+] | flatten | from_entries )
+as $classPropertiesMap |
+
+([
+    to_entries | .[] | [
+        .key as $namespace |
+        .value | to_entries | .[] |
         .key as $localname |
         ($namespace + "." + $localname) as $className |
         {
             key: $className,
-            value: ($className | convert_shape_name)
+            value: (
+                .type as $type |
+                $className |
+                if ($type == "class")
+                    then convert_shape_name
+                    else convert_enum_shape_name
+                end
+            )
         }
     ]
 ] | flatten | from_entries )
@@ -117,10 +162,10 @@ as $shapeMap |
         ($namespace + "." + $localname) as $className |
         [
             .value.properties | .[] |
-            ($className + "." + .[0]) as $completePropertyName |
+            (.[2] | split(".") | .[1]) as $max_cardinality |
             {
-                key: $completePropertyName,
-                value: $completePropertyName | convert_property_name
+                key: .[0],
+                value: .[0] | convert_property_name($namespace; $max_cardinality == "N")
             }
         ]
     ]
@@ -144,42 +189,42 @@ def py_property_to_json_property:
                 ((.[0:1] | ascii_upcase) + .[1:])
             ] | join(""));
 
-([
-    to_entries | .[] | [
-        .key as $namespace |
-        .value | to_entries | .[] |
-        .key as $localname |
-        ($namespace + "." + $localname) as $className |
-        .value | {
+(
+    [
+        $classMap | to_entries | .[] |
+        .key as $className |
+        {
             key: ($className | py_class_to_json_class),
             value: {
-                "@id": ($className | convert_class_name),
-                "@type": "rdfs:Class",
-                "@context" :
-                    ([
-                        (.properties | select(. != null) | .[] |
-                            ($className + "." + .[0]) as $completePropertyName |
-                            {
-                                key: (.[0] | py_property_to_json_property),
-                                value: $completePropertyName | convert_property_name
-                            }),
-                        (.base | select(. != null and . != "None") | {
-                            key: "@context",
-                            value: convert_class_name_expanded
-                        })
-                    ] | from_entries)
+                "@id": .value,
+                "@type": "rdfs:Class"
             }
-        }
-    ]
-] | flatten | from_entries )
-as $classPropertyMap |
+        },
+        (
+            $classPropertiesMap[$className] | select(. != null) | .[] |
+            {
+                key: py_property_to_json_property,
+                value: {
+                    "@id": $propertiesMap[.],
+                    "@type": "rdfs:Property"
+                }
+            }
+        )
+    ] | from_entries
+) as $classPropertyContext |
 
 def get_class_name:
     if (. == null or . == "None")
         then null
-    elif in($classMap)
-        then $classMap[.]
-    else null
+    else
+        if startswith("linked_to")
+             then .[("linked_to" | length) + 1:-1]
+             else .
+        end |
+        if in($classMap)
+            then $classMap[.]
+            else null
+        end
     end;
 
 def get_shape_name:
@@ -200,7 +245,8 @@ def get_property_name:
 
 ([ keys | .[] | get_ns_mapping | { key: .prefix, value: .extension} ] | from_entries) as $nsExtensions |
 
-([
+(
+    [
         (
             {
                 "@version": 1.1,
@@ -214,14 +260,13 @@ def get_property_name:
             | to_entries | .[]
         ),
         ($nsExtensions | to_entries | .[]),
-#        ($namespaceMap | to_entries | .[] | {key:.value.prefix, value:.value.extension}),
-#        ($classMap | to_entries | .[]),
-#        ($propertiesMap | to_entries | .[]),
-        ($classPropertyMap | to_entries | .[]),
-       ($context | to_entries | .[])
-    ] | from_entries) as $context |
+        ($classPropertyContext | to_entries | .[]),
+        ($context | to_entries | .[])
+    ] |
+    from_entries
+) as $context |
 
-[
+([
     to_entries |
     .[] |
     [
@@ -257,7 +302,7 @@ def get_property_name:
                 }]
         }
     ]
-] | flatten | prune_nulls as $shapes |
+] | flatten | prune_nulls) as $shapes |
 
 {
     "@context": $context,
