@@ -1,18 +1,25 @@
+import "words_ending_in_s" as $words_ending_in_s_array;
+
+([ $words_ending_in_s_array | .[].[] | { key: ., value: true } ] | from_entries) as $words_ending_in_s |
+
 #.["@namespaces"] as $namespaceMap |
 [] as $ns |
 ([$ns | map(to_entries) | .[]] | flatten | from_entries) as $namespaceMap |
 
-"cim.2." as $class_prefix |
+([$ctxt | map(to_entries) | .[]] | flatten | from_entries) as $context |
 
-{} as $context |
+"cim.2." as $class_prefix |
 
 def singularize:
     if test("ies$") then
         sub("ies$"; "y")
-    elif test("es$") then
-        sub("s$"; "")
+    elif test("ss$") then
+        .
     elif test("s$") then
-        sub("s$"; "")
+        if in($words_ending_in_s)
+            then .
+            else sub("s$"; "")
+        end
     else
         .
     end;
@@ -57,43 +64,61 @@ def prune_nulls:
     else .
     end;
 
-def convert_class_name:
+def name_to_singular_camel_case(from_plural; first_upcase):
+    [
+        split("_") |
+        length as $numParts |
+        . as $parts |
+        range($numParts) |
+        . as $partIndex |
+        $parts[$partIndex] |
+        (if (from_plural and $partIndex == $numParts - 1)
+            then singularize
+            else .
+        end) |
+        (if (first_upcase or $partIndex > 0)
+            then ((.[0:1] | ascii_upcase) + .[1:])
+            else .
+        end)
+    ] | join("");
+
+def convert_class_name(from_plural):
     split(".") |
     (.[0] | get_ns_mapping | .prefix) + ":" +
-    ([.[1] | split("_") | .[] |
-        ((.[0:1] | ascii_upcase) + .[1:])
-    ] | join(""));
+    (.[1] | name_to_singular_camel_case(from_plural; true));
 
-def convert_enum_name:
-    split(".") |
-    (.[0] | get_ns_mapping | .prefix) + ":" +
-    ([.[1] | split("_") | .[] |
-        ((.[0:1] | ascii_upcase) + .[1:])
-    ] | join("")) | singularize;
-
-def convert_shape_name:
+def convert_shape_name(from_plural):
     split(".") |
     (.[0] | get_ns_mapping | .shapePrefix) + ":" +
-    ([.[1] | split("_") | .[] |
-        ((.[0:1] | ascii_upcase) + .[1:])
-    ] | join(""));
+    (.[1] | name_to_singular_camel_case(from_plural; true));
 
-def convert_enum_shape_name:
-    split(".") |
-    (.[0] | get_ns_mapping | .shapePrefix) + ":" +
-    ([.[1] | split("_") | .[] |
-        ((.[0:1] | ascii_upcase) + .[1:])
-    ] | join("")) | singularize;
+def convert_property_name(namespace; from_plural):
+    (namespace | get_ns_mapping | .prefix) + ":" +
+    name_to_singular_camel_case(from_plural; false);
 
-def convert_property_name(namespace; is_plural):
-    split("_") |
-    .[0] as $firstPart |
-    (namespace | get_base_mapping | .prefix) + ":" +
-    $firstPart + ([
-        .[1:] | .[] |
-        ((.[0:1] | ascii_upcase) + .[1:])
-    ] | join("")) |
-    (if is_plural then singularize else . end);
+def py_class_to_json_class:
+    $class_prefix + (
+        split(".") |
+        .[0] + "." +
+        (.[1] | name_to_singular_camel_case(false; true))
+    );
+
+def py_property_to_json_property:
+    name_to_singular_camel_case(false; false);
+
+def from_context_or(key; alt):
+    key as $key |
+    alt as $alt |
+    if ($key | in($context))
+        then (
+            $context[$key] |
+            if (type == "object")
+                then .["@id"]
+                else .
+            end
+        )
+        else $alt
+    end;
 
 ([
     to_entries | .[] | [
@@ -106,10 +131,13 @@ def convert_property_name(namespace; is_plural):
             value: (
                 .type as $type |
                 $className |
-                if ($type == "class")
-                    then convert_class_name
-                    else convert_enum_name
-                end
+                from_context_or(
+                    py_class_to_json_class;
+                    if ($type == "class")
+                        then convert_class_name(false)
+                        else convert_class_name(true)
+                    end
+                )
             )
         }
     ]
@@ -143,8 +171,8 @@ as $classPropertiesMap |
                 .type as $type |
                 $className |
                 if ($type == "class")
-                    then convert_shape_name
-                    else convert_enum_shape_name
+                    then convert_shape_name(false)
+                    else convert_shape_name(true)
                 end
             )
         }
@@ -152,42 +180,52 @@ as $classPropertiesMap |
 ] | flatten | from_entries )
 as $shapeMap |
 
-([
-    to_entries | .[] |
+(
     [
-        .key as $namespace |
-        .value | to_entries | .[] |
-        select(.value.type == "class") |
-        .key as $localname |
-        ($namespace + "." + $localname) as $className |
+        to_entries | .[] |
         [
-            .value.properties | .[] |
-            (.[2] | split(".") | .[1]) as $max_cardinality |
-            {
-                key: .[0],
-                value: .[0] | convert_property_name($namespace; $max_cardinality == "N")
-            }
-        ]
-    ]
-] | flatten | from_entries )
-as $propertiesMap |
-
-def py_class_to_json_class:
-    $class_prefix + (
-        split(".") |
-        .[0] + "." +
-        ([.[1] | split("_") | .[] |
-            ((.[0:1] | ascii_upcase) + .[1:])
-        ] | join(""))
-    );
-
-def py_property_to_json_property:
-    split("_") |
-        .[0] + (
+            .key as $namespace |
+            .value | to_entries | .[] |
+            select(.value.type == "class") |
             [
-                .[1:] | .[] |
-                ((.[0:1] | ascii_upcase) + .[1:])
-            ] | join(""));
+                .value.properties | .[] |
+                (.[2] | split(".") | .[1]) as $max_cardinality |
+                {
+                    property: .[0],
+                    namespace: $namespace,
+                    maxCardinality: $max_cardinality
+                }
+            ]
+        ]
+    ] |
+    flatten |
+    group_by(.property) |
+    [
+        .[] |
+        {
+            property: .[0].property,
+            namespaces: ([.[] | .namespace] | unique),
+            maxCardinalities : ([.[] | .maxCardinality] | unique)
+        } |
+        {
+            property: .property,
+            namespace: (.namespaces | if length > 1 then "shared" else .[0] end),
+            maxCardinality : (.maxCardinalities | if length > 1 then "1" else .[0] end)
+        } |
+        {
+            key: .property,
+            value: (
+                . as $propertyCtxt | .property |
+                from_context_or(
+                    py_property_to_json_property;
+                    convert_property_name($propertyCtxt.namespace; $propertyCtxt.maxCardinality == "N")
+                )
+            )
+        }
+    ] |
+    from_entries
+)
+as $propertiesMap |
 
 (
     [
@@ -288,7 +326,7 @@ def get_property_name:
             "parent": $parentClass,
             "sh:property": [
                 .value.properties | select(. != null) | .[] |
-                ($extendedName + "." + .[0]) as $property |
+                .[0] as $property |
                 .[1] as $propertyType |
                 (.[2] | split(".")) as $cardinalityRestrs |
                 $cardinalityRestrs[0] as $minCardinality |
