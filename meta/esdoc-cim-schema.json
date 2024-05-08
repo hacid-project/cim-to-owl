@@ -1,0 +1,4395 @@
+{
+    "time": {
+        "calendar": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "standard_name"
+                ]
+            ],
+            "properties": [
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Extra information about the calendar."
+                ],
+                [
+                    "month_lengths",
+                    "int",
+                    "0.N",
+                    "Used for special calendars to provide month lengths."
+                ],
+                [
+                    "name",
+                    "str",
+                    "0.1",
+                    "Can be used to name a special calendar type."
+                ],
+                [
+                    "standard_name",
+                    "time.calendar_types",
+                    "1.1",
+                    "Type of calendar used."
+                ]
+            ]
+        },
+        "calendar_types": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "gregorian",
+                    "Mixed Gregorian/Julian calendar as defined by Udunits"
+                ],
+                [
+                    "standard",
+                    "Synonym for gregorian: Mixed Gregorian/Julian calendar as defined by Udunits"
+                ],
+                [
+                    "proleptic_gregorian",
+                    "A Gregorian calendar extended to dates before 1582-10-15. That is, a year is a leap year if either (i) it is divisible by 4 but not by 100 or (ii) it is divisible by 400."
+                ],
+                [
+                    "noleap",
+                    "Gregorian calendar without leap years, i.e., all years are 365 days long."
+                ],
+                [
+                    "365_day",
+                    "Synonym for noleap:Gregorian calendar without leap years, i.e., all years are 365 days long."
+                ],
+                [
+                    "all_leap",
+                    "Gregorian calendar with every year being a leap year, i.e., all years are 366 days long."
+                ],
+                [
+                    "366_day",
+                    "Synonym for all_leap:Gregorian calendar with every year being a leap year, i.e., all years are 366 days long."
+                ],
+                [
+                    "360_day",
+                    "All years are 360 days divided into 30 day months."
+                ],
+                [
+                    "julian",
+                    "Julian Calendar"
+                ],
+                [
+                    "none",
+                    "Perpetual time axis"
+                ]
+            ]
+        },
+        "date_time": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}(offset {})",
+                [
+                    "value",
+                    "is_offset"
+                ]
+            ],
+            "properties": [
+                [
+                    "is_offset",
+                    "bool",
+                    "0.1",
+                    "Date is offset from start of an integration."
+                ],
+                [
+                    "value",
+                    "str",
+                    "1.1",
+                    "Date or time - some of (from left to right): yyyy-mm-dd:hh:mm:ss."
+                ]
+            ]
+        },
+        "datetime_set": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "True",
+            "alternatives": [
+                "time.irregular_dateset",
+                "time.regular_timeset"
+            ],
+            "properties": [
+                [
+                    "length",
+                    "int",
+                    "1.1",
+                    "Number of times in set."
+                ]
+            ]
+        },
+        "irregular_dateset": {
+            "type": "class",
+            "base": "time.datetime_set",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "date_set",
+                    "str",
+                    "1.1",
+                    "Set of dates, comma separated yyyy-mm-dd."
+                ]
+            ]
+        },
+        "period_date_types": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "unused",
+                    "Date is not used"
+                ],
+                [
+                    "from",
+                    "The date defines the start of the period"
+                ],
+                [
+                    "to",
+                    "The date is the end of the period"
+                ]
+            ]
+        },
+        "regular_timeset": {
+            "type": "class",
+            "base": "time.datetime_set",
+            "is_abstract": "False",
+            "pstr": [
+                "{} times from {} at {} intervals",
+                [
+                    "length",
+                    "start_date",
+                    "increment"
+                ]
+            ],
+            "properties": [
+                [
+                    "increment",
+                    "time.time_period",
+                    "1.1",
+                    "Interval between members of set."
+                ],
+                [
+                    "length",
+                    "int",
+                    "1.1",
+                    "Number of times in set."
+                ],
+                [
+                    "start_date",
+                    "time.date_time",
+                    "1.1",
+                    "Beginning of time set."
+                ]
+            ]
+        },
+        "time_period": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{} {}",
+                [
+                    "length",
+                    "units"
+                ]
+            ],
+            "properties": [
+                [
+                    "calendar",
+                    "time.calendar",
+                    "0.1",
+                    "Calendar, default is standard aka gregorian."
+                ],
+                [
+                    "date",
+                    "time.date_time",
+                    "0.1",
+                    "Optional start/end date of time period."
+                ],
+                [
+                    "date_type",
+                    "time.period_date_types",
+                    "1.1",
+                    "Describes how the date is used to define the period."
+                ],
+                [
+                    "length",
+                    "float",
+                    "1.1",
+                    "Duration of the time period."
+                ],
+                [
+                    "units",
+                    "time.time_units",
+                    "1.1",
+                    "Appropriate time units."
+                ]
+            ]
+        },
+        "time_units": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "years",
+                    "Years in current calendar"
+                ],
+                [
+                    "months",
+                    "Months in the current calendar"
+                ],
+                [
+                    "days",
+                    "86400 seconds"
+                ],
+                [
+                    "seconds",
+                    "Standard metric seconds"
+                ]
+            ]
+        }
+    },
+    "activity": {
+        "activity": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "True",
+            "is_document": "True",
+            "pstr": [
+                "{}",
+                [
+                    "canonical_name"
+                ]
+            ],
+            "properties": [
+                [
+                    "alternative_names",
+                    "str",
+                    "0.N",
+                    "List of names by which the activity is also known."
+                ],
+                [
+                    "canonical_name",
+                    "str",
+                    "0.1",
+                    "Community defined identifier or name."
+                ],
+                [
+                    "citations",
+                    "linked_to(shared.citation)",
+                    "0.N",
+                    "Set of pertinent citations."
+                ],
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Description of what is to be done (or was done)."
+                ],
+                [
+                    "duration",
+                    "time.time_period",
+                    "0.1",
+                    "Time the activity was (or will be) active."
+                ],
+                [
+                    "internal_name",
+                    "str",
+                    "0.1",
+                    "A name used for internal purposes."
+                ],
+                [
+                    "keywords",
+                    "str",
+                    "0.1",
+                    "User defined keywords."
+                ],
+                [
+                    "long_name",
+                    "str",
+                    "0.1",
+                    "Longer version of activity name."
+                ],
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Short name or abbreviation."
+                ],
+                [
+                    "responsible_parties",
+                    "shared.responsibility",
+                    "0.N",
+                    "People or organisations responsible for activity."
+                ],
+                [
+                    "previously_known_as",
+                    "str",
+                    "0.N",
+                    "List of names by which the activity was formerly known."
+                ],
+                [
+                    "rationale",
+                    "str",
+                    "0.1",
+                    "Explanation of why this activity was carried out and/or what it was intended to achieve."
+                ]
+            ]
+        },
+        "axis_member": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Description of the member (or name of parameter varied)."
+                ],
+                [
+                    "extra_detail",
+                    "str",
+                    "0.1",
+                    "If necessary: further information about ensemble member conformance."
+                ],
+                [
+                    "index",
+                    "int",
+                    "1.1",
+                    "The ensemble member index."
+                ],
+                [
+                    "value",
+                    "float",
+                    "0.1",
+                    "If parameter varied; value for this member."
+                ],
+                [
+                    "conformance",
+                    "linked_to(activity.conformance)",
+                    "0.1",
+                    "Conformance document for the target requirement that defines this member, if any."
+                ],
+                [
+                    "axis",
+                    "linked_to(activity.ensemble_axis)",
+                    "1.1",
+                    "The parent axis of this ensemble member"
+                ]
+            ]
+        },
+        "conformance": {
+            "type": "class",
+            "base": "activity.activity",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "conformance_achieved",
+                    "activity.conformance_type",
+                    "1.1",
+                    "Summary of conformance status."
+                ],
+                [
+                    "datasets",
+                    "linked_to(data.dataset)",
+                    "0.N",
+                    "The datasets (including any modifications made to them) used for conforming to the target requirement."
+                ],
+                [
+                    "target_requirement",
+                    "linked_to(designing.numerical_requirement)",
+                    "1.1",
+                    "URI of the target numerical requirement."
+                ],
+                [
+                    "models",
+                    "linked_to(science.model)",
+                    "1.N",
+                    "The models to which this conformance applies."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "rationale",
+                    "0.0"
+                ],
+                [
+                    "cardinality",
+                    "duration",
+                    "0.0"
+                ],
+                [
+                    "cardinality",
+                    "canonical_name",
+                    "0.0"
+                ],
+                [
+                    "cardinality",
+                    "keywords",
+                    "0.0"
+                ],
+                [
+                    "cardinality",
+                    "description",
+                    "0.1"
+                ]
+            ]
+        },
+        "conformance_type": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "Conformed",
+                    "Simulation (or ensemble) conformed to requirement"
+                ],
+                [
+                    "Partially Conformed",
+                    "Simulation (or ensemble) partially conformed to requirement - details in description"
+                ],
+                [
+                    "Not Conformed",
+                    "Simulation (or ensemble) was unable to conform to requirement"
+                ],
+                [
+                    "Not Applicable",
+                    "Requirement is not relevant"
+                ]
+            ]
+        },
+        "ensemble": {
+            "type": "class",
+            "base": "activity.activity",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "common_conformances",
+                    "linked_to(activity.conformance)",
+                    "0.N",
+                    "Conformance documents for requirements common across ensemble."
+                ],
+                [
+                    "representative_performance",
+                    "linked_to(platform.performance)",
+                    "0.1",
+                    "Representative model performance across ensemble."
+                ],
+                [
+                    "documentation",
+                    "shared.online_resource",
+                    "0.N",
+                    "Links to web-pages and other ensemble specific documentation (including workflow descriptions)."
+                ],
+                [
+                    "ensemble_axes",
+                    "linked_to(activity.ensemble_axis)",
+                    "0.N",
+                    "Set of axes for the ensemble."
+                ],
+                [
+                    "uber_ensembles",
+                    "linked_to(activity.uber_ensemble)",
+                    "0.N",
+                    "Link to one or more over-arching ensembles that might includes this one."
+                ],
+                [
+                    "experiments",
+                    "linked_to(designing.numerical_experiment)",
+                    "1.N",
+                    "Experiments with which the ensemble is associated (may differ from constituent simulations)."
+                ],
+                [
+                    "members",
+                    "linked_to(activity.simulation)",
+                    "0.N",
+                    "Simulations within ensemble (should only be zero while ensemble is being defined)"
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "rationale",
+                    "0.0"
+                ],
+                [
+                    "cardinality",
+                    "canonical_name",
+                    "0.0"
+                ],
+                [
+                    "cardinality",
+                    "keywords",
+                    "0.0"
+                ],
+                [
+                    "cardinality",
+                    "duration",
+                    "0.0"
+                ]
+            ]
+        },
+        "ensemble_axis": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Short handle/name for the axis"
+                ],
+                [
+                    "extra_detail",
+                    "str",
+                    "0.1",
+                    "Any extra detail required to describe how this ensemble axis was delivered."
+                ],
+                [
+                    "members",
+                    "activity.axis_member",
+                    "0.N",
+                    "Individual member descriptions along axis. 0.N cardinality is only acceptable during design"
+                ],
+                [
+                    "short_identifier",
+                    "str",
+                    "1.1",
+                    "e.g. 'r', 'i', 'p' or 'f' to conform with simulation ensemble variant identifiers."
+                ],
+                [
+                    "target_requirement",
+                    "linked_to(designing.numerical_requirement)",
+                    "0.1",
+                    "URI of the target numerical requirement, if any"
+                ]
+            ]
+        },
+        "child_simulation": {
+            "type": "class",
+            "base": "activity.simulation",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "parent"
+                ]
+            ],
+            "properties": [
+                [
+                    "branch_method",
+                    "str",
+                    "0.1",
+                    "Description of how the simulation was branched from a parent simulation, e.g. 'standard', 'none provided'."
+                ],
+                [
+                    "branch_time_in_child",
+                    "time.date_time",
+                    "0.1",
+                    "The time at which the present simulation started in the child calendar."
+                ],
+                [
+                    "branch_time_in_parent",
+                    "time.date_time",
+                    "0.1",
+                    "The time in parent simulation calendar at which this simulation was branched."
+                ],
+                [
+                    "parent",
+                    "linked_to(activity.simulation)",
+                    "1.1",
+                    "The parent simulation of this child."
+                ]
+            ]
+        },
+        "simulation": {
+            "type": "class",
+            "base": "iso.process_step",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "({}/{}/{})",
+                [
+                    "used",
+                    "ran_for_experiments",
+                    "ensemble_id"
+                ]
+            ],
+            "properties": [
+                [
+                    "part_of_project",
+                    "linked_to(designing.project)",
+                    "1.N",
+                    "Project or projects for which simulation was run"
+                ],
+                [
+                    "ran_for_experiments",
+                    "linked_to(designing.numerical_experiment)",
+                    "1.N",
+                    "One or more experiments with which the simulation is associated"
+                ],
+                [
+                    "sub_experiment",
+                    "linked_to(designing.numerical_experiment)",
+                    "0.1",
+                    "For start-date ensembles, this will indicate the beginning year; for offline models driven by output from another model, this will provide the source_id and variant_label for the 'driving' model."
+                ],
+                [
+                    "used",
+                    "linked_to(science.model)",
+                    "1.1",
+                    "The model used to run the simulation"
+                ],
+                [
+                    "primary_ensemble",
+                    "linked_to(activity.ensemble)",
+                    "0.1",
+                    "Primary Ensemble (ensemble for which this simulation was first run)."
+                ],
+                [
+                    "institution",
+                    "linked_to(shared.party)",
+                    "0.1",
+                    "institution which carried out the simulation"
+                ],
+                [
+                    "parent_of",
+                    "linked_to(activity.child_simulation)",
+                    "0.N",
+                    "If appropriate, links to simulations which branched from this one"
+                ],
+                [
+                    "produced",
+                    "linked_to(data.dataset)",
+                    "0.N",
+                    "Products of the simulation"
+                ],
+                [
+                    "had_performance",
+                    "linked_to(platform.performance)",
+                    "0.1",
+                    "Performance of the simulation."
+                ],
+                [
+                    "ran_on",
+                    "linked_to(platform.machine)",
+                    "0.1",
+                    "The machine on which the simulation was run."
+                ],
+                [
+                    "errata",
+                    "shared.online_resource",
+                    "0.1",
+                    "Link to errata associated with this simulation."
+                ],
+                [
+                    "ensemble_id",
+                    "activity.axis_member",
+                    "0.N",
+                    "Identification within ensemble axes via axis member. (Multiple axis members within a simulation cannot share the same ensemble_axis.) (There must be an axis_member instance for each ensemble axis in a parent ensemble.)"
+                ],
+                [
+                    "start_time",
+                    "time.date_time",
+                    "0.1",
+                    "The start date-time of the simulation. e.g. 2012-04-01 00:00:00"
+                ],
+                [
+                    "end_time",
+                    "time.date_time",
+                    "0.1",
+                    "The end date-time of the simulation. e.g. 2087-11-30 12:00:00"
+                ],
+                [
+                    "calendar",
+                    "time.calendar",
+                    "0.1",
+                    "The calendar used in the simulation"
+                ],
+                [
+                    "documentation",
+                    "shared.online_resource",
+                    "0.1",
+                    "On-line location of additional documentation"
+                ],
+                [
+                    "extra_attributes",
+                    "shared.extra_attribute",
+                    "0.N",
+                    "Additional attributes provided with simulation."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "rationale",
+                    "0.0"
+                ]
+            ]
+        },
+        "uber_ensemble": {
+            "type": "class",
+            "base": "activity.ensemble",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "child_ensembles",
+                    "linked_to(activity.ensemble)",
+                    "1.N",
+                    "Ensemble which are aggregated into this one."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "ensemble_axes",
+                    "1.N"
+                ],
+                [
+                    "cardinality",
+                    "common_conformances",
+                    "0.0"
+                ],
+                [
+                    "cardinality",
+                    "members",
+                    "0.0"
+                ]
+            ]
+        }
+    },
+    "cmip": {
+        "cmip_dataset": {
+            "type": "class",
+            "base": "data.dataset",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "drs_location",
+                    "drs.drs_publication_dataset",
+                    "0.N",
+                    "DRS identifier of dataset."
+                ],
+                [
+                    "originating_simulation",
+                    "linked_to(activity.simulation)",
+                    "0.1",
+                    "Makes a link back to originating activity."
+                ]
+            ]
+        },
+        "cmip_simulation": {
+            "type": "class",
+            "base": "activity.simulation",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "({}/{}/{}{}{}{})",
+                [
+                    "used",
+                    "ran_for_experiments",
+                    "realization_index",
+                    "initialization_index",
+                    "physics_index",
+                    "forcing_index"
+                ]
+            ],
+            "properties": [
+                [
+                    "realization_index",
+                    "int",
+                    "1.1",
+                    "realization number, e.g. 5"
+                ],
+                [
+                    "initialization_index",
+                    "int",
+                    "1.1",
+                    "Index variant of initialization method, e.g. 1"
+                ],
+                [
+                    "physics_index",
+                    "int",
+                    "1.1",
+                    "index for model physics, e.g. 3"
+                ],
+                [
+                    "forcing_index",
+                    "int",
+                    "1.1",
+                    "index for variant of forcing, e.g. 2"
+                ],
+                [
+                    "variant_info",
+                    "str",
+                    "0.1",
+                    "description of run variant differences, e.g. forcing: black carbon aerosol only"
+                ]
+            ]
+        }
+    },
+    "data": {
+        "dataset": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "citations",
+                    "linked_to(shared.citation)",
+                    "0.N",
+                    "Set of pertinent citations."
+                ],
+                [
+                    "responsible_parties",
+                    "shared.responsibility",
+                    "0.N",
+                    "Individuals and organisations responsible for the data."
+                ],
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Name of dataset."
+                ],
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Textural description of dataset."
+                ],
+                [
+                    "type",
+                    "data.dataset_type",
+                    "1.N",
+                    "Dataset discovery classifier"
+                ],
+                [
+                    "availability",
+                    "shared.online_resource",
+                    "0.N",
+                    "Where the data is located, and how it is accessed."
+                ],
+                [
+                    "related_to_dataset",
+                    "shared.formal_association",
+                    "0.N",
+                    "Related dataset."
+                ],
+                [
+                    "contains",
+                    "data.variable_collection",
+                    "0.N",
+                    "Contents in terms of variables."
+                ],
+                [
+                    "progress",
+                    "iso.md_progress_code",
+                    "0.1",
+                    "State of the dataset"
+                ],
+                [
+                    "keywords",
+                    "str",
+                    "0.N",
+                    "Set of additional keywords to aid discovery/classification"
+                ],
+                [
+                    "further_attributes",
+                    "shared.extra_attribute",
+                    "0.N",
+                    "Additional attributes as necessary."
+                ],
+                [
+                    "lineage",
+                    "linked_to(iso.lineage)",
+                    "0.1",
+                    "Provenance of the dataset"
+                ]
+            ]
+        },
+        "variable_collection": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "collection_name",
+                    "str",
+                    "0.1",
+                    "Name for this variable collection."
+                ],
+                [
+                    "variables",
+                    "str",
+                    "1.N",
+                    "Set of variable names."
+                ],
+                [
+                    "geometry",
+                    "iso.md_cellgeometry_code",
+                    "0.1",
+                    "Defines whether or not all variables in collection are point or area based"
+                ]
+            ]
+        },
+        "dataset_type": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "reanalysis",
+                    "Hindcast which includes observations via data assimilation"
+                ],
+                [
+                    "analysis",
+                    "Product of manipulation of multiple input datasets"
+                ],
+                [
+                    "forecast",
+                    "Representation of a future real time predicted from a specific initial condition "
+                ],
+                [
+                    "hindcast",
+                    "Representation of a past real time predicted from a specific initial condition"
+                ],
+                [
+                    "projection",
+                    "Representation a possible future given initial conditions and assumptions"
+                ],
+                [
+                    "representation",
+                    "Simulation of a particular object or process"
+                ],
+                [
+                    "observation",
+                    "Constructed from observations or measurements alone"
+                ],
+                [
+                    "dump",
+                    "Raw computer output intended for re-use within or by originating software"
+                ],
+                [
+                    "modified",
+                    "Modified representation of another dataset (e.g. regridded)"
+                ],
+                [
+                    "unphysical",
+                    "Not intended for comparison with the real world (e.g. as part of a sensitivity study)"
+                ],
+                [
+                    "downscaled",
+                    "Dataset was downscaled by embedded simulation within driving data at larger scale"
+                ]
+            ]
+        }
+    },
+    "designing": {
+        "domain_requirements": {
+            "type": "class",
+            "base": "designing.numerical_requirement",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "required_extent",
+                    "science.topic",
+                    "0.1",
+                    "Constraint on extent of domain to be simulated."
+                ],
+                [
+                    "required_resolution",
+                    "science.topic",
+                    "0.1",
+                    "Constraint on resolution required in simulated domain."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "additional_requirements",
+                    "0.0"
+                ]
+            ]
+        },
+        "ensemble_requirement": {
+            "type": "class",
+            "base": "designing.numerical_requirement",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "ensemble_member",
+                    "linked_to(designing.numerical_requirement)",
+                    "0.N",
+                    "Constraint on each ensemble member."
+                ],
+                [
+                    "ensemble_type",
+                    "designing.ensemble_types",
+                    "1.1",
+                    "Type of ensemble."
+                ],
+                [
+                    "minimum_size",
+                    "int",
+                    "1.1",
+                    "Minimum number of members."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "additional_requirements",
+                    "0.0"
+                ]
+            ]
+        },
+        "ensemble_types": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "Perturbed Physics",
+                    "Members differ in some aspects of their physics."
+                ],
+                [
+                    "Initialisation Method",
+                    "Members differ in how they are initialised."
+                ],
+                [
+                    "Realization",
+                    "Members initialised to sample possible initial conditions."
+                ],
+                [
+                    "Start Date",
+                    "Members initialised at different starting dates."
+                ],
+                [
+                    "Forced",
+                    "Members have differing forcing data."
+                ],
+                [
+                    "Resolution",
+                    "Members are/should-be run at different resolutions."
+                ],
+                [
+                    "Driven",
+                    "Members are/should-be driven by different models."
+                ]
+            ]
+        },
+        "forcing_constraint": {
+            "type": "class",
+            "base": "designing.numerical_requirement",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "additional_constraint",
+                    "str",
+                    "0.1",
+                    "Additional information, e.g. hold constant from 2100-01-01."
+                ],
+                [
+                    "category",
+                    "str",
+                    "0.1",
+                    "Category to which this belongs (from a CV, e.g. GASES)."
+                ],
+                [
+                    "code",
+                    "str",
+                    "0.1",
+                    "Programme wide code from a controlled vocabulary (e.g. N2O)."
+                ],
+                [
+                    "data_link",
+                    "linked_to(data.dataset)",
+                    "0.1",
+                    "A data record used by the forcing "
+                ],
+                [
+                    "forcing_type",
+                    "designing.forcing_types",
+                    "1.1",
+                    "Type of integration."
+                ],
+                [
+                    "group",
+                    "str",
+                    "0.1",
+                    "Sub-Category (e.g. GHG)."
+                ],
+                [
+                    "origin",
+                    "linked_to(shared.citation)",
+                    "0.1",
+                    "Pointer to origin, e.g. CMIP6 RCP database."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "additional_requirements",
+                    "0.0"
+                ]
+            ]
+        },
+        "forcing_types": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "historical",
+                    "Best estimates of actual state (included synthesized)"
+                ],
+                [
+                    "idealised",
+                    "Simplified and/or exemplar, e.g. 1%C02"
+                ],
+                [
+                    "scenario",
+                    "Intended to represent a possible future, e.g. RCP4.5"
+                ],
+                [
+                    "driven",
+                    "Driven from another simulation"
+                ]
+            ]
+        },
+        "initialisation_requirement": {
+            "type": "class",
+            "base": "designing.numerical_requirement",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "branch_time_in_initialisation_source",
+                    "time.date_time",
+                    "0.1",
+                    "If appropriate,  the time in the initialisation_source (whether observed or simulated)."
+                ],
+                [
+                    "initialise_from_data",
+                    "linked_to(data.dataset)",
+                    "0.1",
+                    "Initialisation should use this primary dataset."
+                ],
+                [
+                    "initialise_from_experiment",
+                    "linked_to(designing.numerical_experiment)",
+                    "0.1",
+                    "This experiment should be initialised from the output of this experiment."
+                ]
+            ],
+            "constraints": [
+                [
+                    "mutually_exclusive",
+                    [
+                        "initialise_from_experiment",
+                        "initialise_from_data"
+                    ],
+                    "1.1"
+                ]
+            ]
+        },
+        "multi_ensemble": {
+            "type": "class",
+            "base": "designing.numerical_requirement",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "ensemble_axis",
+                    "linked_to(designing.ensemble_requirement)",
+                    "1.N",
+                    "List of orthogonal ensembles."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "additional_requirements",
+                    "0.0"
+                ]
+            ]
+        },
+        "numerical_experiment": {
+            "type": "class",
+            "base": "activity.activity",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "tier",
+                    "int",
+                    "0.1",
+                    "Relative importance of experiment within a MIP."
+                ],
+                [
+                    "related_experiments",
+                    "linked_to(designing.numerical_experiment)",
+                    "0.N",
+                    "Other experiments which have defined relationships to this one."
+                ],
+                [
+                    "governing_mips",
+                    "linked_to(designing.project)",
+                    "0.N",
+                    "MIP(s) overseeing experimental design protocol."
+                ],
+                [
+                    "related_mips",
+                    "linked_to(designing.project)",
+                    "0.N",
+                    "MIP's that require this experiment."
+                ],
+                [
+                    "required_period",
+                    "linked_to(designing.temporal_constraint)",
+                    "1.1",
+                    "Constraint on start date and duration."
+                ],
+                [
+                    "requirements",
+                    "linked_to(designing.numerical_requirement)",
+                    "0.N",
+                    "Additional requirements that conformant simulations need to satisfy."
+                ],
+                [
+                    "related_objectives",
+                    "str",
+                    "0.N",
+                    "Set of objective identifiers (which should appear within the related experiments)"
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "duration",
+                    "0.0"
+                ],
+                [
+                    "cardinality",
+                    "rationale",
+                    "1.1"
+                ]
+            ]
+        },
+        "experimental_relationships": {
+            "type": "enum",
+            "is_open": "True",
+            "members": [
+                [
+                    "is_constrained_by",
+                    "The experiment that provides constraint(s) for the target experiment (e.g SST forcing)."
+                ],
+                [
+                    "is_constrainer_of",
+                    "The set of experiments constrained by the experiment."
+                ],
+                [
+                    "is_perturbation_from",
+                    "The experiment that provides a control for the target experiment."
+                ],
+                [
+                    "is_control_for",
+                    "The set of experiments that use the experiment as a control."
+                ],
+                [
+                    "is_initialized_by",
+                    "The experiment providing initialization for the experiment."
+                ],
+                [
+                    "is_initializer_of",
+                    "The set of experiments initialized by the experiment."
+                ],
+                [
+                    "is_sibling_of",
+                    "Part of a family (e.g. experiments where solar forcing is either increased or reduced)."
+                ]
+            ]
+        },
+        "numerical_requirement": {
+            "type": "class",
+            "base": "activity.activity",
+            "is_abstract": "False",
+            "alternatives": [
+                "designing.temporal_constraint",
+                "designing.forcing_constraint",
+                "designing.ensemble_requirement",
+                "designing.multi_ensemble",
+                "designing.start_date_ensemble",
+                "designing.output_requirement",
+                "designing.domain_requirements",
+                "designing.initialisation_requirement"
+            ],
+            "properties": [
+                [
+                    "additional_requirements",
+                    "linked_to(designing.numerical_requirement)",
+                    "0.N",
+                    "Additional detail for this requirement."
+                ],
+                [
+                    "is_conformance_requested",
+                    "bool",
+                    "1.1",
+                    "Indicator as to whether ensemble documentation should include conformance information for this requirement."
+                ],
+                [
+                    "is_conformance_info_required",
+                    "bool",
+                    "1.1",
+                    "Indicator as to whether an institute is expected to provide informationas to how it confirmed."
+                ],
+                [
+                    "scope",
+                    "designing.numerical_requirement_scope",
+                    "0.1",
+                    "Scope allows us to categorise a requirement in terms of how widely it is shared."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "duration",
+                    "0.0"
+                ]
+            ]
+        },
+        "numerical_requirement_scope": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "mip-era",
+                    "MIP era wide e.g. 'concentration of pre-industrial CO2' & 'Impose AMIP SSTs'"
+                ],
+                [
+                    "mip-group",
+                    "Shared across a group of MIPs e.g. aerosol forcing in GeoMIP and AerChemMIP."
+                ],
+                [
+                    "mip",
+                    "Shared within a single MIP e.g. spin-up protocol for land surface experiments in LUMIP."
+                ],
+                [
+                    "experiment",
+                    "Applies to a single experiment e.g. CFMIP 'zonally uniform SST plus 4K'"
+                ]
+            ]
+        },
+        "output_requirement": {
+            "type": "class",
+            "base": "designing.numerical_requirement",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "formal_data_request",
+                    "shared.online_resource",
+                    "0.1",
+                    "If available, link to a 'cmip' style online request."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "additional_requirements",
+                    "0.0"
+                ]
+            ]
+        },
+        "objective": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "True",
+            "properties": [
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Name of this objective"
+                ],
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    " Short summary of the objective"
+                ],
+                [
+                    "required_outputs",
+                    "data.variable_collection",
+                    "0.N",
+                    "Set of required outputs associated with this objective"
+                ],
+                [
+                    "identifier",
+                    "str",
+                    "0.1",
+                    "Provides a hook to which experiments can link"
+                ]
+            ]
+        },
+        "project": {
+            "type": "class",
+            "base": "activity.activity",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "homepage",
+                    "shared.online_resource",
+                    "0.1",
+                    "Project homepage."
+                ],
+                [
+                    "objectives",
+                    "linked_to(designing.objective)",
+                    "0.N",
+                    "Project objectives."
+                ],
+                [
+                    "previous_projects",
+                    "linked_to(designing.project)",
+                    "0.N",
+                    "Previous projects with similar aims."
+                ],
+                [
+                    "required_experiments",
+                    "linked_to(designing.numerical_experiment)",
+                    "0.N",
+                    "Experiments required to deliver project."
+                ],
+                [
+                    "governed_experiments",
+                    "linked_to(designing.numerical_experiment)",
+                    "0.N",
+                    "Experiments governed by this project."
+                ],
+                [
+                    "sub_projects",
+                    "linked_to(designing.project)",
+                    "0.N",
+                    "Activities within the project with their own name and aim(s)."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "description",
+                    "1.1"
+                ]
+            ]
+        },
+        "simulation_plan": {
+            "type": "class",
+            "base": "activity.activity",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "expected_model",
+                    "linked_to(science.model)",
+                    "1.1",
+                    "The model used to run the simulation."
+                ],
+                [
+                    "expected_performance_sypd",
+                    "float",
+                    "0.1",
+                    "Expected performance in simulated years per real day."
+                ],
+                [
+                    "expected_platform",
+                    "linked_to(platform.machine)",
+                    "0.1",
+                    "The machine on which the simulation will be run."
+                ],
+                [
+                    "will_support_experiments",
+                    "linked_to(designing.numerical_experiment)",
+                    "1.N",
+                    "An experiment with which the planned simulation will be associated."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "duration",
+                    "1.1"
+                ]
+            ]
+        },
+        "start_date_ensemble": {
+            "type": "class",
+            "base": "designing.numerical_requirement",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "ensemble_members",
+                    "time.datetime_set",
+                    "1.1",
+                    "Description of date or time set of start dates."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "additional_requirements",
+                    "0.0"
+                ]
+            ]
+        },
+        "temporal_constraint": {
+            "type": "class",
+            "base": "designing.numerical_requirement",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "required_calendar",
+                    "time.calendar",
+                    "0.1",
+                    "Required calendar (e.g. for paleo simulations)."
+                ],
+                [
+                    "required_duration",
+                    "time.time_period",
+                    "0.1",
+                    "Constraint on time or length of simulation."
+                ],
+                [
+                    "start_date",
+                    "time.date_time",
+                    "0.1",
+                    "Required start date."
+                ],
+                [
+                    "start_flexibility",
+                    "time.time_period",
+                    "0.1",
+                    "Amount of time before required start date that it is permissible to begin integration."
+                ]
+            ],
+            "constraints": [
+                [
+                    "cardinality",
+                    "additional_requirements",
+                    "0.0"
+                ]
+            ]
+        }
+    },
+    "drs": {
+        "drs_atomic_dataset": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "frequency",
+                    "drs.drs_frequency_types",
+                    "1.1",
+                    "Frequency at which data is stored."
+                ],
+                [
+                    "geographical_constraint",
+                    "drs.drs_geographical_indicator",
+                    "0.1",
+                    "Identifies geographical subsets and spatial means."
+                ],
+                [
+                    "mip_table",
+                    "str",
+                    "1.1",
+                    "The MIP table, together with the variable defines the physical quantity."
+                ],
+                [
+                    "realm",
+                    "drs.drs_realms",
+                    "0.1",
+                    "Modelling realm."
+                ],
+                [
+                    "temporal_constraint",
+                    "drs.drs_temporal_identifier",
+                    "0.1",
+                    "Identifies temporal subsets or means."
+                ],
+                [
+                    "variable_name",
+                    "str",
+                    "1.1",
+                    "Identifies the physical quantity (when used in conjunction with the MIP table)."
+                ],
+                [
+                    "version_number",
+                    "int",
+                    "0.1",
+                    "Uniquely identifies a particular version of a publication level dataset."
+                ]
+            ]
+        },
+        "drs_ensemble_identifier": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "forcing_number",
+                    "int",
+                    "0.1",
+                    "Identifies possible perturbatinos in forcing."
+                ],
+                [
+                    "initialisation_method_number",
+                    "int",
+                    "1.1",
+                    "Identifies which method of initialisation was used, if multiple methods used."
+                ],
+                [
+                    "perturbation_number",
+                    "int",
+                    "1.1",
+                    "Identifies different members of a perturbed physics ensemble."
+                ],
+                [
+                    "realisation_number",
+                    "int",
+                    "1.1",
+                    "Standard ensemble axis realisation number (usually an initial condition ensemble)."
+                ]
+            ]
+        },
+        "drs_experiment": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "axis_identifer",
+                    "activity.axis_member",
+                    "0.1",
+                    "FIXME."
+                ],
+                [
+                    "axis_type",
+                    "designing.ensemble_types",
+                    "0.1",
+                    "Type of experimental family ensemble required."
+                ],
+                [
+                    "family",
+                    "str",
+                    "1.1",
+                    "Main experimental family."
+                ]
+            ]
+        },
+        "drs_frequency_types": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "yr",
+                    "Yearly"
+                ],
+                [
+                    "mon",
+                    "Monthly"
+                ],
+                [
+                    "day",
+                    "Daily"
+                ],
+                [
+                    "6hr",
+                    "Every six hours"
+                ],
+                [
+                    "3hr",
+                    "Every three hours"
+                ],
+                [
+                    "subhr",
+                    "Sampling frequency less than an hour"
+                ],
+                [
+                    "monClim",
+                    "Climatological Monthly Mean"
+                ],
+                [
+                    "fx",
+                    "Fixed Time independent"
+                ]
+            ]
+        },
+        "drs_geographical_indicator": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "bounding_box",
+                    "str",
+                    "0.1",
+                    "DRS bounding box of the form 'latJHJJHHlonMZMMZZ' where H, HH, Z, ZZ are from {NS} {EW} respectively."
+                ],
+                [
+                    "operator",
+                    "drs.drs_geographical_operators",
+                    "0.1",
+                    "Spatial averagin applied to the geographical region."
+                ],
+                [
+                    "spatial_domain",
+                    "str",
+                    "0.1",
+                    "Geographical indicator (currently only 'global' is acceptable)."
+                ]
+            ]
+        },
+        "drs_geographical_operators": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "zonalavg",
+                    "Data is zonally averaged"
+                ],
+                [
+                    "lnd-zonalavg",
+                    "Data is zonally averaged over land in region"
+                ],
+                [
+                    "ocn-zonalavg",
+                    "Data is zonally averaged over oceans in region"
+                ],
+                [
+                    "areaavg",
+                    "Data is averaged over the area of the region"
+                ],
+                [
+                    "lnd-areaavg",
+                    "Data is averaged over the land area of the region"
+                ],
+                [
+                    "ocn-areaavg",
+                    "Data is averaged over the ocean area of the region"
+                ]
+            ]
+        },
+        "drs_publication_dataset": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": []
+        },
+        "drs_realms": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "atmos",
+                    "Atmosphere"
+                ],
+                [
+                    "ocean",
+                    "Ocean"
+                ],
+                [
+                    "land",
+                    "Land"
+                ],
+                [
+                    "landIce",
+                    "Land Ice"
+                ],
+                [
+                    "seaIce",
+                    "Sea Ice"
+                ],
+                [
+                    "aerosol",
+                    "Aerosol"
+                ],
+                [
+                    "atmosChem",
+                    "Atmospheric Chemistry"
+                ],
+                [
+                    "ocnBgchem",
+                    "Ocean Biogeochemistry"
+                ]
+            ]
+        },
+        "drs_simulation_identifier": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "institute",
+                    "str",
+                    "1.1",
+                    "The institute responsible for this data entity."
+                ],
+                [
+                    "model",
+                    "str",
+                    "1.1",
+                    "A model identifier (sans blanks/periods and parenthesis)."
+                ],
+                [
+                    "run_variant_id",
+                    "drs.drs_ensemble_identifier",
+                    "1.1",
+                    "Also known as ensemble_identifier, unambiguously identifiers ensemble realisation information."
+                ]
+            ]
+        },
+        "drs_temporal_identifier": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "end",
+                    "str",
+                    "0.1",
+                    "N2, required to indicate a period."
+                ],
+                [
+                    "start",
+                    "str",
+                    "1.1",
+                    "N1,  of the form yyyy[MM[dd[hh[mm[ss]]]]]."
+                ],
+                [
+                    "suffix",
+                    "drs.drs_time_suffixes",
+                    "0.1",
+                    "If present, used to indicate climatology or average."
+                ]
+            ]
+        },
+        "drs_time_suffixes": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "avg",
+                    "Indicates data is a single average of DRS frequency data across temporal period N1-N2"
+                ],
+                [
+                    "clim",
+                    "Indicates data is climatological average data at the DRS frequency from the period N1-N2"
+                ]
+            ]
+        }
+    },
+    "iso": {
+        "lineage": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "{}",
+                [
+                    "statement"
+                ]
+            ],
+            "properties": [
+                [
+                    "statement",
+                    "str",
+                    "0.1",
+                    "General explanation of the level of knowledge or lack thereof about the lineage"
+                ],
+                [
+                    "process_step",
+                    "iso.process_step",
+                    "0.N",
+                    "How the resource was developed or set of events associated with production."
+                ],
+                [
+                    "source",
+                    "linked_to(data.dataset)",
+                    "0.N",
+                    "Input(s) used in production of resource"
+                ]
+            ],
+            "constraints": []
+        },
+        "process_step": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "False",
+            "pstr": [
+                "{}",
+                [
+                    "description"
+                ]
+            ],
+            "properties": [
+                [
+                    "description",
+                    "str",
+                    "1.1",
+                    "General description of the events in the development of the resource."
+                ],
+                [
+                    "rationale",
+                    "str",
+                    "0.1",
+                    "Purpose for performing the process on the resource"
+                ],
+                [
+                    "execution_date_time",
+                    "time.date_time",
+                    "0.1",
+                    "The date and time when the process was completed."
+                ],
+                [
+                    "processor",
+                    "shared.responsibility",
+                    "0.1",
+                    "Individual or organisation responsible for the process step. Use roleCode='processor'. Contact information is not necessary."
+                ],
+                [
+                    "reference",
+                    "linked_to(shared.citation)",
+                    "0.N",
+                    "Process step documentation"
+                ],
+                [
+                    "source",
+                    "linked_to(data.dataset)",
+                    "0.N",
+                    "Information on the inputs used in the process step."
+                ],
+                [
+                    "processing_information",
+                    "iso.processing",
+                    "0.N",
+                    "Comprehensive information on the processing carried out"
+                ],
+                [
+                    "report",
+                    "iso.process_step_report",
+                    "0.N",
+                    "Report generated by the process step"
+                ]
+            ]
+        },
+        "processing": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "False",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Name of the processing action (ISO extension)"
+                ],
+                [
+                    "identifier",
+                    "str",
+                    "0.1",
+                    "Identifier (strictly, a code which can be used in an MD_Identifier"
+                ],
+                [
+                    "software_reference",
+                    "linked_to(shared.citation)",
+                    "0.N",
+                    "Reference to document describing processing software"
+                ],
+                [
+                    "procedure_description",
+                    "str",
+                    "0.1",
+                    "additional details about the processing procedures"
+                ],
+                [
+                    "documentation",
+                    "linked_to(shared.citation)",
+                    "0.1",
+                    "reference to documentation describing the processing"
+                ],
+                [
+                    "runtime_parameters",
+                    "str",
+                    "0.1",
+                    "parameters to control the processing operations, entered at run time"
+                ],
+                [
+                    "algorithm",
+                    "iso.algorithm",
+                    "0.N",
+                    "details of the methodology carried out in this processing"
+                ]
+            ]
+        },
+        "process_step_report": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "False",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Name of the processing report"
+                ],
+                [
+                    "description",
+                    "str",
+                    "1.1",
+                    "Summary textual description of what occurred during the process step"
+                ],
+                [
+                    "link",
+                    "shared.online_resource",
+                    "0.1",
+                    "Link to actual report documents, if any"
+                ]
+            ]
+        },
+        "algorithm": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "False",
+            "pstr": [
+                "{}",
+                [
+                    "description"
+                ]
+            ],
+            "properties": [
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Textural description of algorithm"
+                ],
+                [
+                    "citation",
+                    "linked_to(shared.citation)",
+                    "0.1",
+                    "Formal documentation for the algorithm used."
+                ]
+            ]
+        },
+        "quality_report": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "True",
+            "properties": [
+                [
+                    "target",
+                    "shared.online_resource",
+                    "1.1",
+                    "Document about to which this quality report applies"
+                ],
+                [
+                    "issues",
+                    "iso.quality_issue",
+                    "0.N",
+                    "Issues with this resource"
+                ],
+                [
+                    "reports",
+                    "iso.quality_evaluation_result",
+                    "0.N",
+                    "Reports against quality measures for this resource"
+                ]
+            ]
+        },
+        "quality_issue": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "summary",
+                    "str",
+                    "1.1",
+                    "Brief (one-line) description of issue"
+                ],
+                [
+                    "reporter",
+                    "linked_to(shared.party)",
+                    "0.1",
+                    "Person or entity responsible for reporting/describing issue"
+                ],
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Description of issue"
+                ],
+                [
+                    "tracked_issue",
+                    "shared.online_resource",
+                    "0.1",
+                    "Issue as lodged in an external issue tracker"
+                ]
+            ]
+        },
+        "quality_evaluation_result": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Name of measure being evaluated"
+                ],
+                [
+                    "evaluation_procedure",
+                    "str",
+                    "0.1",
+                    "Brief description of the evaluation method"
+                ],
+                [
+                    "specification",
+                    "linked_to(shared.citation)",
+                    "0.1",
+                    "Formal specification of the evaluation method"
+                ],
+                [
+                    "evaluator",
+                    "linked_to(shared.party)",
+                    "0.1",
+                    "Person or entity reesponsible for evaluation"
+                ],
+                [
+                    "date",
+                    "time.date_time",
+                    "0.1",
+                    "Date of quality evaluation"
+                ],
+                [
+                    "summary_result",
+                    "str",
+                    "0.1",
+                    "Summary description of evaluation outcome"
+                ],
+                [
+                    "passed",
+                    "bool",
+                    "0.1",
+                    "Success or failure of the evaluation, if boolean concept is appropriate"
+                ],
+                [
+                    "results",
+                    "iso.quality_evaluation_output",
+                    "0.N",
+                    "Evaluation outputs, including log files, plots, or datasets"
+                ]
+            ]
+        },
+        "quality_evaluation_output": {
+            "type": "class",
+            "base": "shared.online_resource",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "output_type",
+                    "iso.dq_evaluation_result_type",
+                    "1.1",
+                    "Type of evaluation resource"
+                ]
+            ]
+        },
+        "ds_initiative_typecode": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "campaign",
+                    "series of organized planned actions"
+                ],
+                [
+                    "collection",
+                    "accumulation of datasets assembled for a specific purpose"
+                ],
+                [
+                    "exercise",
+                    "specific performance of a function or group of functions"
+                ],
+                [
+                    "experiment",
+                    "process designed to find if something is effective or valid"
+                ],
+                [
+                    "investigation",
+                    "search or systematic inquiry"
+                ],
+                [
+                    "mission",
+                    "specific operation of a data collection system"
+                ],
+                [
+                    "sensor",
+                    "device or piece of equipment which detects or records"
+                ],
+                [
+                    "operation",
+                    "action that is part of a series of actions"
+                ],
+                [
+                    "platform",
+                    "vehicle or other support base that holds a sensor"
+                ],
+                [
+                    "process",
+                    " method of doing something involving a number of steps"
+                ],
+                [
+                    "program",
+                    "specific planned activity"
+                ],
+                [
+                    "project",
+                    "organized undertaking, research, or development"
+                ],
+                [
+                    "study",
+                    "examination or investigation"
+                ],
+                [
+                    "task",
+                    "piece of work"
+                ],
+                [
+                    "trial",
+                    "process of testing to discover or demonstrate something"
+                ]
+            ]
+        },
+        "md_cellgeometry_code": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "point",
+                    "each cell represents a point"
+                ],
+                [
+                    "area",
+                    "each cell represents an area"
+                ]
+            ]
+        },
+        "md_progress_code": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "completed",
+                    "production of the data has been completed"
+                ],
+                [
+                    "historicalArchive",
+                    "data has been stored in an offline storage facility"
+                ],
+                [
+                    "obsolete",
+                    "data is no longer relevant"
+                ],
+                [
+                    "onGoing",
+                    "data is continually being updated"
+                ],
+                [
+                    "planned",
+                    "fixed date has been established upon or by which the data will be created or updated"
+                ],
+                [
+                    "required",
+                    "updated"
+                ],
+                [
+                    "underDevelopment",
+                    "data is currently in the process of being created"
+                ]
+            ]
+        },
+        "dq_evaluation_result_type": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "plot",
+                    "Diagnostic plot, use mime-type to identify what kind of image format is used"
+                ],
+                [
+                    "document",
+                    "Document of some form, use mime-type to identify if PDF etc"
+                ],
+                [
+                    "dataset",
+                    "Expect a binary target, accessible via a landing page or directly"
+                ]
+            ]
+        }
+    },
+    "platform": {
+        "compute_pool": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{} [{}]",
+                [
+                    "name",
+                    "number_of_nodes"
+                ]
+            ],
+            "properties": [
+                [
+                    "accelerator_type",
+                    "str",
+                    "0.1",
+                    "Type of accelerator."
+                ],
+                [
+                    "accelerators_per_node",
+                    "int",
+                    "0.1",
+                    "Number of accelerator units on a node."
+                ],
+                [
+                    "clock_cycle_concurrency",
+                    "int",
+                    "0.1",
+                    "The number of operations which can be carried out concurrently in a single clock cycle of a single core. E.g. 4."
+                ],
+                [
+                    "clock_speed",
+                    "shared.numeric",
+                    "0.1",
+                    "The clock speed of a single core, in units of GHz. E.g. 3.6."
+                ],
+                [
+                    "compute_cores_per_node",
+                    "int",
+                    "0.1",
+                    "Number of CPU cores per node."
+                ],
+                [
+                    "cpu_type",
+                    "str",
+                    "0.1",
+                    "CPU type."
+                ],
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Textural description of pool."
+                ],
+                [
+                    "memory_per_node",
+                    "shared.numeric",
+                    "0.1",
+                    "Memory per node."
+                ],
+                [
+                    "model_number",
+                    "str",
+                    "0.1",
+                    "Model/Board number/type."
+                ],
+                [
+                    "name",
+                    "str",
+                    "0.1",
+                    "Name of compute pool within a machine."
+                ],
+                [
+                    "number_of_nodes",
+                    "int",
+                    "0.1",
+                    "Number of nodes."
+                ],
+                [
+                    "vendor",
+                    "linked_to(shared.party)",
+                    "0.1",
+                    "Supplier of compute hardware in this pool"
+                ],
+                [
+                    "network_cards_per_node",
+                    "platform.nic",
+                    "0.N",
+                    "Available network interfaces on node"
+                ]
+            ],
+            "derived": [
+                [
+                    "total_cores",
+                    "compute_cores_per_node * number_of_nodes"
+                ],
+                [
+                    "total_memory",
+                    "memory_per_node * number_of_nodes"
+                ]
+            ]
+        },
+        "interconnect": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "name",
+                    "str",
+                    "0.1",
+                    "Name of interconnnect."
+                ],
+                [
+                    "topology",
+                    "str",
+                    "0.1",
+                    "Interconnect topology"
+                ],
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Technical description of interconnect layout"
+                ],
+                [
+                    "vendor",
+                    "linked_to(shared.party)",
+                    "0.1",
+                    "Supplier of the interconnect"
+                ]
+            ]
+        },
+        "nic": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Name of interface card"
+                ],
+                [
+                    "vendor",
+                    "linked_to(shared.party)",
+                    "0.1",
+                    "Vendor of network card"
+                ],
+                [
+                    "bandwidth",
+                    "shared.numeric",
+                    "1.1",
+                    "Bandwidth to network"
+                ]
+            ]
+        },
+        "machine": {
+            "type": "class",
+            "base": "platform.partition",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "is_document": "True",
+            "properties": [
+                [
+                    "peak_performance",
+                    "shared.numeric",
+                    "0.1",
+                    "Total peak performance (RPeak in Top500 lingo)"
+                ],
+                [
+                    "linpack_performance",
+                    "shared.numeric",
+                    "0.1",
+                    "Linpack performance (RMax in Top500 lingo)"
+                ]
+            ]
+        },
+        "partition": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "compute_pools",
+                    "platform.compute_pool",
+                    "1.N",
+                    "Layout of compute nodes."
+                ],
+                [
+                    "interconnect",
+                    "platform.interconnect",
+                    "0.1",
+                    "Interconnect used."
+                ],
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Textural description of machine."
+                ],
+                [
+                    "institution",
+                    "linked_to(shared.party)",
+                    "1.1",
+                    "Institutional location."
+                ],
+                [
+                    "model_number",
+                    "str",
+                    "0.1",
+                    "Vendor's model number/name - if it exists."
+                ],
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Name of partition (or machine)."
+                ],
+                [
+                    "online_documentation",
+                    "shared.online_resource",
+                    "0.N",
+                    "Links to documentation."
+                ],
+                [
+                    "operating_system",
+                    "str",
+                    "0.1",
+                    "Operating system."
+                ],
+                [
+                    "partition",
+                    "platform.partition",
+                    "0.N",
+                    "If machine is partitioned, treat subpartitions as machines."
+                ],
+                [
+                    "storage_pools",
+                    "platform.storage_pool",
+                    "0.N",
+                    "Storage resource available."
+                ],
+                [
+                    "vendor",
+                    "linked_to(shared.party)",
+                    "0.1",
+                    "The system integrator or vendor."
+                ],
+                [
+                    "when_available",
+                    "time.time_period",
+                    "0.1",
+                    "If no longer in use, the time period it was in use."
+                ]
+            ]
+        },
+        "performance": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{} (sypd:{})",
+                [
+                    "name",
+                    "simulated_years_per_day"
+                ]
+            ],
+            "is_document": "True",
+            "properties": [
+                [
+                    "name",
+                    "str",
+                    "0.1",
+                    "Name for performance (experiment/test/whatever)."
+                ],
+                [
+                    "model",
+                    "linked_to(science.model), linked_to(science.realm)",
+                    "1.1",
+                    "Model for which performance was tested."
+                ],
+                [
+                    "resolution",
+                    "int",
+                    "0.1",
+                    "Resolution measured as the number of gridpoints (or more generally, spatial degrees of freedom) NX x NY x NZ per component with an independent discretization."
+                ],
+                [
+                    "complexity",
+                    "int",
+                    "0.1",
+                    "Complexity measured as the number of prognostic variables per component with an independent discretization."
+                ],
+                [
+                    "platform",
+                    "linked_to(platform.machine)",
+                    "1.1",
+                    "Platform on which performance was tested."
+                ],
+                [
+                    "compiler",
+                    "str",
+                    "0.1",
+                    "Compiler used for performance test."
+                ],
+                [
+                    "simulated_years_per_day",
+                    "float",
+                    "0.1",
+                    "Simulated years per day (SYPD) in a 24h period on the given platform."
+                ],
+                [
+                    "actual_simulated_years_per_day",
+                    "float",
+                    "0.1",
+                    "Actual simulated years per day (ASYPD) in a 24h period on the given platform obtained from a typical long-running simulation with the model. Inclusive of system interruptions, queue wait time, or issues with the model workflow, etc."
+                ],
+                [
+                    "core_hours_per_simulated_year",
+                    "float",
+                    "0.1",
+                    "Core-hours per simulated year (CHSY). This is measured as the product of the model runtime for 1 SY, and the numbers of cores allocated. Note that if allocations are done on a node basis then all cores on a node are charged against the allocation, regardless of whether or not they are used."
+                ],
+                [
+                    "joules_per_simulated_year",
+                    "float",
+                    "0.1",
+                    "The energy cost of a simulation, measured in joules per simulated year (JPSY). Given the energy E in joules consumed over a budgeting interval T (generally 1 month or 1 year, in units of hours), JPSY=CHSY*E*T/NP."
+                ],
+                [
+                    "parallelisation",
+                    "float",
+                    "0.1",
+                    "Total number of cores (NP) allocated for the run, regardless of whether or not all cores were used all of the time."
+                ],
+                [
+                    "further_detail",
+                    "platform.performance_detail",
+                    "0.1",
+                    "Set of additional information related to coupling, memory and I/O."
+                ],
+                [
+                    "subcomponent_performance",
+                    "linked_to(platform.performance)",
+                    "0.N",
+                    "Describes the performance of each subcomponent."
+                ]
+            ]
+        },
+        "performance_detail": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "False",
+            "properties": [
+                [
+                    "coupling_cost",
+                    "float",
+                    "0.1",
+                    "Coupling cost measures the overhead caused by coupling. This can include the cost of the coupling algorithm itself (which may involve grid interpolation and computation of transfer coefficients for conservative coupling) as well as load imbalance. It is the normalized difference between the time-processor integral for the whole model versus the sum of individual concurrent components."
+                ],
+                [
+                    "memory_bloat",
+                    "float",
+                    "0.1",
+                    "Memory bloat is the ratio of the actual memory size, defined as M minus NP  multiplied by X where M is the measured runtime memory usage and X the size of the executable files, to the ideal memory size Mi, the size of the complete model state, which in theory is all you need to hold in memory."
+                ],
+                [
+                    "data_output_cost",
+                    "float",
+                    "0.1",
+                    "Data output cost is the cost of performing I/O, and is the ratio of CHSY with and without I/O."
+                ],
+                [
+                    "data_intensity",
+                    "float",
+                    "0.1",
+                    "Data intensity is the amount of data produced per compute-hour, in units GB per compute-hour."
+                ]
+            ]
+        },
+        "project_cost": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "Production: {}Y, {}",
+                [
+                    "useful_years",
+                    "useful_data"
+                ]
+            ],
+            "properties": [
+                [
+                    "activity",
+                    "linked_to(activity.activity)",
+                    "1.1",
+                    "Project or Experiment of interest"
+                ],
+                [
+                    "platform",
+                    "linked_to(platform.machine)",
+                    "1.1",
+                    "Machine used for project"
+                ],
+                [
+                    "useful_years",
+                    "int",
+                    "1.1",
+                    "Number of useful years simulated (or to be simulated) during this project"
+                ],
+                [
+                    "useful_data",
+                    "shared.numeric",
+                    "0.1",
+                    "Volume of useful data to be analysed"
+                ],
+                [
+                    "useful_core_hours",
+                    "int",
+                    "0.1",
+                    "Number of core-hours used for useful simulations within the project"
+                ],
+                [
+                    "actual_years",
+                    "int",
+                    "0.1",
+                    "Number of actual years simulated, including spin-up tuning etc."
+                ],
+                [
+                    "peak_data",
+                    "shared.numeric",
+                    "0.1",
+                    "Maximum volume of data held during project"
+                ],
+                [
+                    "total_core_hours",
+                    "int",
+                    "0.1",
+                    "Total number of core hours needed for all aspects of the project"
+                ],
+                [
+                    "total_energy_cost",
+                    "float",
+                    "0.1",
+                    "Total cost of project in Joules, if known"
+                ]
+            ]
+        },
+        "storage_pool": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{} {}",
+                [
+                    "name",
+                    "file_system_sizes"
+                ]
+            ],
+            "properties": [
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Description of the technology used."
+                ],
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Name of storage pool."
+                ],
+                [
+                    "type",
+                    "platform.storage_systems",
+                    "0.1",
+                    "Type of storage."
+                ],
+                [
+                    "vendor",
+                    "linked_to(shared.party)",
+                    "0.1",
+                    "Vendor of storage hardware."
+                ],
+                [
+                    "file_system_sizes",
+                    "shared.numeric",
+                    "1.N",
+                    "Sizes of constituent File Systems"
+                ]
+            ]
+        },
+        "storage_systems": {
+            "type": "enum",
+            "is_open": "True",
+            "members": [
+                [
+                    "Lustre",
+                    "Lustre parallel file system"
+                ],
+                [
+                    "GPFS",
+                    "IBM GPFS (also known as IBM Spectral Scale"
+                ],
+                [
+                    "isilon",
+                    "The EMC scaleout NAS solution"
+                ],
+                [
+                    "NFS",
+                    "Generic Network File System"
+                ],
+                [
+                    "S3",
+                    "Object file system exposing the AWS S3 interface"
+                ],
+                [
+                    "PanFS",
+                    "Panasas Parallel File system"
+                ],
+                [
+                    "Other Disk",
+                    "Other disk based file system"
+                ],
+                [
+                    "Tape - MARS",
+                    "Tape storage system using ECMWF MARS"
+                ],
+                [
+                    "Tape - MASS",
+                    "Tape storage system using Met Office MASS"
+                ],
+                [
+                    "Tape - Castor",
+                    "Tape storage sytsem using CERN Castor"
+                ],
+                [
+                    "Tape - Other",
+                    "Other tape based system"
+                ]
+            ]
+        }
+    },
+    "science": {
+        "model": {
+            "type": "class",
+            "base": "software.component_base",
+            "is_abstract": "False",
+            "is_document": "True",
+            "properties": [
+                [
+                    "keywords",
+                    "str",
+                    "0.N",
+                    "Keywords to help re-use and discovery of this information."
+                ],
+                [
+                    "model_type",
+                    "science.model_types",
+                    "1.1",
+                    "Generic type for this model."
+                ],
+                [
+                    "key_properties",
+                    "science.topic",
+                    "0.1",
+                    "Model default key properties (may be over-ridden in coupled component and realm properties)."
+                ],
+                [
+                    "activity_properties",
+                    "science.topic",
+                    "0.N",
+                    "Properties specific to the modelling activity in question, e.g. radiative forcing agents for CMIP6."
+                ],
+                [
+                    "realms",
+                    "linked_to(science.realm)",
+                    "0.N",
+                    "The scientific realms which this model simulates internally, i.e. those which are not linked together using a coupler."
+                ],
+                [
+                    "realm_coupling",
+                    "science.realm_coupling",
+                    "0.N",
+                    "Description of a coupling between realms"
+                ],
+                [
+                    "coupled_components",
+                    "linked_to(science.model)",
+                    "0.N",
+                    "Software components which are linked together using a coupler to deliver this model."
+                ],
+                [
+                    "coupler",
+                    "software.coupling_framework",
+                    "0.1",
+                    "Overarching coupling framework for model."
+                ],
+                [
+                    "internal_software_components",
+                    "linked_to(software.software_component)",
+                    "0.N",
+                    "Software modules which together provide the functionality for this model."
+                ]
+            ]
+        },
+        "realm": {
+            "type": "class",
+            "base": "science.topic",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "{}",
+                [
+                    "canonical_name"
+                ]
+            ],
+            "properties": [
+                [
+                    "canonical_name",
+                    "str",
+                    "0.1",
+                    "Canonical name for the realm."
+                ],
+                [
+                    "grid",
+                    "science.topic",
+                    "0.1",
+                    "The grid used to layout the variables (e.g. the Global ENDGAME-grid)."
+                ],
+                [
+                    "key_properties",
+                    "science.topic",
+                    "0.1",
+                    "Realm key properties which differ from model defaults (grid, timestep etc)."
+                ],
+                [
+                    "processes",
+                    "science.topic",
+                    "1.N",
+                    "Processes simulated within the realm."
+                ],
+                [
+                    "software_frameworks",
+                    "software.implementation",
+                    "0.N",
+                    "Software framework(s) of the realm."
+                ]
+            ]
+        },
+        "realm_coupling": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "False",
+            "properties": [
+                [
+                    "variable",
+                    "str",
+                    "1.1",
+                    "The variable being coupled (e.g. 10 metre wind)"
+                ],
+                [
+                    "source_realm",
+                    "str",
+                    "1.1",
+                    "The model realm providing the variable (e.g. ocean)"
+                ],
+                [
+                    "target_realm",
+                    "str",
+                    "1.1",
+                    "The model realm receiving the variable (e.g. atmosphere)"
+                ],
+                [
+                    "time_frequency",
+                    "str",
+                    "1.1",
+                    "The time frequency of the coupling (e.g. 1 hour)"
+                ],
+                [
+                    "coupling_details",
+                    "str",
+                    "0.1",
+                    "Description of the coupling algorithm, and any other information (e.g. binlinear interpolation"
+                ]
+            ]
+        },
+        "topic": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "citations",
+                    "linked_to(shared.citation)",
+                    "0.N",
+                    "Set of pertinent citations."
+                ],
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "A description (derived from specialization)."
+                ],
+                [
+                    "keywords",
+                    "str",
+                    "0.N",
+                    "Keywords to help re-use and discovery of this information."
+                ],
+                [
+                    "name",
+                    "str",
+                    "0.1",
+                    "A short-name / key (derived from specialization)."
+                ],
+                [
+                    "overview",
+                    "str",
+                    "0.1",
+                    "An overview of topic being described."
+                ],
+                [
+                    "properties",
+                    "science.topic_property",
+                    "0.N",
+                    "Set of associated specialized properties."
+                ],
+                [
+                    "property_sets",
+                    "science.topic_property_set",
+                    "0.N",
+                    "Grouped specialized properties."
+                ],
+                [
+                    "qc_status",
+                    "int",
+                    "0.1",
+                    "Quality control status of topic."
+                ],
+                [
+                    "responsible_parties",
+                    "shared.responsibility",
+                    "0.N",
+                    "People or organisations responsible for providing this information."
+                ],
+                [
+                    "specialization_id",
+                    "str",
+                    "0.1",
+                    "Specialization identifier (derived from specialization)."
+                ],
+                [
+                    "sub_topics",
+                    "science.topic",
+                    "0.N",
+                    "Discrete sub-topic with details."
+                ]
+            ]
+        },
+        "topic_property_set": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "specialization_id"
+                ]
+            ],
+            "properties": [
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "A description (derived from specialization)."
+                ],
+                [
+                    "properties",
+                    "science.topic_property",
+                    "1.N",
+                    "Set of associated specialized properties."
+                ],
+                [
+                    "name",
+                    "str",
+                    "0.1",
+                    "A short-name / key (derived from specialization)."
+                ],
+                [
+                    "specialization_id",
+                    "str",
+                    "0.1",
+                    "Specialization identifier (derived from specialization)."
+                ]
+            ]
+        },
+        "topic_property": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}: {}",
+                [
+                    "specialization_id",
+                    "values"
+                ]
+            ],
+            "properties": [
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "User friendly description (derived from specialization)."
+                ],
+                [
+                    "name",
+                    "str",
+                    "0.1",
+                    "A short-name / key (derived from specialization)."
+                ],
+                [
+                    "specialization_id",
+                    "str",
+                    "0.1",
+                    "Specialization identifier (derived from specialization)."
+                ],
+                [
+                    "values",
+                    "str",
+                    "1.N",
+                    "User value(s)."
+                ]
+            ]
+        },
+        "model_types": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "Atm Only",
+                    "Atmosphere Only"
+                ],
+                [
+                    "Ocean Only",
+                    "Ocean Only"
+                ],
+                [
+                    "Regional",
+                    "Regional Model"
+                ],
+                [
+                    "ESM",
+                    "Earth System Model (Atmosphere, Ocean, Land, carbon cycle)"
+                ],
+                [
+                    "GCM",
+                    "Global Climate Model (Atmosphere, Ocean, no carbon cycle)"
+                ],
+                [
+                    "IGCM",
+                    "Intermediate Complexity GCM"
+                ],
+                [
+                    "GCM-MLO",
+                    "GCM with mixed layer ocean"
+                ],
+                [
+                    "Mesoscale",
+                    "Mesoscale Model"
+                ],
+                [
+                    "ProcessLA",
+                    "Limited Area process model"
+                ],
+                [
+                    "DynamicalCore",
+                    "Dynamical Core only"
+                ],
+                [
+                    "Statistical",
+                    "Derived from statistics"
+                ],
+                [
+                    "ML Inference",
+                    "Model is trained from data"
+                ],
+                [
+                    "Re-Analysis",
+                    "Model includes active data-assimilation beyond initialisation"
+                ],
+                [
+                    "Planetary",
+                    "Non-Earth model"
+                ],
+                [
+                    "Process",
+                    "Specific process or parameterisation in column mode"
+                ],
+                [
+                    "Other",
+                    "A numerical model not covered above"
+                ]
+            ]
+        }
+    },
+    "shared": {
+        "doc_meta_info": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "author",
+                    "linked_to(shared.party)",
+                    "0.1",
+                    "Author of the metadata in the parent document."
+                ],
+                [
+                    "create_date",
+                    "datetime",
+                    "1.1",
+                    "Date upon which the documentation instance was created."
+                ],
+                [
+                    "drs_keys",
+                    "str",
+                    "0.N",
+                    "DRS related keys to support correlation of documents with datasets."
+                ],
+                [
+                    "drs_path",
+                    "str",
+                    "0.1",
+                    "DRS related path to support documents with datasets."
+                ],
+                [
+                    "external_ids",
+                    "str",
+                    "0.N",
+                    "Set of identifiers used to reference the document by external parties."
+                ],
+                [
+                    "id",
+                    "str",
+                    "1.1",
+                    "Universal document identifier (must be a valid UUID)."
+                ],
+                [
+                    "institute",
+                    "str",
+                    "0.1",
+                    "Name of institute with which instance is associated."
+                ],
+                [
+                    "project",
+                    "str",
+                    "0.1",
+                    "Name of project with which instance is associated."
+                ],
+                [
+                    "sort_key",
+                    "str",
+                    "0.1",
+                    "Document sort key."
+                ],
+                [
+                    "source",
+                    "str",
+                    "1.1",
+                    "Name of application that created the instance."
+                ],
+                [
+                    "source_key",
+                    "str",
+                    "0.1",
+                    "Key of application that created the instance."
+                ],
+                [
+                    "sub_projects",
+                    "str",
+                    "0.N",
+                    "Set of sub-projects with which instance is associated."
+                ],
+                [
+                    "type",
+                    "str",
+                    "1.1",
+                    "Document ontology type key."
+                ],
+                [
+                    "type_display_name",
+                    "str",
+                    "0.1",
+                    "Document type display name."
+                ],
+                [
+                    "type_sort_key",
+                    "str",
+                    "0.1",
+                    "Document type sort key."
+                ],
+                [
+                    "update_date",
+                    "datetime",
+                    "0.1",
+                    "Date upon which the instance was last updated."
+                ],
+                [
+                    "version",
+                    "int",
+                    "1.1",
+                    "Document version identifier."
+                ]
+            ]
+        },
+        "doc_reference": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{} ({})",
+                [
+                    "canonical_name",
+                    "type"
+                ]
+            ],
+            "properties": [
+                [
+                    "canonical_name",
+                    "str",
+                    "0.1",
+                    "Canonical name given to document."
+                ],
+                [
+                    "id",
+                    "str",
+                    "0.1",
+                    "Identifier of remote resource, if known."
+                ],
+                [
+                    "name",
+                    "str",
+                    "0.1",
+                    "A user friendly name given to document."
+                ],
+                [
+                    "type",
+                    "str",
+                    "0.1",
+                    "The type of remote document."
+                ],
+                [
+                    "version",
+                    "int",
+                    "0.1",
+                    "The version of the remote document."
+                ],
+                [
+                    "relationship",
+                    "str",
+                    "0.1",
+                    "Relationship of the object target as seen from the subject resource."
+                ],
+                [
+                    "further_info",
+                    "str",
+                    "0.1",
+                    "A further piece of information used in ad-hoc contexts."
+                ],
+                [
+                    "context",
+                    "str",
+                    "0.1",
+                    "Information about remote record in context of reference."
+                ]
+            ]
+        },
+        "formal_association": {
+            "type": "class",
+            "base": "shared.doc_reference",
+            "is_abstract": "False",
+            "is_document": "False",
+            "pstr": [
+                "{}: {}",
+                [
+                    "relationship",
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "association_vocabulary",
+                    "shared.online_resource",
+                    "0.1",
+                    "Link to named vocabulary in a server"
+                ],
+                [
+                    "association_id",
+                    "str",
+                    "0.1",
+                    "External identifier of the relationship (association name)"
+                ],
+                [
+                    "online_at",
+                    "shared.online_resource",
+                    "0.1",
+                    "Method of accessing the related entity"
+                ]
+            ],
+            "constraints": [
+                [
+                    "relationship",
+                    "cardinality",
+                    "1.1"
+                ]
+            ]
+        },
+        "text_blob": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "content"
+                ]
+            ],
+            "properties": [
+                [
+                    "content",
+                    "str",
+                    "1.1",
+                    "Raw content (including markup)."
+                ],
+                [
+                    "encoding",
+                    "shared.text_blob_encoding",
+                    "1.1",
+                    "Content encoding."
+                ]
+            ]
+        },
+        "citation": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "{}",
+                [
+                    "title"
+                ]
+            ],
+            "properties": [
+                [
+                    "abstract",
+                    "str",
+                    "0.1",
+                    "Abstract providing high level reference overview."
+                ],
+                [
+                    "authors",
+                    "str",
+                    "0.N",
+                    "The Authors of the work."
+                ],
+                [
+                    "bibtex",
+                    "str",
+                    "0.1",
+                    "A BibTeX reference for the work."
+                ],
+                [
+                    "citation_detail",
+                    "str",
+                    "0.1",
+                    "A complete citation string as would appear in a bibliography."
+                ],
+                [
+                    "collective_title",
+                    "str",
+                    "0.1",
+                    "Citation collective title, i.e. with all authors declared."
+                ],
+                [
+                    "context",
+                    "str",
+                    "0.1",
+                    "Brief text description of why this resource is being cited."
+                ],
+                [
+                    "doi",
+                    "str",
+                    "0.1",
+                    "Digital Object Identifier, if it exists."
+                ],
+                [
+                    "title",
+                    "str",
+                    "0.1",
+                    "The title of the work."
+                ],
+                [
+                    "type",
+                    "str",
+                    "0.1",
+                    "Citation type."
+                ],
+                [
+                    "year",
+                    "int",
+                    "0.1",
+                    "Year of publication."
+                ],
+                [
+                    "url",
+                    "shared.online_resource",
+                    "0.1",
+                    "Location of electronic version."
+                ]
+            ]
+        },
+        "extra_attribute": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}:{}",
+                [
+                    "key",
+                    "value"
+                ]
+            ],
+            "properties": [
+                [
+                    "doc",
+                    "str",
+                    "0.1",
+                    "Documentation associated with this key."
+                ],
+                [
+                    "key",
+                    "str",
+                    "1.1",
+                    "Name of attribute."
+                ],
+                [
+                    "type",
+                    "str",
+                    "0.1",
+                    "If a non-string type, provide type."
+                ],
+                [
+                    "value",
+                    "str",
+                    "1.1",
+                    "Value associated with key."
+                ]
+            ]
+        },
+        "nil_reason": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "nil:inapplicable",
+                    "There is no value"
+                ],
+                [
+                    "nil:missing",
+                    "The correct value is not available. Furthermore, a correct value may not exist"
+                ],
+                [
+                    "nil:template",
+                    "The value will be available later"
+                ],
+                [
+                    "nil:unknown",
+                    "The correct value is not known at this time. However, a correct value probably exists"
+                ],
+                [
+                    "nil:withheld",
+                    "The value is not divulged"
+                ]
+            ]
+        },
+        "online_resource": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "linkage"
+                ]
+            ],
+            "properties": [
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Detail of how to access the resource."
+                ],
+                [
+                    "linkage",
+                    "str",
+                    "1.1",
+                    "A URL."
+                ],
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Name of online resource."
+                ],
+                [
+                    "protocol",
+                    "str",
+                    "0.1",
+                    "Protocol to use at the linkage."
+                ]
+            ]
+        },
+        "party": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "is_document": "True",
+            "properties": [
+                [
+                    "address",
+                    "str",
+                    "0.1",
+                    "Institutional address."
+                ],
+                [
+                    "email",
+                    "str",
+                    "0.1",
+                    "Email address."
+                ],
+                [
+                    "name",
+                    "str",
+                    "0.1",
+                    "Name of person or organisation."
+                ],
+                [
+                    "orcid_id",
+                    "str",
+                    "0.1",
+                    "Orcid ID if available."
+                ],
+                [
+                    "is_organisation",
+                    "bool",
+                    "0.1",
+                    "True if an organisation not a person."
+                ],
+                [
+                    "url",
+                    "shared.online_resource",
+                    "0.1",
+                    "URL of person or institution."
+                ]
+            ]
+        },
+        "quality_review": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "{}: {}",
+                [
+                    "target_document",
+                    "quality_status"
+                ]
+            ],
+            "properties": [
+                [
+                    "date",
+                    "str",
+                    "1.1",
+                    "Date upon which review was made."
+                ],
+                [
+                    "metadata_reviewer",
+                    "linked_to(shared.party)",
+                    "1.1",
+                    "Party who made the metadata quality assessment."
+                ],
+                [
+                    "quality_description",
+                    "str",
+                    "1.1",
+                    "Assessment of quality of target document."
+                ],
+                [
+                    "quality_status",
+                    "shared.quality_status",
+                    "0.1",
+                    "Status from a controlled vocabulary."
+                ],
+                [
+                    "target_document",
+                    "shared.doc_reference",
+                    "1.1",
+                    "This is the document about which quality is asserted."
+                ]
+            ]
+        },
+        "quality_status": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "incomplete",
+                    "Currently being worked on"
+                ],
+                [
+                    "finalised",
+                    "Author has completed document, prior to review"
+                ],
+                [
+                    "under_review",
+                    "Document is being reviewed"
+                ],
+                [
+                    "reviewed",
+                    "Document has been formally reviewed and assessed as complete and accurate"
+                ]
+            ]
+        },
+        "responsibility": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}:{}",
+                [
+                    "role",
+                    "parties"
+                ]
+            ],
+            "properties": [
+                [
+                    "parties",
+                    "linked_to(shared.party)",
+                    "1.N",
+                    "Parties delivering responsibility."
+                ],
+                [
+                    "role",
+                    "shared.role_code",
+                    "1.1",
+                    "Role that the party plays or played."
+                ],
+                [
+                    "when",
+                    "time.time_period",
+                    "0.1",
+                    "Period when role was active, if no longer."
+                ]
+            ]
+        },
+        "role_code": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "Principal Investigator",
+                    "Key party responsible for the existence of the resource"
+                ],
+                [
+                    "originator",
+                    "Original source for the resource if obtained from elsewhere"
+                ],
+                [
+                    "author",
+                    "Party who created (or co-created) resource"
+                ],
+                [
+                    "collaborator",
+                    "Contributor to the production of the resource"
+                ],
+                [
+                    "publisher",
+                    "Party who published the resource"
+                ],
+                [
+                    "owner",
+                    "Party with legal ownership of the resource"
+                ],
+                [
+                    "processor",
+                    "Party who has taken part in the workflow that resulted in this resource"
+                ],
+                [
+                    "distributor",
+                    "Party who distributes the resource"
+                ],
+                [
+                    "sponsor",
+                    "Party who has invested in the production of the resource"
+                ],
+                [
+                    "user",
+                    "Party who uses the resource"
+                ],
+                [
+                    "point of contact",
+                    "Party who can be contacted for acquiring knowledge about or acquisition of the resource"
+                ],
+                [
+                    "resource provider",
+                    "Party that supplies the resource"
+                ],
+                [
+                    "custodian",
+                    "Party that accepts accountability and responsibility for the source resource"
+                ],
+                [
+                    "metadata_reviewer",
+                    "Party who carried out an independent review of (this) documentation"
+                ],
+                [
+                    "metadata_author",
+                    "Party who created (this) documentation"
+                ]
+            ]
+        },
+        "text_blob_encoding": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "ascii",
+                    "Normal plain text"
+                ]
+            ]
+        },
+        "numeric": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "False",
+            "pstr": [
+                "{}{}",
+                [
+                    "value",
+                    "units"
+                ]
+            ],
+            "properties": [
+                [
+                    "value",
+                    "float",
+                    "1.1",
+                    "Numerical value of number"
+                ],
+                [
+                    "units",
+                    "str",
+                    "1.1",
+                    "Associated Units"
+                ],
+                [
+                    "unit_enumeration",
+                    "str",
+                    "0.1",
+                    "Internal CIM vocabulary"
+                ],
+                [
+                    "unit_source",
+                    "shared.online_resource",
+                    "0.1",
+                    "External vocabulary source"
+                ],
+                [
+                    "base_unit",
+                    "str",
+                    "0.1",
+                    "type of unit in external vocabulary"
+                ]
+            ],
+            "constraints": [
+                [
+                    "mutually_exclusive",
+                    [
+                        "unit_enumeration",
+                        "unit_source"
+                    ],
+                    "0.1"
+                ]
+            ]
+        }
+    },
+    "software": {
+        "coupling_framework": {
+            "type": "enum",
+            "is_open": "True",
+            "members": [
+                [
+                    "OASIS",
+                    "The OASIS coupler - prior to OASIS-MCT"
+                ],
+                [
+                    "OASIS3-MCT",
+                    "The MCT variant of the OASIS coupler"
+                ],
+                [
+                    "ESMF",
+                    "Vanilla Earth System Modelling Framework"
+                ],
+                [
+                    "NUOPC",
+                    "National Unified Operational Prediction Capability variant of ESMF"
+                ],
+                [
+                    "Bespoke",
+                    "Customised coupler developed for this model"
+                ],
+                [
+                    "Unknown",
+                    "It is not known what/if-a coupler is used"
+                ],
+                [
+                    "None",
+                    "No coupler is used"
+                ]
+            ]
+        },
+        "programming_language": {
+            "type": "enum",
+            "is_open": "True",
+            "members": [
+                [
+                    "Fortran",
+                    "Fortran Programming Language"
+                ],
+                [
+                    "C",
+                    "C Programming Language"
+                ],
+                [
+                    "C++",
+                    "C++ Programming Language"
+                ],
+                [
+                    "Julia",
+                    "Julia Programming Language"
+                ],
+                [
+                    "Python",
+                    "Python Programming Language"
+                ]
+            ]
+        },
+        "component_base": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "True",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "citations",
+                    "linked_to(shared.citation)",
+                    "0.N",
+                    "Set of pertinent citations."
+                ],
+                [
+                    "canonical_id",
+                    "str",
+                    "0.1",
+                    "Vocabulary identifier, where this framework/component description was constructed via a controlled vocabulary."
+                ],
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Textural description of component."
+                ],
+                [
+                    "long_name",
+                    "str",
+                    "0.1",
+                    "Long name for component."
+                ],
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Short name of component."
+                ],
+                [
+                    "responsible_parties",
+                    "shared.responsibility",
+                    "0.N",
+                    "People or organisations responsible for providing this information."
+                ],
+                [
+                    "development_history",
+                    "software.development_path",
+                    "0.1",
+                    "History of the development of this component."
+                ],
+                [
+                    "release_date",
+                    "time.date_time",
+                    "0.1",
+                    "The date of publication of the component code (as opposed to the date of publication of the metadata document, or the date of deployment of the model)."
+                ],
+                [
+                    "repository",
+                    "shared.online_resource",
+                    "0.1",
+                    "Location of code for this component."
+                ],
+                [
+                    "version",
+                    "str",
+                    "0.1",
+                    "Version identifier."
+                ]
+            ]
+        },
+        "implementation": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "properties": [
+                [
+                    "citations",
+                    "linked_to(shared.citation)",
+                    "0.N",
+                    "Set of pertinent citations."
+                ],
+                [
+                    "canonical_id",
+                    "str",
+                    "0.1",
+                    "Vocabulary identifier, where this framework/component description was constructed via a controlled vocabulary."
+                ],
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Textural description of framework/component."
+                ],
+                [
+                    "development_history",
+                    "software.development_path",
+                    "0.1",
+                    "History of the development of this framework/component."
+                ],
+                [
+                    "long_name",
+                    "str",
+                    "0.1",
+                    "Long name for framework/component."
+                ],
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Short name of framework/component."
+                ],
+                [
+                    "release_date",
+                    "datetime",
+                    "0.1",
+                    "The date of publication of the framework/component code."
+                ],
+                [
+                    "repository",
+                    "shared.online_resource",
+                    "0.1",
+                    "Location of code for this framework/component."
+                ],
+                [
+                    "version",
+                    "str",
+                    "0.1",
+                    "Version identifier."
+                ]
+            ]
+        },
+        "composition": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "couplings",
+                    "str",
+                    "0.N",
+                    "#FIXME."
+                ],
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "#FIXME."
+                ]
+            ]
+        },
+        "development_path": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "consortium_name",
+                    "str",
+                    "0.1",
+                    "If model/component is developed as part of a consortium, provide consortium name."
+                ],
+                [
+                    "creators",
+                    "shared.responsibility",
+                    "0.N",
+                    "Those responsible for creating this component."
+                ],
+                [
+                    "was_developed_in_house",
+                    "bool",
+                    "1.1",
+                    "Model or component was mostly developed in house."
+                ],
+                [
+                    "funding_sources",
+                    "shared.responsibility",
+                    "0.N",
+                    "The entities that funded this software component."
+                ],
+                [
+                    "previous_version",
+                    "str",
+                    "0.1",
+                    "Name of a previous version."
+                ]
+            ]
+        },
+        "entry_point": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "name",
+                    "str",
+                    "0.1",
+                    "#FIXME."
+                ]
+            ]
+        },
+        "gridspec": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "description",
+                    "str",
+                    "1.1",
+                    "Textural description."
+                ]
+            ]
+        },
+        "software_component": {
+            "type": "class",
+            "base": "software.component_base",
+            "is_abstract": "False",
+            "is_document": "True",
+            "properties": [
+                [
+                    "composition",
+                    "software.composition",
+                    "0.1",
+                    "#FIXME."
+                ],
+                [
+                    "connection_points",
+                    "software.variable",
+                    "0.N",
+                    "The set of data entities which are available for I/O and/or coupling."
+                ],
+                [
+                    "coupling_framework",
+                    "software.coupling_framework",
+                    "0.1",
+                    "The coupling framework that this entire component conforms to."
+                ],
+                [
+                    "dependencies",
+                    "software.entry_point",
+                    "0.N",
+                    "#FIXME."
+                ],
+                [
+                    "grid",
+                    "software.gridspec",
+                    "0.1",
+                    "A reference to the grid that is used by this component."
+                ],
+                [
+                    "language",
+                    "software.programming_language",
+                    "0.1",
+                    "Language the component is written in."
+                ],
+                [
+                    "license",
+                    "str",
+                    "0.1",
+                    "The license held by this piece of software."
+                ],
+                [
+                    "sub_components",
+                    "linked_to(software.software_component)",
+                    "0.N",
+                    "Internal software sub-components of this component."
+                ],
+                [
+                    "depends_on",
+                    "linked_to(software.software_component)",
+                    "0.N",
+                    "The software components whose outputs are inputs to this software component."
+                ]
+            ]
+        },
+        "variable": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "properties": [
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Description of how the variable is being used in the s/w."
+                ],
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Short name for the variable."
+                ],
+                [
+                    "is_prognostic",
+                    "bool",
+                    "1.1",
+                    "Whether or not prognostic or diagnostic."
+                ]
+            ]
+        }
+    }
+}

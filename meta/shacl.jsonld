@@ -1,0 +1,2970 @@
+{
+    "@context": {
+        "@version": 1.1,
+        "@context": "https://raw.githubusercontent.com/w3c/shacl/main/shacl-jsonld-context/shacl.context.ld.json",
+        "terms-activity": "https://example.org/terms/activity/",
+        "terms-cmip": "https://example.org/terms/cmip/",
+        "terms-data": "https://example.org/terms/data/",
+        "terms-designing": "https://example.org/terms/designing/",
+        "terms-drs": "https://example.org/terms/drs/",
+        "terms-iso": "https://example.org/terms/iso/",
+        "terms-platform": "https://example.org/terms/platform/",
+        "terms-science": "https://example.org/terms/science/",
+        "terms-shared": "https://example.org/terms/shared/",
+        "terms-software": "https://example.org/terms/software/",
+        "terms-time": "https://example.org/terms/time/",
+        "shapes-activity": "https://example.org/shapes/activity/",
+        "shapes-cmip": "https://example.org/shapes/cmip/",
+        "shapes-data": "https://example.org/shapes/data/",
+        "shapes-designing": "https://example.org/shapes/designing/",
+        "shapes-drs": "https://example.org/shapes/drs/",
+        "shapes-iso": "https://example.org/shapes/iso/",
+        "shapes-platform": "https://example.org/shapes/platform/",
+        "shapes-science": "https://example.org/shapes/science/",
+        "shapes-shared": "https://example.org/shapes/shared/",
+        "shapes-software": "https://example.org/shapes/software/",
+        "shapes-time": "https://example.org/shapes/time/"
+    },
+    "@graph": [
+        {
+            "@id": "shapes-time:Calendar",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/time/Calendar",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/time/monthLength",
+                    "datatype": "xsd:integer"
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/time/standardName",
+                    "class": "https://example.org/terms/time/CalendarType",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-time:CalendarType",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/time/CalendarType",
+            "closed": true
+        },
+        {
+            "@id": "shapes-time:DateTime",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/time/DateTime",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/time/isOffset",
+                    "datatype": "xsd:float",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/value",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-time:DatetimeSet",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/time/DatetimeSet",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/time/length",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-time:IrregularDateset",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/time/IrregularDateset",
+            "closed": true,
+            "class": "https://example.org/terms/time/DatetimeSet",
+            "node": "shapes-timeDatetimeSet",
+            "parent": "time.datetime_set",
+            "property": [
+                {
+                    "path": "https://example.org/terms/time/dateSet",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-time:PeriodDateType",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/time/PeriodDateType",
+            "closed": true
+        },
+        {
+            "@id": "shapes-time:RegularTimeset",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/time/RegularTimeset",
+            "closed": true,
+            "class": "https://example.org/terms/time/DatetimeSet",
+            "node": "shapes-timeDatetimeSet",
+            "parent": "time.datetime_set",
+            "property": [
+                {
+                    "path": "https://example.org/terms/time/increment",
+                    "class": "https://example.org/terms/time/TimePeriod",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/time/length",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/startDate",
+                    "class": "https://example.org/terms/time/DateTime",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-time:TimePeriod",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/time/TimePeriod",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/calendar",
+                    "class": "https://example.org/terms/time/Calendar",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/date",
+                    "class": "https://example.org/terms/time/DateTime",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/time/dateType",
+                    "class": "https://example.org/terms/time/PeriodDateType",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/time/length",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/units",
+                    "class": "https://example.org/terms/time/TimeUnit",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-time:TimeUnit",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/time/TimeUnit",
+            "closed": true
+        },
+        {
+            "@id": "shapes-activity:Activity",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/activity/Activity",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/activity/alternativeName",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "path": "https://example.org/terms/shared/canonicalName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/citation",
+                    "class": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/duration",
+                    "class": "https://example.org/terms/time/TimePeriod",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/internalName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/keywords",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/longName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/responsibleParty",
+                    "class": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "path": "https://example.org/terms/activity/previouslyKnownAs",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "path": "https://example.org/terms/shared/rationale",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-activity:AxisMember",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/activity/AxisMember",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/extraDetail",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/index",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/value",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/conformance",
+                    "class": "https://example.org/terms/activity/Conformance",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/axis",
+                    "class": "https://example.org/terms/activity/EnsembleAxis",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-activity:Conformance",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/activity/Conformance",
+            "closed": true,
+            "class": "https://example.org/terms/activity/Activity",
+            "node": "shapes-activityActivity",
+            "parent": "activity.activity",
+            "property": [
+                {
+                    "path": "https://example.org/terms/activity/conformanceAchieved",
+                    "class": "https://example.org/terms/activity/ConformanceType",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/dataset",
+                    "class": "https://example.org/terms/data/Dataset"
+                },
+                {
+                    "path": "https://example.org/terms/activity/targetRequirement",
+                    "class": "https://example.org/terms/designing/NumericalRequirement",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/model",
+                    "class": "https://example.org/terms/science/Model",
+                    "minCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-activity:ConformanceType",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/activity/ConformanceType",
+            "closed": true
+        },
+        {
+            "@id": "shapes-activity:Ensemble",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/activity/Ensemble",
+            "closed": true,
+            "class": "https://example.org/terms/activity/Activity",
+            "node": "shapes-activityActivity",
+            "parent": "activity.activity",
+            "property": [
+                {
+                    "path": "https://example.org/terms/activity/commonConformance",
+                    "class": "https://example.org/terms/activity/Conformance"
+                },
+                {
+                    "path": "https://example.org/terms/activity/representativePerformance",
+                    "class": "https://example.org/terms/platform/Performance",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/documentation",
+                    "class": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "path": "https://example.org/terms/activity/ensembleAxe",
+                    "class": "https://example.org/terms/activity/EnsembleAxis"
+                },
+                {
+                    "path": "https://example.org/terms/activity/uberEnsemble",
+                    "class": "https://example.org/terms/activity/UberEnsemble"
+                },
+                {
+                    "path": "https://example.org/terms/activity/experiment",
+                    "class": "https://example.org/terms/designing/NumericalExperiment",
+                    "minCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/member",
+                    "class": "https://example.org/terms/activity/Simulation"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-activity:EnsembleAxis",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/activity/EnsembleAxis",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/extraDetail",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/member",
+                    "class": "https://example.org/terms/activity/AxisMember"
+                },
+                {
+                    "path": "https://example.org/terms/activity/shortIdentifier",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/targetRequirement",
+                    "class": "https://example.org/terms/designing/NumericalRequirement",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-activity:ChildSimulation",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/activity/ChildSimulation",
+            "closed": true,
+            "class": "https://example.org/terms/activity/Simulation",
+            "node": "shapes-activitySimulation",
+            "parent": "activity.simulation",
+            "property": [
+                {
+                    "path": "https://example.org/terms/activity/branchMethod",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/branchTimeInChild",
+                    "class": "https://example.org/terms/time/DateTime",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/branchTimeInParent",
+                    "class": "https://example.org/terms/time/DateTime",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/parent",
+                    "class": "https://example.org/terms/activity/Simulation",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-activity:Simulation",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/activity/Simulation",
+            "closed": true,
+            "class": "https://example.org/terms/iso/ProcessStep",
+            "node": "shapes-isoProcessStep",
+            "parent": "iso.process_step",
+            "property": [
+                {
+                    "path": "https://example.org/terms/activity/partOfProject",
+                    "class": "https://example.org/terms/designing/Project",
+                    "minCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/ranForExperiment",
+                    "class": "https://example.org/terms/designing/NumericalExperiment",
+                    "minCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/subExperiment",
+                    "class": "https://example.org/terms/designing/NumericalExperiment",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/used",
+                    "class": "https://example.org/terms/science/Model",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/primaryEnsemble",
+                    "class": "https://example.org/terms/activity/Ensemble",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/institution",
+                    "class": "https://example.org/terms/shared/Party",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/parentOf",
+                    "class": "https://example.org/terms/activity/ChildSimulation"
+                },
+                {
+                    "path": "https://example.org/terms/activity/produced",
+                    "class": "https://example.org/terms/data/Dataset"
+                },
+                {
+                    "path": "https://example.org/terms/activity/hadPerformance",
+                    "class": "https://example.org/terms/platform/Performance",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/ranOn",
+                    "class": "https://example.org/terms/platform/Machine",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/errata",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/ensembleId",
+                    "class": "https://example.org/terms/activity/AxisMember"
+                },
+                {
+                    "path": "https://example.org/terms/activity/startTime",
+                    "class": "https://example.org/terms/time/DateTime",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/endTime",
+                    "class": "https://example.org/terms/time/DateTime",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/calendar",
+                    "class": "https://example.org/terms/time/Calendar",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/documentation",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/activity/extraAttribute",
+                    "class": "https://example.org/terms/shared/ExtraAttribute"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-activity:UberEnsemble",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/activity/UberEnsemble",
+            "closed": true,
+            "class": "https://example.org/terms/activity/Ensemble",
+            "node": "shapes-activityEnsemble",
+            "parent": "activity.ensemble",
+            "property": [
+                {
+                    "path": "https://example.org/terms/activity/childEnsemble",
+                    "class": "https://example.org/terms/activity/Ensemble",
+                    "minCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-cmip:CmipDataset",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/cmip/CmipDataset",
+            "closed": true,
+            "class": "https://example.org/terms/data/Dataset",
+            "node": "shapes-dataDataset",
+            "parent": "data.dataset",
+            "property": [
+                {
+                    "path": "https://example.org/terms/cmip/drsLocation",
+                    "class": "https://example.org/terms/drs/DrsPublicationDataset"
+                },
+                {
+                    "path": "https://example.org/terms/cmip/originatingSimulation",
+                    "class": "https://example.org/terms/activity/Simulation",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-cmip:CmipSimulation",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/cmip/CmipSimulation",
+            "closed": true,
+            "class": "https://example.org/terms/activity/Simulation",
+            "node": "shapes-activitySimulation",
+            "parent": "activity.simulation",
+            "property": [
+                {
+                    "path": "https://example.org/terms/cmip/realizationIndex",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/cmip/initializationIndex",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/cmip/physicsIndex",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/cmip/forcingIndex",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/cmip/variantInfo",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-data:Dataset",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/data/Dataset",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/citation",
+                    "class": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "path": "https://example.org/terms/shared/responsibleParty",
+                    "class": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "@type",
+                    "class": "https://example.org/terms/data/DatasetType",
+                    "minCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/data/availability",
+                    "class": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "path": "https://example.org/terms/data/relatedToDataset",
+                    "class": "https://example.org/terms/shared/FormalAssociation"
+                },
+                {
+                    "path": "https://example.org/terms/data/contain",
+                    "class": "https://example.org/terms/data/VariableCollection"
+                },
+                {
+                    "path": "https://example.org/terms/data/progress",
+                    "class": "https://example.org/terms/iso/MdProgressCode",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/keywords",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "path": "https://example.org/terms/data/furtherAttribute",
+                    "class": "https://example.org/terms/shared/ExtraAttribute"
+                },
+                {
+                    "path": "https://example.org/terms/data/lineage",
+                    "class": "https://example.org/terms/iso/Lineage",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-data:VariableCollection",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/data/VariableCollection",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/data/collectionName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/data/variable",
+                    "datatype": "xsd:string",
+                    "minCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/data/geometry",
+                    "class": "https://example.org/terms/iso/MdCellgeometryCode",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-data:DatasetType",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/data/DatasetType",
+            "closed": true
+        },
+        {
+            "@id": "shapes-designing:DomainRequirement",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/DomainRequirement",
+            "closed": true,
+            "class": "https://example.org/terms/designing/NumericalRequirement",
+            "node": "shapes-designingNumericalRequirement",
+            "parent": "designing.numerical_requirement",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/requiredExtent",
+                    "class": "https://example.org/terms/science/Topic",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/requiredResolution",
+                    "class": "https://example.org/terms/science/Topic",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:EnsembleRequirement",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/EnsembleRequirement",
+            "closed": true,
+            "class": "https://example.org/terms/designing/NumericalRequirement",
+            "node": "shapes-designingNumericalRequirement",
+            "parent": "designing.numerical_requirement",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/ensembleMember",
+                    "class": "https://example.org/terms/designing/NumericalRequirement"
+                },
+                {
+                    "path": "https://example.org/terms/designing/ensembleType",
+                    "class": "https://example.org/terms/designing/EnsembleType",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/minimumSize",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:EnsembleType",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/EnsembleType",
+            "closed": true
+        },
+        {
+            "@id": "shapes-designing:ForcingConstraint",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/ForcingConstraint",
+            "closed": true,
+            "class": "https://example.org/terms/designing/NumericalRequirement",
+            "node": "shapes-designingNumericalRequirement",
+            "parent": "designing.numerical_requirement",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/additionalConstraint",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/category",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/code",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/dataLink",
+                    "class": "https://example.org/terms/data/Dataset",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/forcingType",
+                    "class": "https://example.org/terms/designing/ForcingType",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/group",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/origin",
+                    "class": "https://example.org/terms/shared/Citation",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:ForcingType",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/ForcingType",
+            "closed": true
+        },
+        {
+            "@id": "shapes-designing:InitialisationRequirement",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/InitialisationRequirement",
+            "closed": true,
+            "class": "https://example.org/terms/designing/NumericalRequirement",
+            "node": "shapes-designingNumericalRequirement",
+            "parent": "designing.numerical_requirement",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/branchTimeInInitialisationSource",
+                    "class": "https://example.org/terms/time/DateTime",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/initialiseFromData",
+                    "class": "https://example.org/terms/data/Dataset",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/initialiseFromExperiment",
+                    "class": "https://example.org/terms/designing/NumericalExperiment",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:MultiEnsemble",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/MultiEnsemble",
+            "closed": true,
+            "class": "https://example.org/terms/designing/NumericalRequirement",
+            "node": "shapes-designingNumericalRequirement",
+            "parent": "designing.numerical_requirement",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/ensembleAxis",
+                    "class": "https://example.org/terms/designing/EnsembleRequirement",
+                    "minCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:NumericalExperiment",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/NumericalExperiment",
+            "closed": true,
+            "class": "https://example.org/terms/activity/Activity",
+            "node": "shapes-activityActivity",
+            "parent": "activity.activity",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/tier",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/relatedExperiment",
+                    "class": "https://example.org/terms/designing/NumericalExperiment"
+                },
+                {
+                    "path": "https://example.org/terms/designing/governingMip",
+                    "class": "https://example.org/terms/designing/Project"
+                },
+                {
+                    "path": "https://example.org/terms/designing/relatedMip",
+                    "class": "https://example.org/terms/designing/Project"
+                },
+                {
+                    "path": "https://example.org/terms/designing/requiredPeriod",
+                    "class": "https://example.org/terms/designing/TemporalConstraint",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/requirement",
+                    "class": "https://example.org/terms/designing/NumericalRequirement"
+                },
+                {
+                    "path": "https://example.org/terms/designing/relatedObjective",
+                    "datatype": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:ExperimentalRelationship",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/ExperimentalRelationship",
+            "closed": true
+        },
+        {
+            "@id": "shapes-designing:NumericalRequirement",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/NumericalRequirement",
+            "closed": true,
+            "class": "https://example.org/terms/activity/Activity",
+            "node": "shapes-activityActivity",
+            "parent": "activity.activity",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/additionalRequirement",
+                    "class": "https://example.org/terms/designing/NumericalRequirement"
+                },
+                {
+                    "path": "https://example.org/terms/designing/isConformanceRequested",
+                    "datatype": "xsd:float",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/isConformanceInfoRequired",
+                    "datatype": "xsd:float",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/scope",
+                    "class": "https://example.org/terms/designing/NumericalRequirementScope",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:NumericalRequirementScope",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/NumericalRequirementScope",
+            "closed": true
+        },
+        {
+            "@id": "shapes-designing:OutputRequirement",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/OutputRequirement",
+            "closed": true,
+            "class": "https://example.org/terms/designing/NumericalRequirement",
+            "node": "shapes-designingNumericalRequirement",
+            "parent": "designing.numerical_requirement",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/formalDataRequest",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:Objective",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/Objective",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/requiredOutput",
+                    "class": "https://example.org/terms/data/VariableCollection"
+                },
+                {
+                    "path": "https://example.org/terms/shared/identifier",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:Project",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/Project",
+            "closed": true,
+            "class": "https://example.org/terms/activity/Activity",
+            "node": "shapes-activityActivity",
+            "parent": "activity.activity",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/homepage",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/objective",
+                    "class": "https://example.org/terms/designing/Objective"
+                },
+                {
+                    "path": "https://example.org/terms/designing/previousProject",
+                    "class": "https://example.org/terms/designing/Project"
+                },
+                {
+                    "path": "https://example.org/terms/designing/requiredExperiment",
+                    "class": "https://example.org/terms/designing/NumericalExperiment"
+                },
+                {
+                    "path": "https://example.org/terms/designing/governedExperiment",
+                    "class": "https://example.org/terms/designing/NumericalExperiment"
+                },
+                {
+                    "path": "https://example.org/terms/shared/subProject",
+                    "class": "https://example.org/terms/designing/Project"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:SimulationPlan",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/SimulationPlan",
+            "closed": true,
+            "class": "https://example.org/terms/activity/Activity",
+            "node": "shapes-activityActivity",
+            "parent": "activity.activity",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/expectedModel",
+                    "class": "https://example.org/terms/science/Model",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/expectedPerformanceSypd",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/expectedPlatform",
+                    "class": "https://example.org/terms/platform/Machine",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/willSupportExperiment",
+                    "class": "https://example.org/terms/designing/NumericalExperiment",
+                    "minCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:StartDateEnsemble",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/StartDateEnsemble",
+            "closed": true,
+            "class": "https://example.org/terms/designing/NumericalRequirement",
+            "node": "shapes-designingNumericalRequirement",
+            "parent": "designing.numerical_requirement",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/ensembleMembers",
+                    "class": "https://example.org/terms/time/DatetimeSet",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-designing:TemporalConstraint",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/designing/TemporalConstraint",
+            "closed": true,
+            "class": "https://example.org/terms/designing/NumericalRequirement",
+            "node": "shapes-designingNumericalRequirement",
+            "parent": "designing.numerical_requirement",
+            "property": [
+                {
+                    "path": "https://example.org/terms/designing/requiredCalendar",
+                    "class": "https://example.org/terms/time/Calendar",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/requiredDuration",
+                    "class": "https://example.org/terms/time/TimePeriod",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/startDate",
+                    "class": "https://example.org/terms/time/DateTime",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/designing/startFlexibility",
+                    "class": "https://example.org/terms/time/TimePeriod",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-drs:DrsAtomicDataset",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/drs/DrsAtomicDataset",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/drs/frequency",
+                    "class": "https://example.org/terms/drs/DrsFrequencyType",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/geographicalConstraint",
+                    "class": "https://example.org/terms/drs/DrsGeographicalIndicator",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/mipTable",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/realm",
+                    "class": "https://example.org/terms/drs/DrsRealm",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/temporalConstraint",
+                    "class": "https://example.org/terms/drs/DrsTemporalIdentifier",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/variableName",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/versionNumber",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-drs:DrsEnsembleIdentifier",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/drs/DrsEnsembleIdentifier",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/drs/forcingNumber",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/initialisationMethodNumber",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/perturbationNumber",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/realisationNumber",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-drs:DrsExperiment",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/drs/DrsExperiment",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/drs/axisIdentifer",
+                    "class": "https://example.org/terms/activity/AxisMember",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/axisType",
+                    "class": "https://example.org/terms/designing/EnsembleType",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/family",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-drs:DrsFrequencyType",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/drs/DrsFrequencyType",
+            "closed": true
+        },
+        {
+            "@id": "shapes-drs:DrsGeographicalIndicator",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/drs/DrsGeographicalIndicator",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/drs/boundingBox",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/operator",
+                    "class": "https://example.org/terms/drs/DrsGeographicalOperator",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/spatialDomain",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-drs:DrsGeographicalOperator",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/drs/DrsGeographicalOperator",
+            "closed": true
+        },
+        {
+            "@id": "shapes-drs:DrsPublicationDataset",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/drs/DrsPublicationDataset",
+            "closed": true
+        },
+        {
+            "@id": "shapes-drs:DrsRealm",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/drs/DrsRealm",
+            "closed": true
+        },
+        {
+            "@id": "shapes-drs:DrsSimulationIdentifier",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/drs/DrsSimulationIdentifier",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/institute",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/model",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/runVariantId",
+                    "class": "https://example.org/terms/drs/DrsEnsembleIdentifier",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-drs:DrsTemporalIdentifier",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/drs/DrsTemporalIdentifier",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/drs/end",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/start",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/drs/suffix",
+                    "class": "https://example.org/terms/drs/DrsTimeSuffixe",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-drs:DrsTimeSuffixe",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/drs/DrsTimeSuffixe",
+            "closed": true
+        },
+        {
+            "@id": "shapes-iso:Lineage",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/Lineage",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/iso/statement",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/processStep",
+                    "class": "https://example.org/terms/iso/ProcessStep"
+                },
+                {
+                    "path": "https://example.org/terms/shared/source",
+                    "class": "https://example.org/terms/data/Dataset"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-iso:ProcessStep",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/ProcessStep",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/rationale",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/executionDateTime",
+                    "class": "https://example.org/terms/time/DateTime",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/processor",
+                    "class": "https://example.org/terms/shared/Responsibility",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/reference",
+                    "class": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "path": "https://example.org/terms/shared/source",
+                    "class": "https://example.org/terms/data/Dataset"
+                },
+                {
+                    "path": "https://example.org/terms/iso/processingInformation",
+                    "class": "https://example.org/terms/iso/Processing"
+                },
+                {
+                    "path": "https://example.org/terms/iso/report",
+                    "class": "https://example.org/terms/iso/ProcessStepReport"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-iso:Processing",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/Processing",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/identifier",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/softwareReference",
+                    "class": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "path": "https://example.org/terms/iso/procedureDescription",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/documentation",
+                    "class": "https://example.org/terms/shared/Citation",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/runtimeParameters",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/algorithm",
+                    "class": "https://example.org/terms/iso/Algorithm"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-iso:ProcessStepReport",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/ProcessStepReport",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/link",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-iso:Algorithm",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/Algorithm",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/citation",
+                    "class": "https://example.org/terms/shared/Citation",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-iso:QualityReport",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/QualityReport",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/iso/target",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/issue",
+                    "class": "https://example.org/terms/iso/QualityIssue"
+                },
+                {
+                    "path": "https://example.org/terms/iso/report",
+                    "class": "https://example.org/terms/iso/QualityEvaluationResult"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-iso:QualityIssue",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/QualityIssue",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/iso/summary",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/reporter",
+                    "class": "https://example.org/terms/shared/Party",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/trackedIssue",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-iso:QualityEvaluationResult",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/QualityEvaluationResult",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/evaluationProcedure",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/specification",
+                    "class": "https://example.org/terms/shared/Citation",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/evaluator",
+                    "class": "https://example.org/terms/shared/Party",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/date",
+                    "class": "https://example.org/terms/time/DateTime",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/summaryResult",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/passed",
+                    "datatype": "xsd:float",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/iso/result",
+                    "class": "https://example.org/terms/iso/QualityEvaluationOutput"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-iso:QualityEvaluationOutput",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/QualityEvaluationOutput",
+            "closed": true,
+            "class": "https://example.org/terms/shared/OnlineResource",
+            "node": "shapes-sharedOnlineResource",
+            "parent": "shared.online_resource",
+            "property": [
+                {
+                    "path": "https://example.org/terms/iso/outputType",
+                    "class": "https://example.org/terms/iso/DqEvaluationResultType",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-iso:DsInitiativeTypecode",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/DsInitiativeTypecode",
+            "closed": true
+        },
+        {
+            "@id": "shapes-iso:MdCellgeometryCode",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/MdCellgeometryCode",
+            "closed": true
+        },
+        {
+            "@id": "shapes-iso:MdProgressCode",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/MdProgressCode",
+            "closed": true
+        },
+        {
+            "@id": "shapes-iso:DqEvaluationResultType",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/iso/DqEvaluationResultType",
+            "closed": true
+        },
+        {
+            "@id": "shapes-platform:ComputePool",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/platform/ComputePool",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/platform/acceleratorType",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/acceleratorsPerNode",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/clockCycleConcurrency",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/clockSpeed",
+                    "class": "https://example.org/terms/shared/Numeric",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/computeCoresPerNode",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/cpuType",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/memoryPerNode",
+                    "class": "https://example.org/terms/shared/Numeric",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/modelNumber",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/numberOfNodes",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/vendor",
+                    "class": "https://example.org/terms/shared/Party",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/networkCardsPerNode",
+                    "class": "https://example.org/terms/platform/Nic"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-platform:Interconnect",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/platform/Interconnect",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/topology",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/vendor",
+                    "class": "https://example.org/terms/shared/Party",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-platform:Nic",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/platform/Nic",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/vendor",
+                    "class": "https://example.org/terms/shared/Party",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/bandwidth",
+                    "class": "https://example.org/terms/shared/Numeric",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-platform:Machine",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/platform/Machine",
+            "closed": true,
+            "class": "https://example.org/terms/platform/Partition",
+            "node": "shapes-platformPartition",
+            "parent": "platform.partition",
+            "property": [
+                {
+                    "path": "https://example.org/terms/platform/peakPerformance",
+                    "class": "https://example.org/terms/shared/Numeric",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/linpackPerformance",
+                    "class": "https://example.org/terms/shared/Numeric",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-platform:Partition",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/platform/Partition",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/platform/computePool",
+                    "class": "https://example.org/terms/platform/ComputePool",
+                    "minCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/interconnect",
+                    "class": "https://example.org/terms/platform/Interconnect",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/institution",
+                    "class": "https://example.org/terms/shared/Party",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/modelNumber",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/onlineDocumentation",
+                    "class": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "path": "https://example.org/terms/platform/operatingSystem",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/partition",
+                    "class": "https://example.org/terms/platform/Partition"
+                },
+                {
+                    "path": "https://example.org/terms/platform/storagePool",
+                    "class": "https://example.org/terms/platform/StoragePool"
+                },
+                {
+                    "path": "https://example.org/terms/platform/vendor",
+                    "class": "https://example.org/terms/shared/Party",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/whenAvailable",
+                    "class": "https://example.org/terms/time/TimePeriod",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-platform:Performance",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/platform/Performance",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/model",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/resolution",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/complexity",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/platform",
+                    "class": "https://example.org/terms/platform/Machine",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/compiler",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/simulatedYearsPerDay",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/actualSimulatedYearsPerDay",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/coreHoursPerSimulatedYear",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/joulesPerSimulatedYear",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/parallelisation",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/furtherDetail",
+                    "class": "https://example.org/terms/platform/PerformanceDetail",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/subcomponentPerformance",
+                    "class": "https://example.org/terms/platform/Performance"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-platform:PerformanceDetail",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/platform/PerformanceDetail",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/platform/couplingCost",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/memoryBloat",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/dataOutputCost",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/dataIntensity",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-platform:ProjectCost",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/platform/ProjectCost",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/platform/activity",
+                    "class": "https://example.org/terms/activity/Activity",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/platform",
+                    "class": "https://example.org/terms/platform/Machine",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/usefulYears",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/usefulData",
+                    "class": "https://example.org/terms/shared/Numeric",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/usefulCoreHours",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/actualYears",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/peakData",
+                    "class": "https://example.org/terms/shared/Numeric",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/totalCoreHours",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/totalEnergyCost",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-platform:StoragePool",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/platform/StoragePool",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "@type",
+                    "class": "https://example.org/terms/platform/StorageSystem",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/vendor",
+                    "class": "https://example.org/terms/shared/Party",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/platform/fileSystemSize",
+                    "class": "https://example.org/terms/shared/Numeric",
+                    "minCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-platform:StorageSystem",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/platform/StorageSystem",
+            "closed": true
+        },
+        {
+            "@id": "shapes-science:Model",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/science/Model",
+            "closed": true,
+            "class": "https://example.org/terms/software/ComponentBase",
+            "node": "shapes-softwareComponentBase",
+            "parent": "software.component_base",
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/keywords",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "path": "https://example.org/terms/science/modelType",
+                    "class": "https://example.org/terms/science/ModelType",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/keyProperties",
+                    "class": "https://example.org/terms/science/Topic",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/activityProperty",
+                    "class": "https://example.org/terms/science/Topic"
+                },
+                {
+                    "path": "https://example.org/terms/science/realm",
+                    "class": "https://example.org/terms/science/Realm"
+                },
+                {
+                    "path": "https://example.org/terms/science/realmCoupling",
+                    "class": "https://example.org/terms/science/RealmCoupling"
+                },
+                {
+                    "path": "https://example.org/terms/science/coupledComponent",
+                    "class": "https://example.org/terms/science/Model"
+                },
+                {
+                    "path": "https://example.org/terms/science/coupler",
+                    "class": "https://example.org/terms/software/CouplingFramework",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/internalSoftwareComponent",
+                    "class": "https://example.org/terms/software/SoftwareComponent"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-science:Realm",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/science/Realm",
+            "closed": true,
+            "class": "https://example.org/terms/science/Topic",
+            "node": "shapes-scienceTopic",
+            "parent": "science.topic",
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/canonicalName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/grid",
+                    "class": "https://example.org/terms/science/Topic",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/keyProperties",
+                    "class": "https://example.org/terms/science/Topic",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/processe",
+                    "class": "https://example.org/terms/science/Topic",
+                    "minCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/softwareFramework",
+                    "class": "https://example.org/terms/software/Implementation"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-science:RealmCoupling",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/science/RealmCoupling",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/science/variable",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/sourceRealm",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/targetRealm",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/timeFrequency",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/couplingDetails",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-science:Topic",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/science/Topic",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/citation",
+                    "class": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/keywords",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/overview",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/property",
+                    "class": "https://example.org/terms/science/TopicProperty"
+                },
+                {
+                    "path": "https://example.org/terms/science/propertySet",
+                    "class": "https://example.org/terms/science/TopicPropertySet"
+                },
+                {
+                    "path": "https://example.org/terms/science/qcStatus",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/responsibleParty",
+                    "class": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "path": "https://example.org/terms/science/specializationId",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/subTopic",
+                    "class": "https://example.org/terms/science/Topic"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-science:TopicPropertySet",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/science/TopicPropertySet",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/property",
+                    "class": "https://example.org/terms/science/TopicProperty",
+                    "minCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/specializationId",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-science:TopicProperty",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/science/TopicProperty",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/specializationId",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/science/value",
+                    "datatype": "xsd:string",
+                    "minCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-science:ModelType",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/science/ModelType",
+            "closed": true
+        },
+        {
+            "@id": "shapes-shared:DocMetaInfo",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/DocMetaInfo",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/author",
+                    "class": "https://example.org/terms/shared/Party",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/createDate",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/drsKey",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "path": "https://example.org/terms/shared/drsPath",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/externalId",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "path": "@id",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/institute",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/project",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/sortKey",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/source",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/sourceKey",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/subProject",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "path": "@type",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/typeDisplayName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/typeSortKey",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/updateDate",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/version",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-shared:DocReference",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/DocReference",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/canonicalName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "@id",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "@type",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/version",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/relationship",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/furtherInfo",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/context",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-shared:FormalAssociation",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/FormalAssociation",
+            "closed": true,
+            "class": "https://example.org/terms/shared/DocReference",
+            "node": "shapes-sharedDocReference",
+            "parent": "shared.doc_reference",
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/associationVocabulary",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/associationId",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/onlineAt",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-shared:TextBlob",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/TextBlob",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/content",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/encoding",
+                    "class": "https://example.org/terms/shared/TextBlobEncoding",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-shared:Citation",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/Citation",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/abstract",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/author",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "path": "https://example.org/terms/shared/bibtex",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/citationDetail",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/collectiveTitle",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/context",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/doi",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/title",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "@type",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/year",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/url",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-shared:ExtraAttribute",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/ExtraAttribute",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/doc",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/key",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "@type",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/value",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-shared:NilReason",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/NilReason",
+            "closed": true
+        },
+        {
+            "@id": "shapes-shared:OnlineResource",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/OnlineResource",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/linkage",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/protocol",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-shared:Party",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/Party",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/address",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/email",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/orcidId",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/isOrganisation",
+                    "datatype": "xsd:float",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/url",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-shared:QualityReview",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/QualityReview",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/date",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/metadataReviewer",
+                    "class": "https://example.org/terms/shared/Party",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/qualityDescription",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/qualityStatus",
+                    "class": "https://example.org/terms/shared/QualityStatus",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/targetDocument",
+                    "class": "https://example.org/terms/shared/DocReference",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-shared:QualityStatus",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/QualityStatus",
+            "closed": true
+        },
+        {
+            "@id": "shapes-shared:Responsibility",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/Responsibility",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/party",
+                    "class": "https://example.org/terms/shared/Party",
+                    "minCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/role",
+                    "class": "https://example.org/terms/shared/RoleCode",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/when",
+                    "class": "https://example.org/terms/time/TimePeriod",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-shared:RoleCode",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/RoleCode",
+            "closed": true
+        },
+        {
+            "@id": "shapes-shared:TextBlobEncoding",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/TextBlobEncoding",
+            "closed": true
+        },
+        {
+            "@id": "shapes-shared:Numeric",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/Numeric",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/value",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/units",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/unitEnumeration",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/unitSource",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/baseUnit",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-software:CouplingFramework",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/CouplingFramework",
+            "closed": true
+        },
+        {
+            "@id": "shapes-software:ProgrammingLanguage",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/ProgrammingLanguage",
+            "closed": true
+        },
+        {
+            "@id": "shapes-software:ComponentBase",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/ComponentBase",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/citation",
+                    "class": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "path": "https://example.org/terms/software/canonicalId",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/longName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/responsibleParty",
+                    "class": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "path": "https://example.org/terms/software/developmentHistory",
+                    "class": "https://example.org/terms/software/DevelopmentPath",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/releaseDate",
+                    "class": "https://example.org/terms/time/DateTime",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/repository",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/version",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-software:Implementation",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/Implementation",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/citation",
+                    "class": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "path": "https://example.org/terms/software/canonicalId",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/developmentHistory",
+                    "class": "https://example.org/terms/software/DevelopmentPath",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/longName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/releaseDate",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/repository",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/version",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-software:Composition",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/Composition",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/software/coupling",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-software:DevelopmentPath",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/DevelopmentPath",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/software/consortiumName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/creator",
+                    "class": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "path": "https://example.org/terms/software/wasDevelopedInHouse",
+                    "datatype": "xsd:float",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/fundingSource",
+                    "class": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "path": "https://example.org/terms/software/previousVersion",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-software:EntryPoint",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/EntryPoint",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-software:Gridspec",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/Gridspec",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "shapes-software:SoftwareComponent",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/SoftwareComponent",
+            "closed": true,
+            "class": "https://example.org/terms/software/ComponentBase",
+            "node": "shapes-softwareComponentBase",
+            "parent": "software.component_base",
+            "property": [
+                {
+                    "path": "https://example.org/terms/software/composition",
+                    "class": "https://example.org/terms/software/Composition",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/connectionPoint",
+                    "class": "https://example.org/terms/software/Variable"
+                },
+                {
+                    "path": "https://example.org/terms/software/couplingFramework",
+                    "class": "https://example.org/terms/software/CouplingFramework",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/dependency",
+                    "class": "https://example.org/terms/software/EntryPoint"
+                },
+                {
+                    "path": "https://example.org/terms/shared/grid",
+                    "class": "https://example.org/terms/software/Gridspec",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/language",
+                    "class": "https://example.org/terms/software/ProgrammingLanguage",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/license",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/subComponent",
+                    "class": "https://example.org/terms/software/SoftwareComponent"
+                },
+                {
+                    "path": "https://example.org/terms/software/dependsOn",
+                    "class": "https://example.org/terms/software/SoftwareComponent"
+                }
+            ]
+        },
+        {
+            "@id": "shapes-software:Variable",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/Variable",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/description",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/software/isPrognostic",
+                    "datatype": "xsd:float",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        }
+    ]
+}

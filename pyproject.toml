@@ -21,4 +21,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-run = 'cim_to_owl.convert:run'
+generate_shacl = 'cim_to_owl.generate_shacl:run'
