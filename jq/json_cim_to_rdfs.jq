@@ -1,14 +1,22 @@
-import "words_ending_in_s" as $words_ending_in_s_array;
+import "jq/words_ending_in_s" as $words_ending_in_s_array;
+import "config/namespaces" as $namespaces_array;
+import "config/initial_context" as $context_array;
 
 ([ $words_ending_in_s_array | .[].[] | { key: ., value: true } ] | from_entries) as $words_ending_in_s |
 
-#.["@namespaces"] as $namespaceMap |
-[] as $ns |
-([$ns | map(to_entries) | .[]] | flatten | from_entries) as $namespaceMap |
+#(if $ARGS.named | has("ns")
+#    then ([$ARGS.named.["ns"] | map(to_entries) | .[]] | flatten | from_entries)
+#    else {}
+#end)
+($namespaces_array | .[0]) as $namespaceMap |
 
-([$ctxt | map(to_entries) | .[]] | flatten | from_entries) as $context |
+#(if $ARGS.named | has("ctxt")
+#    then ([$ARGS.named.["ctxt"] | map(to_entries) | .[]] | flatten | from_entries)
+#    else {}
+#end) as $context |
+($context_array | .[0]) as $context |
 
-"cim.2." as $class_prefix |
+"cim.2." as $class_prefix | 
 
 def singularize:
     if test("ies$") then
@@ -27,11 +35,7 @@ def singularize:
 def get_base_mapping:
     if ("@base" | in ($namespaceMap))
         then $namespaceMap["@base"]
-        else {
-            prefix: "terms",
-            shapePrefix: "shapes",
-            extension: "https://example.org/terms/"
-        }
+        else {}
     end;
 
 def get_ns_mapping:
@@ -40,7 +44,8 @@ def get_ns_mapping:
         else get_base_mapping as $baseMapping | {
             prefix: ($baseMapping.prefix + "-" + .),
             shapePrefix: ($baseMapping.shapePrefix + "-" + .),
-            extension: ($baseMapping.extension + . + "/")
+            extension: ($baseMapping.extension + . + "/"),
+            shapeExtension: ($baseMapping.shapeExtension + . + "/")
         }
     end;
 
@@ -214,42 +219,21 @@ as $shapeMap |
         } |
         {
             key: .property,
-            value: (
-                . as $propertyCtxt | .property |
-                from_context_or(
-                    py_property_to_json_property;
-                    convert_property_name($propertyCtxt.namespace; $propertyCtxt.maxCardinality == "N")
-                )
-            )
+            value: {
+                extension: (
+                    . as $propertyCtxt | .property |
+                    from_context_or(
+                        py_property_to_json_property;
+                        convert_property_name($propertyCtxt.namespace; $propertyCtxt.maxCardinality == "N")
+                    )
+                ),
+                namespace: .namespace
+            }
         }
     ] |
     from_entries
 )
 as $propertiesMap |
-
-(
-    [
-        $classMap | to_entries | .[] |
-        .key as $className |
-        {
-            key: ($className | py_class_to_json_class),
-            value: {
-                "@id": .value,
-                "@type": "rdfs:Class"
-            }
-        },
-        (
-            $classPropertiesMap[$className] | select(. != null) | .[] |
-            {
-                key: py_property_to_json_property,
-                value: {
-                    "@id": $propertiesMap[.],
-                    "@type": "rdfs:Property"
-                }
-            }
-        )
-    ] | from_entries
-) as $classPropertyContext |
 
 def get_class_name:
     if (. == null or . == "None")
@@ -277,23 +261,70 @@ def get_property_name:
     if (. == null or . == "None")
         then null
     elif in($propertiesMap)
-        then $propertiesMap[.]
+        then $propertiesMap[.].extension
     else null
     end;
 
+(
+    [
+        (
+            $propertiesMap  | to_entries | .[] |
+            select(.value.namespace == "shared") |
+            .key |
+            {
+                key: py_property_to_json_property,
+                value: get_property_name
+            }
+        ),
+        (
+            $classMap | to_entries | .[] |
+            .key as $className |
+            {
+                key: ($className | py_class_to_json_class),
+                value: .value
+            },
+            (
+                $classPropertiesMap[$className] | select(. != null) | .[] |
+                {
+                    key: py_property_to_json_property,
+                    value: get_property_name
+                }
+            )
+        )
+    ] | from_entries
+) as $classPropertyContext |
+
+(
+    [
+        $classMap | to_entries | .[] |
+        .key as $className |
+        {
+            "@id": .value,
+            "@type": "rdfs:Class"
+        },
+        (
+            $classPropertiesMap[$className] | select(. != null) | .[] |
+            {
+                "@id": get_property_name,
+                "@type": "rdfs:Property"
+            }
+        )
+    ]
+) as $rdfs |
+
 ([ keys | .[] | get_ns_mapping | { key: .prefix, value: .extension} ] | from_entries) as $nsExtensions |
+([ keys | .[] | get_ns_mapping | { key: .shapePrefix, value: .shapeExtension} ] | from_entries) as $nsShapeExtensions |
 
 (
     [
         (
             {
                 "@version": 1.1,
-                "@base": "http://example.org/resources/",
-                "terms": "https://example.org/terms/",
                 "id": "@id",
                 "type": "@type",
                 "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-                "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+                "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+                "xsd": "http://www.w3.org/2001/XMLSchema#"
             }
             | to_entries | .[]
         ),
@@ -304,47 +335,84 @@ def get_property_name:
     from_entries
 ) as $context |
 
-([
-    to_entries |
-    .[] |
+def expand_prefix:
+    if in($context)
+        then $context[.]
+        else .
+    end;
+
+def expand:
+    if . != null and contains(":")
+        then (
+            split(":") |
+            (
+                (.[0] | expand_prefix) +
+                (.[1:] | join(":"))
+            )
+        )
+        else .
+    end;
+
+
+(
     [
-        .key as $namespace |
-        .value | to_entries | .[] |
-        .key as $localname |
-        .value.base as $parentClass |
-        ($namespace + "." + $localname) as $extendedName |
-        ($extendedName | get_class_name) as $className |
-        ($extendedName | get_shape_name) as $shapeName |
-        {
-            "namespace": $namespace,
-            "@id": $shapeName,
-            "@type": "sh:NodeShape",
-            "sh:targetClass": $className,
-            "sh:closed": true,
-            "sh:class": $parentClass | get_class_name,
-            "sh:node": $parentClass | get_shape_name,
-            "parent": $parentClass,
-            "sh:property": [
-                .value.properties | select(. != null) | .[] |
-                .[0] as $property |
-                .[1] as $propertyType |
-                (.[2] | split(".")) as $cardinalityRestrs |
-                $cardinalityRestrs[0] as $minCardinality |
-                $cardinalityRestrs[1] as $maxCardinality |
-                {
-                    "sh:path": $property | get_property_name,
-                    "sh:datatype": $propertyType | convert_datatype,
-                    "sh:class": $propertyType | get_class_name,
-                    "sh:minCount": (if $minCardinality == "0" then null else ($minCardinality | tonumber) end),
-                    "sh:maxCount": (if $maxCardinality == "N" then null else ($maxCardinality | tonumber) end)
-                }]
-        }
-    ]
-] | flatten | prune_nulls) as $shapes |
+        (
+            {
+                "@version": 1.1,
+                "@context": "https://raw.githubusercontent.com/w3c/shacl/main/shacl-jsonld-context/shacl.context.ld.json"
+            }
+            | to_entries | .[]
+        ),
+        ($nsExtensions | to_entries | .[]),
+        ($nsShapeExtensions | to_entries | .[])
+    ] |
+    from_entries
+) as $shapesContext |
+
+(
+    [
+        to_entries |
+        .[] |
+        [
+            .key as $namespace |
+            .value | to_entries | .[] |
+            .key as $localname |
+            (.value.base | (if (. == "None") then null else . end)) as $parentClass |
+            ($namespace + "." + $localname) as $extendedName |
+            ($extendedName | get_class_name) as $className |
+            ($extendedName | get_shape_name) as $shapeName |
+            {
+                "@id": $shapeName,
+                "@type": "sh:NodeShape",
+                "targetClass": $className | expand,
+                "closed": true,
+                "class": $parentClass | get_class_name | expand,
+                "node": $parentClass | get_shape_name | expand,
+                "parent": $parentClass,
+                "property": [
+                    .value.properties | select(. != null) | .[] |
+                    .[0] as $property |
+                    .[1] as $propertyType |
+                    (.[2] | split(".")) as $cardinalityRestrs |
+                    $cardinalityRestrs[0] as $minCardinality |
+                    $cardinalityRestrs[1] as $maxCardinality |
+                    {
+                        "path": $property | get_property_name | expand,
+                        "datatype": $propertyType | convert_datatype,
+                        "class": $propertyType | get_class_name | expand,
+                        "minCount": (if $minCardinality == "0" then null else ($minCardinality | tonumber) end),
+                        "maxCount": (if $maxCardinality == "N" then null else ($maxCardinality | tonumber) end)
+                    }]
+            }
+        ]
+    ] | flatten | prune_nulls
+) as $shapes |
 
 {
     "@context": $context,
-    "@shapes": $shapes
+    "@shapes": {
+        "@context": $shapesContext,
+        "@graph": $shapes
+    },
+    "@rdfs": $rdfs
 }
-
-

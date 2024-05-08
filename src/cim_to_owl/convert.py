@@ -9,10 +9,14 @@ def run():
     with open('dist/esdoc-cim-schema.json', 'w') as f:
         json.dump(json_obj, f, indent=4)
         
-    with open("json_cim_to_rdfs.jq") as f:
+    with open("jq/json_cim_to_rdfs.jq") as f:
         json_cim_to_rdfs = f.read()
         
-    output = jq.compile(json_cim_to_rdfs).input_value(json_obj).all()
+    # output = jq.compile(json_cim_to_rdfs).input_value(json_obj)
+    output = jq.compile(json_cim_to_rdfs).input_value(json_obj).first()
 
-    with open('dist/output.json', 'w') as f:
-        json.dump(output, f, indent=4)
+    with open('dist/context.jsonld', 'w') as f:
+        json.dump(output["@context"], f, indent=4)
+        
+    with open('dist/shacl.jsonld', 'w') as f:
+        json.dump(output["@shapes"], f, indent=4)
