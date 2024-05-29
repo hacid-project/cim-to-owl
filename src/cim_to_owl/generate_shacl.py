@@ -20,3 +20,6 @@ def run():
         
     with open('meta/shacl.jsonld', 'w') as f:
         json.dump(output["@shapes"], f, indent=4)
+        
+    with open('meta/rdfs.jsonld', 'w') as f:
+        json.dump(output["@rdfs"], f, indent=4)

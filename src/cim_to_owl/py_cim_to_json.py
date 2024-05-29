@@ -2,7 +2,10 @@ from types import ModuleType
 
 def cim_obj_to_jsonable_obj(obj: any) -> any:
     if callable(obj):
-        return cim_obj_to_jsonable_obj(obj())
+        result = cim_obj_to_jsonable_obj(obj())
+        if obj.__doc__:
+            result["annotation"] = obj.__doc__
+        return result
     as_dict = None
     if isinstance(obj, dict):
         as_dict = obj
