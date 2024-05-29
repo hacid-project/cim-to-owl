@@ -14,6 +14,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.12"
 jq = "^1.7.0"
+rdflib = "^7.0.0"
 
 
 [build-system]
@@ -22,3 +23,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 generate_shacl = 'cim_to_owl.generate_shacl:run'
+test = 'cim_to_owl.test_generate:run'
+data_clean = 'cim_to_owl.data_clean:run'
+map_data = 'cim_to_owl.map_data:run'
