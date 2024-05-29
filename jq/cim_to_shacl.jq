@@ -82,7 +82,12 @@ def name_to_singular_camel_case(from_plural; first_upcase):
             else .
         end) |
         (if (first_upcase or $partIndex > 0)
-            then ((.[0:1] | ascii_upcase) + .[1:])
+            then (
+                if (. == "id")
+                    then "ID"
+                    else ((.[0:1] | ascii_upcase) + .[1:])
+                end
+            )
             else .
         end)
     ] | join("");
@@ -129,78 +134,79 @@ def from_context_or(key; alt):
     to_entries | .[] | [
         .key as $namespace |
         .value | to_entries | .[] |
+        select(.value | type == "object") |
         .key as $localname |
         ($namespace + "." + $localname) as $className |
         {
             key: $className,
-            value: (
-                .type as $type |
-                $className |
-                from_context_or(
-                    py_class_to_json_class;
-                    if ($type == "class")
-                        then convert_class_name(false)
-                        else convert_class_name(true)
-                    end
-                )
-            )
+            value: .value
         }
     ]
 ] | flatten | from_entries )
-as $classMap |
+as $classObjs |
 
 ([
-    to_entries | .[] | [
-        .key as $namespace |
-        .value | to_entries | .[] |
-        select(.value.type == "class") |
-        .key as $localname |
-        ($namespace + "." + $localname) as $className |
-        {
-            key: $className, 
-            value: [ .value.properties | .[] | .[0] ]
-        }
-    ]
-] | flatten | from_entries )
+    $classObjs | to_entries | .[] | 
+    {
+        key: .key,
+        value: (
+            .value.type as $type |
+            .key |
+            from_context_or(
+                py_class_to_json_class;
+                convert_class_name($type != "class")
+            )
+        )
+    }
+]| from_entries )
+as $classMap |
+
+{"id": true, "type": true, "@type": true} as $reservedPropertyNames |
+
+def safe_property_name(classname):
+    if in($reservedPropertyNames)
+        then (classname | split(".") | .[1]) + "_" + .
+        else .
+    end; 
+
+([
+    $classObjs | to_entries | .[] | 
+    select(.value.type == "class") |
+    .key as $classname |
+    {
+        key: $classname,
+        value: [ .value.properties | .[] | .[0] | safe_property_name($classname) ]
+    }
+]| from_entries )
 as $classPropertiesMap |
 
 ([
-    to_entries | .[] | [
-        .key as $namespace |
-        .value | to_entries | .[] |
-        .key as $localname |
-        ($namespace + "." + $localname) as $className |
-        {
-            key: $className,
-            value: (
-                .type as $type |
-                $className |
-                if ($type == "class")
-                    then convert_shape_name(false)
-                    else convert_shape_name(true)
-                end
-            )
-        }
-    ]
-] | flatten | from_entries )
+    $classObjs | to_entries | .[] | 
+    {
+        key: .key,
+        value: (
+            .value.type as $type |
+            .key |
+            convert_shape_name($type != "class")
+        )
+    }
+]| from_entries )
 as $shapeMap |
 
 (
     [
-        to_entries | .[] |
+        $classObjs | to_entries | .[] | 
+        select(.value.type == "class") |
+        (.key | split(".") | .[0]) as $namespace |
+        .key as $classname |
         [
-            .key as $namespace |
-            .value | to_entries | .[] |
-            select(.value.type == "class") |
-            [
-                .value.properties | .[] |
-                (.[2] | split(".") | .[1]) as $max_cardinality |
-                {
-                    property: .[0],
-                    namespace: $namespace,
-                    maxCardinality: $max_cardinality
-                }
-            ]
+            .value.properties | .[] |
+            (.[2] | split(".") | .[1]) as $max_cardinality |
+            {
+                property: .[0] | safe_property_name($classname),
+                namespace: $namespace,
+                maxCardinality: $max_cardinality
+            }
         ]
     ] |
     flatten |
@@ -294,6 +300,58 @@ def get_property_name:
     ] | from_entries
 ) as $classPropertyContext |
 
+def one_or_many:
+    if length == 0
+        then null
+    elif length == 1
+        then .[0]
+    else
+        .
+    end;
+
+def aggregate_by(grouping_filter):
+    group_by(grouping_filter) |
+    [
+        .[] |
+        . as $sameKeyValueSet |
+        [
+            [ .[] | keys ] | flatten | unique | .[] |
+            . as $key |
+            {
+                key: $key,
+                value: ([$sameKeyValueSet | .[] | .[$key]] | unique | one_or_many)
+            }
+        ] | from_entries
+    ];
+
+(
+    [
+        (
+            $classObjs | to_entries | .[] | 
+            (.value.base | (if (. == "None") then null else . end) | get_class_name) as $parentClass |
+            {
+                "@id": (.key | get_class_name),
+                "@type": "rdfs:Class",
+                "rdfs:comment": .value.annotation,
+                "rdfs:subclassOf": $parentClass
+            }
+        ),
+        (
+            $classObjs | to_entries | .[] | 
+            select(.value.type == "class") |
+            .key as $classname |
+            .value.properties | .[] |
+            {
+                "@id": (.[0] | safe_property_name($classname) | get_property_name),
+                "@type": "rdfs:Property",
+                "rdfs:comment": .[3]
+            }
+        )
+    ] |
+    prune_nulls |
+    aggregate_by(.["@id"])
+) as $rdfTerms |
+
 (
     [
         $classMap | to_entries | .[] |
@@ -333,20 +391,40 @@ def get_property_name:
         ($context | to_entries | .[])
     ] |
     from_entries
-) as $context |
+) as $mappingContext |
 
-def expand_prefix:
-    if in($context)
-        then $context[.]
+(
+    [
+        (
+            {
+                "@version": 1.1,
+                "id": "@id",
+                "type": "@type",
+                "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+                "xsd": "http://www.w3.org/2001/XMLSchema#"
+            }
+            | to_entries | .[]
+        ),
+        ($nsExtensions | to_entries | .[]),
+        ($context | to_entries | .[])
+    ] |
+    from_entries
+) as $rdfsContext |
+
+
+def expand_prefix($refCtxt):
+    if in($refCtxt)
+        then $refCtxt[.]
         else .
     end;
 
-def expand:
+def expand($refCtxt):
     if . != null and contains(":")
         then (
             split(":") |
             (
-                (.[0] | expand_prefix) +
+                (.[0] | expand_prefix($refCtxt)) +
                 (.[1:] | join(":"))
             )
         )
@@ -371,24 +449,17 @@ def expand:
 
 (
     [
-        to_entries |
-        .[] |
-        [
-            .key as $namespace |
-            .value | to_entries | .[] |
-            .key as $localname |
-            (.value.base | (if (. == "None") then null else . end)) as $parentClass |
-            ($namespace + "." + $localname) as $extendedName |
-            ($extendedName | get_class_name) as $className |
-            ($extendedName | get_shape_name) as $shapeName |
-            {
-                "@id": $shapeName,
+        $classObjs | to_entries | .[] | 
+        (.value.base | (if (. == "None") then null else . end)) as $parentClass |
+        (.key | get_class_name) as $className |
+        (.key | get_shape_name) as $shapeName |
+        {
+                "@id": $shapeName | expand($shapesContext),
                 "@type": "sh:NodeShape",
-                "targetClass": $className | expand,
+                "targetClass": $className | expand($mappingContext),
                 "closed": true,
-                "class": $parentClass | get_class_name | expand,
-                "node": $parentClass | get_shape_name | expand,
-                "parent": $parentClass,
+                "class": $parentClass | get_class_name | expand($mappingContext),
+                "node": $parentClass | get_shape_name | expand($shapesContext),
                 "property": [
                     .value.properties | select(. != null) | .[] |
                     .[0] as $property |
@@ -397,22 +468,24 @@ def expand:
                     $cardinalityRestrs[0] as $minCardinality |
                     $cardinalityRestrs[1] as $maxCardinality |
                     {
-                        "path": $property | get_property_name | expand,
+                        "path": $property | get_property_name | expand($mappingContext),
                         "datatype": $propertyType | convert_datatype,
-                        "class": $propertyType | get_class_name | expand,
+                        "class": $propertyType | get_class_name | expand($mappingContext),
                         "minCount": (if $minCardinality == "0" then null else ($minCardinality | tonumber) end),
                         "maxCount": (if $maxCardinality == "N" then null else ($maxCardinality | tonumber) end)
                     }]
-            }
-        ]
-    ] | flatten | prune_nulls
+        }
+    ] | prune_nulls
 ) as $shapes |
 
 {
-    "@context": $context,
+    "@context": $mappingContext,
     "@shapes": {
         "@context": $shapesContext,
         "@graph": $shapes
     },
-    "@rdfs": $rdfs
+    "@rdfs": {
+        "@context": $rdfsContext,
+        "@graph": $rdfTerms
+    }
 }
