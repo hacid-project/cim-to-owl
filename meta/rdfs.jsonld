@@ -1,0 +1,2296 @@
+{
+    "@context": {
+        "@version": 1.1,
+        "id": "@id",
+        "type": "@type",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "terms-activity": "https://example.org/terms/activity/",
+        "terms-cmip": "https://example.org/terms/cmip/",
+        "terms-data": "https://example.org/terms/data/",
+        "terms-designing": "https://example.org/terms/designing/",
+        "terms-drs": "https://example.org/terms/drs/",
+        "terms-iso": "https://example.org/terms/iso/",
+        "terms-platform": "https://example.org/terms/platform/",
+        "terms-science": "https://example.org/terms/science/",
+        "terms-shared": "https://example.org/terms/shared/",
+        "terms-software": "https://example.org/terms/software/",
+        "terms-time": "https://example.org/terms/time/",
+        "@base": "http://example.org/resources/"
+    },
+    "@graph": [
+        {
+            "@id": "terms-activity:Activity",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Base class for activities."
+        },
+        {
+            "@id": "terms-activity:AxisMember",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Description of a given ensemble member.\n\n    It will normally be related to a specific ensemble requirement. Note\n    that start dates can be extracted directly from the simulations and\n    do not need to be recorded with an axis member description.\n\n    "
+        },
+        {
+            "@id": "terms-activity:ChildSimulation",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Defines the relationship between a simulation and its parent.",
+            "rdfs:subclassOf": "terms-activity:Simulation"
+        },
+        {
+            "@id": "terms-activity:Conformance",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A specific conformance.\n\n    Describes how a particular numerical requirement has been\n    implemented.  Will normally be linked from an ensemble descriptor.\n\n    ",
+            "rdfs:subclassOf": "terms-activity:Activity"
+        },
+        {
+            "@id": "terms-activity:ConformanceType",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Standardised set of conformance responses."
+        },
+        {
+            "@id": "terms-activity:Ensemble",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Generic ensemble definition.\n\n    Holds the definition of how the various ensemble members have been\n    configured. If ensemble axes are not present, then this is either a\n    single member ensemble, or part of an uber ensemble.\n\n    ",
+            "rdfs:subclassOf": "terms-activity:Activity"
+        },
+        {
+            "@id": "terms-activity:EnsembleAxis",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Defines the meaning of r/i/p indices in an ensemble."
+        },
+        {
+            "@id": "terms-activity:Simulation",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Simulation class provides the integrating link about what models\n    were run and wny.",
+            "rdfs:subclassOf": "terms-iso:ProcessStep"
+        },
+        {
+            "@id": "terms-activity:UberEnsemble",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "An ensemble made up of other ensembles.\n\n    Often used where parts of an ensemble were run by different\n    institutes. Could also be used when a new experiment is designed\n    which can use ensemble members from previous experiments and/or\n    projects.\n\n    ",
+            "rdfs:subclassOf": "terms-activity:Ensemble"
+        },
+        {
+            "@id": "terms-activity:alternativeName",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "List of names by which the activity is also known."
+        },
+        {
+            "@id": "terms-activity:axis",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The parent axis of this ensemble member"
+        },
+        {
+            "@id": "terms-activity:branchMethod",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Description of how the simulation was branched from a parent simulation, e.g. 'standard', 'none provided'."
+        },
+        {
+            "@id": "terms-activity:branchTimeInChild",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The time at which the present simulation started in the child calendar."
+        },
+        {
+            "@id": "terms-activity:branchTimeInParent",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The time in parent simulation calendar at which this simulation was branched."
+        },
+        {
+            "@id": "terms-activity:childEnsemble",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Ensemble which are aggregated into this one."
+        },
+        {
+            "@id": "terms-activity:commonConformance",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Conformance documents for requirements common across ensemble."
+        },
+        {
+            "@id": "terms-activity:conformance",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Conformance document for the target requirement that defines this member, if any."
+        },
+        {
+            "@id": "terms-activity:conformanceAchieved",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Summary of conformance status."
+        },
+        {
+            "@id": "terms-activity:dataset",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The datasets (including any modifications made to them) used for conforming to the target requirement."
+        },
+        {
+            "@id": "terms-activity:duration",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Time the activity was (or will be) active."
+        },
+        {
+            "@id": "terms-activity:endTime",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The end date-time of the simulation. e.g. 2087-11-30 12:00:00"
+        },
+        {
+            "@id": "terms-activity:ensembleAxe",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Set of axes for the ensemble."
+        },
+        {
+            "@id": "terms-activity:ensembleID",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Identification within ensemble axes via axis member. (Multiple axis members within a simulation cannot share the same ensemble_axis.) (There must be an axis_member instance for each ensemble axis in a parent ensemble.)"
+        },
+        {
+            "@id": "terms-activity:errata",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Link to errata associated with this simulation."
+        },
+        {
+            "@id": "terms-activity:experiment",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Experiments with which the ensemble is associated (may differ from constituent simulations)."
+        },
+        {
+            "@id": "terms-activity:extraAttribute",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Additional attributes provided with simulation."
+        },
+        {
+            "@id": "terms-activity:extraDetail",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Any extra detail required to describe how this ensemble axis was delivered.",
+                "If necessary: further information about ensemble member conformance."
+            ]
+        },
+        {
+            "@id": "terms-activity:hadPerformance",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Performance of the simulation."
+        },
+        {
+            "@id": "terms-activity:index",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The ensemble member index."
+        },
+        {
+            "@id": "terms-activity:internalName",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "A name used for internal purposes."
+        },
+        {
+            "@id": "terms-activity:member",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Individual member descriptions along axis. 0.N cardinality is only acceptable during design",
+                "Simulations within ensemble (should only be zero while ensemble is being defined)"
+            ]
+        },
+        {
+            "@id": "terms-activity:model",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The models to which this conformance applies."
+        },
+        {
+            "@id": "terms-activity:parent",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The parent simulation of this child."
+        },
+        {
+            "@id": "terms-activity:parentOf",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "If appropriate, links to simulations which branched from this one"
+        },
+        {
+            "@id": "terms-activity:partOfProject",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Project or projects for which simulation was run"
+        },
+        {
+            "@id": "terms-activity:previouslyKnownAs",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "List of names by which the activity was formerly known."
+        },
+        {
+            "@id": "terms-activity:primaryEnsemble",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Primary Ensemble (ensemble for which this simulation was first run)."
+        },
+        {
+            "@id": "terms-activity:produced",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Products of the simulation"
+        },
+        {
+            "@id": "terms-activity:ranForExperiment",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "One or more experiments with which the simulation is associated"
+        },
+        {
+            "@id": "terms-activity:ranOn",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The machine on which the simulation was run."
+        },
+        {
+            "@id": "terms-activity:representativePerformance",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Representative model performance across ensemble."
+        },
+        {
+            "@id": "terms-activity:shortIdentifier",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "e.g. 'r', 'i', 'p' or 'f' to conform with simulation ensemble variant identifiers."
+        },
+        {
+            "@id": "terms-activity:startTime",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The start date-time of the simulation. e.g. 2012-04-01 00:00:00"
+        },
+        {
+            "@id": "terms-activity:subExperiment",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "For start-date ensembles, this will indicate the beginning year; for offline models driven by output from another model, this will provide the source_id and variant_label for the 'driving' model."
+        },
+        {
+            "@id": "terms-activity:targetRequirement",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "URI of the target numerical requirement, if any",
+                "URI of the target numerical requirement."
+            ]
+        },
+        {
+            "@id": "terms-activity:uberEnsemble",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Link to one or more over-arching ensembles that might includes this one."
+        },
+        {
+            "@id": "terms-activity:used",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The model used to run the simulation"
+        },
+        {
+            "@id": "terms-cmip:CmipDataset",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A CMIP dataset.",
+            "rdfs:subclassOf": "terms-data:Dataset"
+        },
+        {
+            "@id": "terms-cmip:CmipSimulation",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A CMIP simulation.\n\n    In most CMIP cases this should be auto-generated from output dataset\n    file headers.\n\n    ",
+            "rdfs:subclassOf": "terms-activity:Simulation"
+        },
+        {
+            "@id": "terms-cmip:drsLocation",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "DRS identifier of dataset."
+        },
+        {
+            "@id": "terms-cmip:forcingIndex",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "index for variant of forcing, e.g. 2"
+        },
+        {
+            "@id": "terms-cmip:initializationIndex",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Index variant of initialization method, e.g. 1"
+        },
+        {
+            "@id": "terms-cmip:originatingSimulation",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Makes a link back to originating activity."
+        },
+        {
+            "@id": "terms-cmip:physicsIndex",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "index for model physics, e.g. 3"
+        },
+        {
+            "@id": "terms-cmip:realizationIndex",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "realization number, e.g. 5"
+        },
+        {
+            "@id": "terms-cmip:variantInfo",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "description of run variant differences, e.g. forcing: black carbon aerosol only"
+        },
+        {
+            "@id": "terms-data:Dataset",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Dataset discovery information.\n\n    This may be further enhanced for ISO (or any other) compliance via\n    the extra attributes or project specific sub-classing.\n\n    "
+        },
+        {
+            "@id": "terms-data:DatasetType",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Classifier of dataset type, to inform discovery metadata.\n\n    Informed by Bedia et al,\n    https://doi.org/10.1016/j.envsoft.2019.07.005, but adjusted for more\n    generality.\n\n    "
+        },
+        {
+            "@id": "terms-data:VariableCollection",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A collection of variables within the scope of a code or process\n    element."
+        },
+        {
+            "@id": "terms-data:availability",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Where the data is located, and how it is accessed."
+        },
+        {
+            "@id": "terms-data:collectionName",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Name for this variable collection."
+        },
+        {
+            "@id": "terms-data:contain",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Contents in terms of variables."
+        },
+        {
+            "@id": "terms-data:datasetType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Dataset discovery classifier"
+        },
+        {
+            "@id": "terms-data:furtherAttribute",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Additional attributes as necessary."
+        },
+        {
+            "@id": "terms-data:geometry",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Defines whether or not all variables in collection are point or area based"
+        },
+        {
+            "@id": "terms-data:lineage",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Provenance of the dataset"
+        },
+        {
+            "@id": "terms-data:progress",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "State of the dataset"
+        },
+        {
+            "@id": "terms-data:relatedToDataset",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Related dataset."
+        },
+        {
+            "@id": "terms-data:variable",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Set of variable names."
+        },
+        {
+            "@id": "terms-designing:DomainRequirements",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Properties of the domain which needs to be simulated, extent\n    and/or resolution.",
+            "rdfs:subclassOf": "terms-designing:NumericalRequirement"
+        },
+        {
+            "@id": "terms-designing:EnsembleRequirement",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Defines an experiment ensemble.",
+            "rdfs:subclassOf": "terms-designing:NumericalRequirement"
+        },
+        {
+            "@id": "terms-designing:EnsembleType",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Defines the various axes along which one can set up an ensemble,\n    whether as an experiment designer, or in designing a 'response'\n    ensemble around an experiment."
+        },
+        {
+            "@id": "terms-designing:ExperimentalRelationship",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Defines the canonical set of experimental relationships."
+        },
+        {
+            "@id": "terms-designing:ForcingConstraint",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Identifies a model forcing constraint.",
+            "rdfs:subclassOf": "terms-designing:NumericalRequirement"
+        },
+        {
+            "@id": "terms-designing:ForcingType",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Defines the possible set of forcing types for a forcing\n    constraint."
+        },
+        {
+            "@id": "terms-designing:InitialisationRequirement",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A requirement on how a particular simulation should be\n    initialised.",
+            "rdfs:subclassOf": "terms-designing:NumericalRequirement"
+        },
+        {
+            "@id": "terms-designing:MultiEnsemble",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "In the case of multiple ensemble axes, defines how they are set\n    up and ordered.",
+            "rdfs:subclassOf": "terms-designing:NumericalRequirement"
+        },
+        {
+            "@id": "terms-designing:NumericalExperiment",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Defines a numerical experiment.",
+            "rdfs:subclassOf": "terms-activity:Activity"
+        },
+        {
+            "@id": "terms-designing:NumericalRequirement",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A numerical requirement associated with a numerical\n    experiment.",
+            "rdfs:subclassOf": "terms-activity:Activity"
+        },
+        {
+            "@id": "terms-designing:NumericalRequirementScope",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "The scope to which a numerical requirement may or may not\n    apply."
+        },
+        {
+            "@id": "terms-designing:Objective",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Describes a specific scientific objective within a project, and\n    any necessary outputs from the experiment needed to meet this\n    objective."
+        },
+        {
+            "@id": "terms-designing:OutputRequirement",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Provides details of what output is required and when from an\n    experiment.",
+            "rdfs:subclassOf": "terms-designing:NumericalRequirement"
+        },
+        {
+            "@id": "terms-designing:Project",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Describes a scientific project.",
+            "rdfs:subclassOf": "terms-activity:Activity"
+        },
+        {
+            "@id": "terms-designing:SimulationPlan",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Describes a simulation that needs to be run.",
+            "rdfs:subclassOf": "terms-activity:Activity"
+        },
+        {
+            "@id": "terms-designing:StartDateEnsemble",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Defines an experiment ensemble with multiple start dates.",
+            "rdfs:subclassOf": "terms-designing:NumericalRequirement"
+        },
+        {
+            "@id": "terms-designing:TemporalConstraint",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A spatio-temporal constraint on a numerical experiment.",
+            "rdfs:subclassOf": "terms-designing:NumericalRequirement"
+        },
+        {
+            "@id": "terms-designing:additionalConstraint",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Additional information, e.g. hold constant from 2100-01-01."
+        },
+        {
+            "@id": "terms-designing:additionalRequirement",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Additional detail for this requirement."
+        },
+        {
+            "@id": "terms-designing:branchTimeInInitialisationSource",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "If appropriate,  the time in the initialisation_source (whether observed or simulated)."
+        },
+        {
+            "@id": "terms-designing:category",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Category to which this belongs (from a CV, e.g. GASES)."
+        },
+        {
+            "@id": "terms-designing:code",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Programme wide code from a controlled vocabulary (e.g. N2O)."
+        },
+        {
+            "@id": "terms-designing:dataLink",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "A data record used by the forcing "
+        },
+        {
+            "@id": "terms-designing:ensembleAxis",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "List of orthogonal ensembles."
+        },
+        {
+            "@id": "terms-designing:ensembleMember",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Constraint on each ensemble member."
+        },
+        {
+            "@id": "terms-designing:ensembleMembers",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Description of date or time set of start dates."
+        },
+        {
+            "@id": "terms-designing:ensembleType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Type of ensemble."
+        },
+        {
+            "@id": "terms-designing:expectedModel",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The model used to run the simulation."
+        },
+        {
+            "@id": "terms-designing:expectedPerformanceSypd",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Expected performance in simulated years per real day."
+        },
+        {
+            "@id": "terms-designing:expectedPlatform",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The machine on which the simulation will be run."
+        },
+        {
+            "@id": "terms-designing:forcingType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Type of integration."
+        },
+        {
+            "@id": "terms-designing:formalDataRequest",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "If available, link to a 'cmip' style online request."
+        },
+        {
+            "@id": "terms-designing:governedExperiment",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Experiments governed by this project."
+        },
+        {
+            "@id": "terms-designing:governingMip",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "MIP(s) overseeing experimental design protocol."
+        },
+        {
+            "@id": "terms-designing:group",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Sub-Category (e.g. GHG)."
+        },
+        {
+            "@id": "terms-designing:homepage",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Project homepage."
+        },
+        {
+            "@id": "terms-designing:initialiseFromData",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Initialisation should use this primary dataset."
+        },
+        {
+            "@id": "terms-designing:initialiseFromExperiment",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "This experiment should be initialised from the output of this experiment."
+        },
+        {
+            "@id": "terms-designing:isConformanceInfoRequired",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Indicator as to whether an institute is expected to provide informationas to how it confirmed."
+        },
+        {
+            "@id": "terms-designing:isConformanceRequested",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Indicator as to whether ensemble documentation should include conformance information for this requirement."
+        },
+        {
+            "@id": "terms-designing:minimumSize",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Minimum number of members."
+        },
+        {
+            "@id": "terms-designing:objective",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Project objectives."
+        },
+        {
+            "@id": "terms-designing:origin",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Pointer to origin, e.g. CMIP6 RCP database."
+        },
+        {
+            "@id": "terms-designing:previousProject",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Previous projects with similar aims."
+        },
+        {
+            "@id": "terms-designing:relatedExperiment",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Other experiments which have defined relationships to this one."
+        },
+        {
+            "@id": "terms-designing:relatedMip",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "MIP's that require this experiment."
+        },
+        {
+            "@id": "terms-designing:relatedObjective",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Set of objective identifiers (which should appear within the related experiments)"
+        },
+        {
+            "@id": "terms-designing:requiredCalendar",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Required calendar (e.g. for paleo simulations)."
+        },
+        {
+            "@id": "terms-designing:requiredDuration",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Constraint on time or length of simulation."
+        },
+        {
+            "@id": "terms-designing:requiredExperiment",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Experiments required to deliver project."
+        },
+        {
+            "@id": "terms-designing:requiredExtent",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Constraint on extent of domain to be simulated."
+        },
+        {
+            "@id": "terms-designing:requiredOutput",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Set of required outputs associated with this objective"
+        },
+        {
+            "@id": "terms-designing:requiredPeriod",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Constraint on start date and duration."
+        },
+        {
+            "@id": "terms-designing:requiredResolution",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Constraint on resolution required in simulated domain."
+        },
+        {
+            "@id": "terms-designing:requirement",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Additional requirements that conformant simulations need to satisfy."
+        },
+        {
+            "@id": "terms-designing:scope",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Scope allows us to categorise a requirement in terms of how widely it is shared."
+        },
+        {
+            "@id": "terms-designing:startFlexibility",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Amount of time before required start date that it is permissible to begin integration."
+        },
+        {
+            "@id": "terms-designing:tier",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Relative importance of experiment within a MIP."
+        },
+        {
+            "@id": "terms-designing:willSupportExperiment",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "An experiment with which the planned simulation will be associated."
+        },
+        {
+            "@id": "terms-drs:DrsAtomicDataset",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "An entity in a DRS file system."
+        },
+        {
+            "@id": "terms-drs:DrsEnsembleIdentifier",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Identifies a 'response ensemble' realisation using the semantic\n    content ofa 'run_variant_id'."
+        },
+        {
+            "@id": "terms-drs:DrsExperiment",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "An encoding of a drs experiment_id."
+        },
+        {
+            "@id": "terms-drs:DrsFrequencyType",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Set of allowed DRS frequency types."
+        },
+        {
+            "@id": "terms-drs:DrsGeographicalIndicator",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Specifies geographical subsets described by bounding boxes or by\n    named regions.\n\n    One of spatial domain or bounding box must appear.\n\n    "
+        },
+        {
+            "@id": "terms-drs:DrsGeographicalOperator",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Set of permitted spatial averaging operator suffixes for drs\n    spatial indicators (yyyy-zzzz)."
+        },
+        {
+            "@id": "terms-drs:DrsPublicationDataset",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "PLACEHOLDER for the real drs_publication_dataset."
+        },
+        {
+            "@id": "terms-drs:DrsRealm",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Set of allowed DRS modelling realms."
+        },
+        {
+            "@id": "terms-drs:DrsSimulationIdentifier",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "That part of the DRS which identifies the response to the\n    experiment: the simulation."
+        },
+        {
+            "@id": "terms-drs:DrsTemporalIdentifier",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Provides information about temporal subsetting and/or averaging.\n\n    If only N1 is present, it a temporal instant, If N1-N2 are present\n    with no suffix, it is a temporal subset, If N1-N2 with a suffix are\n    present, then some sort of temporal averaging has been applied\n    across the period.\n\n    "
+        },
+        {
+            "@id": "terms-drs:DrsTimeSuffixe",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Set of permitted time averaging suffixes for drs temporal\n    identifiers."
+        },
+        {
+            "@id": "terms-drs:axisIdentifer",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "FIXME."
+        },
+        {
+            "@id": "terms-drs:axisType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Type of experimental family ensemble required."
+        },
+        {
+            "@id": "terms-drs:boundingBox",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "DRS bounding box of the form 'latJHJJHHlonMZMMZZ' where H, HH, Z, ZZ are from {NS} {EW} respectively."
+        },
+        {
+            "@id": "terms-drs:end",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "N2, required to indicate a period."
+        },
+        {
+            "@id": "terms-drs:family",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Main experimental family."
+        },
+        {
+            "@id": "terms-drs:forcingNumber",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Identifies possible perturbatinos in forcing."
+        },
+        {
+            "@id": "terms-drs:frequency",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Frequency at which data is stored."
+        },
+        {
+            "@id": "terms-drs:geographicalConstraint",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Identifies geographical subsets and spatial means."
+        },
+        {
+            "@id": "terms-drs:initialisationMethodNumber",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Identifies which method of initialisation was used, if multiple methods used."
+        },
+        {
+            "@id": "terms-drs:mipTable",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The MIP table, together with the variable defines the physical quantity."
+        },
+        {
+            "@id": "terms-drs:operator",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Spatial averagin applied to the geographical region."
+        },
+        {
+            "@id": "terms-drs:perturbationNumber",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Identifies different members of a perturbed physics ensemble."
+        },
+        {
+            "@id": "terms-drs:realisationNumber",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Standard ensemble axis realisation number (usually an initial condition ensemble)."
+        },
+        {
+            "@id": "terms-drs:realm",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Modelling realm."
+        },
+        {
+            "@id": "terms-drs:runVariantID",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Also known as ensemble_identifier, unambiguously identifiers ensemble realisation information."
+        },
+        {
+            "@id": "terms-drs:spatialDomain",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Geographical indicator (currently only 'global' is acceptable)."
+        },
+        {
+            "@id": "terms-drs:start",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "N1,  of the form yyyy[MM[dd[hh[mm[ss]]]]]."
+        },
+        {
+            "@id": "terms-drs:suffix",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "If present, used to indicate climatology or average."
+        },
+        {
+            "@id": "terms-drs:temporalConstraint",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Identifies temporal subsets or means."
+        },
+        {
+            "@id": "terms-drs:variableName",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Identifies the physical quantity (when used in conjunction with the MIP table)."
+        },
+        {
+            "@id": "terms-drs:versionNumber",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Uniquely identifies a particular version of a publication level dataset."
+        },
+        {
+            "@id": "terms-iso:Algorithm",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Representation of the LE_Algorithm Class."
+        },
+        {
+            "@id": "terms-iso:DqEvaluationResultType",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Classifier of evaluation results."
+        },
+        {
+            "@id": "terms-iso:DsInitiativeTypecode",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Classifier of initiative, to inform ISO19115 metadata.\n\n    Formally a DS_InitiativeTypeCode, from ISO19115_2011.\n\n    "
+        },
+        {
+            "@id": "terms-iso:Lineage",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Representation of the ISO19115 lineage provenance description.\n\n    Information about the events or source data used in constructing a\n    dataset\n\n    "
+        },
+        {
+            "@id": "terms-iso:MdCellgeometryCode",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Classifier of cells.\n\n    Whether a grid point is point or area.\n\n    "
+        },
+        {
+            "@id": "terms-iso:MdProgressCode",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Classifier of project or dataset progress."
+        },
+        {
+            "@id": "terms-iso:ProcessStep",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Representation of the ISO19115 LE_ProcessStep and parent\n    LI_ProcessStep classes."
+        },
+        {
+            "@id": "terms-iso:ProcessStepReport",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Report of what happened during a processing step.\n\n    Representation of ISO LE_ProcessStepReport, modified to use links or\n    body text, rather than files.\n\n    "
+        },
+        {
+            "@id": "terms-iso:Processing",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Representation of the ISO19115 LE_Processing class Note that the\n    algorithm definition has been adjusted to be more generic and less\n    \"instrument obsessed\" than ISO19115.\n\n    Name is an extension, and the identifier is simply a code string\n    (id) ... but given there may be no identifier space for this\n    processing step, it is made optional, rather than mandatory as in\n    ISO. For export to ISO, the recommendation is to use the identifier\n    of the CIM document which uses this class.\n\n    "
+        },
+        {
+            "@id": "terms-iso:QualityEvaluationOutput",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A specific evaluation output.",
+            "rdfs:subclassOf": "terms-shared:OnlineResource"
+        },
+        {
+            "@id": "terms-iso:QualityEvaluationResult",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "The output of some quality evaluation against a specific measure\n    for evaluation quality.\n\n    This flattens several ISO classes, including DQ_Result,\n    DQ_ConformanceResult, DQ_QuantativeResult, DQ_Element.\n\n    "
+        },
+        {
+            "@id": "terms-iso:QualityIssue",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A description of some scientific quality issue known about a\n    resource described by this ontology.\n\n    E.g. if a model is known to have a particular problem, or there has\n    been a problem found with a dataset. Expect that most such detail\n    should be managed in an external (and formal) issue tracker.\n\n    "
+        },
+        {
+            "@id": "terms-iso:QualityReport",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A report detailing the quality of some aspect of the target resource.\n    \n    "
+        },
+        {
+            "@id": "terms-iso:algorithm",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "details of the methodology carried out in this processing"
+        },
+        {
+            "@id": "terms-iso:citation",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Formal documentation for the algorithm used."
+        },
+        {
+            "@id": "terms-iso:evaluationProcedure",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Brief description of the evaluation method"
+        },
+        {
+            "@id": "terms-iso:evaluator",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Person or entity reesponsible for evaluation"
+        },
+        {
+            "@id": "terms-iso:executionDateTime",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The date and time when the process was completed."
+        },
+        {
+            "@id": "terms-iso:issue",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Issues with this resource"
+        },
+        {
+            "@id": "terms-iso:link",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Link to actual report documents, if any"
+        },
+        {
+            "@id": "terms-iso:outputType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Type of evaluation resource"
+        },
+        {
+            "@id": "terms-iso:passed",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Success or failure of the evaluation, if boolean concept is appropriate"
+        },
+        {
+            "@id": "terms-iso:procedureDescription",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "additional details about the processing procedures"
+        },
+        {
+            "@id": "terms-iso:processStep",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "How the resource was developed or set of events associated with production."
+        },
+        {
+            "@id": "terms-iso:processingInformation",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Comprehensive information on the processing carried out"
+        },
+        {
+            "@id": "terms-iso:processor",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Individual or organisation responsible for the process step. Use roleCode='processor'. Contact information is not necessary."
+        },
+        {
+            "@id": "terms-iso:reference",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Process step documentation"
+        },
+        {
+            "@id": "terms-iso:report",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Report generated by the process step",
+                "Reports against quality measures for this resource"
+            ]
+        },
+        {
+            "@id": "terms-iso:reporter",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Person or entity responsible for reporting/describing issue"
+        },
+        {
+            "@id": "terms-iso:result",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Evaluation outputs, including log files, plots, or datasets"
+        },
+        {
+            "@id": "terms-iso:runtimeParameters",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "parameters to control the processing operations, entered at run time"
+        },
+        {
+            "@id": "terms-iso:softwareReference",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Reference to document describing processing software"
+        },
+        {
+            "@id": "terms-iso:specification",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Formal specification of the evaluation method"
+        },
+        {
+            "@id": "terms-iso:statement",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "General explanation of the level of knowledge or lack thereof about the lineage"
+        },
+        {
+            "@id": "terms-iso:summary",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Brief (one-line) description of issue"
+        },
+        {
+            "@id": "terms-iso:summaryResult",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Summary description of evaluation outcome"
+        },
+        {
+            "@id": "terms-iso:target",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Document about to which this quality report applies"
+        },
+        {
+            "@id": "terms-iso:trackedIssue",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Issue as lodged in an external issue tracker"
+        },
+        {
+            "@id": "terms-platform:ComputePool",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Homogeneous pool of nodes within a computing machine."
+        },
+        {
+            "@id": "terms-platform:Interconnect",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "The interconnect used within a machine to join nodes together."
+        },
+        {
+            "@id": "terms-platform:Machine",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A computer/system/platform/machine which is used for\n    simulation.",
+            "rdfs:subclassOf": "terms-platform:Partition"
+        },
+        {
+            "@id": "terms-platform:Nic",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Network Interface Card."
+        },
+        {
+            "@id": "terms-platform:Partition",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A major partition (component) of a computing system (aka\n    machine)."
+        },
+        {
+            "@id": "terms-platform:Performance",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Describes the properties of a performance of a configured model\n    on a particular system/machine.\n\n    Based on \"CPMIP: Measurements of Real Computational Performance of\n    Earth System Models\" (Balaji et. al. 2016,\n    doi:10.5194/gmd-2016-197).\n\n    "
+        },
+        {
+            "@id": "terms-platform:PerformanceDetail",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Information about how the various components of performance were\n    related."
+        },
+        {
+            "@id": "terms-platform:ProjectCost",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Cost of an experiment or project on a particular platform."
+        },
+        {
+            "@id": "terms-platform:StoragePool",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Homogeneous storage pool on a computing machine."
+        },
+        {
+            "@id": "terms-platform:StorageSystem",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Controlled vocabulary for storage types (including\n    filesystems)."
+        },
+        {
+            "@id": "terms-platform:acceleratorType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Type of accelerator."
+        },
+        {
+            "@id": "terms-platform:acceleratorsPerNode",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Number of accelerator units on a node."
+        },
+        {
+            "@id": "terms-platform:activity",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Project or Experiment of interest"
+        },
+        {
+            "@id": "terms-platform:actualSimulatedYearsPerDay",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Actual simulated years per day (ASYPD) in a 24h period on the given platform obtained from a typical long-running simulation with the model. Inclusive of system interruptions, queue wait time, or issues with the model workflow, etc."
+        },
+        {
+            "@id": "terms-platform:actualYears",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Number of actual years simulated, including spin-up tuning etc."
+        },
+        {
+            "@id": "terms-platform:bandwidth",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Bandwidth to network"
+        },
+        {
+            "@id": "terms-platform:clockCycleConcurrency",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The number of operations which can be carried out concurrently in a single clock cycle of a single core. E.g. 4."
+        },
+        {
+            "@id": "terms-platform:clockSpeed",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The clock speed of a single core, in units of GHz. E.g. 3.6."
+        },
+        {
+            "@id": "terms-platform:compiler",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Compiler used for performance test."
+        },
+        {
+            "@id": "terms-platform:complexity",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Complexity measured as the number of prognostic variables per component with an independent discretization."
+        },
+        {
+            "@id": "terms-platform:computeCoresPerNode",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Number of CPU cores per node."
+        },
+        {
+            "@id": "terms-platform:computePool",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Layout of compute nodes."
+        },
+        {
+            "@id": "terms-platform:coreHoursPerSimulatedYear",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Core-hours per simulated year (CHSY). This is measured as the product of the model runtime for 1 SY, and the numbers of cores allocated. Note that if allocations are done on a node basis then all cores on a node are charged against the allocation, regardless of whether or not they are used."
+        },
+        {
+            "@id": "terms-platform:couplingCost",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Coupling cost measures the overhead caused by coupling. This can include the cost of the coupling algorithm itself (which may involve grid interpolation and computation of transfer coefficients for conservative coupling) as well as load imbalance. It is the normalized difference between the time-processor integral for the whole model versus the sum of individual concurrent components."
+        },
+        {
+            "@id": "terms-platform:cpuType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "CPU type."
+        },
+        {
+            "@id": "terms-platform:dataIntensity",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Data intensity is the amount of data produced per compute-hour, in units GB per compute-hour."
+        },
+        {
+            "@id": "terms-platform:dataOutputCost",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Data output cost is the cost of performing I/O, and is the ratio of CHSY with and without I/O."
+        },
+        {
+            "@id": "terms-platform:fileSystemSize",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Sizes of constituent File Systems"
+        },
+        {
+            "@id": "terms-platform:furtherDetail",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Set of additional information related to coupling, memory and I/O."
+        },
+        {
+            "@id": "terms-platform:interconnect",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Interconnect used."
+        },
+        {
+            "@id": "terms-platform:joulesPerSimulatedYear",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The energy cost of a simulation, measured in joules per simulated year (JPSY). Given the energy E in joules consumed over a budgeting interval T (generally 1 month or 1 year, in units of hours), JPSY=CHSY*E*T/NP."
+        },
+        {
+            "@id": "terms-platform:linpackPerformance",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Linpack performance (RMax in Top500 lingo)"
+        },
+        {
+            "@id": "terms-platform:memoryBloat",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Memory bloat is the ratio of the actual memory size, defined as M minus NP  multiplied by X where M is the measured runtime memory usage and X the size of the executable files, to the ideal memory size Mi, the size of the complete model state, which in theory is all you need to hold in memory."
+        },
+        {
+            "@id": "terms-platform:memoryPerNode",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Memory per node."
+        },
+        {
+            "@id": "terms-platform:modelNumber",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Model/Board number/type.",
+                "Vendor's model number/name - if it exists."
+            ]
+        },
+        {
+            "@id": "terms-platform:networkCardsPerNode",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Available network interfaces on node"
+        },
+        {
+            "@id": "terms-platform:numberOfNodes",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Number of nodes."
+        },
+        {
+            "@id": "terms-platform:onlineDocumentation",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Links to documentation."
+        },
+        {
+            "@id": "terms-platform:operatingSystem",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Operating system."
+        },
+        {
+            "@id": "terms-platform:parallelisation",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Total number of cores (NP) allocated for the run, regardless of whether or not all cores were used all of the time."
+        },
+        {
+            "@id": "terms-platform:partition",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "If machine is partitioned, treat subpartitions as machines."
+        },
+        {
+            "@id": "terms-platform:peakData",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Maximum volume of data held during project"
+        },
+        {
+            "@id": "terms-platform:peakPerformance",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Total peak performance (RPeak in Top500 lingo)"
+        },
+        {
+            "@id": "terms-platform:platform",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Machine used for project",
+                "Platform on which performance was tested."
+            ]
+        },
+        {
+            "@id": "terms-platform:resolution",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Resolution measured as the number of gridpoints (or more generally, spatial degrees of freedom) NX x NY x NZ per component with an independent discretization."
+        },
+        {
+            "@id": "terms-platform:simulatedYearsPerDay",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Simulated years per day (SYPD) in a 24h period on the given platform."
+        },
+        {
+            "@id": "terms-platform:storagePool",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Storage resource available."
+        },
+        {
+            "@id": "terms-platform:storagePoolType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Type of storage."
+        },
+        {
+            "@id": "terms-platform:subcomponentPerformance",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Describes the performance of each subcomponent."
+        },
+        {
+            "@id": "terms-platform:topology",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Interconnect topology"
+        },
+        {
+            "@id": "terms-platform:totalCoreHours",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Total number of core hours needed for all aspects of the project"
+        },
+        {
+            "@id": "terms-platform:totalEnergyCost",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Total cost of project in Joules, if known"
+        },
+        {
+            "@id": "terms-platform:usefulCoreHours",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Number of core-hours used for useful simulations within the project"
+        },
+        {
+            "@id": "terms-platform:usefulData",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Volume of useful data to be analysed"
+        },
+        {
+            "@id": "terms-platform:usefulYears",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Number of useful years simulated (or to be simulated) during this project"
+        },
+        {
+            "@id": "terms-platform:vendor",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Supplier of compute hardware in this pool",
+                "Supplier of the interconnect",
+                "The system integrator or vendor.",
+                "Vendor of network card",
+                "Vendor of storage hardware."
+            ]
+        },
+        {
+            "@id": "terms-platform:whenAvailable",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "If no longer in use, the time period it was in use."
+        },
+        {
+            "@id": "terms-science:Model",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A model component: can be executed standalone, and has as\n    scientific description available via a link to a science.domain\n    document.\n\n    (A configured model can be understood in terms of a simulation, a\n    model, and a configuration.).\n\n    ",
+            "rdfs:subclassOf": "terms-software:ComponentBase"
+        },
+        {
+            "@id": "terms-science:ModelType",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Defines a set of model types relevant to weather, climate, and\n    earth system modelling."
+        },
+        {
+            "@id": "terms-science:Realm",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Scientific area of a numerical model - usually a sub-model or\n    component.",
+            "rdfs:subclassOf": "terms-science:Topic"
+        },
+        {
+            "@id": "terms-science:RealmCoupling",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Description of a coupling between realms."
+        },
+        {
+            "@id": "terms-science:Topic",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "An organized collection of details upon a specific topic, e.g.\n    model key properties."
+        },
+        {
+            "@id": "terms-science:TopicProperty",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A specialized question asked of the scientic community."
+        },
+        {
+            "@id": "terms-science:TopicPropertySet",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Provides specific details related to a topic (i.e. process, sub-\n    process, grid, key properties, etc)."
+        },
+        {
+            "@id": "terms-science:activityProperty",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Properties specific to the modelling activity in question, e.g. radiative forcing agents for CMIP6."
+        },
+        {
+            "@id": "terms-science:coupledComponent",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Software components which are linked together using a coupler to deliver this model."
+        },
+        {
+            "@id": "terms-science:coupler",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Overarching coupling framework for model."
+        },
+        {
+            "@id": "terms-science:couplingDetails",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Description of the coupling algorithm, and any other information (e.g. binlinear interpolation"
+        },
+        {
+            "@id": "terms-science:internalSoftwareComponent",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Software modules which together provide the functionality for this model."
+        },
+        {
+            "@id": "terms-science:keyProperties",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Model default key properties (may be over-ridden in coupled component and realm properties).",
+                "Realm key properties which differ from model defaults (grid, timestep etc)."
+            ]
+        },
+        {
+            "@id": "terms-science:modelType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Generic type for this model."
+        },
+        {
+            "@id": "terms-science:overview",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "An overview of topic being described."
+        },
+        {
+            "@id": "terms-science:processe",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Processes simulated within the realm."
+        },
+        {
+            "@id": "terms-science:property",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Set of associated specialized properties."
+        },
+        {
+            "@id": "terms-science:propertySet",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Grouped specialized properties."
+        },
+        {
+            "@id": "terms-science:qcStatus",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Quality control status of topic."
+        },
+        {
+            "@id": "terms-science:realm",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The scientific realms which this model simulates internally, i.e. those which are not linked together using a coupler."
+        },
+        {
+            "@id": "terms-science:realmCoupling",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Description of a coupling between realms"
+        },
+        {
+            "@id": "terms-science:softwareFramework",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Software framework(s) of the realm."
+        },
+        {
+            "@id": "terms-science:sourceRealm",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The model realm providing the variable (e.g. ocean)"
+        },
+        {
+            "@id": "terms-science:specializationID",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Specialization identifier (derived from specialization)."
+        },
+        {
+            "@id": "terms-science:subTopic",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Discrete sub-topic with details."
+        },
+        {
+            "@id": "terms-science:targetRealm",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The model realm receiving the variable (e.g. atmosphere)"
+        },
+        {
+            "@id": "terms-science:timeFrequency",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The time frequency of the coupling (e.g. 1 hour)"
+        },
+        {
+            "@id": "terms-science:value",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "User value(s)."
+        },
+        {
+            "@id": "terms-science:variable",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The variable being coupled (e.g. 10 metre wind)"
+        },
+        {
+            "@id": "terms-shared:Citation",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "An academic reference to published work."
+        },
+        {
+            "@id": "terms-shared:DocMetaInfo",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Encapsulates document meta information used by es-doc machinery.\n\n    Will not normally be populated by humans. May duplicate information\n    held in 'visible' metadata.\n\n    "
+        },
+        {
+            "@id": "terms-shared:DocReference",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A reference to another cim entity."
+        },
+        {
+            "@id": "terms-shared:ExtraAttribute",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "An extra attribute with key and value needed to encode further\n    information not in the CIM domain model or specialisation.\n\n    Typical use case: in parsing data and encoding attributes found in\n    data.\n\n    "
+        },
+        {
+            "@id": "terms-shared:FormalAssociation",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Holds a named association between entities, where the name of the\n    association comes from a specific named enumeration.\n\n    The association can point at a CIM entity, or a remote entity.\n\n    ",
+            "rdfs:subclassOf": "terms-shared:DocReference"
+        },
+        {
+            "@id": "terms-shared:NilReason",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Provides an enumeration of possible reasons why a property has\n    not been defined Based on GML nilReason as discussed here:\n    https://www.seegrid.csiro.au/wiki/AppSchemas/NilValues."
+        },
+        {
+            "@id": "terms-shared:Numeric",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A number which comes with a unit, potentially from a controlled\n    vocabulary of units.\n\n    #FIXME: Need to work on the relationship between unit_source and base_unit.\n\n    "
+        },
+        {
+            "@id": "terms-shared:OnlineResource",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A minimal approximation of ISO19115 CI_ONLINERESOURCE, provides a\n    link and details of how to use that link."
+        },
+        {
+            "@id": "terms-shared:Party",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Implements minimal material for an ISO19115-1 (2014) compliant\n    party.\n\n    For our purposes this is a much better animal than the previous\n    responsibleParty which munged roles together with people. Note we\n    have collapsed CI_Contact, CI_Individual and CI_Organisation as well\n    as the abstract CI_Party.\n\n    "
+        },
+        {
+            "@id": "terms-shared:QualityReview",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Assertions as to the completeness and quality of a document.\n\n    Not to be confused with assertions as to the quality of the resource\n    described by the document (as covered by the iso.quality_report). A\n    future version of this ontology may rename this class.\n\n    "
+        },
+        {
+            "@id": "terms-shared:QualityStatus",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Assertion as to the review status of document."
+        },
+        {
+            "@id": "terms-shared:Responsibility",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Implements the ISO19115-1 (2014) CI_Responsibility (which\n    replaces responsibleParty).\n\n    Combines a person and their role in doing something.\n\n    "
+        },
+        {
+            "@id": "terms-shared:RoleCode",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Responsibility role codes: roles that a party may play in\n    delivering a responsibility.\n\n    This is an extension and modification of CI_RoleCode from ISO19115.\n\n    "
+        },
+        {
+            "@id": "terms-shared:TextBlob",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Provides a text class which supports plaintext, html, and friends\n    (or will do)."
+        },
+        {
+            "@id": "terms-shared:TextBlobEncoding",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Types of text understood by the CIM notebook.\n\n    Currently only plaintext, but we expect safe HTML to be supported as\n    soon as practicable.\n\n    "
+        },
+        {
+            "@id": "terms-shared:abstract",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Abstract providing high level reference overview."
+        },
+        {
+            "@id": "terms-shared:address",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Institutional address."
+        },
+        {
+            "@id": "terms-shared:associationID",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "External identifier of the relationship (association name)"
+        },
+        {
+            "@id": "terms-shared:associationVocabulary",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Link to named vocabulary in a server"
+        },
+        {
+            "@id": "terms-shared:author",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Author of the metadata in the parent document.",
+                "The Authors of the work."
+            ]
+        },
+        {
+            "@id": "terms-shared:baseUnit",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "type of unit in external vocabulary"
+        },
+        {
+            "@id": "terms-shared:bibtex",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "A BibTeX reference for the work."
+        },
+        {
+            "@id": "terms-shared:calendar",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Calendar, default is standard aka gregorian.",
+                "The calendar used in the simulation"
+            ]
+        },
+        {
+            "@id": "terms-shared:canonicalName",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Canonical name for the realm.",
+                "Canonical name given to document.",
+                "Community defined identifier or name."
+            ]
+        },
+        {
+            "@id": "terms-shared:citation",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Set of pertinent citations."
+        },
+        {
+            "@id": "terms-shared:citationDetail",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "A complete citation string as would appear in a bibliography."
+        },
+        {
+            "@id": "terms-shared:citationType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Citation type."
+        },
+        {
+            "@id": "terms-shared:collectiveTitle",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Citation collective title, i.e. with all authors declared."
+        },
+        {
+            "@id": "terms-shared:content",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Raw content (including markup)."
+        },
+        {
+            "@id": "terms-shared:context",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Brief text description of why this resource is being cited.",
+                "Information about remote record in context of reference."
+            ]
+        },
+        {
+            "@id": "terms-shared:createDate",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Date upon which the documentation instance was created."
+        },
+        {
+            "@id": "terms-shared:date",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Date of quality evaluation",
+                "Date upon which review was made.",
+                "Optional start/end date of time period."
+            ]
+        },
+        {
+            "@id": "terms-shared:description",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                " Short summary of the objective",
+                "#FIXME.",
+                "A description (derived from specialization).",
+                "Description of how the variable is being used in the s/w.",
+                "Description of issue",
+                "Description of the member (or name of parameter varied).",
+                "Description of the technology used.",
+                "Description of what is to be done (or was done).",
+                "Detail of how to access the resource.",
+                "Extra information about the calendar.",
+                "General description of the events in the development of the resource.",
+                "Summary textual description of what occurred during the process step",
+                "Technical description of interconnect layout",
+                "Textural description of algorithm",
+                "Textural description of component.",
+                "Textural description of dataset.",
+                "Textural description of framework/component.",
+                "Textural description of machine.",
+                "Textural description of pool.",
+                "Textural description.",
+                "User friendly description (derived from specialization)."
+            ]
+        },
+        {
+            "@id": "terms-shared:doc",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Documentation associated with this key."
+        },
+        {
+            "@id": "terms-shared:docMetaInfoID",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Universal document identifier (must be a valid UUID)."
+        },
+        {
+            "@id": "terms-shared:docMetaInfoType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Document ontology type key."
+        },
+        {
+            "@id": "terms-shared:docReferenceID",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Identifier of remote resource, if known."
+        },
+        {
+            "@id": "terms-shared:docReferenceType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The type of remote document."
+        },
+        {
+            "@id": "terms-shared:documentation",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Links to web-pages and other ensemble specific documentation (including workflow descriptions).",
+                "On-line location of additional documentation",
+                "reference to documentation describing the processing"
+            ]
+        },
+        {
+            "@id": "terms-shared:doi",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Digital Object Identifier, if it exists."
+        },
+        {
+            "@id": "terms-shared:drsKey",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "DRS related keys to support correlation of documents with datasets."
+        },
+        {
+            "@id": "terms-shared:drsPath",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "DRS related path to support documents with datasets."
+        },
+        {
+            "@id": "terms-shared:email",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Email address."
+        },
+        {
+            "@id": "terms-shared:encoding",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Content encoding."
+        },
+        {
+            "@id": "terms-shared:externalID",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Set of identifiers used to reference the document by external parties."
+        },
+        {
+            "@id": "terms-shared:extraAttributeType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "If a non-string type, provide type."
+        },
+        {
+            "@id": "terms-shared:furtherInfo",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "A further piece of information used in ad-hoc contexts."
+        },
+        {
+            "@id": "terms-shared:grid",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "A reference to the grid that is used by this component.",
+                "The grid used to layout the variables (e.g. the Global ENDGAME-grid)."
+            ]
+        },
+        {
+            "@id": "terms-shared:identifier",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Identifier (strictly, a code which can be used in an MD_Identifier",
+                "Provides a hook to which experiments can link"
+            ]
+        },
+        {
+            "@id": "terms-shared:institute",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Name of institute with which instance is associated.",
+                "The institute responsible for this data entity."
+            ]
+        },
+        {
+            "@id": "terms-shared:institution",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Institutional location.",
+                "institution which carried out the simulation"
+            ]
+        },
+        {
+            "@id": "terms-shared:isOrganisation",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "True if an organisation not a person."
+        },
+        {
+            "@id": "terms-shared:key",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Name of attribute."
+        },
+        {
+            "@id": "terms-shared:keywords",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Keywords to help re-use and discovery of this information.",
+                "Set of additional keywords to aid discovery/classification",
+                "User defined keywords."
+            ]
+        },
+        {
+            "@id": "terms-shared:linkage",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "A URL."
+        },
+        {
+            "@id": "terms-shared:longName",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Long name for component.",
+                "Long name for framework/component.",
+                "Longer version of activity name."
+            ]
+        },
+        {
+            "@id": "terms-shared:metadataReviewer",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Party who made the metadata quality assessment."
+        },
+        {
+            "@id": "terms-shared:model",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "A model identifier (sans blanks/periods and parenthesis).",
+                "Model for which performance was tested."
+            ]
+        },
+        {
+            "@id": "terms-shared:name",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "#FIXME.",
+                "A short-name / key (derived from specialization).",
+                "A user friendly name given to document.",
+                "Can be used to name a special calendar type.",
+                "Name for performance (experiment/test/whatever).",
+                "Name of compute pool within a machine.",
+                "Name of dataset.",
+                "Name of interconnnect.",
+                "Name of interface card",
+                "Name of measure being evaluated",
+                "Name of online resource.",
+                "Name of partition (or machine).",
+                "Name of person or organisation.",
+                "Name of storage pool.",
+                "Name of the processing action (ISO extension)",
+                "Name of the processing report",
+                "Name of this objective",
+                "Short handle/name for the axis",
+                "Short name for the variable.",
+                "Short name of component.",
+                "Short name of framework/component.",
+                "Short name or abbreviation."
+            ]
+        },
+        {
+            "@id": "terms-shared:onlineAt",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Method of accessing the related entity"
+        },
+        {
+            "@id": "terms-shared:orcidID",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Orcid ID if available."
+        },
+        {
+            "@id": "terms-shared:party",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Parties delivering responsibility."
+        },
+        {
+            "@id": "terms-shared:project",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Name of project with which instance is associated."
+        },
+        {
+            "@id": "terms-shared:protocol",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Protocol to use at the linkage."
+        },
+        {
+            "@id": "terms-shared:qualityDescription",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Assessment of quality of target document."
+        },
+        {
+            "@id": "terms-shared:qualityStatus",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Status from a controlled vocabulary."
+        },
+        {
+            "@id": "terms-shared:rationale",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Explanation of why this activity was carried out and/or what it was intended to achieve.",
+                "Purpose for performing the process on the resource"
+            ]
+        },
+        {
+            "@id": "terms-shared:relationship",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Relationship of the object target as seen from the subject resource."
+        },
+        {
+            "@id": "terms-shared:responsibleParty",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Individuals and organisations responsible for the data.",
+                "People or organisations responsible for activity.",
+                "People or organisations responsible for providing this information."
+            ]
+        },
+        {
+            "@id": "terms-shared:role",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Role that the party plays or played."
+        },
+        {
+            "@id": "terms-shared:sortKey",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Document sort key."
+        },
+        {
+            "@id": "terms-shared:source",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Information on the inputs used in the process step.",
+                "Input(s) used in production of resource",
+                "Name of application that created the instance."
+            ]
+        },
+        {
+            "@id": "terms-shared:sourceKey",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Key of application that created the instance."
+        },
+        {
+            "@id": "terms-shared:startDate",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Beginning of time set.",
+                "Required start date."
+            ]
+        },
+        {
+            "@id": "terms-shared:subProject",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Activities within the project with their own name and aim(s).",
+                "Set of sub-projects with which instance is associated."
+            ]
+        },
+        {
+            "@id": "terms-shared:targetDocument",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "This is the document about which quality is asserted."
+        },
+        {
+            "@id": "terms-shared:title",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The title of the work."
+        },
+        {
+            "@id": "terms-shared:typeDisplayName",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Document type display name."
+        },
+        {
+            "@id": "terms-shared:typeSortKey",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Document type sort key."
+        },
+        {
+            "@id": "terms-shared:unitEnumeration",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Internal CIM vocabulary"
+        },
+        {
+            "@id": "terms-shared:unitSource",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "External vocabulary source"
+        },
+        {
+            "@id": "terms-shared:units",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Appropriate time units.",
+                "Associated Units"
+            ]
+        },
+        {
+            "@id": "terms-shared:updateDate",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Date upon which the instance was last updated."
+        },
+        {
+            "@id": "terms-shared:url",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Location of electronic version.",
+                "URL of person or institution."
+            ]
+        },
+        {
+            "@id": "terms-shared:value",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Date or time - some of (from left to right): yyyy-mm-dd:hh:mm:ss.",
+                "If parameter varied; value for this member.",
+                "Numerical value of number",
+                "Value associated with key."
+            ]
+        },
+        {
+            "@id": "terms-shared:version",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Document version identifier.",
+                "The version of the remote document.",
+                "Version identifier."
+            ]
+        },
+        {
+            "@id": "terms-shared:when",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Period when role was active, if no longer."
+        },
+        {
+            "@id": "terms-shared:year",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Year of publication."
+        },
+        {
+            "@id": "terms-software:ComponentBase",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Base class for software component properties, whether a top level\n    model, or a specific piece of code known as a component.\n\n    In software terms, a component is a discrete set of code that takes\n    input data and generates output data. Components may or may not have\n    scientific descriptions.\n\n    "
+        },
+        {
+            "@id": "terms-software:Composition",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Describes how component variables are coupled together either\n    to/from other SoftwareComponents or external data files. The\n    variables specified by a component's composition must be owned by\n    that component, or a  child of that component; child components\n    cannot couple together parent variables.\n\n    # FIXME: THIS CLASS IS BELIEVED TO BE OBSOLETE AND WILL BE\n    REVIEWED/REPLACED IN THE NEXT VERSION\n\n    "
+        },
+        {
+            "@id": "terms-software:CouplingFramework",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "The set of terms which define known coupling frameworks."
+        },
+        {
+            "@id": "terms-software:DevelopmentPath",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Describes the software development path for this\n    model/component."
+        },
+        {
+            "@id": "terms-software:EntryPoint",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Describes a function or subroutine of a SoftwareComponent. BFG\n    will use these EntryPoints to define a schedule of subroutine calls\n    for a coupled model. Currently, a very basic schedule can be\n    approximated by using the 'proceeds' and 'follows' attributes,\n    however a more complete system is required for full BFG\n    compatibility. Every EntryPoint can have a set of arguments\n    associated with it. These reference (previously defined) variables.\n\n    # FIXME: THIS CLASS IS BELIEVED TO BE OBSOLETE AND WILL BE\n    REVIEWED/REPLACED IN THE NEXT VERSION\n\n    "
+        },
+        {
+            "@id": "terms-software:Gridspec",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Fully defines the computational grid used.\n\n    # FIXME: THIS CLASS IS BELIEVED TO BE OBSOLETE AND WILL BE\n    REVIEWED/REPLACED IN THE NEXT VERSION\n\n    "
+        },
+        {
+            "@id": "terms-software:Implementation",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Implementation information for a software framework/component,\n    whether a top level model, or a specific piece of code known as a\n    'component'.\n\n    In software terms, a software framework/component is a discrete set\n    of code that takes input data and generates output data. Software\n    frameworks/components may or may not have scientific descriptions.\n\n    "
+        },
+        {
+            "@id": "terms-software:ProgrammingLanguage",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "The set of terms which define programming languages used for\n    earth system simulation."
+        },
+        {
+            "@id": "terms-software:SoftwareComponent",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "An embedded piece of software that does not normally function as\n    a standalone model (although it may be used standalone in a test\n    harness).",
+            "rdfs:subclassOf": "terms-software:ComponentBase"
+        },
+        {
+            "@id": "terms-software:Variable",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "An instance of a model software variable which may be prognostic\n    or diagnostic, and which is available as a connection to other\n    software components. Note that these variables may only exist within\n    the software workflow as interim quantities or coupling endpoints.\n    Input and output variables will be a subset of these software\n    variables.\n\n    # FIXME: THIS CLASS IS BELIEVED TO BE OBSOLETE AND WILL BE\n    REVIEWED/REPLACED IN THE NEXT VERSION\n\n    "
+        },
+        {
+            "@id": "terms-software:canonicalID",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Vocabulary identifier, where this framework/component description was constructed via a controlled vocabulary."
+        },
+        {
+            "@id": "terms-software:composition",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "#FIXME."
+        },
+        {
+            "@id": "terms-software:connectionPoint",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The set of data entities which are available for I/O and/or coupling."
+        },
+        {
+            "@id": "terms-software:consortiumName",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "If model/component is developed as part of a consortium, provide consortium name."
+        },
+        {
+            "@id": "terms-software:coupling",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "#FIXME."
+        },
+        {
+            "@id": "terms-software:couplingFramework",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The coupling framework that this entire component conforms to."
+        },
+        {
+            "@id": "terms-software:creator",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Those responsible for creating this component."
+        },
+        {
+            "@id": "terms-software:dependency",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "#FIXME."
+        },
+        {
+            "@id": "terms-software:dependsOn",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The software components whose outputs are inputs to this software component."
+        },
+        {
+            "@id": "terms-software:developmentHistory",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "History of the development of this component.",
+                "History of the development of this framework/component."
+            ]
+        },
+        {
+            "@id": "terms-software:fundingSource",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The entities that funded this software component."
+        },
+        {
+            "@id": "terms-software:isPrognostic",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Whether or not prognostic or diagnostic."
+        },
+        {
+            "@id": "terms-software:language",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Language the component is written in."
+        },
+        {
+            "@id": "terms-software:license",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "The license held by this piece of software."
+        },
+        {
+            "@id": "terms-software:previousVersion",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Name of a previous version."
+        },
+        {
+            "@id": "terms-software:releaseDate",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "The date of publication of the component code (as opposed to the date of publication of the metadata document, or the date of deployment of the model).",
+                "The date of publication of the framework/component code."
+            ]
+        },
+        {
+            "@id": "terms-software:repository",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Location of code for this component.",
+                "Location of code for this framework/component."
+            ]
+        },
+        {
+            "@id": "terms-software:subComponent",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Internal software sub-components of this component."
+        },
+        {
+            "@id": "terms-software:wasDevelopedInHouse",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Model or component was mostly developed in house."
+        },
+        {
+            "@id": "terms-time:Calendar",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Describes the calendar required/used in an experiment/simulation.\n\n    This class is based on the calendar attributes and properties found\n    in the CF netCDF conventions.\n\n    "
+        },
+        {
+            "@id": "terms-time:CalendarType",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "CF calendar types as defined in CF 1.6."
+        },
+        {
+            "@id": "terms-time:DateTime",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A date or time.\n\n    Either in simulation time with the simulation calendar, or with\n    reference to a simulation start, in which case the datetime is an\n    interval after the start date.\n\n    "
+        },
+        {
+            "@id": "terms-time:DatetimeSet",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A set of times.\n\n    This is an abstract class which is specialised into a periodic or\n    aperiodic (irregular) list.  Note that we assume either a periodic\n    set of dates which can be date and/or time, or an irregular set\n    which can only be dates.\n\n    "
+        },
+        {
+            "@id": "terms-time:IrregularDateset",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A set of irregularly spaced times, provided as a comma separated\n    string of yyyy-mm-dd in the appropriate calendar.",
+            "rdfs:subclassOf": "terms-time:DatetimeSet"
+        },
+        {
+            "@id": "terms-time:PeriodDateType",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A period date type vocabulary (used by time_period)."
+        },
+        {
+            "@id": "terms-time:RegularTimeset",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A regularly spaced set of times.",
+            "rdfs:subclassOf": "terms-time:DatetimeSet"
+        },
+        {
+            "@id": "terms-time:TimePeriod",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "A time period/interval (aka temporal extent)."
+        },
+        {
+            "@id": "terms-time:TimeUnit",
+            "@type": "rdfs:Class",
+            "rdfs:comment": "Appropriate Time units for experiment durations in NWP and\n    Climate Modelling."
+        },
+        {
+            "@id": "terms-time:dateSet",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Set of dates, comma separated yyyy-mm-dd."
+        },
+        {
+            "@id": "terms-time:dateType",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Describes how the date is used to define the period."
+        },
+        {
+            "@id": "terms-time:increment",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Interval between members of set."
+        },
+        {
+            "@id": "terms-time:isOffset",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Date is offset from start of an integration."
+        },
+        {
+            "@id": "terms-time:length",
+            "@type": "rdfs:Property",
+            "rdfs:comment": [
+                "Duration of the time period.",
+                "Number of times in set."
+            ]
+        },
+        {
+            "@id": "terms-time:monthLength",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Used for special calendars to provide month lengths."
+        },
+        {
+            "@id": "terms-time:standardName",
+            "@type": "rdfs:Property",
+            "rdfs:comment": "Type of calendar used."
+        }
+    ]
+}

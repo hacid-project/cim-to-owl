@@ -27,7 +27,7 @@
     },
     "@graph": [
         {
-            "@id": "shapes-time:Calendar",
+            "@id": "https://example.org/shapes/time/Calendar",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/Calendar",
             "closed": true,
@@ -55,13 +55,13 @@
             ]
         },
         {
-            "@id": "shapes-time:CalendarType",
+            "@id": "https://example.org/shapes/time/CalendarType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/CalendarType",
             "closed": true
         },
         {
-            "@id": "shapes-time:DateTime",
+            "@id": "https://example.org/shapes/time/DateTime",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/DateTime",
             "closed": true,
@@ -80,7 +80,7 @@
             ]
         },
         {
-            "@id": "shapes-time:DatetimeSet",
+            "@id": "https://example.org/shapes/time/DatetimeSet",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/DatetimeSet",
             "closed": true,
@@ -94,13 +94,12 @@
             ]
         },
         {
-            "@id": "shapes-time:IrregularDateset",
+            "@id": "https://example.org/shapes/time/IrregularDateset",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/IrregularDateset",
             "closed": true,
             "class": "https://example.org/terms/time/DatetimeSet",
-            "node": "shapes-timeDatetimeSet",
-            "parent": "time.datetime_set",
+            "node": "https://example.org/shapes/time/DatetimeSet",
             "property": [
                 {
                     "path": "https://example.org/terms/time/dateSet",
@@ -111,19 +110,18 @@
             ]
         },
         {
-            "@id": "shapes-time:PeriodDateType",
+            "@id": "https://example.org/shapes/time/PeriodDateType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/PeriodDateType",
             "closed": true
         },
         {
-            "@id": "shapes-time:RegularTimeset",
+            "@id": "https://example.org/shapes/time/RegularTimeset",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/RegularTimeset",
             "closed": true,
             "class": "https://example.org/terms/time/DatetimeSet",
-            "node": "shapes-timeDatetimeSet",
-            "parent": "time.datetime_set",
+            "node": "https://example.org/shapes/time/DatetimeSet",
             "property": [
                 {
                     "path": "https://example.org/terms/time/increment",
@@ -146,7 +144,7 @@
             ]
         },
         {
-            "@id": "shapes-time:TimePeriod",
+            "@id": "https://example.org/shapes/time/TimePeriod",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/TimePeriod",
             "closed": true,
@@ -181,13 +179,13 @@
             ]
         },
         {
-            "@id": "shapes-time:TimeUnit",
+            "@id": "https://example.org/shapes/time/TimeUnit",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/TimeUnit",
             "closed": true
         },
         {
-            "@id": "shapes-activity:Activity",
+            "@id": "https://example.org/shapes/activity/Activity",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/activity/Activity",
             "closed": true,
@@ -252,7 +250,7 @@
             ]
         },
         {
-            "@id": "shapes-activity:AxisMember",
+            "@id": "https://example.org/shapes/activity/AxisMember",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/activity/AxisMember",
             "closed": true,
@@ -291,13 +289,12 @@
             ]
         },
         {
-            "@id": "shapes-activity:Conformance",
+            "@id": "https://example.org/shapes/activity/Conformance",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/activity/Conformance",
             "closed": true,
             "class": "https://example.org/terms/activity/Activity",
-            "node": "shapes-activityActivity",
-            "parent": "activity.activity",
+            "node": "https://example.org/shapes/activity/Activity",
             "property": [
                 {
                     "path": "https://example.org/terms/activity/conformanceAchieved",
@@ -323,19 +320,18 @@
             ]
         },
         {
-            "@id": "shapes-activity:ConformanceType",
+            "@id": "https://example.org/shapes/activity/ConformanceType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/activity/ConformanceType",
             "closed": true
         },
         {
-            "@id": "shapes-activity:Ensemble",
+            "@id": "https://example.org/shapes/activity/Ensemble",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/activity/Ensemble",
             "closed": true,
             "class": "https://example.org/terms/activity/Activity",
-            "node": "shapes-activityActivity",
-            "parent": "activity.activity",
+            "node": "https://example.org/shapes/activity/Activity",
             "property": [
                 {
                     "path": "https://example.org/terms/activity/commonConformance",
@@ -370,7 +366,7 @@
             ]
         },
         {
-            "@id": "shapes-activity:EnsembleAxis",
+            "@id": "https://example.org/shapes/activity/EnsembleAxis",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/activity/EnsembleAxis",
             "closed": true,
@@ -404,13 +400,12 @@
             ]
         },
         {
-            "@id": "shapes-activity:ChildSimulation",
+            "@id": "https://example.org/shapes/activity/ChildSimulation",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/activity/ChildSimulation",
             "closed": true,
             "class": "https://example.org/terms/activity/Simulation",
-            "node": "shapes-activitySimulation",
-            "parent": "activity.simulation",
+            "node": "https://example.org/shapes/activity/Simulation",
             "property": [
                 {
                     "path": "https://example.org/terms/activity/branchMethod",
@@ -436,13 +431,12 @@
             ]
         },
         {
-            "@id": "shapes-activity:Simulation",
+            "@id": "https://example.org/shapes/activity/Simulation",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/activity/Simulation",
             "closed": true,
             "class": "https://example.org/terms/iso/ProcessStep",
-            "node": "shapes-isoProcessStep",
-            "parent": "iso.process_step",
+            "node": "https://example.org/shapes/iso/ProcessStep",
             "property": [
                 {
                     "path": "https://example.org/terms/activity/partOfProject",
@@ -499,7 +493,7 @@
                     "maxCount": 1
                 },
                 {
-                    "path": "https://example.org/terms/activity/ensembleId",
+                    "path": "https://example.org/terms/activity/ensembleID",
                     "class": "https://example.org/terms/activity/AxisMember"
                 },
                 {
@@ -529,13 +523,12 @@
             ]
         },
         {
-            "@id": "shapes-activity:UberEnsemble",
+            "@id": "https://example.org/shapes/activity/UberEnsemble",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/activity/UberEnsemble",
             "closed": true,
             "class": "https://example.org/terms/activity/Ensemble",
-            "node": "shapes-activityEnsemble",
-            "parent": "activity.ensemble",
+            "node": "https://example.org/shapes/activity/Ensemble",
             "property": [
                 {
                     "path": "https://example.org/terms/activity/childEnsemble",
@@ -545,13 +538,12 @@
             ]
         },
         {
-            "@id": "shapes-cmip:CmipDataset",
+            "@id": "https://example.org/shapes/cmip/CmipDataset",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/cmip/CmipDataset",
             "closed": true,
             "class": "https://example.org/terms/data/Dataset",
-            "node": "shapes-dataDataset",
-            "parent": "data.dataset",
+            "node": "https://example.org/shapes/data/Dataset",
             "property": [
                 {
                     "path": "https://example.org/terms/cmip/drsLocation",
@@ -565,13 +557,12 @@
             ]
         },
         {
-            "@id": "shapes-cmip:CmipSimulation",
+            "@id": "https://example.org/shapes/cmip/CmipSimulation",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/cmip/CmipSimulation",
             "closed": true,
             "class": "https://example.org/terms/activity/Simulation",
-            "node": "shapes-activitySimulation",
-            "parent": "activity.simulation",
+            "node": "https://example.org/shapes/activity/Simulation",
             "property": [
                 {
                     "path": "https://example.org/terms/cmip/realizationIndex",
@@ -605,7 +596,7 @@
             ]
         },
         {
-            "@id": "shapes-data:Dataset",
+            "@id": "https://example.org/shapes/data/Dataset",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/data/Dataset",
             "closed": true,
@@ -630,7 +621,6 @@
                     "maxCount": 1
                 },
                 {
-                    "path": "@type",
                     "class": "https://example.org/terms/data/DatasetType",
                     "minCount": 1
                 },
@@ -667,7 +657,7 @@
             ]
         },
         {
-            "@id": "shapes-data:VariableCollection",
+            "@id": "https://example.org/shapes/data/VariableCollection",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/data/VariableCollection",
             "closed": true,
@@ -690,19 +680,18 @@
             ]
         },
         {
-            "@id": "shapes-data:DatasetType",
+            "@id": "https://example.org/shapes/data/DatasetType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/data/DatasetType",
             "closed": true
         },
         {
-            "@id": "shapes-designing:DomainRequirement",
+            "@id": "https://example.org/shapes/designing/DomainRequirements",
             "@type": "sh:NodeShape",
-            "targetClass": "https://example.org/terms/designing/DomainRequirement",
+            "targetClass": "https://example.org/terms/designing/DomainRequirements",
             "closed": true,
             "class": "https://example.org/terms/designing/NumericalRequirement",
-            "node": "shapes-designingNumericalRequirement",
-            "parent": "designing.numerical_requirement",
+            "node": "https://example.org/shapes/designing/NumericalRequirement",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/requiredExtent",
@@ -717,13 +706,12 @@
             ]
         },
         {
-            "@id": "shapes-designing:EnsembleRequirement",
+            "@id": "https://example.org/shapes/designing/EnsembleRequirement",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/EnsembleRequirement",
             "closed": true,
             "class": "https://example.org/terms/designing/NumericalRequirement",
-            "node": "shapes-designingNumericalRequirement",
-            "parent": "designing.numerical_requirement",
+            "node": "https://example.org/shapes/designing/NumericalRequirement",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/ensembleMember",
@@ -744,19 +732,18 @@
             ]
         },
         {
-            "@id": "shapes-designing:EnsembleType",
+            "@id": "https://example.org/shapes/designing/EnsembleType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/EnsembleType",
             "closed": true
         },
         {
-            "@id": "shapes-designing:ForcingConstraint",
+            "@id": "https://example.org/shapes/designing/ForcingConstraint",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/ForcingConstraint",
             "closed": true,
             "class": "https://example.org/terms/designing/NumericalRequirement",
-            "node": "shapes-designingNumericalRequirement",
-            "parent": "designing.numerical_requirement",
+            "node": "https://example.org/shapes/designing/NumericalRequirement",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/additionalConstraint",
@@ -797,19 +784,18 @@
             ]
         },
         {
-            "@id": "shapes-designing:ForcingType",
+            "@id": "https://example.org/shapes/designing/ForcingType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/ForcingType",
             "closed": true
         },
         {
-            "@id": "shapes-designing:InitialisationRequirement",
+            "@id": "https://example.org/shapes/designing/InitialisationRequirement",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/InitialisationRequirement",
             "closed": true,
             "class": "https://example.org/terms/designing/NumericalRequirement",
-            "node": "shapes-designingNumericalRequirement",
-            "parent": "designing.numerical_requirement",
+            "node": "https://example.org/shapes/designing/NumericalRequirement",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/branchTimeInInitialisationSource",
@@ -829,13 +815,12 @@
             ]
         },
         {
-            "@id": "shapes-designing:MultiEnsemble",
+            "@id": "https://example.org/shapes/designing/MultiEnsemble",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/MultiEnsemble",
             "closed": true,
             "class": "https://example.org/terms/designing/NumericalRequirement",
-            "node": "shapes-designingNumericalRequirement",
-            "parent": "designing.numerical_requirement",
+            "node": "https://example.org/shapes/designing/NumericalRequirement",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/ensembleAxis",
@@ -845,13 +830,12 @@
             ]
         },
         {
-            "@id": "shapes-designing:NumericalExperiment",
+            "@id": "https://example.org/shapes/designing/NumericalExperiment",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/NumericalExperiment",
             "closed": true,
             "class": "https://example.org/terms/activity/Activity",
-            "node": "shapes-activityActivity",
-            "parent": "activity.activity",
+            "node": "https://example.org/shapes/activity/Activity",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/tier",
@@ -887,19 +871,18 @@
             ]
         },
         {
-            "@id": "shapes-designing:ExperimentalRelationship",
+            "@id": "https://example.org/shapes/designing/ExperimentalRelationship",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/ExperimentalRelationship",
             "closed": true
         },
         {
-            "@id": "shapes-designing:NumericalRequirement",
+            "@id": "https://example.org/shapes/designing/NumericalRequirement",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/NumericalRequirement",
             "closed": true,
             "class": "https://example.org/terms/activity/Activity",
-            "node": "shapes-activityActivity",
-            "parent": "activity.activity",
+            "node": "https://example.org/shapes/activity/Activity",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/additionalRequirement",
@@ -925,19 +908,18 @@
             ]
         },
         {
-            "@id": "shapes-designing:NumericalRequirementScope",
+            "@id": "https://example.org/shapes/designing/NumericalRequirementScope",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/NumericalRequirementScope",
             "closed": true
         },
         {
-            "@id": "shapes-designing:OutputRequirement",
+            "@id": "https://example.org/shapes/designing/OutputRequirement",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/OutputRequirement",
             "closed": true,
             "class": "https://example.org/terms/designing/NumericalRequirement",
-            "node": "shapes-designingNumericalRequirement",
-            "parent": "designing.numerical_requirement",
+            "node": "https://example.org/shapes/designing/NumericalRequirement",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/formalDataRequest",
@@ -947,7 +929,7 @@
             ]
         },
         {
-            "@id": "shapes-designing:Objective",
+            "@id": "https://example.org/shapes/designing/Objective",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/Objective",
             "closed": true,
@@ -975,13 +957,12 @@
             ]
         },
         {
-            "@id": "shapes-designing:Project",
+            "@id": "https://example.org/shapes/designing/Project",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/Project",
             "closed": true,
             "class": "https://example.org/terms/activity/Activity",
-            "node": "shapes-activityActivity",
-            "parent": "activity.activity",
+            "node": "https://example.org/shapes/activity/Activity",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/homepage",
@@ -1011,13 +992,12 @@
             ]
         },
         {
-            "@id": "shapes-designing:SimulationPlan",
+            "@id": "https://example.org/shapes/designing/SimulationPlan",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/SimulationPlan",
             "closed": true,
             "class": "https://example.org/terms/activity/Activity",
-            "node": "shapes-activityActivity",
-            "parent": "activity.activity",
+            "node": "https://example.org/shapes/activity/Activity",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/expectedModel",
@@ -1042,13 +1022,12 @@
             ]
         },
         {
-            "@id": "shapes-designing:StartDateEnsemble",
+            "@id": "https://example.org/shapes/designing/StartDateEnsemble",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/StartDateEnsemble",
             "closed": true,
             "class": "https://example.org/terms/designing/NumericalRequirement",
-            "node": "shapes-designingNumericalRequirement",
-            "parent": "designing.numerical_requirement",
+            "node": "https://example.org/shapes/designing/NumericalRequirement",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/ensembleMembers",
@@ -1059,13 +1038,12 @@
             ]
         },
         {
-            "@id": "shapes-designing:TemporalConstraint",
+            "@id": "https://example.org/shapes/designing/TemporalConstraint",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/TemporalConstraint",
             "closed": true,
             "class": "https://example.org/terms/designing/NumericalRequirement",
-            "node": "shapes-designingNumericalRequirement",
-            "parent": "designing.numerical_requirement",
+            "node": "https://example.org/shapes/designing/NumericalRequirement",
             "property": [
                 {
                     "path": "https://example.org/terms/designing/requiredCalendar",
@@ -1090,7 +1068,7 @@
             ]
         },
         {
-            "@id": "shapes-drs:DrsAtomicDataset",
+            "@id": "https://example.org/shapes/drs/DrsAtomicDataset",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsAtomicDataset",
             "closed": true,
@@ -1136,7 +1114,7 @@
             ]
         },
         {
-            "@id": "shapes-drs:DrsEnsembleIdentifier",
+            "@id": "https://example.org/shapes/drs/DrsEnsembleIdentifier",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsEnsembleIdentifier",
             "closed": true,
@@ -1167,7 +1145,7 @@
             ]
         },
         {
-            "@id": "shapes-drs:DrsExperiment",
+            "@id": "https://example.org/shapes/drs/DrsExperiment",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsExperiment",
             "closed": true,
@@ -1191,13 +1169,13 @@
             ]
         },
         {
-            "@id": "shapes-drs:DrsFrequencyType",
+            "@id": "https://example.org/shapes/drs/DrsFrequencyType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsFrequencyType",
             "closed": true
         },
         {
-            "@id": "shapes-drs:DrsGeographicalIndicator",
+            "@id": "https://example.org/shapes/drs/DrsGeographicalIndicator",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsGeographicalIndicator",
             "closed": true,
@@ -1220,25 +1198,25 @@
             ]
         },
         {
-            "@id": "shapes-drs:DrsGeographicalOperator",
+            "@id": "https://example.org/shapes/drs/DrsGeographicalOperator",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsGeographicalOperator",
             "closed": true
         },
         {
-            "@id": "shapes-drs:DrsPublicationDataset",
+            "@id": "https://example.org/shapes/drs/DrsPublicationDataset",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsPublicationDataset",
             "closed": true
         },
         {
-            "@id": "shapes-drs:DrsRealm",
+            "@id": "https://example.org/shapes/drs/DrsRealm",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsRealm",
             "closed": true
         },
         {
-            "@id": "shapes-drs:DrsSimulationIdentifier",
+            "@id": "https://example.org/shapes/drs/DrsSimulationIdentifier",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsSimulationIdentifier",
             "closed": true,
@@ -1256,7 +1234,7 @@
                     "maxCount": 1
                 },
                 {
-                    "path": "https://example.org/terms/drs/runVariantId",
+                    "path": "https://example.org/terms/drs/runVariantID",
                     "class": "https://example.org/terms/drs/DrsEnsembleIdentifier",
                     "minCount": 1,
                     "maxCount": 1
@@ -1264,7 +1242,7 @@
             ]
         },
         {
-            "@id": "shapes-drs:DrsTemporalIdentifier",
+            "@id": "https://example.org/shapes/drs/DrsTemporalIdentifier",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsTemporalIdentifier",
             "closed": true,
@@ -1288,13 +1266,13 @@
             ]
         },
         {
-            "@id": "shapes-drs:DrsTimeSuffixe",
+            "@id": "https://example.org/shapes/drs/DrsTimeSuffixe",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsTimeSuffixe",
             "closed": true
         },
         {
-            "@id": "shapes-iso:Lineage",
+            "@id": "https://example.org/shapes/iso/Lineage",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/Lineage",
             "closed": true,
@@ -1315,7 +1293,7 @@
             ]
         },
         {
-            "@id": "shapes-iso:ProcessStep",
+            "@id": "https://example.org/shapes/iso/ProcessStep",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/ProcessStep",
             "closed": true,
@@ -1360,7 +1338,7 @@
             ]
         },
         {
-            "@id": "shapes-iso:Processing",
+            "@id": "https://example.org/shapes/iso/Processing",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/Processing",
             "closed": true,
@@ -1402,7 +1380,7 @@
             ]
         },
         {
-            "@id": "shapes-iso:ProcessStepReport",
+            "@id": "https://example.org/shapes/iso/ProcessStepReport",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/ProcessStepReport",
             "closed": true,
@@ -1427,7 +1405,7 @@
             ]
         },
         {
-            "@id": "shapes-iso:Algorithm",
+            "@id": "https://example.org/shapes/iso/Algorithm",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/Algorithm",
             "closed": true,
@@ -1445,7 +1423,7 @@
             ]
         },
         {
-            "@id": "shapes-iso:QualityReport",
+            "@id": "https://example.org/shapes/iso/QualityReport",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/QualityReport",
             "closed": true,
@@ -1467,7 +1445,7 @@
             ]
         },
         {
-            "@id": "shapes-iso:QualityIssue",
+            "@id": "https://example.org/shapes/iso/QualityIssue",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/QualityIssue",
             "closed": true,
@@ -1496,7 +1474,7 @@
             ]
         },
         {
-            "@id": "shapes-iso:QualityEvaluationResult",
+            "@id": "https://example.org/shapes/iso/QualityEvaluationResult",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/QualityEvaluationResult",
             "closed": true,
@@ -1544,13 +1522,12 @@
             ]
         },
         {
-            "@id": "shapes-iso:QualityEvaluationOutput",
+            "@id": "https://example.org/shapes/iso/QualityEvaluationOutput",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/QualityEvaluationOutput",
             "closed": true,
             "class": "https://example.org/terms/shared/OnlineResource",
-            "node": "shapes-sharedOnlineResource",
-            "parent": "shared.online_resource",
+            "node": "https://example.org/shapes/shared/OnlineResource",
             "property": [
                 {
                     "path": "https://example.org/terms/iso/outputType",
@@ -1561,31 +1538,31 @@
             ]
         },
         {
-            "@id": "shapes-iso:DsInitiativeTypecode",
+            "@id": "https://example.org/shapes/iso/DsInitiativeTypecode",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/DsInitiativeTypecode",
             "closed": true
         },
         {
-            "@id": "shapes-iso:MdCellgeometryCode",
+            "@id": "https://example.org/shapes/iso/MdCellgeometryCode",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/MdCellgeometryCode",
             "closed": true
         },
         {
-            "@id": "shapes-iso:MdProgressCode",
+            "@id": "https://example.org/shapes/iso/MdProgressCode",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/MdProgressCode",
             "closed": true
         },
         {
-            "@id": "shapes-iso:DqEvaluationResultType",
+            "@id": "https://example.org/shapes/iso/DqEvaluationResultType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/DqEvaluationResultType",
             "closed": true
         },
         {
-            "@id": "shapes-platform:ComputePool",
+            "@id": "https://example.org/shapes/platform/ComputePool",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/platform/ComputePool",
             "closed": true,
@@ -1657,7 +1634,7 @@
             ]
         },
         {
-            "@id": "shapes-platform:Interconnect",
+            "@id": "https://example.org/shapes/platform/Interconnect",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/platform/Interconnect",
             "closed": true,
@@ -1685,7 +1662,7 @@
             ]
         },
         {
-            "@id": "shapes-platform:Nic",
+            "@id": "https://example.org/shapes/platform/Nic",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/platform/Nic",
             "closed": true,
@@ -1710,13 +1687,12 @@
             ]
         },
         {
-            "@id": "shapes-platform:Machine",
+            "@id": "https://example.org/shapes/platform/Machine",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/platform/Machine",
             "closed": true,
             "class": "https://example.org/terms/platform/Partition",
-            "node": "shapes-platformPartition",
-            "parent": "platform.partition",
+            "node": "https://example.org/shapes/platform/Partition",
             "property": [
                 {
                     "path": "https://example.org/terms/platform/peakPerformance",
@@ -1731,7 +1707,7 @@
             ]
         },
         {
-            "@id": "shapes-platform:Partition",
+            "@id": "https://example.org/shapes/platform/Partition",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/platform/Partition",
             "closed": true,
@@ -1798,7 +1774,7 @@
             ]
         },
         {
-            "@id": "shapes-platform:Performance",
+            "@id": "https://example.org/shapes/platform/Performance",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/platform/Performance",
             "closed": true,
@@ -1866,7 +1842,7 @@
             ]
         },
         {
-            "@id": "shapes-platform:PerformanceDetail",
+            "@id": "https://example.org/shapes/platform/PerformanceDetail",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/platform/PerformanceDetail",
             "closed": true,
@@ -1890,7 +1866,7 @@
             ]
         },
         {
-            "@id": "shapes-platform:ProjectCost",
+            "@id": "https://example.org/shapes/platform/ProjectCost",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/platform/ProjectCost",
             "closed": true,
@@ -1945,7 +1921,7 @@
             ]
         },
         {
-            "@id": "shapes-platform:StoragePool",
+            "@id": "https://example.org/shapes/platform/StoragePool",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/platform/StoragePool",
             "closed": true,
@@ -1962,7 +1938,6 @@
                     "maxCount": 1
                 },
                 {
-                    "path": "@type",
                     "class": "https://example.org/terms/platform/StorageSystem",
                     "maxCount": 1
                 },
@@ -1979,19 +1954,18 @@
             ]
         },
         {
-            "@id": "shapes-platform:StorageSystem",
+            "@id": "https://example.org/shapes/platform/StorageSystem",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/platform/StorageSystem",
             "closed": true
         },
         {
-            "@id": "shapes-science:Model",
+            "@id": "https://example.org/shapes/science/Model",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/science/Model",
             "closed": true,
             "class": "https://example.org/terms/software/ComponentBase",
-            "node": "shapes-softwareComponentBase",
-            "parent": "software.component_base",
+            "node": "https://example.org/shapes/software/ComponentBase",
             "property": [
                 {
                     "path": "https://example.org/terms/shared/keywords",
@@ -2036,13 +2010,12 @@
             ]
         },
         {
-            "@id": "shapes-science:Realm",
+            "@id": "https://example.org/shapes/science/Realm",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/science/Realm",
             "closed": true,
             "class": "https://example.org/terms/science/Topic",
-            "node": "shapes-scienceTopic",
-            "parent": "science.topic",
+            "node": "https://example.org/shapes/science/Topic",
             "property": [
                 {
                     "path": "https://example.org/terms/shared/canonicalName",
@@ -2071,7 +2044,7 @@
             ]
         },
         {
-            "@id": "shapes-science:RealmCoupling",
+            "@id": "https://example.org/shapes/science/RealmCoupling",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/science/RealmCoupling",
             "closed": true,
@@ -2108,7 +2081,7 @@
             ]
         },
         {
-            "@id": "shapes-science:Topic",
+            "@id": "https://example.org/shapes/science/Topic",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/science/Topic",
             "closed": true,
@@ -2154,7 +2127,7 @@
                     "class": "https://example.org/terms/shared/Responsibility"
                 },
                 {
-                    "path": "https://example.org/terms/science/specializationId",
+                    "path": "https://example.org/terms/science/specializationID",
                     "datatype": "xsd:string",
                     "maxCount": 1
                 },
@@ -2165,7 +2138,7 @@
             ]
         },
         {
-            "@id": "shapes-science:TopicPropertySet",
+            "@id": "https://example.org/shapes/science/TopicPropertySet",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/science/TopicPropertySet",
             "closed": true,
@@ -2186,14 +2159,14 @@
                     "maxCount": 1
                 },
                 {
-                    "path": "https://example.org/terms/science/specializationId",
+                    "path": "https://example.org/terms/science/specializationID",
                     "datatype": "xsd:string",
                     "maxCount": 1
                 }
             ]
         },
         {
-            "@id": "shapes-science:TopicProperty",
+            "@id": "https://example.org/shapes/science/TopicProperty",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/science/TopicProperty",
             "closed": true,
@@ -2209,7 +2182,7 @@
                     "maxCount": 1
                 },
                 {
-                    "path": "https://example.org/terms/science/specializationId",
+                    "path": "https://example.org/terms/science/specializationID",
                     "datatype": "xsd:string",
                     "maxCount": 1
                 },
@@ -2221,180 +2194,13 @@
             ]
         },
         {
-            "@id": "shapes-science:ModelType",
+            "@id": "https://example.org/shapes/science/ModelType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/science/ModelType",
             "closed": true
         },
         {
-            "@id": "shapes-shared:DocMetaInfo",
-            "@type": "sh:NodeShape",
-            "targetClass": "https://example.org/terms/shared/DocMetaInfo",
-            "closed": true,
-            "property": [
-                {
-                    "path": "https://example.org/terms/shared/author",
-                    "class": "https://example.org/terms/shared/Party",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/createDate",
-                    "minCount": 1,
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/drsKey",
-                    "datatype": "xsd:string"
-                },
-                {
-                    "path": "https://example.org/terms/shared/drsPath",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/externalId",
-                    "datatype": "xsd:string"
-                },
-                {
-                    "path": "@id",
-                    "datatype": "xsd:string",
-                    "minCount": 1,
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/institute",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/project",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/sortKey",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/source",
-                    "datatype": "xsd:string",
-                    "minCount": 1,
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/sourceKey",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/subProject",
-                    "datatype": "xsd:string"
-                },
-                {
-                    "path": "@type",
-                    "datatype": "xsd:string",
-                    "minCount": 1,
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/typeDisplayName",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/typeSortKey",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/updateDate",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/version",
-                    "datatype": "xsd:integer",
-                    "minCount": 1,
-                    "maxCount": 1
-                }
-            ]
-        },
-        {
-            "@id": "shapes-shared:DocReference",
-            "@type": "sh:NodeShape",
-            "targetClass": "https://example.org/terms/shared/DocReference",
-            "closed": true,
-            "property": [
-                {
-                    "path": "https://example.org/terms/shared/canonicalName",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "@id",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/name",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "@type",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/version",
-                    "datatype": "xsd:integer",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/relationship",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/furtherInfo",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/context",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                }
-            ]
-        },
-        {
-            "@id": "shapes-shared:FormalAssociation",
-            "@type": "sh:NodeShape",
-            "targetClass": "https://example.org/terms/shared/FormalAssociation",
-            "closed": true,
-            "class": "https://example.org/terms/shared/DocReference",
-            "node": "shapes-sharedDocReference",
-            "parent": "shared.doc_reference",
-            "property": [
-                {
-                    "path": "https://example.org/terms/shared/associationVocabulary",
-                    "class": "https://example.org/terms/shared/OnlineResource",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/associationId",
-                    "datatype": "xsd:string",
-                    "maxCount": 1
-                },
-                {
-                    "path": "https://example.org/terms/shared/onlineAt",
-                    "class": "https://example.org/terms/shared/OnlineResource",
-                    "maxCount": 1
-                }
-            ]
-        },
-        {
-            "@id": "shapes-shared:TextBlob",
+            "@id": "https://example.org/shapes/shared/TextBlob",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/TextBlob",
             "closed": true,
@@ -2414,7 +2220,7 @@
             ]
         },
         {
-            "@id": "shapes-shared:Citation",
+            "@id": "https://example.org/shapes/shared/Citation",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/Citation",
             "closed": true,
@@ -2459,7 +2265,6 @@
                     "maxCount": 1
                 },
                 {
-                    "path": "@type",
                     "datatype": "xsd:string",
                     "maxCount": 1
                 },
@@ -2476,7 +2281,7 @@
             ]
         },
         {
-            "@id": "shapes-shared:ExtraAttribute",
+            "@id": "https://example.org/shapes/shared/ExtraAttribute",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/ExtraAttribute",
             "closed": true,
@@ -2493,7 +2298,6 @@
                     "maxCount": 1
                 },
                 {
-                    "path": "@type",
                     "datatype": "xsd:string",
                     "maxCount": 1
                 },
@@ -2506,13 +2310,13 @@
             ]
         },
         {
-            "@id": "shapes-shared:NilReason",
+            "@id": "https://example.org/shapes/shared/NilReason",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/NilReason",
             "closed": true
         },
         {
-            "@id": "shapes-shared:OnlineResource",
+            "@id": "https://example.org/shapes/shared/OnlineResource",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/OnlineResource",
             "closed": true,
@@ -2542,7 +2346,7 @@
             ]
         },
         {
-            "@id": "shapes-shared:Party",
+            "@id": "https://example.org/shapes/shared/Party",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/Party",
             "closed": true,
@@ -2563,7 +2367,7 @@
                     "maxCount": 1
                 },
                 {
-                    "path": "https://example.org/terms/shared/orcidId",
+                    "path": "https://example.org/terms/shared/orcidID",
                     "datatype": "xsd:string",
                     "maxCount": 1
                 },
@@ -2580,7 +2384,7 @@
             ]
         },
         {
-            "@id": "shapes-shared:QualityReview",
+            "@id": "https://example.org/shapes/shared/QualityReview",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/QualityReview",
             "closed": true,
@@ -2617,13 +2421,13 @@
             ]
         },
         {
-            "@id": "shapes-shared:QualityStatus",
+            "@id": "https://example.org/shapes/shared/QualityStatus",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/QualityStatus",
             "closed": true
         },
         {
-            "@id": "shapes-shared:Responsibility",
+            "@id": "https://example.org/shapes/shared/Responsibility",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/Responsibility",
             "closed": true,
@@ -2647,19 +2451,19 @@
             ]
         },
         {
-            "@id": "shapes-shared:RoleCode",
+            "@id": "https://example.org/shapes/shared/RoleCode",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/RoleCode",
             "closed": true
         },
         {
-            "@id": "shapes-shared:TextBlobEncoding",
+            "@id": "https://example.org/shapes/shared/TextBlobEncoding",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/TextBlobEncoding",
             "closed": true
         },
         {
-            "@id": "shapes-shared:Numeric",
+            "@id": "https://example.org/shapes/shared/Numeric",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/Numeric",
             "closed": true,
@@ -2693,19 +2497,181 @@
             ]
         },
         {
-            "@id": "shapes-software:CouplingFramework",
+            "@id": "https://example.org/shapes/shared/DocMetaInfo",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/DocMetaInfo",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/author",
+                    "class": "https://example.org/terms/shared/Party",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/createDate",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/drsKey",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "path": "https://example.org/terms/shared/drsPath",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/externalID",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/institute",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/project",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/sortKey",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/source",
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/sourceKey",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/subProject",
+                    "datatype": "xsd:string"
+                },
+                {
+                    "datatype": "xsd:string",
+                    "minCount": 1,
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/typeDisplayName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/typeSortKey",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/updateDate",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/version",
+                    "datatype": "xsd:integer",
+                    "minCount": 1,
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/shapes/shared/DocReference",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/DocReference",
+            "closed": true,
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/canonicalName",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/name",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/version",
+                    "datatype": "xsd:integer",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/relationship",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/furtherInfo",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/context",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/shapes/shared/FormalAssociation",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/shared/FormalAssociation",
+            "closed": true,
+            "class": "https://example.org/terms/shared/DocReference",
+            "node": "https://example.org/shapes/shared/DocReference",
+            "property": [
+                {
+                    "path": "https://example.org/terms/shared/associationVocabulary",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/associationID",
+                    "datatype": "xsd:string",
+                    "maxCount": 1
+                },
+                {
+                    "path": "https://example.org/terms/shared/onlineAt",
+                    "class": "https://example.org/terms/shared/OnlineResource",
+                    "maxCount": 1
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/shapes/software/CouplingFramework",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/software/CouplingFramework",
             "closed": true
         },
         {
-            "@id": "shapes-software:ProgrammingLanguage",
+            "@id": "https://example.org/shapes/software/ProgrammingLanguage",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/software/ProgrammingLanguage",
             "closed": true
         },
         {
-            "@id": "shapes-software:ComponentBase",
+            "@id": "https://example.org/shapes/software/ComponentBase",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/software/ComponentBase",
             "closed": true,
@@ -2715,7 +2681,7 @@
                     "class": "https://example.org/terms/shared/Citation"
                 },
                 {
-                    "path": "https://example.org/terms/software/canonicalId",
+                    "path": "https://example.org/terms/software/canonicalID",
                     "datatype": "xsd:string",
                     "maxCount": 1
                 },
@@ -2762,7 +2728,7 @@
             ]
         },
         {
-            "@id": "shapes-software:Implementation",
+            "@id": "https://example.org/shapes/software/Implementation",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/software/Implementation",
             "closed": true,
@@ -2772,7 +2738,7 @@
                     "class": "https://example.org/terms/shared/Citation"
                 },
                 {
-                    "path": "https://example.org/terms/software/canonicalId",
+                    "path": "https://example.org/terms/software/canonicalID",
                     "datatype": "xsd:string",
                     "maxCount": 1
                 },
@@ -2814,7 +2780,7 @@
             ]
         },
         {
-            "@id": "shapes-software:Composition",
+            "@id": "https://example.org/shapes/software/Composition",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/software/Composition",
             "closed": true,
@@ -2831,7 +2797,7 @@
             ]
         },
         {
-            "@id": "shapes-software:DevelopmentPath",
+            "@id": "https://example.org/shapes/software/DevelopmentPath",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/software/DevelopmentPath",
             "closed": true,
@@ -2863,7 +2829,7 @@
             ]
         },
         {
-            "@id": "shapes-software:EntryPoint",
+            "@id": "https://example.org/shapes/software/EntryPoint",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/software/EntryPoint",
             "closed": true,
@@ -2876,7 +2842,7 @@
             ]
         },
         {
-            "@id": "shapes-software:Gridspec",
+            "@id": "https://example.org/shapes/software/Gridspec",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/software/Gridspec",
             "closed": true,
@@ -2890,13 +2856,12 @@
             ]
         },
         {
-            "@id": "shapes-software:SoftwareComponent",
+            "@id": "https://example.org/shapes/software/SoftwareComponent",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/software/SoftwareComponent",
             "closed": true,
             "class": "https://example.org/terms/software/ComponentBase",
-            "node": "shapes-softwareComponentBase",
-            "parent": "software.component_base",
+            "node": "https://example.org/shapes/software/ComponentBase",
             "property": [
                 {
                     "path": "https://example.org/terms/software/composition",
@@ -2942,7 +2907,7 @@
             ]
         },
         {
-            "@id": "shapes-software:Variable",
+            "@id": "https://example.org/shapes/software/Variable",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/software/Variable",
             "closed": true,

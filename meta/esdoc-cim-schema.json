@@ -35,7 +35,8 @@
                     "1.1",
                     "Type of calendar used."
                 ]
-            ]
+            ],
+            "annotation": "Describes the calendar required/used in an experiment/simulation.\n\n    This class is based on the calendar attributes and properties found\n    in the CF netCDF conventions.\n\n    "
         },
         "calendar_types": {
             "type": "enum",
@@ -81,7 +82,8 @@
                     "none",
                     "Perpetual time axis"
                 ]
-            ]
+            ],
+            "annotation": "CF calendar types as defined in CF 1.6."
         },
         "date_time": {
             "type": "class",
@@ -107,7 +109,8 @@
                     "1.1",
                     "Date or time - some of (from left to right): yyyy-mm-dd:hh:mm:ss."
                 ]
-            ]
+            ],
+            "annotation": "A date or time.\n\n    Either in simulation time with the simulation calendar, or with\n    reference to a simulation start, in which case the datetime is an\n    interval after the start date.\n\n    "
         },
         "datetime_set": {
             "type": "class",
@@ -124,7 +127,8 @@
                     "1.1",
                     "Number of times in set."
                 ]
-            ]
+            ],
+            "annotation": "A set of times.\n\n    This is an abstract class which is specialised into a periodic or\n    aperiodic (irregular) list.  Note that we assume either a periodic\n    set of dates which can be date and/or time, or an irregular set\n    which can only be dates.\n\n    "
         },
         "irregular_dateset": {
             "type": "class",
@@ -137,7 +141,8 @@
                     "1.1",
                     "Set of dates, comma separated yyyy-mm-dd."
                 ]
-            ]
+            ],
+            "annotation": "A set of irregularly spaced times, provided as a comma separated\n    string of yyyy-mm-dd in the appropriate calendar."
         },
         "period_date_types": {
             "type": "enum",
@@ -155,7 +160,8 @@
                     "to",
                     "The date is the end of the period"
                 ]
-            ]
+            ],
+            "annotation": "A period date type vocabulary (used by time_period)."
         },
         "regular_timeset": {
             "type": "class",
@@ -188,7 +194,8 @@
                     "1.1",
                     "Beginning of time set."
                 ]
-            ]
+            ],
+            "annotation": "A regularly spaced set of times."
         },
         "time_period": {
             "type": "class",
@@ -232,7 +239,8 @@
                     "1.1",
                     "Appropriate time units."
                 ]
-            ]
+            ],
+            "annotation": "A time period/interval (aka temporal extent)."
         },
         "time_units": {
             "type": "enum",
@@ -254,8 +262,10 @@
                     "seconds",
                     "Standard metric seconds"
                 ]
-            ]
-        }
+            ],
+            "annotation": "Appropriate Time units for experiment durations in NWP and\n    Climate Modelling."
+        },
+        "annotation": "Types that describe the software that constitutes a climate model."
     },
     "activity": {
         "activity": {
@@ -342,7 +352,8 @@
                     "0.1",
                     "Explanation of why this activity was carried out and/or what it was intended to achieve."
                 ]
-            ]
+            ],
+            "annotation": "Base class for activities."
         },
         "axis_member": {
             "type": "class",
@@ -385,7 +396,8 @@
                     "1.1",
                     "The parent axis of this ensemble member"
                 ]
-            ]
+            ],
+            "annotation": "Description of a given ensemble member.\n\n    It will normally be related to a specific ensemble requirement. Note\n    that start dates can be extracted directly from the simulations and\n    do not need to be recorded with an axis member description.\n\n    "
         },
         "conformance": {
             "type": "class",
@@ -443,7 +455,8 @@
                     "description",
                     "0.1"
                 ]
-            ]
+            ],
+            "annotation": "A specific conformance.\n\n    Describes how a particular numerical requirement has been\n    implemented.  Will normally be linked from an ensemble descriptor.\n\n    "
         },
         "conformance_type": {
             "type": "enum",
@@ -465,7 +478,8 @@
                     "Not Applicable",
                     "Requirement is not relevant"
                 ]
-            ]
+            ],
+            "annotation": "Standardised set of conformance responses."
         },
         "ensemble": {
             "type": "class",
@@ -536,7 +550,8 @@
                     "duration",
                     "0.0"
                 ]
-            ]
+            ],
+            "annotation": "Generic ensemble definition.\n\n    Holds the definition of how the various ensemble members have been\n    configured. If ensemble axes are not present, then this is either a\n    single member ensemble, or part of an uber ensemble.\n\n    "
         },
         "ensemble_axis": {
             "type": "class",
@@ -580,7 +595,8 @@
                     "0.1",
                     "URI of the target numerical requirement, if any"
                 ]
-            ]
+            ],
+            "annotation": "Defines the meaning of r/i/p indices in an ensemble."
         },
         "child_simulation": {
             "type": "class",
@@ -617,7 +633,8 @@
                     "1.1",
                     "The parent simulation of this child."
                 ]
-            ]
+            ],
+            "annotation": "Defines the relationship between a simulation and its parent."
         },
         "simulation": {
             "type": "class",
@@ -742,7 +759,8 @@
                     "rationale",
                     "0.0"
                 ]
-            ]
+            ],
+            "annotation": "Simulation class provides the integrating link about what models\n    were run and wny."
         },
         "uber_ensemble": {
             "type": "class",
@@ -772,8 +790,10 @@
                     "members",
                     "0.0"
                 ]
-            ]
-        }
+            ],
+            "annotation": "An ensemble made up of other ensembles.\n\n    Often used where parts of an ensemble were run by different\n    institutes. Could also be used when a new experiment is designed\n    which can use ensemble members from previous experiments and/or\n    projects.\n\n    "
+        },
+        "annotation": "Types that describe context against which climate models are run."
     },
     "cmip": {
         "cmip_dataset": {
@@ -800,7 +820,8 @@
                     "0.1",
                     "Makes a link back to originating activity."
                 ]
-            ]
+            ],
+            "annotation": "A CMIP dataset."
         },
         "cmip_simulation": {
             "type": "class",
@@ -849,8 +870,10 @@
                     "0.1",
                     "description of run variant differences, e.g. forcing: black carbon aerosol only"
                 ]
-            ]
-        }
+            ],
+            "annotation": "A CMIP simulation.\n\n    In most CMIP cases this should be auto-generated from output dataset\n    file headers.\n\n    "
+        },
+        "annotation": "Extensions for CMIP6."
     },
     "data": {
         "dataset": {
@@ -937,7 +960,8 @@
                     "0.1",
                     "Provenance of the dataset"
                 ]
-            ]
+            ],
+            "annotation": "Dataset discovery information.\n\n    This may be further enhanced for ISO (or any other) compliance via\n    the extra attributes or project specific sub-classing.\n\n    "
         },
         "variable_collection": {
             "type": "class",
@@ -962,7 +986,8 @@
                     "0.1",
                     "Defines whether or not all variables in collection are point or area based"
                 ]
-            ]
+            ],
+            "annotation": "A collection of variables within the scope of a code or process\n    element."
         },
         "dataset_type": {
             "type": "enum",
@@ -1012,8 +1037,10 @@
                     "downscaled",
                     "Dataset was downscaled by embedded simulation within driving data at larger scale"
                 ]
-            ]
-        }
+            ],
+            "annotation": "Classifier of dataset type, to inform discovery metadata.\n\n    Informed by Bedia et al,\n    https://doi.org/10.1016/j.envsoft.2019.07.005, but adjusted for more\n    generality.\n\n    "
+        },
+        "annotation": "Types that describe output that climate models emit."
     },
     "designing": {
         "domain_requirements": {
@@ -1040,7 +1067,8 @@
                     "additional_requirements",
                     "0.0"
                 ]
-            ]
+            ],
+            "annotation": "Properties of the domain which needs to be simulated, extent\n    and/or resolution."
         },
         "ensemble_requirement": {
             "type": "class",
@@ -1072,7 +1100,8 @@
                     "additional_requirements",
                     "0.0"
                 ]
-            ]
+            ],
+            "annotation": "Defines an experiment ensemble."
         },
         "ensemble_types": {
             "type": "enum",
@@ -1106,7 +1135,8 @@
                     "Driven",
                     "Members are/should-be driven by different models."
                 ]
-            ]
+            ],
+            "annotation": "Defines the various axes along which one can set up an ensemble,\n    whether as an experiment designer, or in designing a 'response'\n    ensemble around an experiment."
         },
         "forcing_constraint": {
             "type": "class",
@@ -1162,7 +1192,8 @@
                     "additional_requirements",
                     "0.0"
                 ]
-            ]
+            ],
+            "annotation": "Identifies a model forcing constraint."
         },
         "forcing_types": {
             "type": "enum",
@@ -1184,7 +1215,8 @@
                     "driven",
                     "Driven from another simulation"
                 ]
-            ]
+            ],
+            "annotation": "Defines the possible set of forcing types for a forcing\n    constraint."
         },
         "initialisation_requirement": {
             "type": "class",
@@ -1219,7 +1251,8 @@
                     ],
                     "1.1"
                 ]
-            ]
+            ],
+            "annotation": "A requirement on how a particular simulation should be\n    initialised."
         },
         "multi_ensemble": {
             "type": "class",
@@ -1239,7 +1272,8 @@
                     "additional_requirements",
                     "0.0"
                 ]
-            ]
+            ],
+            "annotation": "In the case of multiple ensemble axes, defines how they are set\n    up and ordered."
         },
         "numerical_experiment": {
             "type": "class",
@@ -1300,7 +1334,8 @@
                     "rationale",
                     "1.1"
                 ]
-            ]
+            ],
+            "annotation": "Defines a numerical experiment."
         },
         "experimental_relationships": {
             "type": "enum",
@@ -1334,7 +1369,8 @@
                     "is_sibling_of",
                     "Part of a family (e.g. experiments where solar forcing is either increased or reduced)."
                 ]
-            ]
+            ],
+            "annotation": "Defines the canonical set of experimental relationships."
         },
         "numerical_requirement": {
             "type": "class",
@@ -1382,7 +1418,8 @@
                     "duration",
                     "0.0"
                 ]
-            ]
+            ],
+            "annotation": "A numerical requirement associated with a numerical\n    experiment."
         },
         "numerical_requirement_scope": {
             "type": "enum",
@@ -1404,7 +1441,8 @@
                     "experiment",
                     "Applies to a single experiment e.g. CFMIP 'zonally uniform SST plus 4K'"
                 ]
-            ]
+            ],
+            "annotation": "The scope to which a numerical requirement may or may not\n    apply."
         },
         "output_requirement": {
             "type": "class",
@@ -1424,7 +1462,8 @@
                     "additional_requirements",
                     "0.0"
                 ]
-            ]
+            ],
+            "annotation": "Provides details of what output is required and when from an\n    experiment."
         },
         "objective": {
             "type": "class",
@@ -1456,7 +1495,8 @@
                     "0.1",
                     "Provides a hook to which experiments can link"
                 ]
-            ]
+            ],
+            "annotation": "Describes a specific scientific objective within a project, and\n    any necessary outputs from the experiment needed to meet this\n    objective."
         },
         "project": {
             "type": "class",
@@ -1506,7 +1546,8 @@
                     "description",
                     "1.1"
                 ]
-            ]
+            ],
+            "annotation": "Describes a scientific project."
         },
         "simulation_plan": {
             "type": "class",
@@ -1544,7 +1585,8 @@
                     "duration",
                     "1.1"
                 ]
-            ]
+            ],
+            "annotation": "Describes a simulation that needs to be run."
         },
         "start_date_ensemble": {
             "type": "class",
@@ -1564,7 +1606,8 @@
                     "additional_requirements",
                     "0.0"
                 ]
-            ]
+            ],
+            "annotation": "Defines an experiment ensemble with multiple start dates."
         },
         "temporal_constraint": {
             "type": "class",
@@ -1602,8 +1645,10 @@
                     "additional_requirements",
                     "0.0"
                 ]
-            ]
-        }
+            ],
+            "annotation": "A spatio-temporal constraint on a numerical experiment."
+        },
+        "annotation": "Types that describe project design features."
     },
     "drs": {
         "drs_atomic_dataset": {
@@ -1653,7 +1698,8 @@
                     "0.1",
                     "Uniquely identifies a particular version of a publication level dataset."
                 ]
-            ]
+            ],
+            "annotation": "An entity in a DRS file system."
         },
         "drs_ensemble_identifier": {
             "type": "class",
@@ -1684,7 +1730,8 @@
                     "1.1",
                     "Standard ensemble axis realisation number (usually an initial condition ensemble)."
                 ]
-            ]
+            ],
+            "annotation": "Identifies a 'response ensemble' realisation using the semantic\n    content ofa 'run_variant_id'."
         },
         "drs_experiment": {
             "type": "class",
@@ -1709,7 +1756,8 @@
                     "1.1",
                     "Main experimental family."
                 ]
-            ]
+            ],
+            "annotation": "An encoding of a drs experiment_id."
         },
         "drs_frequency_types": {
             "type": "enum",
@@ -1747,7 +1795,8 @@
                     "fx",
                     "Fixed Time independent"
                 ]
-            ]
+            ],
+            "annotation": "Set of allowed DRS frequency types."
         },
         "drs_geographical_indicator": {
             "type": "class",
@@ -1772,7 +1821,8 @@
                     "0.1",
                     "Geographical indicator (currently only 'global' is acceptable)."
                 ]
-            ]
+            ],
+            "annotation": "Specifies geographical subsets described by bounding boxes or by\n    named regions.\n\n    One of spatial domain or bounding box must appear.\n\n    "
         },
         "drs_geographical_operators": {
             "type": "enum",
@@ -1802,13 +1852,15 @@
                     "ocn-areaavg",
                     "Data is averaged over the ocean area of the region"
                 ]
-            ]
+            ],
+            "annotation": "Set of permitted spatial averaging operator suffixes for drs\n    spatial indicators (yyyy-zzzz)."
         },
         "drs_publication_dataset": {
             "type": "class",
             "base": "None",
             "is_abstract": "False",
-            "properties": []
+            "properties": [],
+            "annotation": "PLACEHOLDER for the real drs_publication_dataset."
         },
         "drs_realms": {
             "type": "enum",
@@ -1846,7 +1898,8 @@
                     "ocnBgchem",
                     "Ocean Biogeochemistry"
                 ]
-            ]
+            ],
+            "annotation": "Set of allowed DRS modelling realms."
         },
         "drs_simulation_identifier": {
             "type": "class",
@@ -1871,7 +1924,8 @@
                     "1.1",
                     "Also known as ensemble_identifier, unambiguously identifiers ensemble realisation information."
                 ]
-            ]
+            ],
+            "annotation": "That part of the DRS which identifies the response to the\n    experiment: the simulation."
         },
         "drs_temporal_identifier": {
             "type": "class",
@@ -1896,7 +1950,8 @@
                     "0.1",
                     "If present, used to indicate climatology or average."
                 ]
-            ]
+            ],
+            "annotation": "Provides information about temporal subsetting and/or averaging.\n\n    If only N1 is present, it a temporal instant, If N1-N2 are present\n    with no suffix, it is a temporal subset, If N1-N2 with a suffix are\n    present, then some sort of temporal averaging has been applied\n    across the period.\n\n    "
         },
         "drs_time_suffixes": {
             "type": "enum",
@@ -1910,8 +1965,10 @@
                     "clim",
                     "Indicates data is climatological average data at the DRS frequency from the period N1-N2"
                 ]
-            ]
-        }
+            ],
+            "annotation": "Set of permitted time averaging suffixes for drs temporal\n    identifiers."
+        },
+        "annotation": "Types that describe the directory structures to which climate model output is written."
     },
     "iso": {
         "lineage": {
@@ -1945,7 +2002,8 @@
                     "Input(s) used in production of resource"
                 ]
             ],
-            "constraints": []
+            "constraints": [],
+            "annotation": "Representation of the ISO19115 lineage provenance description.\n\n    Information about the events or source data used in constructing a\n    dataset\n\n    "
         },
         "process_step": {
             "type": "class",
@@ -2007,7 +2065,8 @@
                     "0.N",
                     "Report generated by the process step"
                 ]
-            ]
+            ],
+            "annotation": "Representation of the ISO19115 LE_ProcessStep and parent\n    LI_ProcessStep classes."
         },
         "processing": {
             "type": "class",
@@ -2063,7 +2122,8 @@
                     "0.N",
                     "details of the methodology carried out in this processing"
                 ]
-            ]
+            ],
+            "annotation": "Representation of the ISO19115 LE_Processing class Note that the\n    algorithm definition has been adjusted to be more generic and less\n    \"instrument obsessed\" than ISO19115.\n\n    Name is an extension, and the identifier is simply a code string\n    (id) ... but given there may be no identifier space for this\n    processing step, it is made optional, rather than mandatory as in\n    ISO. For export to ISO, the recommendation is to use the identifier\n    of the CIM document which uses this class.\n\n    "
         },
         "process_step_report": {
             "type": "class",
@@ -2095,7 +2155,8 @@
                     "0.1",
                     "Link to actual report documents, if any"
                 ]
-            ]
+            ],
+            "annotation": "Report of what happened during a processing step.\n\n    Representation of ISO LE_ProcessStepReport, modified to use links or\n    body text, rather than files.\n\n    "
         },
         "algorithm": {
             "type": "class",
@@ -2121,7 +2182,8 @@
                     "0.1",
                     "Formal documentation for the algorithm used."
                 ]
-            ]
+            ],
+            "annotation": "Representation of the LE_Algorithm Class."
         },
         "quality_report": {
             "type": "class",
@@ -2147,7 +2209,8 @@
                     "0.N",
                     "Reports against quality measures for this resource"
                 ]
-            ]
+            ],
+            "annotation": "A report detailing the quality of some aspect of the target resource.\n    \n    "
         },
         "quality_issue": {
             "type": "class",
@@ -2178,7 +2241,8 @@
                     "0.1",
                     "Issue as lodged in an external issue tracker"
                 ]
-            ]
+            ],
+            "annotation": "A description of some scientific quality issue known about a\n    resource described by this ontology.\n\n    E.g. if a model is known to have a particular problem, or there has\n    been a problem found with a dataset. Expect that most such detail\n    should be managed in an external (and formal) issue tracker.\n\n    "
         },
         "quality_evaluation_result": {
             "type": "class",
@@ -2233,7 +2297,8 @@
                     "0.N",
                     "Evaluation outputs, including log files, plots, or datasets"
                 ]
-            ]
+            ],
+            "annotation": "The output of some quality evaluation against a specific measure\n    for evaluation quality.\n\n    This flattens several ISO classes, including DQ_Result,\n    DQ_ConformanceResult, DQ_QuantativeResult, DQ_Element.\n\n    "
         },
         "quality_evaluation_output": {
             "type": "class",
@@ -2246,7 +2311,8 @@
                     "1.1",
                     "Type of evaluation resource"
                 ]
-            ]
+            ],
+            "annotation": "A specific evaluation output."
         },
         "ds_initiative_typecode": {
             "type": "enum",
@@ -2312,7 +2378,8 @@
                     "trial",
                     "process of testing to discover or demonstrate something"
                 ]
-            ]
+            ],
+            "annotation": "Classifier of initiative, to inform ISO19115 metadata.\n\n    Formally a DS_InitiativeTypeCode, from ISO19115_2011.\n\n    "
         },
         "md_cellgeometry_code": {
             "type": "enum",
@@ -2326,7 +2393,8 @@
                     "area",
                     "each cell represents an area"
                 ]
-            ]
+            ],
+            "annotation": "Classifier of cells.\n\n    Whether a grid point is point or area.\n\n    "
         },
         "md_progress_code": {
             "type": "enum",
@@ -2360,7 +2428,8 @@
                     "underDevelopment",
                     "data is currently in the process of being created"
                 ]
-            ]
+            ],
+            "annotation": "Classifier of project or dataset progress."
         },
         "dq_evaluation_result_type": {
             "type": "enum",
@@ -2378,8 +2447,10 @@
                     "dataset",
                     "Expect a binary target, accessible via a landing page or directly"
                 ]
-            ]
-        }
+            ],
+            "annotation": "Classifier of evaluation results."
+        },
+        "annotation": "Types that implement ISO classes used in other packages."
     },
     "platform": {
         "compute_pool": {
@@ -2482,7 +2553,8 @@
                     "total_memory",
                     "memory_per_node * number_of_nodes"
                 ]
-            ]
+            ],
+            "annotation": "Homogeneous pool of nodes within a computing machine."
         },
         "interconnect": {
             "type": "class",
@@ -2519,7 +2591,8 @@
                     "0.1",
                     "Supplier of the interconnect"
                 ]
-            ]
+            ],
+            "annotation": "The interconnect used within a machine to join nodes together."
         },
         "nic": {
             "type": "class",
@@ -2550,7 +2623,8 @@
                     "1.1",
                     "Bandwidth to network"
                 ]
-            ]
+            ],
+            "annotation": "Network Interface Card."
         },
         "machine": {
             "type": "class",
@@ -2576,7 +2650,8 @@
                     "0.1",
                     "Linpack performance (RMax in Top500 lingo)"
                 ]
-            ]
+            ],
+            "annotation": "A computer/system/platform/machine which is used for\n    simulation."
         },
         "partition": {
             "type": "class",
@@ -2661,7 +2736,8 @@
                     "0.1",
                     "If no longer in use, the time period it was in use."
                 ]
-            ]
+            ],
+            "annotation": "A major partition (component) of a computing system (aka\n    machine)."
         },
         "performance": {
             "type": "class",
@@ -2754,7 +2830,8 @@
                     "0.N",
                     "Describes the performance of each subcomponent."
                 ]
-            ]
+            ],
+            "annotation": "Describes the properties of a performance of a configured model\n    on a particular system/machine.\n\n    Based on \"CPMIP: Measurements of Real Computational Performance of\n    Earth System Models\" (Balaji et. al. 2016,\n    doi:10.5194/gmd-2016-197).\n\n    "
         },
         "performance_detail": {
             "type": "class",
@@ -2786,7 +2863,8 @@
                     "0.1",
                     "Data intensity is the amount of data produced per compute-hour, in units GB per compute-hour."
                 ]
-            ]
+            ],
+            "annotation": "Information about how the various components of performance were\n    related."
         },
         "project_cost": {
             "type": "class",
@@ -2855,7 +2933,8 @@
                     "0.1",
                     "Total cost of project in Joules, if known"
                 ]
-            ]
+            ],
+            "annotation": "Cost of an experiment or project on a particular platform."
         },
         "storage_pool": {
             "type": "class",
@@ -2899,7 +2978,8 @@
                     "1.N",
                     "Sizes of constituent File Systems"
                 ]
-            ]
+            ],
+            "annotation": "Homogeneous storage pool on a computing machine."
         },
         "storage_systems": {
             "type": "enum",
@@ -2949,8 +3029,10 @@
                     "Tape - Other",
                     "Other tape based system"
                 ]
-            ]
-        }
+            ],
+            "annotation": "Controlled vocabulary for storage types (including\n    filesystems)."
+        },
+        "annotation": "Types that describe hardware upon which climate models are run."
     },
     "science": {
         "model": {
@@ -3013,7 +3095,8 @@
                     "0.N",
                     "Software modules which together provide the functionality for this model."
                 ]
-            ]
+            ],
+            "annotation": "A model component: can be executed standalone, and has as\n    scientific description available via a link to a science.domain\n    document.\n\n    (A configured model can be understood in terms of a simulation, a\n    model, and a configuration.).\n\n    "
         },
         "realm": {
             "type": "class",
@@ -3057,7 +3140,8 @@
                     "0.N",
                     "Software framework(s) of the realm."
                 ]
-            ]
+            ],
+            "annotation": "Scientific area of a numerical model - usually a sub-model or\n    component."
         },
         "realm_coupling": {
             "type": "class",
@@ -3095,7 +3179,8 @@
                     "0.1",
                     "Description of the coupling algorithm, and any other information (e.g. binlinear interpolation"
                 ]
-            ]
+            ],
+            "annotation": "Description of a coupling between realms."
         },
         "topic": {
             "type": "class",
@@ -3174,7 +3259,8 @@
                     "0.N",
                     "Discrete sub-topic with details."
                 ]
-            ]
+            ],
+            "annotation": "An organized collection of details upon a specific topic, e.g.\n    model key properties."
         },
         "topic_property_set": {
             "type": "class",
@@ -3211,7 +3297,8 @@
                     "0.1",
                     "Specialization identifier (derived from specialization)."
                 ]
-            ]
+            ],
+            "annotation": "Provides specific details related to a topic (i.e. process, sub-\n    process, grid, key properties, etc)."
         },
         "topic_property": {
             "type": "class",
@@ -3249,7 +3336,8 @@
                     "1.N",
                     "User value(s)."
                 ]
-            ]
+            ],
+            "annotation": "A specialized question asked of the scientic community."
         },
         "model_types": {
             "type": "enum",
@@ -3319,10 +3407,510 @@
                     "Other",
                     "A numerical model not covered above"
                 ]
-            ]
-        }
+            ],
+            "annotation": "Defines a set of model types relevant to weather, climate, and\n    earth system modelling."
+        },
+        "annotation": "Types that describe the science being performed."
     },
     "shared": {
+        "text_blob": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "content"
+                ]
+            ],
+            "properties": [
+                [
+                    "content",
+                    "str",
+                    "1.1",
+                    "Raw content (including markup)."
+                ],
+                [
+                    "encoding",
+                    "shared.text_blob_encoding",
+                    "1.1",
+                    "Content encoding."
+                ]
+            ],
+            "annotation": "Provides a text class which supports plaintext, html, and friends\n    (or will do)."
+        },
+        "citation": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "{}",
+                [
+                    "title"
+                ]
+            ],
+            "properties": [
+                [
+                    "abstract",
+                    "str",
+                    "0.1",
+                    "Abstract providing high level reference overview."
+                ],
+                [
+                    "authors",
+                    "str",
+                    "0.N",
+                    "The Authors of the work."
+                ],
+                [
+                    "bibtex",
+                    "str",
+                    "0.1",
+                    "A BibTeX reference for the work."
+                ],
+                [
+                    "citation_detail",
+                    "str",
+                    "0.1",
+                    "A complete citation string as would appear in a bibliography."
+                ],
+                [
+                    "collective_title",
+                    "str",
+                    "0.1",
+                    "Citation collective title, i.e. with all authors declared."
+                ],
+                [
+                    "context",
+                    "str",
+                    "0.1",
+                    "Brief text description of why this resource is being cited."
+                ],
+                [
+                    "doi",
+                    "str",
+                    "0.1",
+                    "Digital Object Identifier, if it exists."
+                ],
+                [
+                    "title",
+                    "str",
+                    "0.1",
+                    "The title of the work."
+                ],
+                [
+                    "type",
+                    "str",
+                    "0.1",
+                    "Citation type."
+                ],
+                [
+                    "year",
+                    "int",
+                    "0.1",
+                    "Year of publication."
+                ],
+                [
+                    "url",
+                    "shared.online_resource",
+                    "0.1",
+                    "Location of electronic version."
+                ]
+            ],
+            "annotation": "An academic reference to published work."
+        },
+        "extra_attribute": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}:{}",
+                [
+                    "key",
+                    "value"
+                ]
+            ],
+            "properties": [
+                [
+                    "doc",
+                    "str",
+                    "0.1",
+                    "Documentation associated with this key."
+                ],
+                [
+                    "key",
+                    "str",
+                    "1.1",
+                    "Name of attribute."
+                ],
+                [
+                    "type",
+                    "str",
+                    "0.1",
+                    "If a non-string type, provide type."
+                ],
+                [
+                    "value",
+                    "str",
+                    "1.1",
+                    "Value associated with key."
+                ]
+            ],
+            "annotation": "An extra attribute with key and value needed to encode further\n    information not in the CIM domain model or specialisation.\n\n    Typical use case: in parsing data and encoding attributes found in\n    data.\n\n    "
+        },
+        "nil_reason": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "nil:inapplicable",
+                    "There is no value"
+                ],
+                [
+                    "nil:missing",
+                    "The correct value is not available. Furthermore, a correct value may not exist"
+                ],
+                [
+                    "nil:template",
+                    "The value will be available later"
+                ],
+                [
+                    "nil:unknown",
+                    "The correct value is not known at this time. However, a correct value probably exists"
+                ],
+                [
+                    "nil:withheld",
+                    "The value is not divulged"
+                ]
+            ],
+            "annotation": "Provides an enumeration of possible reasons why a property has\n    not been defined Based on GML nilReason as discussed here:\n    https://www.seegrid.csiro.au/wiki/AppSchemas/NilValues."
+        },
+        "online_resource": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "linkage"
+                ]
+            ],
+            "properties": [
+                [
+                    "description",
+                    "str",
+                    "0.1",
+                    "Detail of how to access the resource."
+                ],
+                [
+                    "linkage",
+                    "str",
+                    "1.1",
+                    "A URL."
+                ],
+                [
+                    "name",
+                    "str",
+                    "1.1",
+                    "Name of online resource."
+                ],
+                [
+                    "protocol",
+                    "str",
+                    "0.1",
+                    "Protocol to use at the linkage."
+                ]
+            ],
+            "annotation": "A minimal approximation of ISO19115 CI_ONLINERESOURCE, provides a\n    link and details of how to use that link."
+        },
+        "party": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}",
+                [
+                    "name"
+                ]
+            ],
+            "is_document": "True",
+            "properties": [
+                [
+                    "address",
+                    "str",
+                    "0.1",
+                    "Institutional address."
+                ],
+                [
+                    "email",
+                    "str",
+                    "0.1",
+                    "Email address."
+                ],
+                [
+                    "name",
+                    "str",
+                    "0.1",
+                    "Name of person or organisation."
+                ],
+                [
+                    "orcid_id",
+                    "str",
+                    "0.1",
+                    "Orcid ID if available."
+                ],
+                [
+                    "is_organisation",
+                    "bool",
+                    "0.1",
+                    "True if an organisation not a person."
+                ],
+                [
+                    "url",
+                    "shared.online_resource",
+                    "0.1",
+                    "URL of person or institution."
+                ]
+            ],
+            "annotation": "Implements minimal material for an ISO19115-1 (2014) compliant\n    party.\n\n    For our purposes this is a much better animal than the previous\n    responsibleParty which munged roles together with people. Note we\n    have collapsed CI_Contact, CI_Individual and CI_Organisation as well\n    as the abstract CI_Party.\n\n    "
+        },
+        "quality_review": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "True",
+            "pstr": [
+                "{}: {}",
+                [
+                    "target_document",
+                    "quality_status"
+                ]
+            ],
+            "properties": [
+                [
+                    "date",
+                    "str",
+                    "1.1",
+                    "Date upon which review was made."
+                ],
+                [
+                    "metadata_reviewer",
+                    "linked_to(shared.party)",
+                    "1.1",
+                    "Party who made the metadata quality assessment."
+                ],
+                [
+                    "quality_description",
+                    "str",
+                    "1.1",
+                    "Assessment of quality of target document."
+                ],
+                [
+                    "quality_status",
+                    "shared.quality_status",
+                    "0.1",
+                    "Status from a controlled vocabulary."
+                ],
+                [
+                    "target_document",
+                    "shared.doc_reference",
+                    "1.1",
+                    "This is the document about which quality is asserted."
+                ]
+            ],
+            "annotation": "Assertions as to the completeness and quality of a document.\n\n    Not to be confused with assertions as to the quality of the resource\n    described by the document (as covered by the iso.quality_report). A\n    future version of this ontology may rename this class.\n\n    "
+        },
+        "quality_status": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "incomplete",
+                    "Currently being worked on"
+                ],
+                [
+                    "finalised",
+                    "Author has completed document, prior to review"
+                ],
+                [
+                    "under_review",
+                    "Document is being reviewed"
+                ],
+                [
+                    "reviewed",
+                    "Document has been formally reviewed and assessed as complete and accurate"
+                ]
+            ],
+            "annotation": "Assertion as to the review status of document."
+        },
+        "responsibility": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "pstr": [
+                "{}:{}",
+                [
+                    "role",
+                    "parties"
+                ]
+            ],
+            "properties": [
+                [
+                    "parties",
+                    "linked_to(shared.party)",
+                    "1.N",
+                    "Parties delivering responsibility."
+                ],
+                [
+                    "role",
+                    "shared.role_code",
+                    "1.1",
+                    "Role that the party plays or played."
+                ],
+                [
+                    "when",
+                    "time.time_period",
+                    "0.1",
+                    "Period when role was active, if no longer."
+                ]
+            ],
+            "annotation": "Implements the ISO19115-1 (2014) CI_Responsibility (which\n    replaces responsibleParty).\n\n    Combines a person and their role in doing something.\n\n    "
+        },
+        "role_code": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "Principal Investigator",
+                    "Key party responsible for the existence of the resource"
+                ],
+                [
+                    "originator",
+                    "Original source for the resource if obtained from elsewhere"
+                ],
+                [
+                    "author",
+                    "Party who created (or co-created) resource"
+                ],
+                [
+                    "collaborator",
+                    "Contributor to the production of the resource"
+                ],
+                [
+                    "publisher",
+                    "Party who published the resource"
+                ],
+                [
+                    "owner",
+                    "Party with legal ownership of the resource"
+                ],
+                [
+                    "processor",
+                    "Party who has taken part in the workflow that resulted in this resource"
+                ],
+                [
+                    "distributor",
+                    "Party who distributes the resource"
+                ],
+                [
+                    "sponsor",
+                    "Party who has invested in the production of the resource"
+                ],
+                [
+                    "user",
+                    "Party who uses the resource"
+                ],
+                [
+                    "point of contact",
+                    "Party who can be contacted for acquiring knowledge about or acquisition of the resource"
+                ],
+                [
+                    "resource provider",
+                    "Party that supplies the resource"
+                ],
+                [
+                    "custodian",
+                    "Party that accepts accountability and responsibility for the source resource"
+                ],
+                [
+                    "metadata_reviewer",
+                    "Party who carried out an independent review of (this) documentation"
+                ],
+                [
+                    "metadata_author",
+                    "Party who created (this) documentation"
+                ]
+            ],
+            "annotation": "Responsibility role codes: roles that a party may play in\n    delivering a responsibility.\n\n    This is an extension and modification of CI_RoleCode from ISO19115.\n\n    "
+        },
+        "text_blob_encoding": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "ascii",
+                    "Normal plain text"
+                ]
+            ],
+            "annotation": "Types of text understood by the CIM notebook.\n\n    Currently only plaintext, but we expect safe HTML to be supported as\n    soon as practicable.\n\n    "
+        },
+        "numeric": {
+            "type": "class",
+            "base": "None",
+            "is_abstract": "False",
+            "is_document": "False",
+            "pstr": [
+                "{}{}",
+                [
+                    "value",
+                    "units"
+                ]
+            ],
+            "properties": [
+                [
+                    "value",
+                    "float",
+                    "1.1",
+                    "Numerical value of number"
+                ],
+                [
+                    "units",
+                    "str",
+                    "1.1",
+                    "Associated Units"
+                ],
+                [
+                    "unit_enumeration",
+                    "str",
+                    "0.1",
+                    "Internal CIM vocabulary"
+                ],
+                [
+                    "unit_source",
+                    "shared.online_resource",
+                    "0.1",
+                    "External vocabulary source"
+                ],
+                [
+                    "base_unit",
+                    "str",
+                    "0.1",
+                    "type of unit in external vocabulary"
+                ]
+            ],
+            "constraints": [
+                [
+                    "mutually_exclusive",
+                    [
+                        "unit_enumeration",
+                        "unit_source"
+                    ],
+                    "0.1"
+                ]
+            ],
+            "annotation": "A number which comes with a unit, potentially from a controlled\n    vocabulary of units.\n\n    #FIXME: Need to work on the relationship between unit_source and base_unit.\n\n    "
+        },
         "doc_meta_info": {
             "type": "class",
             "base": "None",
@@ -3430,7 +4018,8 @@
                     "1.1",
                     "Document version identifier."
                 ]
-            ]
+            ],
+            "annotation": "Encapsulates document meta information used by es-doc machinery.\n\n    Will not normally be populated by humans. May duplicate information\n    held in 'visible' metadata.\n\n    "
         },
         "doc_reference": {
             "type": "class",
@@ -3492,7 +4081,8 @@
                     "0.1",
                     "Information about remote record in context of reference."
                 ]
-            ]
+            ],
+            "annotation": "A reference to another cim entity."
         },
         "formal_association": {
             "type": "class",
@@ -3532,494 +4122,10 @@
                     "cardinality",
                     "1.1"
                 ]
-            ]
-        },
-        "text_blob": {
-            "type": "class",
-            "base": "None",
-            "is_abstract": "False",
-            "pstr": [
-                "{}",
-                [
-                    "content"
-                ]
             ],
-            "properties": [
-                [
-                    "content",
-                    "str",
-                    "1.1",
-                    "Raw content (including markup)."
-                ],
-                [
-                    "encoding",
-                    "shared.text_blob_encoding",
-                    "1.1",
-                    "Content encoding."
-                ]
-            ]
+            "annotation": "Holds a named association between entities, where the name of the\n    association comes from a specific named enumeration.\n\n    The association can point at a CIM entity, or a remote entity.\n\n    "
         },
-        "citation": {
-            "type": "class",
-            "base": "None",
-            "is_abstract": "False",
-            "is_document": "True",
-            "pstr": [
-                "{}",
-                [
-                    "title"
-                ]
-            ],
-            "properties": [
-                [
-                    "abstract",
-                    "str",
-                    "0.1",
-                    "Abstract providing high level reference overview."
-                ],
-                [
-                    "authors",
-                    "str",
-                    "0.N",
-                    "The Authors of the work."
-                ],
-                [
-                    "bibtex",
-                    "str",
-                    "0.1",
-                    "A BibTeX reference for the work."
-                ],
-                [
-                    "citation_detail",
-                    "str",
-                    "0.1",
-                    "A complete citation string as would appear in a bibliography."
-                ],
-                [
-                    "collective_title",
-                    "str",
-                    "0.1",
-                    "Citation collective title, i.e. with all authors declared."
-                ],
-                [
-                    "context",
-                    "str",
-                    "0.1",
-                    "Brief text description of why this resource is being cited."
-                ],
-                [
-                    "doi",
-                    "str",
-                    "0.1",
-                    "Digital Object Identifier, if it exists."
-                ],
-                [
-                    "title",
-                    "str",
-                    "0.1",
-                    "The title of the work."
-                ],
-                [
-                    "type",
-                    "str",
-                    "0.1",
-                    "Citation type."
-                ],
-                [
-                    "year",
-                    "int",
-                    "0.1",
-                    "Year of publication."
-                ],
-                [
-                    "url",
-                    "shared.online_resource",
-                    "0.1",
-                    "Location of electronic version."
-                ]
-            ]
-        },
-        "extra_attribute": {
-            "type": "class",
-            "base": "None",
-            "is_abstract": "False",
-            "pstr": [
-                "{}:{}",
-                [
-                    "key",
-                    "value"
-                ]
-            ],
-            "properties": [
-                [
-                    "doc",
-                    "str",
-                    "0.1",
-                    "Documentation associated with this key."
-                ],
-                [
-                    "key",
-                    "str",
-                    "1.1",
-                    "Name of attribute."
-                ],
-                [
-                    "type",
-                    "str",
-                    "0.1",
-                    "If a non-string type, provide type."
-                ],
-                [
-                    "value",
-                    "str",
-                    "1.1",
-                    "Value associated with key."
-                ]
-            ]
-        },
-        "nil_reason": {
-            "type": "enum",
-            "is_open": "False",
-            "members": [
-                [
-                    "nil:inapplicable",
-                    "There is no value"
-                ],
-                [
-                    "nil:missing",
-                    "The correct value is not available. Furthermore, a correct value may not exist"
-                ],
-                [
-                    "nil:template",
-                    "The value will be available later"
-                ],
-                [
-                    "nil:unknown",
-                    "The correct value is not known at this time. However, a correct value probably exists"
-                ],
-                [
-                    "nil:withheld",
-                    "The value is not divulged"
-                ]
-            ]
-        },
-        "online_resource": {
-            "type": "class",
-            "base": "None",
-            "is_abstract": "False",
-            "pstr": [
-                "{}",
-                [
-                    "linkage"
-                ]
-            ],
-            "properties": [
-                [
-                    "description",
-                    "str",
-                    "0.1",
-                    "Detail of how to access the resource."
-                ],
-                [
-                    "linkage",
-                    "str",
-                    "1.1",
-                    "A URL."
-                ],
-                [
-                    "name",
-                    "str",
-                    "1.1",
-                    "Name of online resource."
-                ],
-                [
-                    "protocol",
-                    "str",
-                    "0.1",
-                    "Protocol to use at the linkage."
-                ]
-            ]
-        },
-        "party": {
-            "type": "class",
-            "base": "None",
-            "is_abstract": "False",
-            "pstr": [
-                "{}",
-                [
-                    "name"
-                ]
-            ],
-            "is_document": "True",
-            "properties": [
-                [
-                    "address",
-                    "str",
-                    "0.1",
-                    "Institutional address."
-                ],
-                [
-                    "email",
-                    "str",
-                    "0.1",
-                    "Email address."
-                ],
-                [
-                    "name",
-                    "str",
-                    "0.1",
-                    "Name of person or organisation."
-                ],
-                [
-                    "orcid_id",
-                    "str",
-                    "0.1",
-                    "Orcid ID if available."
-                ],
-                [
-                    "is_organisation",
-                    "bool",
-                    "0.1",
-                    "True if an organisation not a person."
-                ],
-                [
-                    "url",
-                    "shared.online_resource",
-                    "0.1",
-                    "URL of person or institution."
-                ]
-            ]
-        },
-        "quality_review": {
-            "type": "class",
-            "base": "None",
-            "is_abstract": "False",
-            "is_document": "True",
-            "pstr": [
-                "{}: {}",
-                [
-                    "target_document",
-                    "quality_status"
-                ]
-            ],
-            "properties": [
-                [
-                    "date",
-                    "str",
-                    "1.1",
-                    "Date upon which review was made."
-                ],
-                [
-                    "metadata_reviewer",
-                    "linked_to(shared.party)",
-                    "1.1",
-                    "Party who made the metadata quality assessment."
-                ],
-                [
-                    "quality_description",
-                    "str",
-                    "1.1",
-                    "Assessment of quality of target document."
-                ],
-                [
-                    "quality_status",
-                    "shared.quality_status",
-                    "0.1",
-                    "Status from a controlled vocabulary."
-                ],
-                [
-                    "target_document",
-                    "shared.doc_reference",
-                    "1.1",
-                    "This is the document about which quality is asserted."
-                ]
-            ]
-        },
-        "quality_status": {
-            "type": "enum",
-            "is_open": "False",
-            "members": [
-                [
-                    "incomplete",
-                    "Currently being worked on"
-                ],
-                [
-                    "finalised",
-                    "Author has completed document, prior to review"
-                ],
-                [
-                    "under_review",
-                    "Document is being reviewed"
-                ],
-                [
-                    "reviewed",
-                    "Document has been formally reviewed and assessed as complete and accurate"
-                ]
-            ]
-        },
-        "responsibility": {
-            "type": "class",
-            "base": "None",
-            "is_abstract": "False",
-            "pstr": [
-                "{}:{}",
-                [
-                    "role",
-                    "parties"
-                ]
-            ],
-            "properties": [
-                [
-                    "parties",
-                    "linked_to(shared.party)",
-                    "1.N",
-                    "Parties delivering responsibility."
-                ],
-                [
-                    "role",
-                    "shared.role_code",
-                    "1.1",
-                    "Role that the party plays or played."
-                ],
-                [
-                    "when",
-                    "time.time_period",
-                    "0.1",
-                    "Period when role was active, if no longer."
-                ]
-            ]
-        },
-        "role_code": {
-            "type": "enum",
-            "is_open": "False",
-            "members": [
-                [
-                    "Principal Investigator",
-                    "Key party responsible for the existence of the resource"
-                ],
-                [
-                    "originator",
-                    "Original source for the resource if obtained from elsewhere"
-                ],
-                [
-                    "author",
-                    "Party who created (or co-created) resource"
-                ],
-                [
-                    "collaborator",
-                    "Contributor to the production of the resource"
-                ],
-                [
-                    "publisher",
-                    "Party who published the resource"
-                ],
-                [
-                    "owner",
-                    "Party with legal ownership of the resource"
-                ],
-                [
-                    "processor",
-                    "Party who has taken part in the workflow that resulted in this resource"
-                ],
-                [
-                    "distributor",
-                    "Party who distributes the resource"
-                ],
-                [
-                    "sponsor",
-                    "Party who has invested in the production of the resource"
-                ],
-                [
-                    "user",
-                    "Party who uses the resource"
-                ],
-                [
-                    "point of contact",
-                    "Party who can be contacted for acquiring knowledge about or acquisition of the resource"
-                ],
-                [
-                    "resource provider",
-                    "Party that supplies the resource"
-                ],
-                [
-                    "custodian",
-                    "Party that accepts accountability and responsibility for the source resource"
-                ],
-                [
-                    "metadata_reviewer",
-                    "Party who carried out an independent review of (this) documentation"
-                ],
-                [
-                    "metadata_author",
-                    "Party who created (this) documentation"
-                ]
-            ]
-        },
-        "text_blob_encoding": {
-            "type": "enum",
-            "is_open": "False",
-            "members": [
-                [
-                    "ascii",
-                    "Normal plain text"
-                ]
-            ]
-        },
-        "numeric": {
-            "type": "class",
-            "base": "None",
-            "is_abstract": "False",
-            "is_document": "False",
-            "pstr": [
-                "{}{}",
-                [
-                    "value",
-                    "units"
-                ]
-            ],
-            "properties": [
-                [
-                    "value",
-                    "float",
-                    "1.1",
-                    "Numerical value of number"
-                ],
-                [
-                    "units",
-                    "str",
-                    "1.1",
-                    "Associated Units"
-                ],
-                [
-                    "unit_enumeration",
-                    "str",
-                    "0.1",
-                    "Internal CIM vocabulary"
-                ],
-                [
-                    "unit_source",
-                    "shared.online_resource",
-                    "0.1",
-                    "External vocabulary source"
-                ],
-                [
-                    "base_unit",
-                    "str",
-                    "0.1",
-                    "type of unit in external vocabulary"
-                ]
-            ],
-            "constraints": [
-                [
-                    "mutually_exclusive",
-                    [
-                        "unit_enumeration",
-                        "unit_source"
-                    ],
-                    "0.1"
-                ]
-            ]
-        }
+        "annotation": "Shared types that might be imported from other packages within the ontology."
     },
     "software": {
         "coupling_framework": {
@@ -4054,7 +4160,8 @@
                     "None",
                     "No coupler is used"
                 ]
-            ]
+            ],
+            "annotation": "The set of terms which define known coupling frameworks."
         },
         "programming_language": {
             "type": "enum",
@@ -4080,7 +4187,8 @@
                     "Python",
                     "Python Programming Language"
                 ]
-            ]
+            ],
+            "annotation": "The set of terms which define programming languages used for\n    earth system simulation."
         },
         "component_base": {
             "type": "class",
@@ -4153,7 +4261,8 @@
                     "0.1",
                     "Version identifier."
                 ]
-            ]
+            ],
+            "annotation": "Base class for software component properties, whether a top level\n    model, or a specific piece of code known as a component.\n\n    In software terms, a component is a discrete set of code that takes\n    input data and generates output data. Components may or may not have\n    scientific descriptions.\n\n    "
         },
         "implementation": {
             "type": "class",
@@ -4220,7 +4329,8 @@
                     "0.1",
                     "Version identifier."
                 ]
-            ]
+            ],
+            "annotation": "Implementation information for a software framework/component,\n    whether a top level model, or a specific piece of code known as a\n    'component'.\n\n    In software terms, a software framework/component is a discrete set\n    of code that takes input data and generates output data. Software\n    frameworks/components may or may not have scientific descriptions.\n\n    "
         },
         "composition": {
             "type": "class",
@@ -4239,7 +4349,8 @@
                     "0.1",
                     "#FIXME."
                 ]
-            ]
+            ],
+            "annotation": "Describes how component variables are coupled together either\n    to/from other SoftwareComponents or external data files. The\n    variables specified by a component's composition must be owned by\n    that component, or a  child of that component; child components\n    cannot couple together parent variables.\n\n    # FIXME: THIS CLASS IS BELIEVED TO BE OBSOLETE AND WILL BE\n    REVIEWED/REPLACED IN THE NEXT VERSION\n\n    "
         },
         "development_path": {
             "type": "class",
@@ -4276,7 +4387,8 @@
                     "0.1",
                     "Name of a previous version."
                 ]
-            ]
+            ],
+            "annotation": "Describes the software development path for this\n    model/component."
         },
         "entry_point": {
             "type": "class",
@@ -4289,7 +4401,8 @@
                     "0.1",
                     "#FIXME."
                 ]
-            ]
+            ],
+            "annotation": "Describes a function or subroutine of a SoftwareComponent. BFG\n    will use these EntryPoints to define a schedule of subroutine calls\n    for a coupled model. Currently, a very basic schedule can be\n    approximated by using the 'proceeds' and 'follows' attributes,\n    however a more complete system is required for full BFG\n    compatibility. Every EntryPoint can have a set of arguments\n    associated with it. These reference (previously defined) variables.\n\n    # FIXME: THIS CLASS IS BELIEVED TO BE OBSOLETE AND WILL BE\n    REVIEWED/REPLACED IN THE NEXT VERSION\n\n    "
         },
         "gridspec": {
             "type": "class",
@@ -4302,7 +4415,8 @@
                     "1.1",
                     "Textural description."
                 ]
-            ]
+            ],
+            "annotation": "Fully defines the computational grid used.\n\n    # FIXME: THIS CLASS IS BELIEVED TO BE OBSOLETE AND WILL BE\n    REVIEWED/REPLACED IN THE NEXT VERSION\n\n    "
         },
         "software_component": {
             "type": "class",
@@ -4364,7 +4478,8 @@
                     "0.N",
                     "The software components whose outputs are inputs to this software component."
                 ]
-            ]
+            ],
+            "annotation": "An embedded piece of software that does not normally function as\n    a standalone model (although it may be used standalone in a test\n    harness)."
         },
         "variable": {
             "type": "class",
@@ -4389,7 +4504,9 @@
                     "1.1",
                     "Whether or not prognostic or diagnostic."
                 ]
-            ]
-        }
+            ],
+            "annotation": "An instance of a model software variable which may be prognostic\n    or diagnostic, and which is available as a connection to other\n    software components. Note that these variables may only exist within\n    the software workflow as interim quantities or coupling endpoints.\n    Input and output variables will be a subset of these software\n    variables.\n\n    # FIXME: THIS CLASS IS BELIEVED TO BE OBSOLETE AND WILL BE\n    REVIEWED/REPLACED IN THE NEXT VERSION\n\n    "
+        },
+        "annotation": "Types that describe the software that constitutes a climate model."
     }
 }
