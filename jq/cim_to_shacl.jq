@@ -69,7 +69,7 @@ def prune_nulls:
     else .
     end;
 
-def name_to_singular_camel_case(from_plural; first_upcase):
+def name_to_singular_camel_case(from_plural; first_upcase; rest_upcase; separator):
     [
         split("_") |
         length as $numParts |
@@ -81,7 +81,7 @@ def name_to_singular_camel_case(from_plural; first_upcase):
             then singularize
             else .
         end) |
-        (if (first_upcase or $partIndex > 0)
+        (if (first_upcase or ($partIndex > 0 and rest_upcase))
             then (
                 if (. == "id")
                     then "ID"
@@ -90,7 +90,10 @@ def name_to_singular_camel_case(from_plural; first_upcase):
             )
             else .
         end)
-    ] | join("");
+    ] | join(separator);
+
+def name_to_singular_camel_case(from_plural; first_upcase):
+    name_to_singular_camel_case(from_plural; first_upcase; true; "");
 
 def convert_class_name(from_plural):
     split(".") |
@@ -102,9 +105,23 @@ def convert_shape_name(from_plural):
     (.[0] | get_ns_mapping | .shapePrefix) + ":" +
     (.[1] | name_to_singular_camel_case(from_plural; true));
 
+def label_from_class_name(from_plural):
+    split(".") |
+    .[1] | name_to_singular_camel_case(from_plural; true; true; " ");
+
 def convert_property_name(namespace; from_plural):
     (namespace | get_ns_mapping | .prefix) + ":" +
     name_to_singular_camel_case(from_plural; false);
+
+def convert_individual_name(namespace; from_plural):
+    (namespace | get_ns_mapping | .prefix) + ":" +
+    name_to_singular_camel_case(from_plural; false);
+
+def label_from_property_name(from_plural):
+    name_to_singular_camel_case(from_plural; false; false; " ");
+
+def label_from_individual_name(from_plural):
+    name_to_singular_camel_case(from_plural; false; false; " ");
 
 def py_class_to_json_class:
     $class_prefix + (
@@ -114,6 +131,9 @@ def py_class_to_json_class:
     );
 
 def py_property_to_json_property:
+    name_to_singular_camel_case(false; false);
+
+def py_individual_to_json_individual:
     name_to_singular_camel_case(false; false);
 
 def from_context_or(key; alt):
@@ -128,6 +148,15 @@ def from_context_or(key; alt):
             end
         )
         else $alt
+    end;
+
+def one_or_many:
+    if length == 0
+        then null
+    elif length == 1
+        then .[0]
+    else
+        .
     end;
 
 ([
@@ -182,6 +211,17 @@ as $classPropertiesMap |
 
 ([
     $classObjs | to_entries | .[] | 
+    select(.value.type == "enum") |
+    .key as $classname |
+    {
+        key: $classname,
+        value: [ .value.members | .[] | .[0] ]
+    }
+]| from_entries )
+as $enumMembersMap |
+
+([
+    $classObjs | to_entries | .[] | 
     {
         key: .key,
         value: (
@@ -223,6 +263,7 @@ as $shapeMap |
             namespace: (.namespaces | if length > 1 then "shared" else .[0] end),
             maxCardinality : (.maxCardinalities | if length > 1 then "1" else .[0] end)
         } |
+        (.maxCardinality == "N") as $isPlural |
         {
             key: .property,
             value: {
@@ -230,16 +271,61 @@ as $shapeMap |
                     . as $propertyCtxt | .property |
                     from_context_or(
                         py_property_to_json_property;
-                        convert_property_name($propertyCtxt.namespace; $propertyCtxt.maxCardinality == "N")
+                        convert_property_name($propertyCtxt.namespace; $isPlural)
                     )
                 ),
-                namespace: .namespace
+                namespace: .namespace,
+                label: .property | label_from_property_name($isPlural)
             }
         }
     ] |
     from_entries
 )
 as $propertiesMap |
+
+(
+    [
+        $classObjs | to_entries | .[] | 
+        select(.value.type == "enum") |
+        (.key | split(".") | .[0]) as $namespace |
+        .key as $classname |
+        [
+            .value.members | .[] |
+            {
+                individual: .[0],
+                namespace: $namespace,
+                type: $classname
+            }
+        ]
+    ] |
+    flatten |
+    group_by(.individual) |
+    [
+        .[] |
+        {
+            individual: .[0].individual,
+            namespace: [.[] | .namespace] | unique | (if length > 1 then "shared" else .[0] end),
+            type: [.[] | .type] | unique | one_or_many
+        } |
+        {
+            key: .individual,
+            value: {
+                extension: (
+                    . as $individualCtxt | .individual |
+                    from_context_or(
+                        py_individual_to_json_individual;
+                        convert_individual_name($individualCtxt.namespace; false)
+                    )
+                ),
+                namespace: .namespace,
+                type: .type,
+                label: .individual | label_from_individual_name(false)
+            }
+        }
+    ] |
+    from_entries
+)
+as $individualsMap |
 
 def get_class_name:
     if (. == null or . == "None")
@@ -271,6 +357,38 @@ def get_property_name:
     else null
     end;
 
+def get_individual_name:
+    if (. == null or . == "None")
+        then null
+    elif in($individualsMap)
+        then $individualsMap[.].extension
+    else null
+    end;
+
+def get_property_label:
+    if (. == null or . == "None")
+        then null
+    elif in($propertiesMap)
+        then $propertiesMap[.].label
+    else null
+    end;
+
+def get_individual_label:
+    if (. == null or . == "None")
+        then null
+    elif in($individualsMap)
+        then $individualsMap[.].label
+    else null
+    end;
+
+def get_individual_type:
+    if (. == null or . == "None")
+        then null
+    elif in($individualsMap)
+        then $individualsMap[.].type
+    else null
+    end;
+
 (
     [
         (
@@ -295,19 +413,17 @@ def get_property_name:
                     key: py_property_to_json_property,
                     value: get_property_name
                 }
+            ),
+            (
+                $enumMembersMap[$className] | select(. != null) | .[] |
+                {
+                    key: py_individual_to_json_individual,
+                    value: get_individual_name
+                }
             )
         )
     ] | from_entries
 ) as $classPropertyContext |
-
-def one_or_many:
-    if length == 0
-        then null
-    elif length == 1
-        then .[0]
-    else
-        .
-    end;
 
 def aggregate_by(grouping_filter):
     group_by(grouping_filter) |
@@ -329,9 +445,12 @@ def aggregate_by(grouping_filter):
         (
             $classObjs | to_entries | .[] | 
             (.value.base | (if (. == "None") then null else . end) | get_class_name) as $parentClass |
+            .key as $classname |
+            (.value.type == "enum") as $isEnum |
             {
-                "@id": (.key | get_class_name),
+                "@id": ($classname | get_class_name),
                 "@type": "rdfs:Class",
+                "rdfs:label": ($classname | label_from_class_name($isEnum)),
                 "rdfs:comment": .value.annotation,
                 "rdfs:subclassOf": $parentClass
             }
@@ -341,10 +460,25 @@ def aggregate_by(grouping_filter):
             select(.value.type == "class") |
             .key as $classname |
             .value.properties | .[] |
+            (.[0] | safe_property_name($classname)) as $propertyName |
             {
-                "@id": (.[0] | safe_property_name($classname) | get_property_name),
+                "@id": ($propertyName | get_property_name),
                 "@type": "rdfs:Property",
+                "rdfs:label": ($propertyName | get_property_label),
                 "rdfs:comment": .[3]
+            }
+        ),
+        (
+            $classObjs | to_entries | .[] | 
+            select(.value.type == "enum") |
+            .key as $classname |
+            .value.members | .[] |
+            .[0] as $individualId |
+            {
+                "@id": ($individualId | get_individual_name),
+                "@type": ($classname | get_class_name),
+                "rdfs:label": ($individualId | get_individual_label),
+                "rdfs:comment": .[1]
             }
         )
     ] |
@@ -437,7 +571,8 @@ def expand($refCtxt):
         (
             {
                 "@version": 1.1,
-                "@context": "https://raw.githubusercontent.com/w3c/shacl/main/shacl-jsonld-context/shacl.context.ld.json"
+                "@context": "https://w3c.github.io/shacl/shacl-jsonld-context/shacl.context.ld.json"
+#                "@context": "https://raw.githubusercontent.com/w3c/shacl/main/shacl-jsonld-context/shacl.context.ld.json"
             }
             | to_entries | .[]
         ),
@@ -473,7 +608,12 @@ def expand($refCtxt):
                         "class": $propertyType | get_class_name | expand($mappingContext),
                         "minCount": (if $minCardinality == "0" then null else ($minCardinality | tonumber) end),
                         "maxCount": (if $maxCardinality == "N" then null else ($maxCardinality | tonumber) end)
-                    }]
+                    }
+                ],
+                "in": [
+                    .value.members | select(. != null) | .[] |
+                    .[0] | get_individual_name
+                ]
         }
     ] | prune_nulls
 ) as $shapes |

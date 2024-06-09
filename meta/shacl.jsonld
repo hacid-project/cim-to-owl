@@ -1,7 +1,7 @@
 {
     "@context": {
         "@version": 1.1,
-        "@context": "https://raw.githubusercontent.com/w3c/shacl/main/shacl-jsonld-context/shacl.context.ld.json",
+        "@context": "https://w3c.github.io/shacl/shacl-jsonld-context/shacl.context.ld.json",
         "terms-activity": "https://example.org/terms/activity/",
         "terms-cmip": "https://example.org/terms/cmip/",
         "terms-data": "https://example.org/terms/data/",
@@ -58,7 +58,19 @@
             "@id": "https://example.org/shapes/time/CalendarType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/CalendarType",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-time:gregorian",
+                "terms-time:standard",
+                "terms-time:prolepticGregorian",
+                "terms-time:noleap",
+                "terms-time:365Day",
+                "terms-time:allLeap",
+                "terms-time:366Day",
+                "terms-time:360Day",
+                "terms-time:julian",
+                "terms-time:none"
+            ]
         },
         {
             "@id": "https://example.org/shapes/time/DateTime",
@@ -113,7 +125,12 @@
             "@id": "https://example.org/shapes/time/PeriodDateType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/PeriodDateType",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-time:unused",
+                "terms-time:from",
+                "terms-time:to"
+            ]
         },
         {
             "@id": "https://example.org/shapes/time/RegularTimeset",
@@ -182,7 +199,13 @@
             "@id": "https://example.org/shapes/time/TimeUnit",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/time/TimeUnit",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-time:years",
+                "terms-time:months",
+                "terms-time:days",
+                "terms-time:seconds"
+            ]
         },
         {
             "@id": "https://example.org/shapes/activity/Activity",
@@ -323,7 +346,13 @@
             "@id": "https://example.org/shapes/activity/ConformanceType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/activity/ConformanceType",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-activity:Conformed",
+                "terms-activity:Partially Conformed",
+                "terms-activity:Not Conformed",
+                "terms-activity:Not Applicable"
+            ]
         },
         {
             "@id": "https://example.org/shapes/activity/Ensemble",
@@ -683,7 +712,20 @@
             "@id": "https://example.org/shapes/data/DatasetType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/data/DatasetType",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-data:reanalysis",
+                "terms-data:analysis",
+                "terms-data:forecast",
+                "terms-data:hindcast",
+                "terms-data:projection",
+                "terms-data:representation",
+                "terms-data:observation",
+                "terms-data:dump",
+                "terms-data:modified",
+                "terms-data:unphysical",
+                "terms-data:downscaled"
+            ]
         },
         {
             "@id": "https://example.org/shapes/designing/DomainRequirements",
@@ -735,7 +777,16 @@
             "@id": "https://example.org/shapes/designing/EnsembleType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/EnsembleType",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-designing:Perturbed Physics",
+                "terms-designing:Initialisation Method",
+                "terms-designing:Realization",
+                "terms-designing:Start Date",
+                "terms-designing:Forced",
+                "terms-designing:Resolution",
+                "terms-designing:Driven"
+            ]
         },
         {
             "@id": "https://example.org/shapes/designing/ForcingConstraint",
@@ -787,7 +838,13 @@
             "@id": "https://example.org/shapes/designing/ForcingType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/ForcingType",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-designing:historical",
+                "terms-designing:idealised",
+                "terms-designing:scenario",
+                "terms-designing:driven"
+            ]
         },
         {
             "@id": "https://example.org/shapes/designing/InitialisationRequirement",
@@ -874,7 +931,16 @@
             "@id": "https://example.org/shapes/designing/ExperimentalRelationship",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/ExperimentalRelationship",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-designing:isConstrainedBy",
+                "terms-designing:isConstrainerOf",
+                "terms-designing:isPerturbationFrom",
+                "terms-designing:isControlFor",
+                "terms-designing:isInitializedBy",
+                "terms-designing:isInitializerOf",
+                "terms-designing:isSiblingOf"
+            ]
         },
         {
             "@id": "https://example.org/shapes/designing/NumericalRequirement",
@@ -911,7 +977,13 @@
             "@id": "https://example.org/shapes/designing/NumericalRequirementScope",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/designing/NumericalRequirementScope",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-designing:mip-era",
+                "terms-designing:mip-group",
+                "terms-designing:mip",
+                "terms-shared:experiment"
+            ]
         },
         {
             "@id": "https://example.org/shapes/designing/OutputRequirement",
@@ -1172,7 +1244,17 @@
             "@id": "https://example.org/shapes/drs/DrsFrequencyType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsFrequencyType",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-drs:yr",
+                "terms-drs:mon",
+                "terms-drs:day",
+                "terms-drs:6hr",
+                "terms-drs:3hr",
+                "terms-drs:subhr",
+                "terms-drs:monClim",
+                "terms-drs:fx"
+            ]
         },
         {
             "@id": "https://example.org/shapes/drs/DrsGeographicalIndicator",
@@ -1201,7 +1283,15 @@
             "@id": "https://example.org/shapes/drs/DrsGeographicalOperator",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsGeographicalOperator",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-drs:zonalavg",
+                "terms-drs:lnd-zonalavg",
+                "terms-drs:ocn-zonalavg",
+                "terms-drs:areaavg",
+                "terms-drs:lnd-areaavg",
+                "terms-drs:ocn-areaavg"
+            ]
         },
         {
             "@id": "https://example.org/shapes/drs/DrsPublicationDataset",
@@ -1213,7 +1303,17 @@
             "@id": "https://example.org/shapes/drs/DrsRealm",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsRealm",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-drs:atmos",
+                "terms-drs:ocean",
+                "terms-drs:land",
+                "terms-drs:landIce",
+                "terms-drs:seaIce",
+                "terms-drs:aerosol",
+                "terms-drs:atmosChem",
+                "terms-drs:ocnBgchem"
+            ]
         },
         {
             "@id": "https://example.org/shapes/drs/DrsSimulationIdentifier",
@@ -1269,7 +1369,11 @@
             "@id": "https://example.org/shapes/drs/DrsTimeSuffixe",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/drs/DrsTimeSuffixe",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-drs:avg",
+                "terms-drs:clim"
+            ]
         },
         {
             "@id": "https://example.org/shapes/iso/Lineage",
@@ -1541,25 +1645,60 @@
             "@id": "https://example.org/shapes/iso/DsInitiativeTypecode",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/DsInitiativeTypecode",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-iso:campaign",
+                "terms-iso:collection",
+                "terms-iso:exercise",
+                "terms-shared:experiment",
+                "terms-iso:investigation",
+                "terms-iso:mission",
+                "terms-iso:sensor",
+                "terms-iso:operation",
+                "terms-iso:platform",
+                "terms-iso:process",
+                "terms-iso:program",
+                "terms-iso:project",
+                "terms-iso:study",
+                "terms-iso:task",
+                "terms-iso:trial"
+            ]
         },
         {
             "@id": "https://example.org/shapes/iso/MdCellgeometryCode",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/MdCellgeometryCode",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-iso:point",
+                "terms-iso:area"
+            ]
         },
         {
             "@id": "https://example.org/shapes/iso/MdProgressCode",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/MdProgressCode",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-iso:completed",
+                "terms-iso:historicalArchive",
+                "terms-iso:obsolete",
+                "terms-iso:onGoing",
+                "terms-iso:planned",
+                "terms-iso:required",
+                "terms-iso:underDevelopment"
+            ]
         },
         {
             "@id": "https://example.org/shapes/iso/DqEvaluationResultType",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/iso/DqEvaluationResultType",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-iso:plot",
+                "terms-iso:document",
+                "terms-iso:dataset"
+            ]
         },
         {
             "@id": "https://example.org/shapes/platform/ComputePool",
@@ -1957,7 +2096,44 @@
             "@id": "https://example.org/shapes/platform/StorageSystem",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/platform/StorageSystem",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-platform:Lustre",
+                "terms-platform:GPFS",
+                "terms-platform:isilon",
+                "terms-platform:NFS",
+                "terms-platform:S3",
+                "terms-platform:PanFS",
+                "terms-platform:Other Disk",
+                "terms-platform:Tape - MARS",
+                "terms-platform:Tape - MASS",
+                "terms-platform:Tape - Castor",
+                "terms-platform:Tape - Other"
+            ]
+        },
+        {
+            "@id": "https://example.org/shapes/science/ModelType",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/science/ModelType",
+            "closed": true,
+            "in": [
+                "terms-science:Atm Only",
+                "terms-science:Ocean Only",
+                "terms-science:Regional",
+                "terms-science:ESM",
+                "terms-science:GCM",
+                "terms-science:IGCM",
+                "terms-science:GCM-MLO",
+                "terms-science:Mesoscale",
+                "terms-science:ProcessLA",
+                "terms-science:DynamicalCore",
+                "terms-science:Statistical",
+                "terms-science:ML Inference",
+                "terms-science:Re-Analysis",
+                "terms-science:Planetary",
+                "terms-science:Process",
+                "terms-science:Other"
+            ]
         },
         {
             "@id": "https://example.org/shapes/science/Model",
@@ -2194,12 +2370,6 @@
             ]
         },
         {
-            "@id": "https://example.org/shapes/science/ModelType",
-            "@type": "sh:NodeShape",
-            "targetClass": "https://example.org/terms/science/ModelType",
-            "closed": true
-        },
-        {
             "@id": "https://example.org/shapes/shared/TextBlob",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/TextBlob",
@@ -2313,7 +2483,14 @@
             "@id": "https://example.org/shapes/shared/NilReason",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/NilReason",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-shared:nil:inapplicable",
+                "terms-shared:nil:missing",
+                "terms-shared:nil:template",
+                "terms-shared:nil:unknown",
+                "terms-shared:nil:withheld"
+            ]
         },
         {
             "@id": "https://example.org/shapes/shared/OnlineResource",
@@ -2424,7 +2601,13 @@
             "@id": "https://example.org/shapes/shared/QualityStatus",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/QualityStatus",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-shared:incomplete",
+                "terms-shared:finalised",
+                "terms-shared:underReview",
+                "terms-shared:reviewed"
+            ]
         },
         {
             "@id": "https://example.org/shapes/shared/Responsibility",
@@ -2454,13 +2637,33 @@
             "@id": "https://example.org/shapes/shared/RoleCode",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/RoleCode",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-shared:Principal Investigator",
+                "terms-shared:originator",
+                "terms-shared:author",
+                "terms-shared:collaborator",
+                "terms-shared:publisher",
+                "terms-shared:owner",
+                "terms-shared:processor",
+                "terms-shared:distributor",
+                "terms-shared:sponsor",
+                "terms-shared:user",
+                "terms-shared:point of contact",
+                "terms-shared:resource provider",
+                "terms-shared:custodian",
+                "terms-shared:metadataReviewer",
+                "terms-shared:metadataAuthor"
+            ]
         },
         {
             "@id": "https://example.org/shapes/shared/TextBlobEncoding",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/shared/TextBlobEncoding",
-            "closed": true
+            "closed": true,
+            "in": [
+                "terms-shared:ascii"
+            ]
         },
         {
             "@id": "https://example.org/shapes/shared/Numeric",
@@ -2657,18 +2860,6 @@
                     "maxCount": 1
                 }
             ]
-        },
-        {
-            "@id": "https://example.org/shapes/software/CouplingFramework",
-            "@type": "sh:NodeShape",
-            "targetClass": "https://example.org/terms/software/CouplingFramework",
-            "closed": true
-        },
-        {
-            "@id": "https://example.org/shapes/software/ProgrammingLanguage",
-            "@type": "sh:NodeShape",
-            "targetClass": "https://example.org/terms/software/ProgrammingLanguage",
-            "closed": true
         },
         {
             "@id": "https://example.org/shapes/software/ComponentBase",
@@ -2929,6 +3120,34 @@
                     "minCount": 1,
                     "maxCount": 1
                 }
+            ]
+        },
+        {
+            "@id": "https://example.org/shapes/software/CouplingFramework",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/CouplingFramework",
+            "closed": true,
+            "in": [
+                "terms-software:OASIS",
+                "terms-software:OASIS3-MCT",
+                "terms-software:ESMF",
+                "terms-software:NUOPC",
+                "terms-software:Bespoke",
+                "terms-software:Unknown",
+                null
+            ]
+        },
+        {
+            "@id": "https://example.org/shapes/software/ProgrammingLanguage",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/software/ProgrammingLanguage",
+            "closed": true,
+            "in": [
+                "terms-software:Fortran",
+                "terms-software:C",
+                "terms-software:C++",
+                "terms-software:Julia",
+                "terms-software:Python"
             ]
         }
     ]

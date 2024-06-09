@@ -3035,6 +3035,77 @@
         "annotation": "Types that describe hardware upon which climate models are run."
     },
     "science": {
+        "model_types": {
+            "type": "enum",
+            "is_open": "False",
+            "members": [
+                [
+                    "Atm Only",
+                    "Atmosphere Only"
+                ],
+                [
+                    "Ocean Only",
+                    "Ocean Only"
+                ],
+                [
+                    "Regional",
+                    "Regional Model"
+                ],
+                [
+                    "ESM",
+                    "Earth System Model (Atmosphere, Ocean, Land, carbon cycle)"
+                ],
+                [
+                    "GCM",
+                    "Global Climate Model (Atmosphere, Ocean, no carbon cycle)"
+                ],
+                [
+                    "IGCM",
+                    "Intermediate Complexity GCM"
+                ],
+                [
+                    "GCM-MLO",
+                    "GCM with mixed layer ocean"
+                ],
+                [
+                    "Mesoscale",
+                    "Mesoscale Model"
+                ],
+                [
+                    "ProcessLA",
+                    "Limited Area process model"
+                ],
+                [
+                    "DynamicalCore",
+                    "Dynamical Core only"
+                ],
+                [
+                    "Statistical",
+                    "Derived from statistics"
+                ],
+                [
+                    "ML Inference",
+                    "Model is trained from data"
+                ],
+                [
+                    "Re-Analysis",
+                    "Model includes active data-assimilation beyond initialisation"
+                ],
+                [
+                    "Planetary",
+                    "Non-Earth model"
+                ],
+                [
+                    "Process",
+                    "Specific process or parameterisation in column mode"
+                ],
+                [
+                    "Other",
+                    "A numerical model not covered above"
+                ]
+            ],
+            "annotation": "Defines a set of model types relevant to weather, climate, and\n    earth system modelling."
+        },
         "model": {
             "type": "class",
             "base": "software.component_base",
@@ -3338,77 +3409,6 @@
                 ]
             ],
             "annotation": "A specialized question asked of the scientic community."
-        },
-        "model_types": {
-            "type": "enum",
-            "is_open": "False",
-            "members": [
-                [
-                    "Atm Only",
-                    "Atmosphere Only"
-                ],
-                [
-                    "Ocean Only",
-                    "Ocean Only"
-                ],
-                [
-                    "Regional",
-                    "Regional Model"
-                ],
-                [
-                    "ESM",
-                    "Earth System Model (Atmosphere, Ocean, Land, carbon cycle)"
-                ],
-                [
-                    "GCM",
-                    "Global Climate Model (Atmosphere, Ocean, no carbon cycle)"
-                ],
-                [
-                    "IGCM",
-                    "Intermediate Complexity GCM"
-                ],
-                [
-                    "GCM-MLO",
-                    "GCM with mixed layer ocean"
-                ],
-                [
-                    "Mesoscale",
-                    "Mesoscale Model"
-                ],
-                [
-                    "ProcessLA",
-                    "Limited Area process model"
-                ],
-                [
-                    "DynamicalCore",
-                    "Dynamical Core only"
-                ],
-                [
-                    "Statistical",
-                    "Derived from statistics"
-                ],
-                [
-                    "ML Inference",
-                    "Model is trained from data"
-                ],
-                [
-                    "Re-Analysis",
-                    "Model includes active data-assimilation beyond initialisation"
-                ],
-                [
-                    "Planetary",
-                    "Non-Earth model"
-                ],
-                [
-                    "Process",
-                    "Specific process or parameterisation in column mode"
-                ],
-                [
-                    "Other",
-                    "A numerical model not covered above"
-                ]
-            ],
-            "annotation": "Defines a set of model types relevant to weather, climate, and\n    earth system modelling."
         },
         "annotation": "Types that describe the science being performed."
     },
@@ -4128,68 +4128,6 @@
         "annotation": "Shared types that might be imported from other packages within the ontology."
     },
     "software": {
-        "coupling_framework": {
-            "type": "enum",
-            "is_open": "True",
-            "members": [
-                [
-                    "OASIS",
-                    "The OASIS coupler - prior to OASIS-MCT"
-                ],
-                [
-                    "OASIS3-MCT",
-                    "The MCT variant of the OASIS coupler"
-                ],
-                [
-                    "ESMF",
-                    "Vanilla Earth System Modelling Framework"
-                ],
-                [
-                    "NUOPC",
-                    "National Unified Operational Prediction Capability variant of ESMF"
-                ],
-                [
-                    "Bespoke",
-                    "Customised coupler developed for this model"
-                ],
-                [
-                    "Unknown",
-                    "It is not known what/if-a coupler is used"
-                ],
-                [
-                    "None",
-                    "No coupler is used"
-                ]
-            ],
-            "annotation": "The set of terms which define known coupling frameworks."
-        },
-        "programming_language": {
-            "type": "enum",
-            "is_open": "True",
-            "members": [
-                [
-                    "Fortran",
-                    "Fortran Programming Language"
-                ],
-                [
-                    "C",
-                    "C Programming Language"
-                ],
-                [
-                    "C++",
-                    "C++ Programming Language"
-                ],
-                [
-                    "Julia",
-                    "Julia Programming Language"
-                ],
-                [
-                    "Python",
-                    "Python Programming Language"
-                ]
-            ],
-            "annotation": "The set of terms which define programming languages used for\n    earth system simulation."
-        },
         "component_base": {
             "type": "class",
             "base": "None",
@@ -4506,6 +4444,68 @@
                 ]
             ],
             "annotation": "An instance of a model software variable which may be prognostic\n    or diagnostic, and which is available as a connection to other\n    software components. Note that these variables may only exist within\n    the software workflow as interim quantities or coupling endpoints.\n    Input and output variables will be a subset of these software\n    variables.\n\n    # FIXME: THIS CLASS IS BELIEVED TO BE OBSOLETE AND WILL BE\n    REVIEWED/REPLACED IN THE NEXT VERSION\n\n    "
+        },
+        "coupling_framework": {
+            "type": "enum",
+            "is_open": "True",
+            "members": [
+                [
+                    "OASIS",
+                    "The OASIS coupler - prior to OASIS-MCT"
+                ],
+                [
+                    "OASIS3-MCT",
+                    "The MCT variant of the OASIS coupler"
+                ],
+                [
+                    "ESMF",
+                    "Vanilla Earth System Modelling Framework"
+                ],
+                [
+                    "NUOPC",
+                    "National Unified Operational Prediction Capability variant of ESMF"
+                ],
+                [
+                    "Bespoke",
+                    "Customised coupler developed for this model"
+                ],
+                [
+                    "Unknown",
+                    "It is not known what/if-a coupler is used"
+                ],
+                [
+                    "None",
+                    "No coupler is used"
+                ]
+            ],
+            "annotation": "The set of terms which define known coupling frameworks."
+        },
+        "programming_language": {
+            "type": "enum",
+            "is_open": "True",
+            "members": [
+                [
+                    "Fortran",
+                    "Fortran Programming Language"
+                ],
+                [
+                    "C",
+                    "C Programming Language"
+                ],
+                [
+                    "C++",
+                    "C++ Programming Language"
+                ],
+                [
+                    "Julia",
+                    "Julia Programming Language"
+                ],
+                [
+                    "Python",
+                    "Python Programming Language"
+                ]
+            ],
+            "annotation": "The set of terms which define programming languages used for\n    earth system simulation."
         },
         "annotation": "Types that describe the software that constitutes a climate model."
     }
