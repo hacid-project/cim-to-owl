@@ -54,7 +54,8 @@ def get_ns_mapping:
     "bool": "xsd:float",
     "int": "xsd:integer"
 } as $datatypeMap |
-def convert_datatype: if in($datatypeMap) then $datatypeMap[.] else null end;
+def convert_datatype: if (. != null and in($datatypeMap)) then $datatypeMap[.] else null end;
+def is_datatype: in($datatypeMap);
 
 def prune_nulls:
     if (type == "object")
@@ -245,7 +246,10 @@ as $shapeMap |
             {
                 property: .[0] | safe_property_name($classname),
                 namespace: $namespace,
-                maxCardinality: $max_cardinality
+                maxCardinality: $max_cardinality,
+                domain: $classname,
+                range: .[1],
+                propertyType: (if (.[1] | is_datatype) then "datatype" else "object" end)
             }
         ]
     ] |
@@ -256,12 +260,18 @@ as $shapeMap |
         {
             property: .[0].property,
             namespaces: ([.[] | .namespace] | unique),
-            maxCardinalities : ([.[] | .maxCardinality] | unique)
+            maxCardinalities : ([.[] | .maxCardinality] | unique),
+            domains : ([.[] | .domain] | unique),
+            ranges : ([.[] | .range] | unique),
+            propertyTypes: ([.[] | .propertyType] | unique)
         } |
         {
             property: .property,
             namespace: (.namespaces | if length > 1 then "shared" else .[0] end),
-            maxCardinality : (.maxCardinalities | if length > 1 then "1" else .[0] end)
+            maxCardinality : (.maxCardinalities | if length > 1 then "1" else .[0] end),
+            domains: .domains,
+            ranges: .ranges,
+            propertyTypes: .propertyTypes
         } |
         (.maxCardinality == "N") as $isPlural |
         {
@@ -275,7 +285,10 @@ as $shapeMap |
                     )
                 ),
                 namespace: .namespace,
-                label: .property | label_from_property_name($isPlural)
+                label: .property | label_from_property_name($isPlural),
+                domains: .domains,
+                ranges: .ranges,
+                propertyTypes: .propertyTypes
             }
         }
     ] |
@@ -373,6 +386,34 @@ def get_property_label:
     else null
     end;
 
+def get_property_type:
+    if (. == null or . == "None")
+        then null
+    elif in($propertiesMap)
+        then $propertiesMap[.].propertyTypes |
+        (
+            if (length == 1)
+                then .[0]
+                else "object"
+            end
+        )
+    else null
+    end;
+
+def get_property_range:
+    if (. == null or . == "None")
+        then null
+    elif in($propertiesMap)
+        then $propertiesMap[.].ranges |
+        (
+            if (length == 1)
+                then .[0]
+                else null
+            end
+        )
+    else null
+    end;
+
 def get_individual_label:
     if (. == null or . == "None")
         then null
@@ -411,7 +452,18 @@ def get_individual_type:
                 $classPropertiesMap[$className] | select(. != null) | .[] |
                 {
                     key: py_property_to_json_property,
-                    value: get_property_name
+                    value: {
+                        "@id": get_property_name,
+                        "@type": (
+                            if (get_property_type == "object")
+                                then "@id"
+                            elif (get_property_type == "datatype")
+                                then (get_property_range | convert_datatype)
+                            else
+                                null
+                            end
+                        )
+                    }
                 }
             ),
             (
@@ -422,7 +474,7 @@ def get_individual_type:
                 }
             )
         )
-    ] | from_entries
+    ] | from_entries | prune_nulls
 ) as $classPropertyContext |
 
 def aggregate_by(grouping_filter):

@@ -16,83 +16,307 @@
     "terms-shared": "https://example.org/terms/shared/",
     "terms-software": "https://example.org/terms/software/",
     "terms-time": "https://example.org/terms/time/",
-    "abstract": "terms-shared:abstract",
-    "address": "terms-shared:address",
-    "associationID": "terms-shared:associationID",
-    "associationVocabulary": "terms-shared:associationVocabulary",
-    "author": "terms-shared:author",
-    "authors": "terms-shared:author",
-    "baseUnit": "terms-shared:baseUnit",
-    "bibtex": "terms-shared:bibtex",
-    "calendar": "terms-shared:calendar",
-    "canonicalName": "terms-shared:canonicalName",
-    "citationDetail": "terms-shared:citationDetail",
-    "citationType": "terms-shared:citationType",
-    "citations": "terms-shared:citation",
-    "collectiveTitle": "terms-shared:collectiveTitle",
-    "content": "terms-shared:content",
-    "context": "terms-shared:context",
-    "createDate": "terms-shared:createDate",
-    "date": "terms-shared:date",
-    "description": "terms-shared:description",
-    "doc": "terms-shared:doc",
-    "docMetaInfoID": "terms-shared:docMetaInfoID",
-    "docMetaInfoType": "terms-shared:docMetaInfoType",
-    "docReferenceID": "terms-shared:docReferenceID",
-    "docReferenceType": "terms-shared:docReferenceType",
-    "documentation": "terms-shared:documentation",
-    "doi": "terms-shared:doi",
-    "drsKeys": "terms-shared:drsKey",
-    "drsPath": "terms-shared:drsPath",
-    "email": "terms-shared:email",
-    "encoding": "terms-shared:encoding",
-    "externalIds": "terms-shared:externalID",
-    "extraAttributeType": "terms-shared:extraAttributeType",
-    "furtherInfo": "terms-shared:furtherInfo",
-    "grid": "terms-shared:grid",
-    "identifier": "terms-shared:identifier",
-    "institute": "terms-shared:institute",
-    "institution": "terms-shared:institution",
-    "isOrganisation": "terms-shared:isOrganisation",
-    "key": "terms-shared:key",
-    "keywords": "terms-shared:keywords",
-    "linkage": "terms-shared:linkage",
-    "longName": "terms-shared:longName",
+    "abstract": {
+        "@id": "terms-shared:abstract",
+        "@type": "xsd:string"
+    },
+    "address": {
+        "@id": "terms-shared:address",
+        "@type": "xsd:string"
+    },
+    "associationID": {
+        "@id": "terms-shared:associationID",
+        "@type": "xsd:string"
+    },
+    "associationVocabulary": {
+        "@id": "terms-shared:associationVocabulary",
+        "@type": "@id"
+    },
+    "author": {
+        "@id": "terms-shared:author",
+        "@type": "@id"
+    },
+    "authors": {
+        "@id": "terms-shared:author",
+        "@type": "xsd:string"
+    },
+    "baseUnit": {
+        "@id": "terms-shared:baseUnit",
+        "@type": "xsd:string"
+    },
+    "bibtex": {
+        "@id": "terms-shared:bibtex",
+        "@type": "xsd:string"
+    },
+    "calendar": {
+        "@id": "terms-shared:calendar",
+        "@type": "@id"
+    },
+    "canonicalName": {
+        "@id": "terms-shared:canonicalName",
+        "@type": "xsd:string"
+    },
+    "citationDetail": {
+        "@id": "terms-shared:citationDetail",
+        "@type": "xsd:string"
+    },
+    "citationType": {
+        "@id": "terms-shared:citationType",
+        "@type": "xsd:string"
+    },
+    "citations": {
+        "@id": "terms-shared:citation",
+        "@type": "@id"
+    },
+    "collectiveTitle": {
+        "@id": "terms-shared:collectiveTitle",
+        "@type": "xsd:string"
+    },
+    "content": {
+        "@id": "terms-shared:content",
+        "@type": "xsd:string"
+    },
+    "context": {
+        "@id": "terms-shared:context",
+        "@type": "xsd:string"
+    },
+    "createDate": {
+        "@id": "terms-shared:createDate",
+        "@type": "@id"
+    },
+    "date": {
+        "@id": "terms-shared:date",
+        "@type": "@id"
+    },
+    "description": {
+        "@id": "terms-shared:description",
+        "@type": "xsd:string"
+    },
+    "doc": {
+        "@id": "terms-shared:doc",
+        "@type": "xsd:string"
+    },
+    "docMetaInfoID": {
+        "@id": "terms-shared:docMetaInfoID",
+        "@type": "xsd:string"
+    },
+    "docMetaInfoType": {
+        "@id": "terms-shared:docMetaInfoType",
+        "@type": "xsd:string"
+    },
+    "docReferenceID": {
+        "@id": "terms-shared:docReferenceID",
+        "@type": "xsd:string"
+    },
+    "docReferenceType": {
+        "@id": "terms-shared:docReferenceType",
+        "@type": "xsd:string"
+    },
+    "documentation": {
+        "@id": "terms-shared:documentation",
+        "@type": "@id"
+    },
+    "doi": {
+        "@id": "terms-shared:doi",
+        "@type": "xsd:string"
+    },
+    "drsKeys": {
+        "@id": "terms-shared:drsKey",
+        "@type": "xsd:string"
+    },
+    "drsPath": {
+        "@id": "terms-shared:drsPath",
+        "@type": "xsd:string"
+    },
+    "email": {
+        "@id": "terms-shared:email",
+        "@type": "xsd:string"
+    },
+    "encoding": {
+        "@id": "terms-shared:encoding",
+        "@type": "@id"
+    },
+    "externalIds": {
+        "@id": "terms-shared:externalID",
+        "@type": "xsd:string"
+    },
+    "extraAttributeType": {
+        "@id": "terms-shared:extraAttributeType",
+        "@type": "xsd:string"
+    },
+    "furtherInfo": {
+        "@id": "terms-shared:furtherInfo",
+        "@type": "xsd:string"
+    },
+    "grid": {
+        "@id": "terms-shared:grid",
+        "@type": "@id"
+    },
+    "identifier": {
+        "@id": "terms-shared:identifier",
+        "@type": "xsd:string"
+    },
+    "institute": {
+        "@id": "terms-shared:institute",
+        "@type": "xsd:string"
+    },
+    "institution": {
+        "@id": "terms-shared:institution",
+        "@type": "@id"
+    },
+    "isOrganisation": {
+        "@id": "terms-shared:isOrganisation",
+        "@type": "xsd:float"
+    },
+    "key": {
+        "@id": "terms-shared:key",
+        "@type": "xsd:string"
+    },
+    "keywords": {
+        "@id": "terms-shared:keywords",
+        "@type": "xsd:string"
+    },
+    "linkage": {
+        "@id": "terms-shared:linkage",
+        "@type": "xsd:string"
+    },
+    "longName": {
+        "@id": "terms-shared:longName",
+        "@type": "xsd:string"
+    },
     "metadataReviewer": "terms-shared:metadataReviewer",
-    "model": "terms-shared:model",
-    "name": "terms-shared:name",
-    "onlineAt": "terms-shared:onlineAt",
-    "orcidID": "terms-shared:orcidID",
-    "parties": "terms-shared:party",
-    "project": "terms-shared:project",
-    "protocol": "terms-shared:protocol",
-    "qualityDescription": "terms-shared:qualityDescription",
-    "qualityStatus": "terms-shared:qualityStatus",
-    "rationale": "terms-shared:rationale",
-    "relationship": "terms-shared:relationship",
-    "responsibleParties": "terms-shared:responsibleParty",
-    "role": "terms-shared:role",
-    "sortKey": "terms-shared:sortKey",
-    "source": "terms-shared:source",
-    "sourceKey": "terms-shared:sourceKey",
-    "startDate": "terms-shared:startDate",
-    "subProjects": "terms-shared:subProject",
-    "targetDocument": "terms-shared:targetDocument",
-    "title": "terms-shared:title",
-    "typeDisplayName": "terms-shared:typeDisplayName",
-    "typeSortKey": "terms-shared:typeSortKey",
-    "unitEnumeration": "terms-shared:unitEnumeration",
-    "unitSource": "terms-shared:unitSource",
-    "units": "terms-shared:units",
-    "updateDate": "terms-shared:updateDate",
-    "url": "terms-shared:url",
-    "value": "terms-shared:value",
-    "version": "terms-shared:version",
-    "when": "terms-shared:when",
-    "year": "terms-shared:year",
+    "model": {
+        "@id": "terms-shared:model",
+        "@type": "@id"
+    },
+    "name": {
+        "@id": "terms-shared:name",
+        "@type": "xsd:string"
+    },
+    "onlineAt": {
+        "@id": "terms-shared:onlineAt",
+        "@type": "@id"
+    },
+    "orcidID": {
+        "@id": "terms-shared:orcidID",
+        "@type": "xsd:string"
+    },
+    "parties": {
+        "@id": "terms-shared:party",
+        "@type": "@id"
+    },
+    "project": {
+        "@id": "terms-shared:project",
+        "@type": "xsd:string"
+    },
+    "protocol": {
+        "@id": "terms-shared:protocol",
+        "@type": "xsd:string"
+    },
+    "qualityDescription": {
+        "@id": "terms-shared:qualityDescription",
+        "@type": "xsd:string"
+    },
+    "qualityStatus": {
+        "@id": "terms-shared:qualityStatus",
+        "@type": "@id"
+    },
+    "rationale": {
+        "@id": "terms-shared:rationale",
+        "@type": "xsd:string"
+    },
+    "relationship": {
+        "@id": "terms-shared:relationship",
+        "@type": "xsd:string"
+    },
+    "responsibleParties": {
+        "@id": "terms-shared:responsibleParty",
+        "@type": "@id"
+    },
+    "role": {
+        "@id": "terms-shared:role",
+        "@type": "@id"
+    },
+    "sortKey": {
+        "@id": "terms-shared:sortKey",
+        "@type": "xsd:string"
+    },
+    "source": {
+        "@id": "terms-shared:source",
+        "@type": "@id"
+    },
+    "sourceKey": {
+        "@id": "terms-shared:sourceKey",
+        "@type": "xsd:string"
+    },
+    "startDate": {
+        "@id": "terms-shared:startDate",
+        "@type": "@id"
+    },
+    "subProjects": {
+        "@id": "terms-shared:subProject",
+        "@type": "@id"
+    },
+    "targetDocument": {
+        "@id": "terms-shared:targetDocument",
+        "@type": "@id"
+    },
+    "title": {
+        "@id": "terms-shared:title",
+        "@type": "xsd:string"
+    },
+    "typeDisplayName": {
+        "@id": "terms-shared:typeDisplayName",
+        "@type": "xsd:string"
+    },
+    "typeSortKey": {
+        "@id": "terms-shared:typeSortKey",
+        "@type": "xsd:string"
+    },
+    "unitEnumeration": {
+        "@id": "terms-shared:unitEnumeration",
+        "@type": "xsd:string"
+    },
+    "unitSource": {
+        "@id": "terms-shared:unitSource",
+        "@type": "@id"
+    },
+    "units": {
+        "@id": "terms-shared:units",
+        "@type": "@id"
+    },
+    "updateDate": {
+        "@id": "terms-shared:updateDate",
+        "@type": "@id"
+    },
+    "url": {
+        "@id": "terms-shared:url",
+        "@type": "@id"
+    },
+    "value": {
+        "@id": "terms-shared:value",
+        "@type": "@id"
+    },
+    "version": {
+        "@id": "terms-shared:version"
+    },
+    "when": {
+        "@id": "terms-shared:when",
+        "@type": "@id"
+    },
+    "year": {
+        "@id": "terms-shared:year",
+        "@type": "xsd:integer"
+    },
     "cim.2.time.Calendar": "terms-time:Calendar",
-    "monthLengths": "terms-time:monthLength",
-    "standardName": "terms-time:standardName",
+    "monthLengths": {
+        "@id": "terms-time:monthLength",
+        "@type": "xsd:integer"
+    },
+    "standardName": {
+        "@id": "terms-time:standardName",
+        "@type": "@id"
+    },
     "cim.2.time.CalendarTypes": "terms-time:CalendarType",
     "gregorian": "terms-time:gregorian",
     "standard": "terms-time:standard",
@@ -105,96 +329,276 @@
     "julian": "terms-time:julian",
     "none": "terms-time:none",
     "cim.2.time.DateTime": "terms-time:DateTime",
-    "isOffset": "terms-time:isOffset",
+    "isOffset": {
+        "@id": "terms-time:isOffset",
+        "@type": "xsd:float"
+    },
     "cim.2.time.DatetimeSet": "terms-time:DatetimeSet",
-    "length": "terms-time:length",
+    "length": {
+        "@id": "terms-time:length",
+        "@type": "@id"
+    },
     "cim.2.time.IrregularDateset": "terms-time:IrregularDateset",
-    "dateSet": "terms-time:dateSet",
+    "dateSet": {
+        "@id": "terms-time:dateSet",
+        "@type": "xsd:string"
+    },
     "cim.2.time.PeriodDateTypes": "terms-time:PeriodDateType",
     "unused": "terms-time:unused",
     "from": "terms-time:from",
     "to": "terms-time:to",
     "cim.2.time.RegularTimeset": "terms-time:RegularTimeset",
-    "increment": "terms-time:increment",
+    "increment": {
+        "@id": "terms-time:increment",
+        "@type": "@id"
+    },
     "cim.2.time.TimePeriod": "terms-time:TimePeriod",
-    "dateType": "terms-time:dateType",
+    "dateType": {
+        "@id": "terms-time:dateType",
+        "@type": "@id"
+    },
     "cim.2.time.TimeUnits": "terms-time:TimeUnit",
     "years": "terms-time:years",
     "months": "terms-time:months",
     "days": "terms-time:days",
     "seconds": "terms-time:seconds",
     "cim.2.activity.Activity": "terms-activity:Activity",
-    "alternativeNames": "terms-activity:alternativeName",
-    "duration": "terms-activity:duration",
-    "internalName": "terms-activity:internalName",
-    "previouslyKnownAs": "terms-activity:previouslyKnownAs",
+    "alternativeNames": {
+        "@id": "terms-activity:alternativeName",
+        "@type": "xsd:string"
+    },
+    "duration": {
+        "@id": "terms-activity:duration",
+        "@type": "@id"
+    },
+    "internalName": {
+        "@id": "terms-activity:internalName",
+        "@type": "xsd:string"
+    },
+    "previouslyKnownAs": {
+        "@id": "terms-activity:previouslyKnownAs",
+        "@type": "xsd:string"
+    },
     "cim.2.activity.AxisMember": "terms-activity:AxisMember",
-    "extraDetail": "terms-activity:extraDetail",
-    "index": "terms-activity:index",
-    "conformance": "terms-activity:conformance",
-    "axis": "terms-activity:axis",
+    "extraDetail": {
+        "@id": "terms-activity:extraDetail",
+        "@type": "xsd:string"
+    },
+    "index": {
+        "@id": "terms-activity:index",
+        "@type": "xsd:integer"
+    },
+    "conformance": {
+        "@id": "terms-activity:conformance",
+        "@type": "@id"
+    },
+    "axis": {
+        "@id": "terms-activity:axis",
+        "@type": "@id"
+    },
     "cim.2.activity.Conformance": "terms-activity:Conformance",
-    "conformanceAchieved": "terms-activity:conformanceAchieved",
-    "datasets": "terms-activity:dataset",
-    "targetRequirement": "terms-activity:targetRequirement",
-    "models": "terms-activity:model",
+    "conformanceAchieved": {
+        "@id": "terms-activity:conformanceAchieved",
+        "@type": "@id"
+    },
+    "datasets": {
+        "@id": "terms-activity:dataset",
+        "@type": "@id"
+    },
+    "targetRequirement": {
+        "@id": "terms-activity:targetRequirement",
+        "@type": "@id"
+    },
+    "models": {
+        "@id": "terms-activity:model",
+        "@type": "@id"
+    },
     "cim.2.activity.ConformanceType": "terms-activity:ConformanceType",
     "Conformed": "terms-activity:Conformed",
     "Partially Conformed": "terms-activity:Partially Conformed",
     "Not Conformed": "terms-activity:Not Conformed",
     "Not Applicable": "terms-activity:Not Applicable",
     "cim.2.activity.Ensemble": "terms-activity:Ensemble",
-    "commonConformances": "terms-activity:commonConformance",
-    "representativePerformance": "terms-activity:representativePerformance",
-    "ensembleAxes": "terms-activity:ensembleAxe",
-    "uberEnsembles": "terms-activity:uberEnsemble",
-    "experiments": "terms-activity:experiment",
-    "members": "terms-activity:member",
+    "commonConformances": {
+        "@id": "terms-activity:commonConformance",
+        "@type": "@id"
+    },
+    "representativePerformance": {
+        "@id": "terms-activity:representativePerformance",
+        "@type": "@id"
+    },
+    "ensembleAxes": {
+        "@id": "terms-activity:ensembleAxe",
+        "@type": "@id"
+    },
+    "uberEnsembles": {
+        "@id": "terms-activity:uberEnsemble",
+        "@type": "@id"
+    },
+    "experiments": {
+        "@id": "terms-activity:experiment",
+        "@type": "@id"
+    },
+    "members": {
+        "@id": "terms-activity:member",
+        "@type": "@id"
+    },
     "cim.2.activity.EnsembleAxis": "terms-activity:EnsembleAxis",
-    "shortIdentifier": "terms-activity:shortIdentifier",
+    "shortIdentifier": {
+        "@id": "terms-activity:shortIdentifier",
+        "@type": "xsd:string"
+    },
     "cim.2.activity.ChildSimulation": "terms-activity:ChildSimulation",
-    "branchMethod": "terms-activity:branchMethod",
-    "branchTimeInChild": "terms-activity:branchTimeInChild",
-    "branchTimeInParent": "terms-activity:branchTimeInParent",
-    "parent": "terms-activity:parent",
+    "branchMethod": {
+        "@id": "terms-activity:branchMethod",
+        "@type": "xsd:string"
+    },
+    "branchTimeInChild": {
+        "@id": "terms-activity:branchTimeInChild",
+        "@type": "@id"
+    },
+    "branchTimeInParent": {
+        "@id": "terms-activity:branchTimeInParent",
+        "@type": "@id"
+    },
+    "parent": {
+        "@id": "terms-activity:parent",
+        "@type": "@id"
+    },
     "cim.2.activity.Simulation": "terms-activity:Simulation",
-    "partOfProject": "terms-activity:partOfProject",
-    "ranForExperiments": "terms-activity:ranForExperiment",
-    "subExperiment": "terms-activity:subExperiment",
-    "used": "terms-activity:used",
-    "primaryEnsemble": "terms-activity:primaryEnsemble",
-    "parentOf": "terms-activity:parentOf",
-    "produced": "terms-activity:produced",
-    "hadPerformance": "terms-activity:hadPerformance",
-    "ranOn": "terms-activity:ranOn",
-    "errata": "terms-activity:errata",
-    "ensembleID": "terms-activity:ensembleID",
-    "startTime": "terms-activity:startTime",
-    "endTime": "terms-activity:endTime",
-    "extraAttributes": "terms-activity:extraAttribute",
+    "partOfProject": {
+        "@id": "terms-activity:partOfProject",
+        "@type": "@id"
+    },
+    "ranForExperiments": {
+        "@id": "terms-activity:ranForExperiment",
+        "@type": "@id"
+    },
+    "subExperiment": {
+        "@id": "terms-activity:subExperiment",
+        "@type": "@id"
+    },
+    "used": {
+        "@id": "terms-activity:used",
+        "@type": "@id"
+    },
+    "primaryEnsemble": {
+        "@id": "terms-activity:primaryEnsemble",
+        "@type": "@id"
+    },
+    "parentOf": {
+        "@id": "terms-activity:parentOf",
+        "@type": "@id"
+    },
+    "produced": {
+        "@id": "terms-activity:produced",
+        "@type": "@id"
+    },
+    "hadPerformance": {
+        "@id": "terms-activity:hadPerformance",
+        "@type": "@id"
+    },
+    "ranOn": {
+        "@id": "terms-activity:ranOn",
+        "@type": "@id"
+    },
+    "errata": {
+        "@id": "terms-activity:errata",
+        "@type": "@id"
+    },
+    "ensembleID": {
+        "@id": "terms-activity:ensembleID",
+        "@type": "@id"
+    },
+    "startTime": {
+        "@id": "terms-activity:startTime",
+        "@type": "@id"
+    },
+    "endTime": {
+        "@id": "terms-activity:endTime",
+        "@type": "@id"
+    },
+    "extraAttributes": {
+        "@id": "terms-activity:extraAttribute",
+        "@type": "@id"
+    },
     "cim.2.activity.UberEnsemble": "terms-activity:UberEnsemble",
-    "childEnsembles": "terms-activity:childEnsemble",
+    "childEnsembles": {
+        "@id": "terms-activity:childEnsemble",
+        "@type": "@id"
+    },
     "cim.2.cmip.CmipDataset": "terms-cmip:CmipDataset",
-    "drsLocation": "terms-cmip:drsLocation",
-    "originatingSimulation": "terms-cmip:originatingSimulation",
+    "drsLocation": {
+        "@id": "terms-cmip:drsLocation",
+        "@type": "@id"
+    },
+    "originatingSimulation": {
+        "@id": "terms-cmip:originatingSimulation",
+        "@type": "@id"
+    },
     "cim.2.cmip.CmipSimulation": "terms-cmip:CmipSimulation",
-    "realizationIndex": "terms-cmip:realizationIndex",
-    "initializationIndex": "terms-cmip:initializationIndex",
-    "physicsIndex": "terms-cmip:physicsIndex",
-    "forcingIndex": "terms-cmip:forcingIndex",
-    "variantInfo": "terms-cmip:variantInfo",
+    "realizationIndex": {
+        "@id": "terms-cmip:realizationIndex",
+        "@type": "xsd:integer"
+    },
+    "initializationIndex": {
+        "@id": "terms-cmip:initializationIndex",
+        "@type": "xsd:integer"
+    },
+    "physicsIndex": {
+        "@id": "terms-cmip:physicsIndex",
+        "@type": "xsd:integer"
+    },
+    "forcingIndex": {
+        "@id": "terms-cmip:forcingIndex",
+        "@type": "xsd:integer"
+    },
+    "variantInfo": {
+        "@id": "terms-cmip:variantInfo",
+        "@type": "xsd:string"
+    },
     "cim.2.data.Dataset": "terms-data:Dataset",
-    "datasetType": "terms-data:datasetType",
-    "availability": "terms-data:availability",
-    "relatedToDataset": "terms-data:relatedToDataset",
-    "contains": "terms-data:contain",
-    "progress": "terms-data:progress",
-    "furtherAttributes": "terms-data:furtherAttribute",
-    "lineage": "terms-data:lineage",
+    "datasetType": {
+        "@id": "terms-data:datasetType",
+        "@type": "@id"
+    },
+    "availability": {
+        "@id": "terms-data:availability",
+        "@type": "@id"
+    },
+    "relatedToDataset": {
+        "@id": "terms-data:relatedToDataset",
+        "@type": "@id"
+    },
+    "contains": {
+        "@id": "terms-data:contain",
+        "@type": "@id"
+    },
+    "progress": {
+        "@id": "terms-data:progress",
+        "@type": "@id"
+    },
+    "furtherAttributes": {
+        "@id": "terms-data:furtherAttribute",
+        "@type": "@id"
+    },
+    "lineage": {
+        "@id": "terms-data:lineage",
+        "@type": "@id"
+    },
     "cim.2.data.VariableCollection": "terms-data:VariableCollection",
-    "collectionName": "terms-data:collectionName",
-    "variables": "terms-data:variable",
-    "geometry": "terms-data:geometry",
+    "collectionName": {
+        "@id": "terms-data:collectionName",
+        "@type": "xsd:string"
+    },
+    "variables": {
+        "@id": "terms-data:variable",
+        "@type": "xsd:string"
+    },
+    "geometry": {
+        "@id": "terms-data:geometry",
+        "@type": "@id"
+    },
     "cim.2.data.DatasetType": "terms-data:DatasetType",
     "reanalysis": "terms-data:reanalysis",
     "analysis": "terms-data:analysis",
@@ -208,12 +612,27 @@
     "unphysical": "terms-data:unphysical",
     "downscaled": "terms-data:downscaled",
     "cim.2.designing.DomainRequirements": "terms-designing:DomainRequirements",
-    "requiredExtent": "terms-designing:requiredExtent",
-    "requiredResolution": "terms-designing:requiredResolution",
+    "requiredExtent": {
+        "@id": "terms-designing:requiredExtent",
+        "@type": "@id"
+    },
+    "requiredResolution": {
+        "@id": "terms-designing:requiredResolution",
+        "@type": "@id"
+    },
     "cim.2.designing.EnsembleRequirement": "terms-designing:EnsembleRequirement",
-    "ensembleMember": "terms-designing:ensembleMember",
-    "ensembleType": "terms-designing:ensembleType",
-    "minimumSize": "terms-designing:minimumSize",
+    "ensembleMember": {
+        "@id": "terms-designing:ensembleMember",
+        "@type": "@id"
+    },
+    "ensembleType": {
+        "@id": "terms-designing:ensembleType",
+        "@type": "@id"
+    },
+    "minimumSize": {
+        "@id": "terms-designing:minimumSize",
+        "@type": "xsd:integer"
+    },
     "cim.2.designing.EnsembleTypes": "terms-designing:EnsembleType",
     "Perturbed Physics": "terms-designing:Perturbed Physics",
     "Initialisation Method": "terms-designing:Initialisation Method",
@@ -223,32 +642,86 @@
     "Resolution": "terms-designing:Resolution",
     "Driven": "terms-designing:Driven",
     "cim.2.designing.ForcingConstraint": "terms-designing:ForcingConstraint",
-    "additionalConstraint": "terms-designing:additionalConstraint",
-    "category": "terms-designing:category",
-    "code": "terms-designing:code",
-    "dataLink": "terms-designing:dataLink",
-    "forcingType": "terms-designing:forcingType",
-    "group": "terms-designing:group",
-    "origin": "terms-designing:origin",
+    "additionalConstraint": {
+        "@id": "terms-designing:additionalConstraint",
+        "@type": "xsd:string"
+    },
+    "category": {
+        "@id": "terms-designing:category",
+        "@type": "xsd:string"
+    },
+    "code": {
+        "@id": "terms-designing:code",
+        "@type": "xsd:string"
+    },
+    "dataLink": {
+        "@id": "terms-designing:dataLink",
+        "@type": "@id"
+    },
+    "forcingType": {
+        "@id": "terms-designing:forcingType",
+        "@type": "@id"
+    },
+    "group": {
+        "@id": "terms-designing:group",
+        "@type": "xsd:string"
+    },
+    "origin": {
+        "@id": "terms-designing:origin",
+        "@type": "@id"
+    },
     "cim.2.designing.ForcingTypes": "terms-designing:ForcingType",
     "historical": "terms-designing:historical",
     "idealised": "terms-designing:idealised",
     "scenario": "terms-designing:scenario",
     "driven": "terms-designing:driven",
     "cim.2.designing.InitialisationRequirement": "terms-designing:InitialisationRequirement",
-    "branchTimeInInitialisationSource": "terms-designing:branchTimeInInitialisationSource",
-    "initialiseFromData": "terms-designing:initialiseFromData",
-    "initialiseFromExperiment": "terms-designing:initialiseFromExperiment",
+    "branchTimeInInitialisationSource": {
+        "@id": "terms-designing:branchTimeInInitialisationSource",
+        "@type": "@id"
+    },
+    "initialiseFromData": {
+        "@id": "terms-designing:initialiseFromData",
+        "@type": "@id"
+    },
+    "initialiseFromExperiment": {
+        "@id": "terms-designing:initialiseFromExperiment",
+        "@type": "@id"
+    },
     "cim.2.designing.MultiEnsemble": "terms-designing:MultiEnsemble",
-    "ensembleAxis": "terms-designing:ensembleAxis",
+    "ensembleAxis": {
+        "@id": "terms-designing:ensembleAxis",
+        "@type": "@id"
+    },
     "cim.2.designing.NumericalExperiment": "terms-designing:NumericalExperiment",
-    "tier": "terms-designing:tier",
-    "relatedExperiments": "terms-designing:relatedExperiment",
-    "governingMips": "terms-designing:governingMip",
-    "relatedMips": "terms-designing:relatedMip",
-    "requiredPeriod": "terms-designing:requiredPeriod",
-    "requirements": "terms-designing:requirement",
-    "relatedObjectives": "terms-designing:relatedObjective",
+    "tier": {
+        "@id": "terms-designing:tier",
+        "@type": "xsd:integer"
+    },
+    "relatedExperiments": {
+        "@id": "terms-designing:relatedExperiment",
+        "@type": "@id"
+    },
+    "governingMips": {
+        "@id": "terms-designing:governingMip",
+        "@type": "@id"
+    },
+    "relatedMips": {
+        "@id": "terms-designing:relatedMip",
+        "@type": "@id"
+    },
+    "requiredPeriod": {
+        "@id": "terms-designing:requiredPeriod",
+        "@type": "@id"
+    },
+    "requirements": {
+        "@id": "terms-designing:requirement",
+        "@type": "@id"
+    },
+    "relatedObjectives": {
+        "@id": "terms-designing:relatedObjective",
+        "@type": "xsd:string"
+    },
     "cim.2.designing.ExperimentalRelationships": "terms-designing:ExperimentalRelationship",
     "isConstrainedBy": "terms-designing:isConstrainedBy",
     "isConstrainerOf": "terms-designing:isConstrainerOf",
@@ -258,53 +731,152 @@
     "isInitializerOf": "terms-designing:isInitializerOf",
     "isSiblingOf": "terms-designing:isSiblingOf",
     "cim.2.designing.NumericalRequirement": "terms-designing:NumericalRequirement",
-    "additionalRequirements": "terms-designing:additionalRequirement",
-    "isConformanceRequested": "terms-designing:isConformanceRequested",
-    "isConformanceInfoRequired": "terms-designing:isConformanceInfoRequired",
-    "scope": "terms-designing:scope",
+    "additionalRequirements": {
+        "@id": "terms-designing:additionalRequirement",
+        "@type": "@id"
+    },
+    "isConformanceRequested": {
+        "@id": "terms-designing:isConformanceRequested",
+        "@type": "xsd:float"
+    },
+    "isConformanceInfoRequired": {
+        "@id": "terms-designing:isConformanceInfoRequired",
+        "@type": "xsd:float"
+    },
+    "scope": {
+        "@id": "terms-designing:scope",
+        "@type": "@id"
+    },
     "cim.2.designing.NumericalRequirementScope": "terms-designing:NumericalRequirementScope",
     "mip-era": "terms-designing:mip-era",
     "mip-group": "terms-designing:mip-group",
     "mip": "terms-designing:mip",
     "experiment": "terms-shared:experiment",
     "cim.2.designing.OutputRequirement": "terms-designing:OutputRequirement",
-    "formalDataRequest": "terms-designing:formalDataRequest",
+    "formalDataRequest": {
+        "@id": "terms-designing:formalDataRequest",
+        "@type": "@id"
+    },
     "cim.2.designing.Objective": "terms-designing:Objective",
-    "requiredOutputs": "terms-designing:requiredOutput",
+    "requiredOutputs": {
+        "@id": "terms-designing:requiredOutput",
+        "@type": "@id"
+    },
     "cim.2.designing.Project": "terms-designing:Project",
-    "homepage": "terms-designing:homepage",
-    "objectives": "terms-designing:objective",
-    "previousProjects": "terms-designing:previousProject",
-    "requiredExperiments": "terms-designing:requiredExperiment",
-    "governedExperiments": "terms-designing:governedExperiment",
+    "homepage": {
+        "@id": "terms-designing:homepage",
+        "@type": "@id"
+    },
+    "objectives": {
+        "@id": "terms-designing:objective",
+        "@type": "@id"
+    },
+    "previousProjects": {
+        "@id": "terms-designing:previousProject",
+        "@type": "@id"
+    },
+    "requiredExperiments": {
+        "@id": "terms-designing:requiredExperiment",
+        "@type": "@id"
+    },
+    "governedExperiments": {
+        "@id": "terms-designing:governedExperiment",
+        "@type": "@id"
+    },
     "cim.2.designing.SimulationPlan": "terms-designing:SimulationPlan",
-    "expectedModel": "terms-designing:expectedModel",
-    "expectedPerformanceSypd": "terms-designing:expectedPerformanceSypd",
-    "expectedPlatform": "terms-designing:expectedPlatform",
-    "willSupportExperiments": "terms-designing:willSupportExperiment",
+    "expectedModel": {
+        "@id": "terms-designing:expectedModel",
+        "@type": "@id"
+    },
+    "expectedPerformanceSypd": {
+        "@id": "terms-designing:expectedPerformanceSypd",
+        "@type": "@id"
+    },
+    "expectedPlatform": {
+        "@id": "terms-designing:expectedPlatform",
+        "@type": "@id"
+    },
+    "willSupportExperiments": {
+        "@id": "terms-designing:willSupportExperiment",
+        "@type": "@id"
+    },
     "cim.2.designing.StartDateEnsemble": "terms-designing:StartDateEnsemble",
-    "ensembleMembers": "terms-designing:ensembleMembers",
+    "ensembleMembers": {
+        "@id": "terms-designing:ensembleMembers",
+        "@type": "@id"
+    },
     "cim.2.designing.TemporalConstraint": "terms-designing:TemporalConstraint",
-    "requiredCalendar": "terms-designing:requiredCalendar",
-    "requiredDuration": "terms-designing:requiredDuration",
-    "startFlexibility": "terms-designing:startFlexibility",
+    "requiredCalendar": {
+        "@id": "terms-designing:requiredCalendar",
+        "@type": "@id"
+    },
+    "requiredDuration": {
+        "@id": "terms-designing:requiredDuration",
+        "@type": "@id"
+    },
+    "startFlexibility": {
+        "@id": "terms-designing:startFlexibility",
+        "@type": "@id"
+    },
     "cim.2.drs.DrsAtomicDataset": "terms-drs:DrsAtomicDataset",
-    "frequency": "terms-drs:frequency",
-    "geographicalConstraint": "terms-drs:geographicalConstraint",
-    "mipTable": "terms-drs:mipTable",
-    "realm": "terms-drs:realm",
-    "temporalConstraint": "terms-drs:temporalConstraint",
-    "variableName": "terms-drs:variableName",
-    "versionNumber": "terms-drs:versionNumber",
+    "frequency": {
+        "@id": "terms-drs:frequency",
+        "@type": "@id"
+    },
+    "geographicalConstraint": {
+        "@id": "terms-drs:geographicalConstraint",
+        "@type": "@id"
+    },
+    "mipTable": {
+        "@id": "terms-drs:mipTable",
+        "@type": "xsd:string"
+    },
+    "realm": {
+        "@id": "terms-drs:realm",
+        "@type": "@id"
+    },
+    "temporalConstraint": {
+        "@id": "terms-drs:temporalConstraint",
+        "@type": "@id"
+    },
+    "variableName": {
+        "@id": "terms-drs:variableName",
+        "@type": "xsd:string"
+    },
+    "versionNumber": {
+        "@id": "terms-drs:versionNumber",
+        "@type": "xsd:integer"
+    },
     "cim.2.drs.DrsEnsembleIdentifier": "terms-drs:DrsEnsembleIdentifier",
-    "forcingNumber": "terms-drs:forcingNumber",
-    "initialisationMethodNumber": "terms-drs:initialisationMethodNumber",
-    "perturbationNumber": "terms-drs:perturbationNumber",
-    "realisationNumber": "terms-drs:realisationNumber",
+    "forcingNumber": {
+        "@id": "terms-drs:forcingNumber",
+        "@type": "xsd:integer"
+    },
+    "initialisationMethodNumber": {
+        "@id": "terms-drs:initialisationMethodNumber",
+        "@type": "xsd:integer"
+    },
+    "perturbationNumber": {
+        "@id": "terms-drs:perturbationNumber",
+        "@type": "xsd:integer"
+    },
+    "realisationNumber": {
+        "@id": "terms-drs:realisationNumber",
+        "@type": "xsd:integer"
+    },
     "cim.2.drs.DrsExperiment": "terms-drs:DrsExperiment",
-    "axisIdentifer": "terms-drs:axisIdentifer",
-    "axisType": "terms-drs:axisType",
-    "family": "terms-drs:family",
+    "axisIdentifer": {
+        "@id": "terms-drs:axisIdentifer",
+        "@type": "@id"
+    },
+    "axisType": {
+        "@id": "terms-drs:axisType",
+        "@type": "@id"
+    },
+    "family": {
+        "@id": "terms-drs:family",
+        "@type": "xsd:string"
+    },
     "cim.2.drs.DrsFrequencyTypes": "terms-drs:DrsFrequencyType",
     "yr": "terms-drs:yr",
     "mon": "terms-drs:mon",
@@ -315,9 +887,18 @@
     "monClim": "terms-drs:monClim",
     "fx": "terms-drs:fx",
     "cim.2.drs.DrsGeographicalIndicator": "terms-drs:DrsGeographicalIndicator",
-    "boundingBox": "terms-drs:boundingBox",
-    "operator": "terms-drs:operator",
-    "spatialDomain": "terms-drs:spatialDomain",
+    "boundingBox": {
+        "@id": "terms-drs:boundingBox",
+        "@type": "xsd:string"
+    },
+    "operator": {
+        "@id": "terms-drs:operator",
+        "@type": "@id"
+    },
+    "spatialDomain": {
+        "@id": "terms-drs:spatialDomain",
+        "@type": "xsd:string"
+    },
     "cim.2.drs.DrsGeographicalOperators": "terms-drs:DrsGeographicalOperator",
     "zonalavg": "terms-drs:zonalavg",
     "lnd-zonalavg": "terms-drs:lnd-zonalavg",
@@ -336,49 +917,136 @@
     "atmosChem": "terms-drs:atmosChem",
     "ocnBgchem": "terms-drs:ocnBgchem",
     "cim.2.drs.DrsSimulationIdentifier": "terms-drs:DrsSimulationIdentifier",
-    "runVariantID": "terms-drs:runVariantID",
+    "runVariantID": {
+        "@id": "terms-drs:runVariantID",
+        "@type": "@id"
+    },
     "cim.2.drs.DrsTemporalIdentifier": "terms-drs:DrsTemporalIdentifier",
-    "end": "terms-drs:end",
-    "start": "terms-drs:start",
-    "suffix": "terms-drs:suffix",
+    "end": {
+        "@id": "terms-drs:end",
+        "@type": "xsd:string"
+    },
+    "start": {
+        "@id": "terms-drs:start",
+        "@type": "xsd:string"
+    },
+    "suffix": {
+        "@id": "terms-drs:suffix",
+        "@type": "@id"
+    },
     "cim.2.drs.DrsTimeSuffixes": "terms-drs:DrsTimeSuffixe",
     "avg": "terms-drs:avg",
     "clim": "terms-drs:clim",
     "cim.2.iso.Lineage": "terms-iso:Lineage",
-    "statement": "terms-iso:statement",
-    "processStep": "terms-iso:processStep",
+    "statement": {
+        "@id": "terms-iso:statement",
+        "@type": "xsd:string"
+    },
+    "processStep": {
+        "@id": "terms-iso:processStep",
+        "@type": "@id"
+    },
     "cim.2.iso.ProcessStep": "terms-iso:ProcessStep",
-    "executionDateTime": "terms-iso:executionDateTime",
+    "executionDateTime": {
+        "@id": "terms-iso:executionDateTime",
+        "@type": "@id"
+    },
     "processor": "terms-shared:processor",
-    "reference": "terms-iso:reference",
-    "processingInformation": "terms-iso:processingInformation",
-    "report": "terms-iso:report",
+    "reference": {
+        "@id": "terms-iso:reference",
+        "@type": "@id"
+    },
+    "processingInformation": {
+        "@id": "terms-iso:processingInformation",
+        "@type": "@id"
+    },
+    "report": {
+        "@id": "terms-iso:report",
+        "@type": "@id"
+    },
     "cim.2.iso.Processing": "terms-iso:Processing",
-    "softwareReference": "terms-iso:softwareReference",
-    "procedureDescription": "terms-iso:procedureDescription",
-    "runtimeParameters": "terms-iso:runtimeParameters",
-    "algorithm": "terms-iso:algorithm",
+    "softwareReference": {
+        "@id": "terms-iso:softwareReference",
+        "@type": "@id"
+    },
+    "procedureDescription": {
+        "@id": "terms-iso:procedureDescription",
+        "@type": "xsd:string"
+    },
+    "runtimeParameters": {
+        "@id": "terms-iso:runtimeParameters",
+        "@type": "xsd:string"
+    },
+    "algorithm": {
+        "@id": "terms-iso:algorithm",
+        "@type": "@id"
+    },
     "cim.2.iso.ProcessStepReport": "terms-iso:ProcessStepReport",
-    "link": "terms-iso:link",
+    "link": {
+        "@id": "terms-iso:link",
+        "@type": "@id"
+    },
     "cim.2.iso.Algorithm": "terms-iso:Algorithm",
-    "citation": "terms-iso:citation",
+    "citation": {
+        "@id": "terms-iso:citation",
+        "@type": "@id"
+    },
     "cim.2.iso.QualityReport": "terms-iso:QualityReport",
-    "target": "terms-iso:target",
-    "issues": "terms-iso:issue",
-    "reports": "terms-iso:report",
+    "target": {
+        "@id": "terms-iso:target",
+        "@type": "@id"
+    },
+    "issues": {
+        "@id": "terms-iso:issue",
+        "@type": "@id"
+    },
+    "reports": {
+        "@id": "terms-iso:report",
+        "@type": "@id"
+    },
     "cim.2.iso.QualityIssue": "terms-iso:QualityIssue",
-    "summary": "terms-iso:summary",
-    "reporter": "terms-iso:reporter",
-    "trackedIssue": "terms-iso:trackedIssue",
+    "summary": {
+        "@id": "terms-iso:summary",
+        "@type": "xsd:string"
+    },
+    "reporter": {
+        "@id": "terms-iso:reporter",
+        "@type": "@id"
+    },
+    "trackedIssue": {
+        "@id": "terms-iso:trackedIssue",
+        "@type": "@id"
+    },
     "cim.2.iso.QualityEvaluationResult": "terms-iso:QualityEvaluationResult",
-    "evaluationProcedure": "terms-iso:evaluationProcedure",
-    "specification": "terms-iso:specification",
-    "evaluator": "terms-iso:evaluator",
-    "summaryResult": "terms-iso:summaryResult",
-    "passed": "terms-iso:passed",
-    "results": "terms-iso:result",
+    "evaluationProcedure": {
+        "@id": "terms-iso:evaluationProcedure",
+        "@type": "xsd:string"
+    },
+    "specification": {
+        "@id": "terms-iso:specification",
+        "@type": "@id"
+    },
+    "evaluator": {
+        "@id": "terms-iso:evaluator",
+        "@type": "@id"
+    },
+    "summaryResult": {
+        "@id": "terms-iso:summaryResult",
+        "@type": "xsd:string"
+    },
+    "passed": {
+        "@id": "terms-iso:passed",
+        "@type": "xsd:float"
+    },
+    "results": {
+        "@id": "terms-iso:result",
+        "@type": "@id"
+    },
     "cim.2.iso.QualityEvaluationOutput": "terms-iso:QualityEvaluationOutput",
-    "outputType": "terms-iso:outputType",
+    "outputType": {
+        "@id": "terms-iso:outputType",
+        "@type": "@id"
+    },
     "cim.2.iso.DsInitiativeTypecode": "terms-iso:DsInitiativeTypecode",
     "campaign": "terms-iso:campaign",
     "collection": "terms-iso:collection",
@@ -387,7 +1055,10 @@
     "mission": "terms-iso:mission",
     "sensor": "terms-iso:sensor",
     "operation": "terms-iso:operation",
-    "platform": "terms-platform:platform",
+    "platform": {
+        "@id": "terms-platform:platform",
+        "@type": "@id"
+    },
     "process": "terms-iso:process",
     "program": "terms-iso:program",
     "study": "terms-iso:study",
@@ -409,60 +1080,198 @@
     "document": "terms-iso:document",
     "dataset": "terms-iso:dataset",
     "cim.2.platform.ComputePool": "terms-platform:ComputePool",
-    "acceleratorType": "terms-platform:acceleratorType",
-    "acceleratorsPerNode": "terms-platform:acceleratorsPerNode",
-    "clockCycleConcurrency": "terms-platform:clockCycleConcurrency",
-    "clockSpeed": "terms-platform:clockSpeed",
-    "computeCoresPerNode": "terms-platform:computeCoresPerNode",
-    "cpuType": "terms-platform:cpuType",
-    "memoryPerNode": "terms-platform:memoryPerNode",
-    "modelNumber": "terms-platform:modelNumber",
-    "numberOfNodes": "terms-platform:numberOfNodes",
-    "vendor": "terms-platform:vendor",
-    "networkCardsPerNode": "terms-platform:networkCardsPerNode",
+    "acceleratorType": {
+        "@id": "terms-platform:acceleratorType",
+        "@type": "xsd:string"
+    },
+    "acceleratorsPerNode": {
+        "@id": "terms-platform:acceleratorsPerNode",
+        "@type": "xsd:integer"
+    },
+    "clockCycleConcurrency": {
+        "@id": "terms-platform:clockCycleConcurrency",
+        "@type": "xsd:integer"
+    },
+    "clockSpeed": {
+        "@id": "terms-platform:clockSpeed",
+        "@type": "@id"
+    },
+    "computeCoresPerNode": {
+        "@id": "terms-platform:computeCoresPerNode",
+        "@type": "xsd:integer"
+    },
+    "cpuType": {
+        "@id": "terms-platform:cpuType",
+        "@type": "xsd:string"
+    },
+    "memoryPerNode": {
+        "@id": "terms-platform:memoryPerNode",
+        "@type": "@id"
+    },
+    "modelNumber": {
+        "@id": "terms-platform:modelNumber",
+        "@type": "xsd:string"
+    },
+    "numberOfNodes": {
+        "@id": "terms-platform:numberOfNodes",
+        "@type": "xsd:integer"
+    },
+    "vendor": {
+        "@id": "terms-platform:vendor",
+        "@type": "@id"
+    },
+    "networkCardsPerNode": {
+        "@id": "terms-platform:networkCardsPerNode",
+        "@type": "@id"
+    },
     "cim.2.platform.Interconnect": "terms-platform:Interconnect",
-    "topology": "terms-platform:topology",
+    "topology": {
+        "@id": "terms-platform:topology",
+        "@type": "xsd:string"
+    },
     "cim.2.platform.Nic": "terms-platform:Nic",
-    "bandwidth": "terms-platform:bandwidth",
+    "bandwidth": {
+        "@id": "terms-platform:bandwidth",
+        "@type": "@id"
+    },
     "cim.2.platform.Machine": "terms-platform:Machine",
-    "peakPerformance": "terms-platform:peakPerformance",
-    "linpackPerformance": "terms-platform:linpackPerformance",
+    "peakPerformance": {
+        "@id": "terms-platform:peakPerformance",
+        "@type": "@id"
+    },
+    "linpackPerformance": {
+        "@id": "terms-platform:linpackPerformance",
+        "@type": "@id"
+    },
     "cim.2.platform.Partition": "terms-platform:Partition",
-    "computePools": "terms-platform:computePool",
-    "interconnect": "terms-platform:interconnect",
-    "onlineDocumentation": "terms-platform:onlineDocumentation",
-    "operatingSystem": "terms-platform:operatingSystem",
-    "partition": "terms-platform:partition",
-    "storagePools": "terms-platform:storagePool",
-    "whenAvailable": "terms-platform:whenAvailable",
+    "computePools": {
+        "@id": "terms-platform:computePool",
+        "@type": "@id"
+    },
+    "interconnect": {
+        "@id": "terms-platform:interconnect",
+        "@type": "@id"
+    },
+    "onlineDocumentation": {
+        "@id": "terms-platform:onlineDocumentation",
+        "@type": "@id"
+    },
+    "operatingSystem": {
+        "@id": "terms-platform:operatingSystem",
+        "@type": "xsd:string"
+    },
+    "partition": {
+        "@id": "terms-platform:partition",
+        "@type": "@id"
+    },
+    "storagePools": {
+        "@id": "terms-platform:storagePool",
+        "@type": "@id"
+    },
+    "whenAvailable": {
+        "@id": "terms-platform:whenAvailable",
+        "@type": "@id"
+    },
     "cim.2.platform.Performance": "terms-platform:Performance",
-    "resolution": "terms-platform:resolution",
-    "complexity": "terms-platform:complexity",
-    "compiler": "terms-platform:compiler",
-    "simulatedYearsPerDay": "terms-platform:simulatedYearsPerDay",
-    "actualSimulatedYearsPerDay": "terms-platform:actualSimulatedYearsPerDay",
-    "coreHoursPerSimulatedYear": "terms-platform:coreHoursPerSimulatedYear",
-    "joulesPerSimulatedYear": "terms-platform:joulesPerSimulatedYear",
-    "parallelisation": "terms-platform:parallelisation",
-    "furtherDetail": "terms-platform:furtherDetail",
-    "subcomponentPerformance": "terms-platform:subcomponentPerformance",
+    "resolution": {
+        "@id": "terms-platform:resolution",
+        "@type": "xsd:integer"
+    },
+    "complexity": {
+        "@id": "terms-platform:complexity",
+        "@type": "xsd:integer"
+    },
+    "compiler": {
+        "@id": "terms-platform:compiler",
+        "@type": "xsd:string"
+    },
+    "simulatedYearsPerDay": {
+        "@id": "terms-platform:simulatedYearsPerDay",
+        "@type": "@id"
+    },
+    "actualSimulatedYearsPerDay": {
+        "@id": "terms-platform:actualSimulatedYearsPerDay",
+        "@type": "@id"
+    },
+    "coreHoursPerSimulatedYear": {
+        "@id": "terms-platform:coreHoursPerSimulatedYear",
+        "@type": "@id"
+    },
+    "joulesPerSimulatedYear": {
+        "@id": "terms-platform:joulesPerSimulatedYear",
+        "@type": "@id"
+    },
+    "parallelisation": {
+        "@id": "terms-platform:parallelisation",
+        "@type": "@id"
+    },
+    "furtherDetail": {
+        "@id": "terms-platform:furtherDetail",
+        "@type": "@id"
+    },
+    "subcomponentPerformance": {
+        "@id": "terms-platform:subcomponentPerformance",
+        "@type": "@id"
+    },
     "cim.2.platform.PerformanceDetail": "terms-platform:PerformanceDetail",
-    "couplingCost": "terms-platform:couplingCost",
-    "memoryBloat": "terms-platform:memoryBloat",
-    "dataOutputCost": "terms-platform:dataOutputCost",
-    "dataIntensity": "terms-platform:dataIntensity",
+    "couplingCost": {
+        "@id": "terms-platform:couplingCost",
+        "@type": "@id"
+    },
+    "memoryBloat": {
+        "@id": "terms-platform:memoryBloat",
+        "@type": "@id"
+    },
+    "dataOutputCost": {
+        "@id": "terms-platform:dataOutputCost",
+        "@type": "@id"
+    },
+    "dataIntensity": {
+        "@id": "terms-platform:dataIntensity",
+        "@type": "@id"
+    },
     "cim.2.platform.ProjectCost": "terms-platform:ProjectCost",
-    "activity": "terms-platform:activity",
-    "usefulYears": "terms-platform:usefulYears",
-    "usefulData": "terms-platform:usefulData",
-    "usefulCoreHours": "terms-platform:usefulCoreHours",
-    "actualYears": "terms-platform:actualYears",
-    "peakData": "terms-platform:peakData",
-    "totalCoreHours": "terms-platform:totalCoreHours",
-    "totalEnergyCost": "terms-platform:totalEnergyCost",
+    "activity": {
+        "@id": "terms-platform:activity",
+        "@type": "@id"
+    },
+    "usefulYears": {
+        "@id": "terms-platform:usefulYears",
+        "@type": "xsd:integer"
+    },
+    "usefulData": {
+        "@id": "terms-platform:usefulData",
+        "@type": "@id"
+    },
+    "usefulCoreHours": {
+        "@id": "terms-platform:usefulCoreHours",
+        "@type": "xsd:integer"
+    },
+    "actualYears": {
+        "@id": "terms-platform:actualYears",
+        "@type": "xsd:integer"
+    },
+    "peakData": {
+        "@id": "terms-platform:peakData",
+        "@type": "@id"
+    },
+    "totalCoreHours": {
+        "@id": "terms-platform:totalCoreHours",
+        "@type": "xsd:integer"
+    },
+    "totalEnergyCost": {
+        "@id": "terms-platform:totalEnergyCost",
+        "@type": "@id"
+    },
     "cim.2.platform.StoragePool": "terms-platform:StoragePool",
-    "storagePoolType": "terms-platform:storagePoolType",
-    "fileSystemSizes": "terms-platform:fileSystemSize",
+    "storagePoolType": {
+        "@id": "terms-platform:storagePoolType",
+        "@type": "@id"
+    },
+    "fileSystemSizes": {
+        "@id": "terms-platform:fileSystemSize",
+        "@type": "@id"
+    },
     "cim.2.platform.StorageSystems": "terms-platform:StorageSystem",
     "Lustre": "terms-platform:Lustre",
     "GPFS": "terms-platform:GPFS",
@@ -493,33 +1302,99 @@
     "Process": "terms-science:Process",
     "Other": "terms-science:Other",
     "cim.2.science.Model": "terms-science:Model",
-    "modelType": "terms-science:modelType",
-    "keyProperties": "terms-science:keyProperties",
-    "activityProperties": "terms-science:activityProperty",
-    "realms": "terms-science:realm",
-    "realmCoupling": "terms-science:realmCoupling",
-    "coupledComponents": "terms-science:coupledComponent",
-    "coupler": "terms-science:coupler",
-    "internalSoftwareComponents": "terms-science:internalSoftwareComponent",
+    "modelType": {
+        "@id": "terms-science:modelType",
+        "@type": "@id"
+    },
+    "keyProperties": {
+        "@id": "terms-science:keyProperties",
+        "@type": "@id"
+    },
+    "activityProperties": {
+        "@id": "terms-science:activityProperty",
+        "@type": "@id"
+    },
+    "realms": {
+        "@id": "terms-science:realm",
+        "@type": "@id"
+    },
+    "realmCoupling": {
+        "@id": "terms-science:realmCoupling",
+        "@type": "@id"
+    },
+    "coupledComponents": {
+        "@id": "terms-science:coupledComponent",
+        "@type": "@id"
+    },
+    "coupler": {
+        "@id": "terms-science:coupler",
+        "@type": "@id"
+    },
+    "internalSoftwareComponents": {
+        "@id": "terms-science:internalSoftwareComponent",
+        "@type": "@id"
+    },
     "cim.2.science.Realm": "terms-science:Realm",
-    "processes": "terms-science:processe",
-    "softwareFrameworks": "terms-science:softwareFramework",
+    "processes": {
+        "@id": "terms-science:processe",
+        "@type": "@id"
+    },
+    "softwareFrameworks": {
+        "@id": "terms-science:softwareFramework",
+        "@type": "@id"
+    },
     "cim.2.science.RealmCoupling": "terms-science:RealmCoupling",
-    "variable": "terms-science:variable",
-    "sourceRealm": "terms-science:sourceRealm",
-    "targetRealm": "terms-science:targetRealm",
-    "timeFrequency": "terms-science:timeFrequency",
-    "couplingDetails": "terms-science:couplingDetails",
+    "variable": {
+        "@id": "terms-science:variable",
+        "@type": "xsd:string"
+    },
+    "sourceRealm": {
+        "@id": "terms-science:sourceRealm",
+        "@type": "xsd:string"
+    },
+    "targetRealm": {
+        "@id": "terms-science:targetRealm",
+        "@type": "xsd:string"
+    },
+    "timeFrequency": {
+        "@id": "terms-science:timeFrequency",
+        "@type": "xsd:string"
+    },
+    "couplingDetails": {
+        "@id": "terms-science:couplingDetails",
+        "@type": "xsd:string"
+    },
     "cim.2.science.Topic": "terms-science:Topic",
-    "overview": "terms-science:overview",
-    "properties": "terms-science:property",
-    "propertySets": "terms-science:propertySet",
-    "qcStatus": "terms-science:qcStatus",
-    "specializationID": "terms-science:specializationID",
-    "subTopics": "terms-science:subTopic",
+    "overview": {
+        "@id": "terms-science:overview",
+        "@type": "xsd:string"
+    },
+    "properties": {
+        "@id": "terms-science:property",
+        "@type": "@id"
+    },
+    "propertySets": {
+        "@id": "terms-science:propertySet",
+        "@type": "@id"
+    },
+    "qcStatus": {
+        "@id": "terms-science:qcStatus",
+        "@type": "xsd:integer"
+    },
+    "specializationID": {
+        "@id": "terms-science:specializationID",
+        "@type": "xsd:string"
+    },
+    "subTopics": {
+        "@id": "terms-science:subTopic",
+        "@type": "@id"
+    },
     "cim.2.science.TopicPropertySet": "terms-science:TopicPropertySet",
     "cim.2.science.TopicProperty": "terms-science:TopicProperty",
-    "values": "terms-science:value",
+    "values": {
+        "@id": "terms-science:value",
+        "@type": "xsd:string"
+    },
     "cim.2.shared.TextBlob": "terms-shared:TextBlob",
     "cim.2.shared.Citation": "terms-shared:Citation",
     "cim.2.shared.ExtraAttribute": "terms-shared:ExtraAttribute",
@@ -558,32 +1433,89 @@
     "cim.2.shared.DocReference": "terms-shared:DocReference",
     "cim.2.shared.FormalAssociation": "terms-shared:FormalAssociation",
     "cim.2.software.ComponentBase": "terms-software:ComponentBase",
-    "canonicalID": "terms-software:canonicalID",
-    "developmentHistory": "terms-software:developmentHistory",
-    "releaseDate": "terms-software:releaseDate",
-    "repository": "terms-software:repository",
+    "canonicalID": {
+        "@id": "terms-software:canonicalID",
+        "@type": "xsd:string"
+    },
+    "developmentHistory": {
+        "@id": "terms-software:developmentHistory",
+        "@type": "@id"
+    },
+    "releaseDate": {
+        "@id": "terms-software:releaseDate",
+        "@type": "@id"
+    },
+    "repository": {
+        "@id": "terms-software:repository",
+        "@type": "@id"
+    },
     "cim.2.software.Implementation": "terms-software:Implementation",
     "cim.2.software.Composition": "terms-software:Composition",
-    "couplings": "terms-software:coupling",
+    "couplings": {
+        "@id": "terms-software:coupling",
+        "@type": "xsd:string"
+    },
     "cim.2.software.DevelopmentPath": "terms-software:DevelopmentPath",
-    "consortiumName": "terms-software:consortiumName",
-    "creators": "terms-software:creator",
-    "wasDevelopedInHouse": "terms-software:wasDevelopedInHouse",
-    "fundingSources": "terms-software:fundingSource",
-    "previousVersion": "terms-software:previousVersion",
+    "consortiumName": {
+        "@id": "terms-software:consortiumName",
+        "@type": "xsd:string"
+    },
+    "creators": {
+        "@id": "terms-software:creator",
+        "@type": "@id"
+    },
+    "wasDevelopedInHouse": {
+        "@id": "terms-software:wasDevelopedInHouse",
+        "@type": "xsd:float"
+    },
+    "fundingSources": {
+        "@id": "terms-software:fundingSource",
+        "@type": "@id"
+    },
+    "previousVersion": {
+        "@id": "terms-software:previousVersion",
+        "@type": "xsd:string"
+    },
     "cim.2.software.EntryPoint": "terms-software:EntryPoint",
     "cim.2.software.Gridspec": "terms-software:Gridspec",
     "cim.2.software.SoftwareComponent": "terms-software:SoftwareComponent",
-    "composition": "terms-software:composition",
-    "connectionPoints": "terms-software:connectionPoint",
-    "couplingFramework": "terms-software:couplingFramework",
-    "dependencies": "terms-software:dependency",
-    "language": "terms-software:language",
-    "license": "terms-software:license",
-    "subComponents": "terms-software:subComponent",
-    "dependsOn": "terms-software:dependsOn",
+    "composition": {
+        "@id": "terms-software:composition",
+        "@type": "@id"
+    },
+    "connectionPoints": {
+        "@id": "terms-software:connectionPoint",
+        "@type": "@id"
+    },
+    "couplingFramework": {
+        "@id": "terms-software:couplingFramework",
+        "@type": "@id"
+    },
+    "dependencies": {
+        "@id": "terms-software:dependency",
+        "@type": "@id"
+    },
+    "language": {
+        "@id": "terms-software:language",
+        "@type": "@id"
+    },
+    "license": {
+        "@id": "terms-software:license",
+        "@type": "xsd:string"
+    },
+    "subComponents": {
+        "@id": "terms-software:subComponent",
+        "@type": "@id"
+    },
+    "dependsOn": {
+        "@id": "terms-software:dependsOn",
+        "@type": "@id"
+    },
     "cim.2.software.Variable": "terms-software:Variable",
-    "isPrognostic": "terms-software:isPrognostic",
+    "isPrognostic": {
+        "@id": "terms-software:isPrognostic",
+        "@type": "xsd:float"
+    },
     "cim.2.software.CouplingFramework": "terms-software:CouplingFramework",
     "OASIS": "terms-software:OASIS",
     "OASIS3-MCT": "terms-software:OASIS3-MCT",
@@ -591,7 +1523,6 @@
     "NUOPC": "terms-software:NUOPC",
     "Bespoke": "terms-software:Bespoke",
     "Unknown": "terms-software:Unknown",
-    "None": null,
     "cim.2.software.ProgrammingLanguage": "terms-software:ProgrammingLanguage",
     "Fortran": "terms-software:Fortran",
     "C": "terms-software:C",
