@@ -2,6 +2,7 @@ import json
 import jq
 import esdoc
 from .py_cim_to_json import cim_obj_to_jsonable_obj
+from rdflib import Graph
 
 def run():
     json_obj = cim_obj_to_jsonable_obj(esdoc)
@@ -20,6 +21,25 @@ def run():
         
     with open('meta/shacl.jsonld', 'w') as f:
         json.dump(output["@shapes"], f, indent=4)
-        
+    shacl_graph = Graph()
+    shacl_graph.parse(
+        data=json.dumps(output["@shapes"]),
+        format='json-ld'
+    )
+    shacl_graph.serialize(
+        destination='meta/shacl.ttl',
+        format='turtle'
+    )
+
     with open('meta/rdfs.jsonld', 'w') as f:
         json.dump(output["@rdfs"], f, indent=4)
+    rdfs_graph = Graph()
+    rdfs_graph.parse(
+        data=json.dumps(output["@rdfs"]),
+        format='json-ld'
+    )
+    rdfs_graph.serialize(
+        destination='meta/rdfs.ttl',
+        format='turtle'
+    )
+
