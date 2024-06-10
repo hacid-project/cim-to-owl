@@ -1,0 +1,2464 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix terms-activity: <https://example.org/terms/activity/> .
+@prefix terms-cmip: <https://example.org/terms/cmip/> .
+@prefix terms-data: <https://example.org/terms/data/> .
+@prefix terms-designing: <https://example.org/terms/designing/> .
+@prefix terms-drs: <https://example.org/terms/drs/> .
+@prefix terms-iso: <https://example.org/terms/iso/> .
+@prefix terms-platform: <https://example.org/terms/platform/> .
+@prefix terms-science: <https://example.org/terms/science/> .
+@prefix terms-shared: <https://example.org/terms/shared/> .
+@prefix terms-software: <https://example.org/terms/software/> .
+@prefix terms-time: <https://example.org/terms/time/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+terms-activity:Activity a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/canonicalName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/keywords" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/canonicalName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/activity/previouslyKnownAs" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/keywords" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/longName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/rationale" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/rationale" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/TimePeriod" ;
+            owl:onProperty "https://example.org/terms/activity/duration" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/activity/alternativeName" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/internalName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/activity/internalName" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/duration" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/longName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Citation" ;
+            owl:onProperty "https://example.org/terms/shared/citation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Responsibility" ;
+            owl:onProperty "https://example.org/terms/shared/responsibleParty" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ] .
+
+terms-activity:AxisMember a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/value" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/activity/extraDetail" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/Conformance" ;
+            owl:onProperty "https://example.org/terms/activity/conformance" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/index" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/extraDetail" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/activity/index" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/EnsembleAxis" ;
+            owl:onProperty "https://example.org/terms/activity/axis" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/conformance" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/shared/value" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/axis" ] .
+
+terms-activity:ChildSimulation a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/branchTimeInChild" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/branchMethod" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/Simulation" ;
+            owl:onProperty "https://example.org/terms/activity/parent" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DateTime" ;
+            owl:onProperty "https://example.org/terms/activity/branchTimeInParent" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/parent" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DateTime" ;
+            owl:onProperty "https://example.org/terms/activity/branchTimeInChild" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/activity/branchMethod" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/branchTimeInParent" ],
+        "https://example.org/terms/activity/Simulation" .
+
+terms-activity:Conformance a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/model" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalRequirement" ;
+            owl:onProperty "https://example.org/terms/activity/targetRequirement" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Model" ;
+            owl:onProperty "https://example.org/terms/activity/model" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/ConformanceType" ;
+            owl:onProperty "https://example.org/terms/activity/conformanceAchieved" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/data/Dataset" ;
+            owl:onProperty "https://example.org/terms/activity/dataset" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/targetRequirement" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/conformanceAchieved" ],
+        "https://example.org/terms/activity/Activity" .
+
+terms-activity:ConformanceType a owl:Class .
+
+terms-activity:Ensemble a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/Performance" ;
+            owl:onProperty "https://example.org/terms/activity/representativePerformance" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/UberEnsemble" ;
+            owl:onProperty "https://example.org/terms/activity/uberEnsemble" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/shared/documentation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/Simulation" ;
+            owl:onProperty "https://example.org/terms/activity/member" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/representativePerformance" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalExperiment" ;
+            owl:onProperty "https://example.org/terms/activity/experiment" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/EnsembleAxis" ;
+            owl:onProperty "https://example.org/terms/activity/ensembleAxe" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/Conformance" ;
+            owl:onProperty "https://example.org/terms/activity/commonConformance" ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/experiment" ],
+        "https://example.org/terms/activity/Activity" .
+
+terms-activity:EnsembleAxis a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/shortIdentifier" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/AxisMember" ;
+            owl:onProperty "https://example.org/terms/activity/member" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/targetRequirement" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/extraDetail" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/activity/shortIdentifier" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/activity/extraDetail" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalRequirement" ;
+            owl:onProperty "https://example.org/terms/activity/targetRequirement" ] .
+
+terms-activity:Simulation a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/Machine" ;
+            owl:onProperty "https://example.org/terms/activity/ranOn" ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/ranForExperiment" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/ExtraAttribute" ;
+            owl:onProperty "https://example.org/terms/activity/extraAttribute" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/AxisMember" ;
+            owl:onProperty "https://example.org/terms/activity/ensembleID" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Model" ;
+            owl:onProperty "https://example.org/terms/activity/used" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/institution" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/Calendar" ;
+            owl:onProperty "https://example.org/terms/shared/calendar" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/primaryEnsemble" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DateTime" ;
+            owl:onProperty "https://example.org/terms/activity/startTime" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/activity/errata" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/shared/documentation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/Project" ;
+            owl:onProperty "https://example.org/terms/activity/partOfProject" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/data/Dataset" ;
+            owl:onProperty "https://example.org/terms/activity/produced" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DateTime" ;
+            owl:onProperty "https://example.org/terms/activity/endTime" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/shared/institution" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/hadPerformance" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/endTime" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/errata" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/startTime" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/used" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalExperiment" ;
+            owl:onProperty "https://example.org/terms/activity/subExperiment" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/ranOn" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/subExperiment" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/documentation" ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/partOfProject" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/ChildSimulation" ;
+            owl:onProperty "https://example.org/terms/activity/parentOf" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalExperiment" ;
+            owl:onProperty "https://example.org/terms/activity/ranForExperiment" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/calendar" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/Ensemble" ;
+            owl:onProperty "https://example.org/terms/activity/primaryEnsemble" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/Performance" ;
+            owl:onProperty "https://example.org/terms/activity/hadPerformance" ],
+        "https://example.org/terms/iso/ProcessStep" .
+
+terms-activity:UberEnsemble a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/activity/childEnsemble" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/Ensemble" ;
+            owl:onProperty "https://example.org/terms/activity/childEnsemble" ],
+        "https://example.org/terms/activity/Ensemble" .
+
+terms-cmip:CmipDataset a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/Simulation" ;
+            owl:onProperty "https://example.org/terms/cmip/originatingSimulation" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/cmip/originatingSimulation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/drs/DrsPublicationDataset" ;
+            owl:onProperty "https://example.org/terms/cmip/drsLocation" ],
+        "https://example.org/terms/data/Dataset" .
+
+terms-cmip:CmipSimulation a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/cmip/variantInfo" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/cmip/realizationIndex" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/cmip/physicsIndex" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/cmip/initializationIndex" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/cmip/physicsIndex" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/cmip/realizationIndex" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/cmip/forcingIndex" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/cmip/variantInfo" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/cmip/initializationIndex" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/cmip/forcingIndex" ],
+        "https://example.org/terms/activity/Simulation" .
+
+terms-data:Dataset a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/data/lineage" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/iso/Lineage" ;
+            owl:onProperty "https://example.org/terms/data/lineage" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/FormalAssociation" ;
+            owl:onProperty "https://example.org/terms/data/relatedToDataset" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Citation" ;
+            owl:onProperty "https://example.org/terms/shared/citation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/data/DatasetType" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/iso/MdProgressCode" ;
+            owl:onProperty "https://example.org/terms/data/progress" ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/ExtraAttribute" ;
+            owl:onProperty "https://example.org/terms/data/furtherAttribute" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/data/VariableCollection" ;
+            owl:onProperty "https://example.org/terms/data/contain" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Responsibility" ;
+            owl:onProperty "https://example.org/terms/shared/responsibleParty" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/data/availability" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/data/progress" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/keywords" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ] .
+
+terms-data:DatasetType a owl:Class .
+
+terms-data:VariableCollection a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/data/collectionName" ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/data/variable" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/data/geometry" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/iso/MdCellgeometryCode" ;
+            owl:onProperty "https://example.org/terms/data/geometry" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/data/collectionName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/data/variable" ] .
+
+terms-designing:DomainRequirements a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/requiredExtent" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Topic" ;
+            owl:onProperty "https://example.org/terms/designing/requiredResolution" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Topic" ;
+            owl:onProperty "https://example.org/terms/designing/requiredExtent" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/requiredResolution" ],
+        "https://example.org/terms/designing/NumericalRequirement" .
+
+terms-designing:EnsembleRequirement a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/minimumSize" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalRequirement" ;
+            owl:onProperty "https://example.org/terms/designing/ensembleMember" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/designing/minimumSize" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/EnsembleType" ;
+            owl:onProperty "https://example.org/terms/designing/ensembleType" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/ensembleType" ],
+        "https://example.org/terms/designing/NumericalRequirement" .
+
+terms-designing:EnsembleType a owl:Class .
+
+terms-designing:ExperimentalRelationship a owl:Class .
+
+terms-designing:ForcingConstraint a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/data/Dataset" ;
+            owl:onProperty "https://example.org/terms/designing/dataLink" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/category" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/origin" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/ForcingType" ;
+            owl:onProperty "https://example.org/terms/designing/forcingType" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/designing/code" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/additionalConstraint" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Citation" ;
+            owl:onProperty "https://example.org/terms/designing/origin" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/group" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/code" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/designing/additionalConstraint" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/dataLink" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/designing/category" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/designing/group" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/forcingType" ],
+        "https://example.org/terms/designing/NumericalRequirement" .
+
+terms-designing:ForcingType a owl:Class .
+
+terms-designing:InitialisationRequirement a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/data/Dataset" ;
+            owl:onProperty "https://example.org/terms/designing/initialiseFromData" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DateTime" ;
+            owl:onProperty "https://example.org/terms/designing/branchTimeInInitialisationSource" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/branchTimeInInitialisationSource" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/initialiseFromData" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/initialiseFromExperiment" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalExperiment" ;
+            owl:onProperty "https://example.org/terms/designing/initialiseFromExperiment" ],
+        "https://example.org/terms/designing/NumericalRequirement" .
+
+terms-designing:MultiEnsemble a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/ensembleAxis" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/EnsembleRequirement" ;
+            owl:onProperty "https://example.org/terms/designing/ensembleAxis" ],
+        "https://example.org/terms/designing/NumericalRequirement" .
+
+terms-designing:NumericalExperiment a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/Project" ;
+            owl:onProperty "https://example.org/terms/designing/relatedMip" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/designing/relatedObjective" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/designing/tier" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalExperiment" ;
+            owl:onProperty "https://example.org/terms/designing/relatedExperiment" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalRequirement" ;
+            owl:onProperty "https://example.org/terms/designing/requirement" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/requiredPeriod" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/TemporalConstraint" ;
+            owl:onProperty "https://example.org/terms/designing/requiredPeriod" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/Project" ;
+            owl:onProperty "https://example.org/terms/designing/governingMip" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/tier" ],
+        "https://example.org/terms/activity/Activity" .
+
+terms-designing:NumericalRequirement a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:float" ;
+            owl:onProperty "https://example.org/terms/designing/isConformanceRequested" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalRequirement" ;
+            owl:onProperty "https://example.org/terms/designing/additionalRequirement" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/isConformanceRequested" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/scope" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalRequirementScope" ;
+            owl:onProperty "https://example.org/terms/designing/scope" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:float" ;
+            owl:onProperty "https://example.org/terms/designing/isConformanceInfoRequired" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/isConformanceInfoRequired" ],
+        "https://example.org/terms/activity/Activity" .
+
+terms-designing:NumericalRequirementScope a owl:Class .
+
+terms-designing:Objective a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/identifier" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/data/VariableCollection" ;
+            owl:onProperty "https://example.org/terms/designing/requiredOutput" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/identifier" ] .
+
+terms-designing:OutputRequirement a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/formalDataRequest" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/designing/formalDataRequest" ],
+        "https://example.org/terms/designing/NumericalRequirement" .
+
+terms-designing:Project a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/homepage" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/Objective" ;
+            owl:onProperty "https://example.org/terms/designing/objective" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalExperiment" ;
+            owl:onProperty "https://example.org/terms/designing/governedExperiment" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/Project" ;
+            owl:onProperty "https://example.org/terms/shared/subProject" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/Project" ;
+            owl:onProperty "https://example.org/terms/designing/previousProject" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalExperiment" ;
+            owl:onProperty "https://example.org/terms/designing/requiredExperiment" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/designing/homepage" ],
+        "https://example.org/terms/activity/Activity" .
+
+terms-designing:SimulationPlan a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Model" ;
+            owl:onProperty "https://example.org/terms/designing/expectedModel" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/designing/expectedPerformanceSypd" ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/willSupportExperiment" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/expectedPerformanceSypd" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/expectedModel" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/Machine" ;
+            owl:onProperty "https://example.org/terms/designing/expectedPlatform" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/NumericalExperiment" ;
+            owl:onProperty "https://example.org/terms/designing/willSupportExperiment" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/expectedPlatform" ],
+        "https://example.org/terms/activity/Activity" .
+
+terms-designing:StartDateEnsemble a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DatetimeSet" ;
+            owl:onProperty "https://example.org/terms/designing/ensembleMembers" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/ensembleMembers" ],
+        "https://example.org/terms/designing/NumericalRequirement" .
+
+terms-designing:TemporalConstraint a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DateTime" ;
+            owl:onProperty "https://example.org/terms/shared/startDate" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/TimePeriod" ;
+            owl:onProperty "https://example.org/terms/designing/startFlexibility" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/TimePeriod" ;
+            owl:onProperty "https://example.org/terms/designing/requiredDuration" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/Calendar" ;
+            owl:onProperty "https://example.org/terms/designing/requiredCalendar" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/requiredDuration" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/startFlexibility" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/startDate" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/designing/requiredCalendar" ],
+        "https://example.org/terms/designing/NumericalRequirement" .
+
+terms-drs:DrsAtomicDataset a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/drs/variableName" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/versionNumber" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/geographicalConstraint" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/temporalConstraint" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/variableName" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/realm" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/drs/versionNumber" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/mipTable" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/drs/DrsTemporalIdentifier" ;
+            owl:onProperty "https://example.org/terms/drs/temporalConstraint" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/drs/DrsGeographicalIndicator" ;
+            owl:onProperty "https://example.org/terms/drs/geographicalConstraint" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/drs/mipTable" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/drs/DrsFrequencyType" ;
+            owl:onProperty "https://example.org/terms/drs/frequency" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/frequency" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/drs/DrsRealm" ;
+            owl:onProperty "https://example.org/terms/drs/realm" ] .
+
+terms-drs:DrsEnsembleIdentifier a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/forcingNumber" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/drs/initialisationMethodNumber" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/drs/realisationNumber" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/drs/forcingNumber" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/realisationNumber" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/perturbationNumber" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/initialisationMethodNumber" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/drs/perturbationNumber" ] .
+
+terms-drs:DrsExperiment a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/AxisMember" ;
+            owl:onProperty "https://example.org/terms/drs/axisIdentifer" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/axisType" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/designing/EnsembleType" ;
+            owl:onProperty "https://example.org/terms/drs/axisType" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/family" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/axisIdentifer" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/drs/family" ] .
+
+terms-drs:DrsFrequencyType a owl:Class .
+
+terms-drs:DrsGeographicalIndicator a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/drs/DrsGeographicalOperator" ;
+            owl:onProperty "https://example.org/terms/drs/operator" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/spatialDomain" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/boundingBox" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/drs/boundingBox" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/drs/spatialDomain" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/operator" ] .
+
+terms-drs:DrsGeographicalOperator a owl:Class .
+
+terms-drs:DrsPublicationDataset a owl:Class .
+
+terms-drs:DrsRealm a owl:Class .
+
+terms-drs:DrsSimulationIdentifier a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/model" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/drs/DrsEnsembleIdentifier" ;
+            owl:onProperty "https://example.org/terms/drs/runVariantID" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/model" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/institute" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/runVariantID" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/institute" ] .
+
+terms-drs:DrsTemporalIdentifier a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/start" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/drs/start" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/drs/DrsTimeSuffixe" ;
+            owl:onProperty "https://example.org/terms/drs/suffix" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/drs/end" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/end" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/drs/suffix" ] .
+
+terms-drs:DrsTimeSuffixe a owl:Class .
+
+terms-iso:Algorithm a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/citation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Citation" ;
+            owl:onProperty "https://example.org/terms/iso/citation" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ] .
+
+terms-iso:DqEvaluationResultType a owl:Class .
+
+terms-iso:DsInitiativeTypecode a owl:Class .
+
+terms-iso:Lineage a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/iso/statement" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/data/Dataset" ;
+            owl:onProperty "https://example.org/terms/shared/source" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/statement" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/iso/ProcessStep" ;
+            owl:onProperty "https://example.org/terms/iso/processStep" ] .
+
+terms-iso:MdCellgeometryCode a owl:Class .
+
+terms-iso:MdProgressCode a owl:Class .
+
+terms-iso:ProcessStep a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/iso/Processing" ;
+            owl:onProperty "https://example.org/terms/iso/processingInformation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Responsibility" ;
+            owl:onProperty "https://example.org/terms/iso/processor" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/data/Dataset" ;
+            owl:onProperty "https://example.org/terms/shared/source" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/processor" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DateTime" ;
+            owl:onProperty "https://example.org/terms/iso/executionDateTime" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/executionDateTime" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Citation" ;
+            owl:onProperty "https://example.org/terms/iso/reference" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/rationale" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/rationale" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/iso/ProcessStepReport" ;
+            owl:onProperty "https://example.org/terms/iso/report" ] .
+
+terms-iso:ProcessStepReport a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/iso/link" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/link" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ] .
+
+terms-iso:Processing a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/iso/Algorithm" ;
+            owl:onProperty "https://example.org/terms/iso/algorithm" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Citation" ;
+            owl:onProperty "https://example.org/terms/iso/softwareReference" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/identifier" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/identifier" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/documentation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/iso/runtimeParameters" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/runtimeParameters" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/procedureDescription" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/iso/procedureDescription" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Citation" ;
+            owl:onProperty "https://example.org/terms/shared/documentation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ] .
+
+terms-iso:QualityEvaluationOutput a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/iso/DqEvaluationResultType" ;
+            owl:onProperty "https://example.org/terms/iso/outputType" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/outputType" ],
+        "https://example.org/terms/shared/OnlineResource" .
+
+terms-iso:QualityEvaluationResult a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/evaluationProcedure" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/summaryResult" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/passed" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/date" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:float" ;
+            owl:onProperty "https://example.org/terms/iso/passed" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/specification" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Citation" ;
+            owl:onProperty "https://example.org/terms/iso/specification" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/iso/summaryResult" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/iso/evaluator" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/evaluator" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DateTime" ;
+            owl:onProperty "https://example.org/terms/shared/date" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/iso/QualityEvaluationOutput" ;
+            owl:onProperty "https://example.org/terms/iso/result" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/iso/evaluationProcedure" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ] .
+
+terms-iso:QualityIssue a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/iso/trackedIssue" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/reporter" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/iso/reporter" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/summary" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/iso/summary" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/trackedIssue" ] .
+
+terms-iso:QualityReport a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/iso/target" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/iso/QualityIssue" ;
+            owl:onProperty "https://example.org/terms/iso/issue" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/iso/QualityEvaluationResult" ;
+            owl:onProperty "https://example.org/terms/iso/report" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/iso/target" ] .
+
+terms-platform:ComputePool a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/vendor" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/platform/cpuType" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/clockSpeed" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/platform/vendor" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/platform/acceleratorType" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/acceleratorType" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Numeric" ;
+            owl:onProperty "https://example.org/terms/platform/memoryPerNode" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/clockCycleConcurrency" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/platform/modelNumber" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/acceleratorsPerNode" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/platform/acceleratorsPerNode" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/memoryPerNode" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/platform/computeCoresPerNode" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/platform/numberOfNodes" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Numeric" ;
+            owl:onProperty "https://example.org/terms/platform/clockSpeed" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/computeCoresPerNode" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/modelNumber" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/platform/clockCycleConcurrency" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/Nic" ;
+            owl:onProperty "https://example.org/terms/platform/networkCardsPerNode" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/numberOfNodes" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/cpuType" ] .
+
+terms-platform:Interconnect a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/vendor" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/platform/vendor" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/topology" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/platform/topology" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ] .
+
+terms-platform:Machine a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Numeric" ;
+            owl:onProperty "https://example.org/terms/platform/linpackPerformance" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/peakPerformance" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Numeric" ;
+            owl:onProperty "https://example.org/terms/platform/peakPerformance" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/linpackPerformance" ],
+        "https://example.org/terms/platform/Partition" .
+
+terms-platform:Nic a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/platform/vendor" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/vendor" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/bandwidth" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Numeric" ;
+            owl:onProperty "https://example.org/terms/platform/bandwidth" ] .
+
+terms-platform:Partition a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/StoragePool" ;
+            owl:onProperty "https://example.org/terms/platform/storagePool" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/shared/institution" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/whenAvailable" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/vendor" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/Interconnect" ;
+            owl:onProperty "https://example.org/terms/platform/interconnect" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/platform/operatingSystem" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/modelNumber" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/ComputePool" ;
+            owl:onProperty "https://example.org/terms/platform/computePool" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/operatingSystem" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/TimePeriod" ;
+            owl:onProperty "https://example.org/terms/platform/whenAvailable" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/platform/modelNumber" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/platform/vendor" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/interconnect" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/institution" ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/computePool" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/platform/onlineDocumentation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/Partition" ;
+            owl:onProperty "https://example.org/terms/platform/partition" ] .
+
+terms-platform:Performance a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/platform/compiler" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/platform/parallelisation" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/platform/joulesPerSimulatedYear" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/simulatedYearsPerDay" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/complexity" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/PerformanceDetail" ;
+            owl:onProperty "https://example.org/terms/platform/furtherDetail" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/shared/model" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/platform/complexity" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/platform/resolution" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/resolution" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/compiler" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/Machine" ;
+            owl:onProperty "https://example.org/terms/platform/platform" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/platform/coreHoursPerSimulatedYear" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/parallelisation" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/model" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/actualSimulatedYearsPerDay" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/platform" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/furtherDetail" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/joulesPerSimulatedYear" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/platform/simulatedYearsPerDay" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/platform/actualSimulatedYearsPerDay" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/Performance" ;
+            owl:onProperty "https://example.org/terms/platform/subcomponentPerformance" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/coreHoursPerSimulatedYear" ] .
+
+terms-platform:PerformanceDetail a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/dataIntensity" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/platform/couplingCost" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/couplingCost" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/platform/memoryBloat" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/dataOutputCost" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/memoryBloat" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/platform/dataIntensity" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/platform/dataOutputCost" ] .
+
+terms-platform:ProjectCost a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Numeric" ;
+            owl:onProperty "https://example.org/terms/platform/usefulData" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/platform/usefulYears" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/actualYears" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/platform/actualYears" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Numeric" ;
+            owl:onProperty "https://example.org/terms/platform/peakData" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/usefulData" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/platform/totalEnergyCost" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/activity/Activity" ;
+            owl:onProperty "https://example.org/terms/platform/activity" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/usefulYears" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/platform/usefulCoreHours" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/Machine" ;
+            owl:onProperty "https://example.org/terms/platform/platform" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/usefulCoreHours" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/activity" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/totalEnergyCost" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/totalCoreHours" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/platform" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/peakData" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/platform/totalCoreHours" ] .
+
+terms-platform:StoragePool a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/platform/vendor" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/vendor" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/platform/StorageSystem" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/platform/fileSystemSize" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Numeric" ;
+            owl:onProperty "https://example.org/terms/platform/fileSystemSize" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ] .
+
+terms-platform:StorageSystem a owl:Class .
+
+terms-science:Model a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/RealmCoupling" ;
+            owl:onProperty "https://example.org/terms/science/realmCoupling" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/keyProperties" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Topic" ;
+            owl:onProperty "https://example.org/terms/science/keyProperties" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Realm" ;
+            owl:onProperty "https://example.org/terms/science/realm" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/CouplingFramework" ;
+            owl:onProperty "https://example.org/terms/science/coupler" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Model" ;
+            owl:onProperty "https://example.org/terms/science/coupledComponent" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/coupler" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/modelType" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/SoftwareComponent" ;
+            owl:onProperty "https://example.org/terms/science/internalSoftwareComponent" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/keywords" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/ModelType" ;
+            owl:onProperty "https://example.org/terms/science/modelType" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Topic" ;
+            owl:onProperty "https://example.org/terms/science/activityProperty" ],
+        "https://example.org/terms/software/ComponentBase" .
+
+terms-science:ModelType a owl:Class .
+
+terms-science:Realm a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/grid" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Topic" ;
+            owl:onProperty "https://example.org/terms/science/processe" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/Implementation" ;
+            owl:onProperty "https://example.org/terms/science/softwareFramework" ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/processe" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Topic" ;
+            owl:onProperty "https://example.org/terms/shared/grid" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/keyProperties" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/canonicalName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Topic" ;
+            owl:onProperty "https://example.org/terms/science/keyProperties" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/canonicalName" ],
+        "https://example.org/terms/science/Topic" .
+
+terms-science:RealmCoupling a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/science/targetRealm" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/science/sourceRealm" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/timeFrequency" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/variable" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/science/variable" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/couplingDetails" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/science/couplingDetails" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/sourceRealm" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/targetRealm" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/science/timeFrequency" ] .
+
+terms-science:Topic a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/overview" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/TopicPropertySet" ;
+            owl:onProperty "https://example.org/terms/science/propertySet" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Citation" ;
+            owl:onProperty "https://example.org/terms/shared/citation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/keywords" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Responsibility" ;
+            owl:onProperty "https://example.org/terms/shared/responsibleParty" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/Topic" ;
+            owl:onProperty "https://example.org/terms/science/subTopic" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/science/overview" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/qcStatus" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/TopicProperty" ;
+            owl:onProperty "https://example.org/terms/science/property" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/science/specializationID" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/specializationID" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/science/qcStatus" ] .
+
+terms-science:TopicProperty a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/value" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/science/specializationID" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/science/value" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/specializationID" ] .
+
+terms-science:TopicPropertySet a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/property" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/science/TopicProperty" ;
+            owl:onProperty "https://example.org/terms/science/property" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/science/specializationID" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/science/specializationID" ] .
+
+terms-shared:Citation a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/citationDetail" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/collectiveTitle" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/context" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/citationDetail" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/bibtex" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/doi" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/shared/year" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/shared/url" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/abstract" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/author" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/year" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/title" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/abstract" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/doi" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/collectiveTitle" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/bibtex" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/url" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/context" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/title" ] .
+
+terms-shared:DocMetaInfo a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/shared/author" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/project" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/typeDisplayName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/version" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/typeDisplayName" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/project" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/createDate" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/institute" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/typeSortKey" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/source" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/drsKey" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/shared/version" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/typeSortKey" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/updateDate" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/sourceKey" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/sourceKey" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/drsPath" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/sortKey" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/institute" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/shared/updateDate" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/subProject" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/externalID" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/source" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/sortKey" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/author" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/drsPath" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/shared/createDate" ] .
+
+terms-shared:DocReference a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/relationship" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/context" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/furtherInfo" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/version" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/canonicalName" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/shared/version" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/relationship" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/canonicalName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/furtherInfo" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/context" ] .
+
+terms-shared:ExtraAttribute a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/value" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/doc" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/value" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/doc" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/key" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/key" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ] .
+
+terms-shared:FormalAssociation a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/associationID" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/onlineAt" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/associationVocabulary" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/associationID" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/shared/onlineAt" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/shared/associationVocabulary" ],
+        "https://example.org/terms/shared/DocReference" .
+
+terms-shared:NilReason a owl:Class .
+
+terms-shared:Numeric a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/shared/value" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/baseUnit" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/units" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/shared/unitSource" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/value" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/unitEnumeration" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/unitSource" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/unitEnumeration" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/baseUnit" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/units" ] .
+
+terms-shared:OnlineResource a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/linkage" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/linkage" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/protocol" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/protocol" ] .
+
+terms-shared:Party a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/email" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/shared/url" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/isOrganisation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/orcidID" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/address" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/url" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/address" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:float" ;
+            owl:onProperty "https://example.org/terms/shared/isOrganisation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/orcidID" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/email" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ] .
+
+terms-shared:QualityReview a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/qualityStatus" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/shared/metadataReviewer" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/targetDocument" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/qualityDescription" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/metadataReviewer" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/qualityDescription" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/QualityStatus" ;
+            owl:onProperty "https://example.org/terms/shared/qualityStatus" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/DocReference" ;
+            owl:onProperty "https://example.org/terms/shared/targetDocument" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/date" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/date" ] .
+
+terms-shared:QualityStatus a owl:Class .
+
+terms-shared:Responsibility a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/when" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/RoleCode" ;
+            owl:onProperty "https://example.org/terms/shared/role" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/role" ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/party" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Party" ;
+            owl:onProperty "https://example.org/terms/shared/party" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/TimePeriod" ;
+            owl:onProperty "https://example.org/terms/shared/when" ] .
+
+terms-shared:RoleCode a owl:Class .
+
+terms-shared:TextBlob a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/content" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/encoding" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/content" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/TextBlobEncoding" ;
+            owl:onProperty "https://example.org/terms/shared/encoding" ] .
+
+terms-shared:TextBlobEncoding a owl:Class .
+
+terms-software:ComponentBase a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/repository" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Responsibility" ;
+            owl:onProperty "https://example.org/terms/shared/responsibleParty" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/longName" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/releaseDate" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Citation" ;
+            owl:onProperty "https://example.org/terms/shared/citation" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/software/repository" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/longName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/version" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/software/canonicalID" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/developmentHistory" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/DevelopmentPath" ;
+            owl:onProperty "https://example.org/terms/software/developmentHistory" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/canonicalID" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/version" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DateTime" ;
+            owl:onProperty "https://example.org/terms/software/releaseDate" ] .
+
+terms-software:Composition a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/software/coupling" ] .
+
+terms-software:CouplingFramework a owl:Class .
+
+terms-software:DevelopmentPath a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/wasDevelopedInHouse" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Responsibility" ;
+            owl:onProperty "https://example.org/terms/software/fundingSource" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/previousVersion" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/consortiumName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Responsibility" ;
+            owl:onProperty "https://example.org/terms/software/creator" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/software/previousVersion" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:float" ;
+            owl:onProperty "https://example.org/terms/software/wasDevelopedInHouse" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/software/consortiumName" ] .
+
+terms-software:EntryPoint a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ] .
+
+terms-software:Gridspec a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ] .
+
+terms-software:Implementation a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/DevelopmentPath" ;
+            owl:onProperty "https://example.org/terms/software/developmentHistory" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/software/canonicalID" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/OnlineResource" ;
+            owl:onProperty "https://example.org/terms/software/repository" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/developmentHistory" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/canonicalID" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/version" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/shared/Citation" ;
+            owl:onProperty "https://example.org/terms/shared/citation" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/longName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/longName" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/repository" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/releaseDate" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/software/releaseDate" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/version" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ] .
+
+terms-software:ProgrammingLanguage a owl:Class .
+
+terms-software:SoftwareComponent a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/Gridspec" ;
+            owl:onProperty "https://example.org/terms/shared/grid" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/SoftwareComponent" ;
+            owl:onProperty "https://example.org/terms/software/dependsOn" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/ProgrammingLanguage" ;
+            owl:onProperty "https://example.org/terms/software/language" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/composition" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/SoftwareComponent" ;
+            owl:onProperty "https://example.org/terms/software/subComponent" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/EntryPoint" ;
+            owl:onProperty "https://example.org/terms/software/dependency" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/Variable" ;
+            owl:onProperty "https://example.org/terms/software/connectionPoint" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/couplingFramework" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/language" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/CouplingFramework" ;
+            owl:onProperty "https://example.org/terms/software/couplingFramework" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/software/license" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/software/Composition" ;
+            owl:onProperty "https://example.org/terms/software/composition" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/license" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/grid" ],
+        "https://example.org/terms/software/ComponentBase" .
+
+terms-software:Variable a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/software/isPrognostic" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:float" ;
+            owl:onProperty "https://example.org/terms/software/isPrognostic" ] .
+
+terms-time:Calendar a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/description" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/time/standardName" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/CalendarType" ;
+            owl:onProperty "https://example.org/terms/time/standardName" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/name" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/time/monthLength" ] .
+
+terms-time:CalendarType a owl:Class .
+
+terms-time:DateTime a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/shared/value" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/value" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/time/isOffset" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:float" ;
+            owl:onProperty "https://example.org/terms/time/isOffset" ] .
+
+terms-time:DatetimeSet a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/time/length" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/time/length" ] .
+
+terms-time:IrregularDateset a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/time/dateSet" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:string" ;
+            owl:onProperty "https://example.org/terms/time/dateSet" ],
+        "https://example.org/terms/time/DatetimeSet" .
+
+terms-time:PeriodDateType a owl:Class .
+
+terms-time:RegularTimeset a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/time/length" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/TimePeriod" ;
+            owl:onProperty "https://example.org/terms/time/increment" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DateTime" ;
+            owl:onProperty "https://example.org/terms/shared/startDate" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/startDate" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "xsd:integer" ;
+            owl:onProperty "https://example.org/terms/time/length" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/time/increment" ],
+        "https://example.org/terms/time/DatetimeSet" .
+
+terms-time:TimePeriod a owl:Class ;
+    rdfs:subclassOf [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/TimeUnit" ;
+            owl:onProperty "https://example.org/terms/shared/units" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/units" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/PeriodDateType" ;
+            owl:onProperty "https://example.org/terms/time/dateType" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/date" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/time/dateType" ],
+        [ a owl:Restriction ;
+            owl:onProperty "https://example.org/terms/time/length" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/Calendar" ;
+            owl:onProperty "https://example.org/terms/shared/calendar" ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom "https://example.org/terms/time/DateTime" ;
+            owl:onProperty "https://example.org/terms/shared/date" ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty "https://example.org/terms/shared/calendar" ],
+        [ a owl:Restriction ;
+            owl:cardinality 1 ;
+            owl:onProperty "https://example.org/terms/time/length" ] .
+
+terms-time:TimeUnit a owl:Class .
+

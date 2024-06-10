@@ -43,3 +43,15 @@ def run():
         format='turtle'
     )
 
+    with open('meta/owl.jsonld', 'w') as f:
+        json.dump(output["@owl"], f, indent=4)
+    owl_graph = Graph()
+    owl_graph.parse(
+        data=json.dumps(output["@owl"]),
+        format='json-ld'
+    )
+    owl_graph.serialize(
+        destination='meta/owl.ttl',
+        format='turtle'
+    )
+

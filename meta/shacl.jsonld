@@ -2112,30 +2112,6 @@
             ]
         },
         {
-            "@id": "https://example.org/shapes/science/ModelType",
-            "@type": "sh:NodeShape",
-            "targetClass": "https://example.org/terms/science/ModelType",
-            "closed": true,
-            "in": [
-                "terms-science:Atm Only",
-                "terms-science:Ocean Only",
-                "terms-science:Regional",
-                "terms-science:ESM",
-                "terms-science:GCM",
-                "terms-science:IGCM",
-                "terms-science:GCM-MLO",
-                "terms-science:Mesoscale",
-                "terms-science:ProcessLA",
-                "terms-science:DynamicalCore",
-                "terms-science:Statistical",
-                "terms-science:ML Inference",
-                "terms-science:Re-Analysis",
-                "terms-science:Planetary",
-                "terms-science:Process",
-                "terms-science:Other"
-            ]
-        },
-        {
             "@id": "https://example.org/shapes/science/Model",
             "@type": "sh:NodeShape",
             "targetClass": "https://example.org/terms/science/Model",
@@ -2367,6 +2343,30 @@
                     "datatype": "xsd:string",
                     "minCount": 1
                 }
+            ]
+        },
+        {
+            "@id": "https://example.org/shapes/science/ModelType",
+            "@type": "sh:NodeShape",
+            "targetClass": "https://example.org/terms/science/ModelType",
+            "closed": true,
+            "in": [
+                "terms-science:Atm Only",
+                "terms-science:Ocean Only",
+                "terms-science:Regional",
+                "terms-science:ESM",
+                "terms-science:GCM",
+                "terms-science:IGCM",
+                "terms-science:GCM-MLO",
+                "terms-science:Mesoscale",
+                "terms-science:ProcessLA",
+                "terms-science:DynamicalCore",
+                "terms-science:Statistical",
+                "terms-science:ML Inference",
+                "terms-science:Re-Analysis",
+                "terms-science:Planetary",
+                "terms-science:Process",
+                "terms-science:Other"
             ]
         },
         {

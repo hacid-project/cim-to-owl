@@ -1,0 +1,4342 @@
+{
+    "@context": {
+        "@version": 1.1,
+        "id": "@id",
+        "type": "@type",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "terms-activity": "https://example.org/terms/activity/",
+        "terms-cmip": "https://example.org/terms/cmip/",
+        "terms-data": "https://example.org/terms/data/",
+        "terms-designing": "https://example.org/terms/designing/",
+        "terms-drs": "https://example.org/terms/drs/",
+        "terms-iso": "https://example.org/terms/iso/",
+        "terms-platform": "https://example.org/terms/platform/",
+        "terms-science": "https://example.org/terms/science/",
+        "terms-shared": "https://example.org/terms/shared/",
+        "terms-software": "https://example.org/terms/software/",
+        "terms-time": "https://example.org/terms/time/",
+        "@base": "http://example.org/resources/"
+    },
+    "@graph": [
+        {
+            "@id": "https://example.org/terms/time/Calendar",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/monthLength",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/standardName",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/standardName",
+                    "owl:allValuesFrom": "https://example.org/terms/time/CalendarType"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/time/CalendarType",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/time/DateTime",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/isOffset",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/isOffset",
+                    "owl:allValuesFrom": "xsd:float"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/value",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/value",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/time/DatetimeSet",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/length",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/length",
+                    "owl:allValuesFrom": "xsd:integer"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/time/IrregularDateset",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/time/DatetimeSet",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/dateSet",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/dateSet",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/time/PeriodDateType",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/time/RegularTimeset",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/time/DatetimeSet",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/increment",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/increment",
+                    "owl:allValuesFrom": "https://example.org/terms/time/TimePeriod"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/length",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/length",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/startDate",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/startDate",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DateTime"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/time/TimePeriod",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/calendar",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/calendar",
+                    "owl:allValuesFrom": "https://example.org/terms/time/Calendar"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/date",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/date",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DateTime"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/dateType",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/dateType",
+                    "owl:allValuesFrom": "https://example.org/terms/time/PeriodDateType"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/length",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/time/length"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/units",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/units",
+                    "owl:allValuesFrom": "https://example.org/terms/time/TimeUnit"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/time/TimeUnit",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/activity/Activity",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/alternativeName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/canonicalName",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/canonicalName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/citation",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/duration",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/duration",
+                    "owl:allValuesFrom": "https://example.org/terms/time/TimePeriod"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/internalName",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/internalName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/keywords",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/keywords",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/longName",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/longName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/responsibleParty",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/previouslyKnownAs",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/rationale",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/rationale",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/activity/AxisMember",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/extraDetail",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/extraDetail",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/index",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/index",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/value",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/value"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/conformance",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/conformance",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/Conformance"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/axis",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/axis",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/EnsembleAxis"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/activity/Conformance",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/activity/Activity",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/conformanceAchieved",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/conformanceAchieved",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/ConformanceType"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/dataset",
+                    "owl:allValuesFrom": "https://example.org/terms/data/Dataset"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/targetRequirement",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/targetRequirement",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalRequirement"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/model",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/model",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Model"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/activity/ConformanceType",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/activity/Ensemble",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/activity/Activity",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/commonConformance",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/Conformance"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/representativePerformance",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/representativePerformance",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/Performance"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/documentation",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/ensembleAxe",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/EnsembleAxis"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/uberEnsemble",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/UberEnsemble"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/experiment",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/experiment",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalExperiment"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/member",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/Simulation"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/activity/EnsembleAxis",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/extraDetail",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/extraDetail",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/member",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/AxisMember"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/shortIdentifier",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/shortIdentifier",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/targetRequirement",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/targetRequirement",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalRequirement"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/activity/ChildSimulation",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/activity/Simulation",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/branchMethod",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/branchMethod",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/branchTimeInChild",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/branchTimeInChild",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DateTime"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/branchTimeInParent",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/branchTimeInParent",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DateTime"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/parent",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/parent",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/Simulation"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/activity/Simulation",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/iso/ProcessStep",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/partOfProject",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/partOfProject",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/Project"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/ranForExperiment",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/ranForExperiment",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalExperiment"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/subExperiment",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/subExperiment",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalExperiment"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/used",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/used",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Model"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/primaryEnsemble",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/primaryEnsemble",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/Ensemble"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/institution",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/institution",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/parentOf",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/ChildSimulation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/produced",
+                    "owl:allValuesFrom": "https://example.org/terms/data/Dataset"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/hadPerformance",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/hadPerformance",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/Performance"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/ranOn",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/ranOn",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/Machine"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/errata",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/errata",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/ensembleID",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/AxisMember"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/startTime",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/startTime",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DateTime"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/endTime",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/endTime",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DateTime"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/calendar",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/calendar",
+                    "owl:allValuesFrom": "https://example.org/terms/time/Calendar"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/documentation",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/documentation",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/extraAttribute",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/ExtraAttribute"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/activity/UberEnsemble",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/activity/Ensemble",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/childEnsemble",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/activity/childEnsemble",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/Ensemble"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/cmip/CmipDataset",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/data/Dataset",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/drsLocation",
+                    "owl:allValuesFrom": "https://example.org/terms/drs/DrsPublicationDataset"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/originatingSimulation",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/originatingSimulation",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/Simulation"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/cmip/CmipSimulation",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/activity/Simulation",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/realizationIndex",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/realizationIndex",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/initializationIndex",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/initializationIndex",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/physicsIndex",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/physicsIndex",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/forcingIndex",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/forcingIndex",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/variantInfo",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/cmip/variantInfo",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/data/Dataset",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/citation",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/responsibleParty",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:allValuesFrom": "https://example.org/terms/data/DatasetType"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/availability",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/relatedToDataset",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/FormalAssociation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/contain",
+                    "owl:allValuesFrom": "https://example.org/terms/data/VariableCollection"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/progress",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/progress",
+                    "owl:allValuesFrom": "https://example.org/terms/iso/MdProgressCode"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/keywords",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/furtherAttribute",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/ExtraAttribute"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/lineage",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/lineage",
+                    "owl:allValuesFrom": "https://example.org/terms/iso/Lineage"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/data/VariableCollection",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/collectionName",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/collectionName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/variable",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/variable",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/geometry",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/data/geometry",
+                    "owl:allValuesFrom": "https://example.org/terms/iso/MdCellgeometryCode"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/data/DatasetType",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/designing/DomainRequirements",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/designing/NumericalRequirement",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredExtent",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredExtent",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Topic"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredResolution",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredResolution",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Topic"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/EnsembleRequirement",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/designing/NumericalRequirement",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/ensembleMember",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalRequirement"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/ensembleType",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/ensembleType",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/EnsembleType"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/minimumSize",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/minimumSize",
+                    "owl:allValuesFrom": "xsd:integer"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/EnsembleType",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/designing/ForcingConstraint",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/designing/NumericalRequirement",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/additionalConstraint",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/additionalConstraint",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/category",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/category",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/code",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/code",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/dataLink",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/dataLink",
+                    "owl:allValuesFrom": "https://example.org/terms/data/Dataset"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/forcingType",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/forcingType",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/ForcingType"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/group",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/group",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/origin",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/origin",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Citation"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/ForcingType",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/designing/InitialisationRequirement",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/designing/NumericalRequirement",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/branchTimeInInitialisationSource",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/branchTimeInInitialisationSource",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DateTime"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/initialiseFromData",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/initialiseFromData",
+                    "owl:allValuesFrom": "https://example.org/terms/data/Dataset"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/initialiseFromExperiment",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/initialiseFromExperiment",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalExperiment"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/MultiEnsemble",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/designing/NumericalRequirement",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/ensembleAxis",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/ensembleAxis",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/EnsembleRequirement"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/NumericalExperiment",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/activity/Activity",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/tier",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/tier",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/relatedExperiment",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalExperiment"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/governingMip",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/Project"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/relatedMip",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/Project"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredPeriod",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredPeriod",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/TemporalConstraint"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requirement",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalRequirement"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/relatedObjective",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/ExperimentalRelationship",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/designing/NumericalRequirement",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/activity/Activity",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/additionalRequirement",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalRequirement"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/isConformanceRequested",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/isConformanceRequested",
+                    "owl:allValuesFrom": "xsd:float"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/isConformanceInfoRequired",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/isConformanceInfoRequired",
+                    "owl:allValuesFrom": "xsd:float"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/scope",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/scope",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalRequirementScope"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/NumericalRequirementScope",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/designing/OutputRequirement",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/designing/NumericalRequirement",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/formalDataRequest",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/formalDataRequest",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/Objective",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredOutput",
+                    "owl:allValuesFrom": "https://example.org/terms/data/VariableCollection"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/identifier",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/identifier",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/Project",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/activity/Activity",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/homepage",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/homepage",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/objective",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/Objective"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/previousProject",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/Project"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredExperiment",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalExperiment"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/governedExperiment",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalExperiment"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/subProject",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/Project"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/SimulationPlan",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/activity/Activity",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/expectedModel",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/expectedModel",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Model"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/expectedPerformanceSypd",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/expectedPerformanceSypd"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/expectedPlatform",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/expectedPlatform",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/Machine"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/willSupportExperiment",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/willSupportExperiment",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/NumericalExperiment"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/StartDateEnsemble",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/designing/NumericalRequirement",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/ensembleMembers",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/ensembleMembers",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DatetimeSet"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/designing/TemporalConstraint",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/designing/NumericalRequirement",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredCalendar",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredCalendar",
+                    "owl:allValuesFrom": "https://example.org/terms/time/Calendar"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredDuration",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/requiredDuration",
+                    "owl:allValuesFrom": "https://example.org/terms/time/TimePeriod"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/startDate",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/startDate",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DateTime"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/startFlexibility",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/designing/startFlexibility",
+                    "owl:allValuesFrom": "https://example.org/terms/time/TimePeriod"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/drs/DrsAtomicDataset",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/frequency",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/frequency",
+                    "owl:allValuesFrom": "https://example.org/terms/drs/DrsFrequencyType"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/geographicalConstraint",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/geographicalConstraint",
+                    "owl:allValuesFrom": "https://example.org/terms/drs/DrsGeographicalIndicator"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/mipTable",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/mipTable",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/realm",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/realm",
+                    "owl:allValuesFrom": "https://example.org/terms/drs/DrsRealm"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/temporalConstraint",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/temporalConstraint",
+                    "owl:allValuesFrom": "https://example.org/terms/drs/DrsTemporalIdentifier"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/variableName",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/variableName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/versionNumber",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/versionNumber",
+                    "owl:allValuesFrom": "xsd:integer"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/drs/DrsEnsembleIdentifier",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/forcingNumber",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/forcingNumber",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/initialisationMethodNumber",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/initialisationMethodNumber",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/perturbationNumber",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/perturbationNumber",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/realisationNumber",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/realisationNumber",
+                    "owl:allValuesFrom": "xsd:integer"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/drs/DrsExperiment",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/axisIdentifer",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/axisIdentifer",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/AxisMember"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/axisType",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/axisType",
+                    "owl:allValuesFrom": "https://example.org/terms/designing/EnsembleType"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/family",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/family",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/drs/DrsFrequencyType",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/drs/DrsGeographicalIndicator",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/boundingBox",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/boundingBox",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/operator",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/operator",
+                    "owl:allValuesFrom": "https://example.org/terms/drs/DrsGeographicalOperator"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/spatialDomain",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/spatialDomain",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/drs/DrsGeographicalOperator",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/drs/DrsPublicationDataset",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/drs/DrsRealm",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/drs/DrsSimulationIdentifier",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/institute",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/institute",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/model",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/model",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/runVariantID",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/runVariantID",
+                    "owl:allValuesFrom": "https://example.org/terms/drs/DrsEnsembleIdentifier"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/drs/DrsTemporalIdentifier",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/end",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/end",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/start",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/start",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/suffix",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/drs/suffix",
+                    "owl:allValuesFrom": "https://example.org/terms/drs/DrsTimeSuffixe"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/drs/DrsTimeSuffixe",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/iso/Lineage",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/statement",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/statement",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/processStep",
+                    "owl:allValuesFrom": "https://example.org/terms/iso/ProcessStep"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/source",
+                    "owl:allValuesFrom": "https://example.org/terms/data/Dataset"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/iso/ProcessStep",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/rationale",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/rationale",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/executionDateTime",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/executionDateTime",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DateTime"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/processor",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/processor",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/reference",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/source",
+                    "owl:allValuesFrom": "https://example.org/terms/data/Dataset"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/processingInformation",
+                    "owl:allValuesFrom": "https://example.org/terms/iso/Processing"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/report",
+                    "owl:allValuesFrom": "https://example.org/terms/iso/ProcessStepReport"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/iso/Processing",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/identifier",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/identifier",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/softwareReference",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/procedureDescription",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/procedureDescription",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/documentation",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/documentation",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/runtimeParameters",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/runtimeParameters",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/algorithm",
+                    "owl:allValuesFrom": "https://example.org/terms/iso/Algorithm"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/iso/ProcessStepReport",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/link",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/link",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/iso/Algorithm",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/citation",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/citation",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Citation"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/iso/QualityReport",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/target",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/target",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/issue",
+                    "owl:allValuesFrom": "https://example.org/terms/iso/QualityIssue"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/report",
+                    "owl:allValuesFrom": "https://example.org/terms/iso/QualityEvaluationResult"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/iso/QualityIssue",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/summary",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/summary",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/reporter",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/reporter",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/trackedIssue",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/trackedIssue",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/iso/QualityEvaluationResult",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/evaluationProcedure",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/evaluationProcedure",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/specification",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/specification",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/evaluator",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/evaluator",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/date",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/date",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DateTime"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/summaryResult",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/summaryResult",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/passed",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/passed",
+                    "owl:allValuesFrom": "xsd:float"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/result",
+                    "owl:allValuesFrom": "https://example.org/terms/iso/QualityEvaluationOutput"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/iso/QualityEvaluationOutput",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/shared/OnlineResource",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/outputType",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/iso/outputType",
+                    "owl:allValuesFrom": "https://example.org/terms/iso/DqEvaluationResultType"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/iso/DsInitiativeTypecode",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/iso/MdCellgeometryCode",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/iso/MdProgressCode",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/iso/DqEvaluationResultType",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/platform/ComputePool",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/acceleratorType",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/acceleratorType",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/acceleratorsPerNode",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/acceleratorsPerNode",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/clockCycleConcurrency",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/clockCycleConcurrency",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/clockSpeed",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/clockSpeed",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Numeric"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/computeCoresPerNode",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/computeCoresPerNode",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/cpuType",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/cpuType",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/memoryPerNode",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/memoryPerNode",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Numeric"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/modelNumber",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/modelNumber",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/numberOfNodes",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/numberOfNodes",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/vendor",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/vendor",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/networkCardsPerNode",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/Nic"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/platform/Interconnect",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/topology",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/topology",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/vendor",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/vendor",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/platform/Nic",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/vendor",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/vendor",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/bandwidth",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/bandwidth",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Numeric"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/platform/Machine",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/platform/Partition",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/peakPerformance",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/peakPerformance",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Numeric"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/linpackPerformance",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/linpackPerformance",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Numeric"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/platform/Partition",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/computePool",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/computePool",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/ComputePool"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/interconnect",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/interconnect",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/Interconnect"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/institution",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/institution",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/modelNumber",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/modelNumber",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/onlineDocumentation",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/operatingSystem",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/operatingSystem",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/partition",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/Partition"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/storagePool",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/StoragePool"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/vendor",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/vendor",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/whenAvailable",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/whenAvailable",
+                    "owl:allValuesFrom": "https://example.org/terms/time/TimePeriod"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/platform/Performance",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/model",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/model"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/resolution",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/resolution",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/complexity",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/complexity",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/platform",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/platform",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/Machine"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/compiler",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/compiler",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/simulatedYearsPerDay",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/simulatedYearsPerDay"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/actualSimulatedYearsPerDay",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/actualSimulatedYearsPerDay"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/coreHoursPerSimulatedYear",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/coreHoursPerSimulatedYear"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/joulesPerSimulatedYear",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/joulesPerSimulatedYear"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/parallelisation",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/parallelisation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/furtherDetail",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/furtherDetail",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/PerformanceDetail"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/subcomponentPerformance",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/Performance"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/platform/PerformanceDetail",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/couplingCost",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/couplingCost"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/memoryBloat",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/memoryBloat"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/dataOutputCost",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/dataOutputCost"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/dataIntensity",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/dataIntensity"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/platform/ProjectCost",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/activity",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/activity",
+                    "owl:allValuesFrom": "https://example.org/terms/activity/Activity"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/platform",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/platform",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/Machine"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/usefulYears",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/usefulYears",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/usefulData",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/usefulData",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Numeric"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/usefulCoreHours",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/usefulCoreHours",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/actualYears",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/actualYears",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/peakData",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/peakData",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Numeric"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/totalCoreHours",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/totalCoreHours",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/totalEnergyCost",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/totalEnergyCost"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/platform/StoragePool",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:allValuesFrom": "https://example.org/terms/platform/StorageSystem"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/vendor",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/vendor",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/fileSystemSize",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/platform/fileSystemSize",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Numeric"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/platform/StorageSystem",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/science/Model",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/software/ComponentBase",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/keywords",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/modelType",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/modelType",
+                    "owl:allValuesFrom": "https://example.org/terms/science/ModelType"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/keyProperties",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/keyProperties",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Topic"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/activityProperty",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Topic"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/realm",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Realm"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/realmCoupling",
+                    "owl:allValuesFrom": "https://example.org/terms/science/RealmCoupling"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/coupledComponent",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Model"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/coupler",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/coupler",
+                    "owl:allValuesFrom": "https://example.org/terms/software/CouplingFramework"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/internalSoftwareComponent",
+                    "owl:allValuesFrom": "https://example.org/terms/software/SoftwareComponent"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/science/Realm",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/science/Topic",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/canonicalName",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/canonicalName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/grid",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/grid",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Topic"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/keyProperties",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/keyProperties",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Topic"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/processe",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/processe",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Topic"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/softwareFramework",
+                    "owl:allValuesFrom": "https://example.org/terms/software/Implementation"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/science/RealmCoupling",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/variable",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/variable",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/sourceRealm",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/sourceRealm",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/targetRealm",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/targetRealm",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/timeFrequency",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/timeFrequency",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/couplingDetails",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/couplingDetails",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/science/Topic",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/citation",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/keywords",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/overview",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/overview",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/property",
+                    "owl:allValuesFrom": "https://example.org/terms/science/TopicProperty"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/propertySet",
+                    "owl:allValuesFrom": "https://example.org/terms/science/TopicPropertySet"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/qcStatus",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/qcStatus",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/responsibleParty",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/specializationID",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/specializationID",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/subTopic",
+                    "owl:allValuesFrom": "https://example.org/terms/science/Topic"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/science/TopicPropertySet",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/property",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/property",
+                    "owl:allValuesFrom": "https://example.org/terms/science/TopicProperty"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/specializationID",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/specializationID",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/science/TopicProperty",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/specializationID",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/specializationID",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/value",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/science/value",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/science/ModelType",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/shared/TextBlob",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/content",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/content",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/encoding",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/encoding",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/TextBlobEncoding"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/shared/Citation",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/abstract",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/abstract",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/author",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/bibtex",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/bibtex",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/citationDetail",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/citationDetail",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/collectiveTitle",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/collectiveTitle",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/context",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/context",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/doi",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/doi",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/title",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/title",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/year",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/year",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/url",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/url",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/shared/ExtraAttribute",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/doc",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/doc",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/key",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/key",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/value",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/value",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/shared/NilReason",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/shared/OnlineResource",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/linkage",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/linkage",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/protocol",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/protocol",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/shared/Party",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/address",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/address",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/email",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/email",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/orcidID",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/orcidID",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/isOrganisation",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/isOrganisation",
+                    "owl:allValuesFrom": "xsd:float"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/url",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/url",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/shared/QualityReview",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/date",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/date",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/metadataReviewer",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/metadataReviewer",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/qualityDescription",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/qualityDescription",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/qualityStatus",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/qualityStatus",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/QualityStatus"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/targetDocument",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/targetDocument",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/DocReference"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/shared/QualityStatus",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/shared/Responsibility",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/party",
+                    "owl:minCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/party",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/role",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/role",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/RoleCode"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/when",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/when",
+                    "owl:allValuesFrom": "https://example.org/terms/time/TimePeriod"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/shared/RoleCode",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/shared/TextBlobEncoding",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/shared/Numeric",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/value",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/value"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/units",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/units",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/unitEnumeration",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/unitEnumeration",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/unitSource",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/unitSource",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/baseUnit",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/baseUnit",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/shared/DocMetaInfo",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/author",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/author",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Party"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/createDate",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/createDate"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/drsKey",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/drsPath",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/drsPath",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/externalID",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/institute",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/institute",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/project",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/project",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/sortKey",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/sortKey",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/source",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/source",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/sourceKey",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/sourceKey",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/subProject",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/typeDisplayName",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/typeDisplayName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/typeSortKey",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/typeSortKey",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/updateDate",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/updateDate"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/version",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/version",
+                    "owl:allValuesFrom": "xsd:integer"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/shared/DocReference",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/canonicalName",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/canonicalName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/version",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/version",
+                    "owl:allValuesFrom": "xsd:integer"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/relationship",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/relationship",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/furtherInfo",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/furtherInfo",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/context",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/context",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/shared/FormalAssociation",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/shared/DocReference",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/associationVocabulary",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/associationVocabulary",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/associationID",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/associationID",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/onlineAt",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/onlineAt",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/software/ComponentBase",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/citation",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/canonicalID",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/canonicalID",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/longName",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/longName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/responsibleParty",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/developmentHistory",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/developmentHistory",
+                    "owl:allValuesFrom": "https://example.org/terms/software/DevelopmentPath"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/releaseDate",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/releaseDate",
+                    "owl:allValuesFrom": "https://example.org/terms/time/DateTime"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/repository",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/repository",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/version",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/version",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/software/Implementation",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/citation",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Citation"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/canonicalID",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/canonicalID",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/developmentHistory",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/developmentHistory",
+                    "owl:allValuesFrom": "https://example.org/terms/software/DevelopmentPath"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/longName",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/longName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/releaseDate",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/releaseDate"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/repository",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/repository",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/OnlineResource"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/version",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/version",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/software/Composition",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/coupling",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/software/DevelopmentPath",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/consortiumName",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/consortiumName",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/creator",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/wasDevelopedInHouse",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/wasDevelopedInHouse",
+                    "owl:allValuesFrom": "xsd:float"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/fundingSource",
+                    "owl:allValuesFrom": "https://example.org/terms/shared/Responsibility"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/previousVersion",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/previousVersion",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/software/EntryPoint",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/software/Gridspec",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/software/SoftwareComponent",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                "https://example.org/terms/software/ComponentBase",
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/composition",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/composition",
+                    "owl:allValuesFrom": "https://example.org/terms/software/Composition"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/connectionPoint",
+                    "owl:allValuesFrom": "https://example.org/terms/software/Variable"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/couplingFramework",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/couplingFramework",
+                    "owl:allValuesFrom": "https://example.org/terms/software/CouplingFramework"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/dependency",
+                    "owl:allValuesFrom": "https://example.org/terms/software/EntryPoint"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/grid",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/grid",
+                    "owl:allValuesFrom": "https://example.org/terms/software/Gridspec"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/language",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/language",
+                    "owl:allValuesFrom": "https://example.org/terms/software/ProgrammingLanguage"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/license",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/license",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/subComponent",
+                    "owl:allValuesFrom": "https://example.org/terms/software/SoftwareComponent"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/dependsOn",
+                    "owl:allValuesFrom": "https://example.org/terms/software/SoftwareComponent"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/software/Variable",
+            "@type": "owl:Class",
+            "rdfs:subclassOf": [
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:maxCardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/description",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/shared/name",
+                    "owl:allValuesFrom": "xsd:string"
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/isPrognostic",
+                    "owl:cardinality": 1
+                },
+                {
+                    "@type": "owl:Restriction",
+                    "owl:onProperty": "https://example.org/terms/software/isPrognostic",
+                    "owl:allValuesFrom": "xsd:float"
+                }
+            ]
+        },
+        {
+            "@id": "https://example.org/terms/software/CouplingFramework",
+            "@type": "owl:Class"
+        },
+        {
+            "@id": "https://example.org/terms/software/ProgrammingLanguage",
+            "@type": "owl:Class"
+        }
+    ]
+}

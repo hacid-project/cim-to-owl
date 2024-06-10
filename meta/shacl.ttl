@@ -4,25 +4,25 @@
 
 <https://example.org/shapes/activity/AxisMember> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
+    sh:property [ sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/value> ],
+        [ sh:class <https://example.org/terms/activity/Conformance> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ],
+            sh:path <https://example.org/terms/activity/conformance> ],
         [ sh:class <https://example.org/terms/activity/EnsembleAxis> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/activity/axis> ],
-        [ sh:class <https://example.org/terms/activity/Conformance> ;
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/activity/conformance> ],
-        [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/value> ],
+            sh:path <https://example.org/terms/activity/extraDetail> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/description> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/activity/index> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/activity/extraDetail> ] ;
+            sh:path <https://example.org/terms/activity/index> ] ;
     sh:targetClass <https://example.org/terms/activity/AxisMember> .
 
 <https://example.org/shapes/activity/ChildSimulation> a sh:NodeShape ;
@@ -32,16 +32,16 @@
     sh:property [ sh:class <https://example.org/terms/time/DateTime> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/activity/branchTimeInChild> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/activity/branchMethod> ],
         [ sh:class <https://example.org/terms/time/DateTime> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/activity/branchTimeInParent> ],
         [ sh:class <https://example.org/terms/activity/Simulation> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/activity/parent> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/activity/branchMethod> ] ;
+            sh:path <https://example.org/terms/activity/parent> ] ;
     sh:targetClass <https://example.org/terms/activity/ChildSimulation> .
 
 <https://example.org/shapes/activity/Conformance> a sh:NodeShape ;
@@ -72,20 +72,20 @@
     sh:closed true ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/activity/shortIdentifier> ],
-        [ sh:class <https://example.org/terms/activity/AxisMember> ;
-            sh:path <https://example.org/terms/activity/member> ],
+            sh:path <https://example.org/terms/activity/extraDetail> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/name> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/activity/shortIdentifier> ],
         [ sh:class <https://example.org/terms/designing/NumericalRequirement> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/activity/targetRequirement> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/activity/extraDetail> ] ;
+        [ sh:class <https://example.org/terms/activity/AxisMember> ;
+            sh:path <https://example.org/terms/activity/member> ] ;
     sh:targetClass <https://example.org/terms/activity/EnsembleAxis> .
 
 <https://example.org/shapes/activity/UberEnsemble> a sh:NodeShape ;
@@ -101,11 +101,11 @@
     sh:class <https://example.org/terms/data/Dataset> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/data/Dataset> ;
-    sh:property [ sh:class <https://example.org/terms/drs/DrsPublicationDataset> ;
-            sh:path <https://example.org/terms/cmip/drsLocation> ],
-        [ sh:class <https://example.org/terms/activity/Simulation> ;
+    sh:property [ sh:class <https://example.org/terms/activity/Simulation> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/cmip/originatingSimulation> ] ;
+            sh:path <https://example.org/terms/cmip/originatingSimulation> ],
+        [ sh:class <https://example.org/terms/drs/DrsPublicationDataset> ;
+            sh:path <https://example.org/terms/cmip/drsLocation> ] ;
     sh:targetClass <https://example.org/terms/cmip/CmipDataset> .
 
 <https://example.org/shapes/cmip/CmipSimulation> a sh:NodeShape ;
@@ -115,22 +115,22 @@
     sh:property [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/cmip/initializationIndex> ],
-        [ sh:datatype xsd:integer ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/cmip/forcingIndex> ],
-        [ sh:datatype xsd:integer ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:path <https://example.org/terms/cmip/realizationIndex> ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/cmip/physicsIndex> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/cmip/variantInfo> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/cmip/physicsIndex> ] ;
+            sh:path <https://example.org/terms/cmip/initializationIndex> ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/cmip/forcingIndex> ] ;
     sh:targetClass <https://example.org/terms/cmip/CmipSimulation> .
 
 <https://example.org/shapes/data/DatasetType> a sh:NodeShape ;
@@ -140,15 +140,15 @@
 
 <https://example.org/shapes/data/VariableCollection> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
+    sh:property [ sh:class <https://example.org/terms/iso/MdCellgeometryCode> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/data/geometry> ],
+        [ sh:datatype xsd:string ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/data/variable> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/data/collectionName> ],
-        [ sh:class <https://example.org/terms/iso/MdCellgeometryCode> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/data/geometry> ] ;
+            sh:path <https://example.org/terms/data/collectionName> ] ;
     sh:targetClass <https://example.org/terms/data/VariableCollection> .
 
 <https://example.org/shapes/designing/DomainRequirements> a sh:NodeShape ;
@@ -157,22 +157,22 @@
     sh:node <https://example.org/shapes/designing/NumericalRequirement> ;
     sh:property [ sh:class <https://example.org/terms/science/Topic> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/designing/requiredResolution> ],
+            sh:path <https://example.org/terms/designing/requiredExtent> ],
         [ sh:class <https://example.org/terms/science/Topic> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/designing/requiredExtent> ] ;
+            sh:path <https://example.org/terms/designing/requiredResolution> ] ;
     sh:targetClass <https://example.org/terms/designing/DomainRequirements> .
 
 <https://example.org/shapes/designing/EnsembleRequirement> a sh:NodeShape ;
     sh:class <https://example.org/terms/designing/NumericalRequirement> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/designing/NumericalRequirement> ;
-    sh:property [ sh:class <https://example.org/terms/designing/NumericalRequirement> ;
-            sh:path <https://example.org/terms/designing/ensembleMember> ],
-        [ sh:datatype xsd:integer ;
+    sh:property [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/designing/minimumSize> ],
+        [ sh:class <https://example.org/terms/designing/NumericalRequirement> ;
+            sh:path <https://example.org/terms/designing/ensembleMember> ],
         [ sh:class <https://example.org/terms/designing/EnsembleType> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -193,28 +193,28 @@
     sh:class <https://example.org/terms/designing/NumericalRequirement> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/designing/NumericalRequirement> ;
-    sh:property [ sh:class <https://example.org/terms/designing/ForcingType> ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/designing/additionalConstraint> ],
+        [ sh:class <https://example.org/terms/designing/ForcingType> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/designing/forcingType> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/designing/category> ],
-        [ sh:class <https://example.org/terms/data/Dataset> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/designing/dataLink> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/designing/additionalConstraint> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
             sh:path <https://example.org/terms/designing/code> ],
+        [ sh:class <https://example.org/terms/shared/Citation> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/designing/origin> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/designing/group> ],
-        [ sh:class <https://example.org/terms/shared/Citation> ;
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/designing/origin> ] ;
+            sh:path <https://example.org/terms/designing/category> ],
+        [ sh:class <https://example.org/terms/data/Dataset> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/designing/dataLink> ] ;
     sh:targetClass <https://example.org/terms/designing/ForcingConstraint> .
 
 <https://example.org/shapes/designing/ForcingType> a sh:NodeShape ;
@@ -229,12 +229,12 @@
     sh:property [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/designing/initialiseFromExperiment> ],
-        [ sh:class <https://example.org/terms/time/DateTime> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/designing/branchTimeInInitialisationSource> ],
         [ sh:class <https://example.org/terms/data/Dataset> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/designing/initialiseFromData> ] ;
+            sh:path <https://example.org/terms/designing/initialiseFromData> ],
+        [ sh:class <https://example.org/terms/time/DateTime> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/designing/branchTimeInInitialisationSource> ] ;
     sh:targetClass <https://example.org/terms/designing/InitialisationRequirement> .
 
 <https://example.org/shapes/designing/MultiEnsemble> a sh:NodeShape ;
@@ -250,23 +250,23 @@
     sh:class <https://example.org/terms/activity/Activity> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/activity/Activity> ;
-    sh:property [ sh:class <https://example.org/terms/designing/Project> ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:path <https://example.org/terms/designing/relatedObjective> ],
+        [ sh:class <https://example.org/terms/designing/Project> ;
             sh:path <https://example.org/terms/designing/relatedMip> ],
-        [ sh:class <https://example.org/terms/designing/NumericalRequirement> ;
-            sh:path <https://example.org/terms/designing/requirement> ],
         [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
             sh:path <https://example.org/terms/designing/relatedExperiment> ],
-        [ sh:class <https://example.org/terms/designing/TemporalConstraint> ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/designing/requiredPeriod> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/designing/tier> ],
         [ sh:class <https://example.org/terms/designing/Project> ;
             sh:path <https://example.org/terms/designing/governingMip> ],
-        [ sh:datatype xsd:string ;
-            sh:path <https://example.org/terms/designing/relatedObjective> ] ;
+        [ sh:class <https://example.org/terms/designing/TemporalConstraint> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/designing/requiredPeriod> ],
+        [ sh:class <https://example.org/terms/designing/NumericalRequirement> ;
+            sh:path <https://example.org/terms/designing/requirement> ] ;
     sh:targetClass <https://example.org/terms/designing/NumericalExperiment> .
 
 <https://example.org/shapes/designing/NumericalRequirementScope> a sh:NodeShape ;
@@ -276,9 +276,7 @@
 
 <https://example.org/shapes/designing/Objective> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:class <https://example.org/terms/data/VariableCollection> ;
-            sh:path <https://example.org/terms/designing/requiredOutput> ],
-        [ sh:datatype xsd:string ;
+    sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/description> ],
         [ sh:datatype xsd:string ;
@@ -287,7 +285,9 @@
             sh:path <https://example.org/terms/shared/name> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/identifier> ] ;
+            sh:path <https://example.org/terms/shared/identifier> ],
+        [ sh:class <https://example.org/terms/data/VariableCollection> ;
+            sh:path <https://example.org/terms/designing/requiredOutput> ] ;
     sh:targetClass <https://example.org/terms/designing/Objective> .
 
 <https://example.org/shapes/designing/OutputRequirement> a sh:NodeShape ;
@@ -303,37 +303,37 @@
     sh:class <https://example.org/terms/activity/Activity> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/activity/Activity> ;
-    sh:property [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
-            sh:path <https://example.org/terms/designing/governedExperiment> ],
-        [ sh:class <https://example.org/terms/designing/Project> ;
-            sh:path <https://example.org/terms/shared/subProject> ],
-        [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
-            sh:path <https://example.org/terms/designing/requiredExperiment> ],
+    sh:property [ sh:class <https://example.org/terms/designing/Project> ;
+            sh:path <https://example.org/terms/designing/previousProject> ],
         [ sh:class <https://example.org/terms/shared/OnlineResource> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/designing/homepage> ],
         [ sh:class <https://example.org/terms/designing/Objective> ;
             sh:path <https://example.org/terms/designing/objective> ],
+        [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
+            sh:path <https://example.org/terms/designing/governedExperiment> ],
+        [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
+            sh:path <https://example.org/terms/designing/requiredExperiment> ],
         [ sh:class <https://example.org/terms/designing/Project> ;
-            sh:path <https://example.org/terms/designing/previousProject> ] ;
+            sh:path <https://example.org/terms/shared/subProject> ] ;
     sh:targetClass <https://example.org/terms/designing/Project> .
 
 <https://example.org/shapes/designing/SimulationPlan> a sh:NodeShape ;
     sh:class <https://example.org/terms/activity/Activity> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/activity/Activity> ;
-    sh:property [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/designing/expectedPerformanceSypd> ],
+    sh:property [ sh:class <https://example.org/terms/science/Model> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/designing/expectedModel> ],
         [ sh:class <https://example.org/terms/platform/Machine> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/designing/expectedPlatform> ],
+        [ sh:maxCount 1 ;
+            sh:path <https://example.org/terms/designing/expectedPerformanceSypd> ],
         [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/designing/willSupportExperiment> ],
-        [ sh:class <https://example.org/terms/science/Model> ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/designing/expectedModel> ] ;
+            sh:path <https://example.org/terms/designing/willSupportExperiment> ] ;
     sh:targetClass <https://example.org/terms/designing/SimulationPlan> .
 
 <https://example.org/shapes/designing/StartDateEnsemble> a sh:NodeShape ;
@@ -366,19 +366,13 @@
 
 <https://example.org/shapes/drs/DrsAtomicDataset> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/drs/mipTable> ],
-        [ sh:datatype xsd:integer ;
+    sh:property [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/drs/versionNumber> ],
-        [ sh:class <https://example.org/terms/drs/DrsTemporalIdentifier> ;
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/drs/temporalConstraint> ],
-        [ sh:class <https://example.org/terms/drs/DrsGeographicalIndicator> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/drs/geographicalConstraint> ],
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/drs/variableName> ],
         [ sh:class <https://example.org/terms/drs/DrsFrequencyType> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -386,18 +380,23 @@
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/drs/variableName> ],
+            sh:path <https://example.org/terms/drs/mipTable> ],
         [ sh:class <https://example.org/terms/drs/DrsRealm> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/drs/realm> ] ;
+            sh:path <https://example.org/terms/drs/realm> ],
+        [ sh:class <https://example.org/terms/drs/DrsTemporalIdentifier> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/drs/temporalConstraint> ],
+        [ sh:class <https://example.org/terms/drs/DrsGeographicalIndicator> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/drs/geographicalConstraint> ] ;
     sh:targetClass <https://example.org/terms/drs/DrsAtomicDataset> .
 
 <https://example.org/shapes/drs/DrsEnsembleIdentifier> a sh:NodeShape ;
     sh:closed true ;
     sh:property [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/drs/initialisationMethodNumber> ],
+            sh:path <https://example.org/terms/drs/forcingNumber> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -408,21 +407,22 @@
             sh:path <https://example.org/terms/drs/realisationNumber> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/drs/forcingNumber> ] ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/drs/initialisationMethodNumber> ] ;
     sh:targetClass <https://example.org/terms/drs/DrsEnsembleIdentifier> .
 
 <https://example.org/shapes/drs/DrsExperiment> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:class <https://example.org/terms/designing/EnsembleType> ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/drs/family> ],
+        [ sh:class <https://example.org/terms/designing/EnsembleType> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/drs/axisType> ],
         [ sh:class <https://example.org/terms/activity/AxisMember> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/drs/axisIdentifer> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/drs/family> ] ;
+            sh:path <https://example.org/terms/drs/axisIdentifer> ] ;
     sh:targetClass <https://example.org/terms/drs/DrsExperiment> .
 
 <https://example.org/shapes/drs/DrsFrequencyType> a sh:NodeShape ;
@@ -477,14 +477,14 @@
     sh:closed true ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/drs/end> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/drs/start> ],
         [ sh:class <https://example.org/terms/drs/DrsTimeSuffixe> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/drs/suffix> ] ;
+            sh:path <https://example.org/terms/drs/suffix> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/drs/end> ] ;
     sh:targetClass <https://example.org/terms/drs/DrsTemporalIdentifier> .
 
 <https://example.org/shapes/drs/DrsTimeSuffixe> a sh:NodeShape ;
@@ -516,11 +516,11 @@
     sh:closed true ;
     sh:property [ sh:class <https://example.org/terms/data/Dataset> ;
             sh:path <https://example.org/terms/shared/source> ],
+        [ sh:class <https://example.org/terms/iso/ProcessStep> ;
+            sh:path <https://example.org/terms/iso/processStep> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/iso/statement> ],
-        [ sh:class <https://example.org/terms/iso/ProcessStep> ;
-            sh:path <https://example.org/terms/iso/processStep> ] ;
+            sh:path <https://example.org/terms/iso/statement> ] ;
     sh:targetClass <https://example.org/terms/iso/Lineage> .
 
 <https://example.org/shapes/iso/MdCellgeometryCode> a sh:NodeShape ;
@@ -535,17 +535,17 @@
 
 <https://example.org/shapes/iso/ProcessStepReport> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ],
-        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
+    sh:property [ sh:class <https://example.org/terms/shared/OnlineResource> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/iso/link> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/name> ] ;
+            sh:path <https://example.org/terms/shared/name> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/shared/description> ] ;
     sh:targetClass <https://example.org/terms/iso/ProcessStepReport> .
 
 <https://example.org/shapes/iso/Processing> a sh:NodeShape ;
@@ -556,20 +556,20 @@
         [ sh:class <https://example.org/terms/shared/Citation> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/documentation> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/iso/runtimeParameters> ],
+        [ sh:class <https://example.org/terms/iso/Algorithm> ;
+            sh:path <https://example.org/terms/iso/algorithm> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/identifier> ],
         [ sh:class <https://example.org/terms/shared/Citation> ;
             sh:path <https://example.org/terms/iso/softwareReference> ],
-        [ sh:class <https://example.org/terms/iso/Algorithm> ;
-            sh:path <https://example.org/terms/iso/algorithm> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/name> ] ;
+            sh:path <https://example.org/terms/shared/name> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/iso/runtimeParameters> ] ;
     sh:targetClass <https://example.org/terms/iso/Processing> .
 
 <https://example.org/shapes/iso/QualityEvaluationOutput> a sh:NodeShape ;
@@ -584,30 +584,30 @@
 
 <https://example.org/shapes/iso/QualityEvaluationResult> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
+    sh:property [ sh:class <https://example.org/terms/iso/QualityEvaluationOutput> ;
+            sh:path <https://example.org/terms/iso/result> ],
+        [ sh:class <https://example.org/terms/shared/Citation> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/iso/evaluationProcedure> ],
+            sh:path <https://example.org/terms/iso/specification> ],
+        [ sh:class <https://example.org/terms/shared/Party> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/iso/evaluator> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/iso/summaryResult> ],
+            sh:path <https://example.org/terms/iso/evaluationProcedure> ],
+        [ sh:class <https://example.org/terms/time/DateTime> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/date> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/name> ],
-        [ sh:class <https://example.org/terms/time/DateTime> ;
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/date> ],
-        [ sh:class <https://example.org/terms/shared/Party> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/iso/evaluator> ],
+            sh:path <https://example.org/terms/iso/summaryResult> ],
         [ sh:datatype xsd:float ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/iso/passed> ],
-        [ sh:class <https://example.org/terms/shared/Citation> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/iso/specification> ],
-        [ sh:class <https://example.org/terms/iso/QualityEvaluationOutput> ;
-            sh:path <https://example.org/terms/iso/result> ] ;
+            sh:path <https://example.org/terms/iso/passed> ] ;
     sh:targetClass <https://example.org/terms/iso/QualityEvaluationResult> .
 
 <https://example.org/shapes/iso/QualityIssue> a sh:NodeShape ;
@@ -631,67 +631,67 @@
     sh:closed true ;
     sh:property [ sh:class <https://example.org/terms/iso/QualityIssue> ;
             sh:path <https://example.org/terms/iso/issue> ],
-        [ sh:class <https://example.org/terms/iso/QualityEvaluationResult> ;
-            sh:path <https://example.org/terms/iso/report> ],
         [ sh:class <https://example.org/terms/shared/OnlineResource> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/iso/target> ] ;
+            sh:path <https://example.org/terms/iso/target> ],
+        [ sh:class <https://example.org/terms/iso/QualityEvaluationResult> ;
+            sh:path <https://example.org/terms/iso/report> ] ;
     sh:targetClass <https://example.org/terms/iso/QualityReport> .
 
 <https://example.org/shapes/platform/ComputePool> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:class <https://example.org/terms/shared/Party> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/vendor> ],
-        [ sh:datatype xsd:string ;
+    sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/cpuType> ],
-        [ sh:datatype xsd:integer ;
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/computeCoresPerNode> ],
-        [ sh:class <https://example.org/terms/shared/Numeric> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/clockSpeed> ],
-        [ sh:datatype xsd:integer ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/clockCycleConcurrency> ],
+            sh:path <https://example.org/terms/shared/name> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/numberOfNodes> ],
         [ sh:class <https://example.org/terms/shared/Numeric> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/memoryPerNode> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/name> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/acceleratorsPerNode> ],
+        [ sh:class <https://example.org/terms/shared/Numeric> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/clockSpeed> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/modelNumber> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/acceleratorType> ],
+        [ sh:class <https://example.org/terms/platform/Nic> ;
+            sh:path <https://example.org/terms/platform/networkCardsPerNode> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/description> ],
-        [ sh:class <https://example.org/terms/platform/Nic> ;
-            sh:path <https://example.org/terms/platform/networkCardsPerNode> ] ;
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/computeCoresPerNode> ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/clockCycleConcurrency> ],
+        [ sh:class <https://example.org/terms/shared/Party> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/vendor> ] ;
     sh:targetClass <https://example.org/terms/platform/ComputePool> .
 
 <https://example.org/shapes/platform/Interconnect> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ],
-        [ sh:class <https://example.org/terms/shared/Party> ;
+    sh:property [ sh:class <https://example.org/terms/shared/Party> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/vendor> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/topology> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/description> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/name> ] ;
@@ -703,91 +703,96 @@
     sh:node <https://example.org/shapes/platform/Partition> ;
     sh:property [ sh:class <https://example.org/terms/shared/Numeric> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/peakPerformance> ],
+            sh:path <https://example.org/terms/platform/linpackPerformance> ],
         [ sh:class <https://example.org/terms/shared/Numeric> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/linpackPerformance> ] ;
+            sh:path <https://example.org/terms/platform/peakPerformance> ] ;
     sh:targetClass <https://example.org/terms/platform/Machine> .
 
 <https://example.org/shapes/platform/Nic> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:class <https://example.org/terms/shared/Party> ;
+    sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/vendor> ],
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/shared/name> ],
         [ sh:class <https://example.org/terms/shared/Numeric> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/platform/bandwidth> ],
-        [ sh:datatype xsd:string ;
+        [ sh:class <https://example.org/terms/shared/Party> ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/name> ] ;
+            sh:path <https://example.org/terms/platform/vendor> ] ;
     sh:targetClass <https://example.org/terms/platform/Nic> .
 
 <https://example.org/shapes/platform/Performance> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/actualSimulatedYearsPerDay> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/compiler> ],
-        [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/joulesPerSimulatedYear> ],
-        [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/coreHoursPerSimulatedYear> ],
-        [ sh:class <https://example.org/terms/platform/PerformanceDetail> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/furtherDetail> ],
-        [ sh:datatype xsd:integer ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/complexity> ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/model> ],
-        [ sh:class <https://example.org/terms/platform/Performance> ;
-            sh:path <https://example.org/terms/platform/subcomponentPerformance> ],
-        [ sh:class <https://example.org/terms/platform/Machine> ;
+    sh:property [ sh:class <https://example.org/terms/platform/Machine> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/platform/platform> ],
+        [ sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/simulatedYearsPerDay> ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/shared/model> ],
+        [ sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/parallelisation> ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/resolution> ],
+        [ sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/joulesPerSimulatedYear> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/compiler> ],
+        [ sh:class <https://example.org/terms/platform/Performance> ;
+            sh:path <https://example.org/terms/platform/subcomponentPerformance> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/name> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/resolution> ],
+            sh:path <https://example.org/terms/platform/complexity> ],
         [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/parallelisation> ],
+            sh:path <https://example.org/terms/platform/actualSimulatedYearsPerDay> ],
         [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/simulatedYearsPerDay> ] ;
+            sh:path <https://example.org/terms/platform/coreHoursPerSimulatedYear> ],
+        [ sh:class <https://example.org/terms/platform/PerformanceDetail> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/furtherDetail> ] ;
     sh:targetClass <https://example.org/terms/platform/Performance> .
 
 <https://example.org/shapes/platform/PerformanceDetail> a sh:NodeShape ;
     sh:closed true ;
     sh:property [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/dataOutputCost> ],
+            sh:path <https://example.org/terms/platform/couplingCost> ],
         [ sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/memoryBloat> ],
         [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/couplingCost> ],
+            sh:path <https://example.org/terms/platform/dataOutputCost> ],
         [ sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/dataIntensity> ] ;
     sh:targetClass <https://example.org/terms/platform/PerformanceDetail> .
 
 <https://example.org/shapes/platform/ProjectCost> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:integer ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/usefulCoreHours> ],
-        [ sh:class <https://example.org/terms/shared/Numeric> ;
+    sh:property [ sh:class <https://example.org/terms/shared/Numeric> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/peakData> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/platform/usefulYears> ],
-        [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/totalEnergyCost> ],
+        [ sh:class <https://example.org/terms/platform/Machine> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/platform/platform> ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/usefulCoreHours> ],
+        [ sh:class <https://example.org/terms/shared/Numeric> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/usefulData> ],
         [ sh:class <https://example.org/terms/activity/Activity> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -795,35 +800,30 @@
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/actualYears> ],
-        [ sh:class <https://example.org/terms/platform/Machine> ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/platform/platform> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/totalCoreHours> ],
-        [ sh:class <https://example.org/terms/shared/Numeric> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/usefulData> ] ;
+        [ sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/totalEnergyCost> ] ;
     sh:targetClass <https://example.org/terms/platform/ProjectCost> .
 
 <https://example.org/shapes/platform/StoragePool> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ],
-        [ sh:class <https://example.org/terms/platform/StorageSystem> ;
-            sh:maxCount 1 ],
-        [ sh:class <https://example.org/terms/shared/Party> ;
+    sh:property [ sh:class <https://example.org/terms/shared/Party> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/vendor> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/shared/name> ],
+        [ sh:class <https://example.org/terms/platform/StorageSystem> ;
+            sh:maxCount 1 ],
         [ sh:class <https://example.org/terms/shared/Numeric> ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/platform/fileSystemSize> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/name> ] ;
+            sh:path <https://example.org/terms/shared/description> ] ;
     sh:targetClass <https://example.org/terms/platform/StoragePool> .
 
 <https://example.org/shapes/platform/StorageSystem> a sh:NodeShape ;
@@ -835,28 +835,28 @@
     sh:class <https://example.org/terms/software/ComponentBase> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/software/ComponentBase> ;
-    sh:property [ sh:class <https://example.org/terms/software/CouplingFramework> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/science/coupler> ],
+    sh:property [ sh:class <https://example.org/terms/science/Topic> ;
+            sh:path <https://example.org/terms/science/activityProperty> ],
         [ sh:class <https://example.org/terms/science/Model> ;
             sh:path <https://example.org/terms/science/coupledComponent> ],
-        [ sh:class <https://example.org/terms/science/ModelType> ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/science/modelType> ],
-        [ sh:class <https://example.org/terms/science/RealmCoupling> ;
-            sh:path <https://example.org/terms/science/realmCoupling> ],
         [ sh:class <https://example.org/terms/science/Realm> ;
             sh:path <https://example.org/terms/science/realm> ],
-        [ sh:class <https://example.org/terms/science/Topic> ;
-            sh:path <https://example.org/terms/science/activityProperty> ],
-        [ sh:class <https://example.org/terms/software/SoftwareComponent> ;
-            sh:path <https://example.org/terms/science/internalSoftwareComponent> ],
         [ sh:datatype xsd:string ;
             sh:path <https://example.org/terms/shared/keywords> ],
         [ sh:class <https://example.org/terms/science/Topic> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/science/keyProperties> ] ;
+            sh:path <https://example.org/terms/science/keyProperties> ],
+        [ sh:class <https://example.org/terms/software/SoftwareComponent> ;
+            sh:path <https://example.org/terms/science/internalSoftwareComponent> ],
+        [ sh:class <https://example.org/terms/science/RealmCoupling> ;
+            sh:path <https://example.org/terms/science/realmCoupling> ],
+        [ sh:class <https://example.org/terms/software/CouplingFramework> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/science/coupler> ],
+        [ sh:class <https://example.org/terms/science/ModelType> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/science/modelType> ] ;
     sh:targetClass <https://example.org/terms/science/Model> .
 
 <https://example.org/shapes/science/ModelType> a sh:NodeShape ;
@@ -869,19 +869,19 @@
     sh:closed true ;
     sh:node <https://example.org/shapes/science/Topic> ;
     sh:property [ sh:class <https://example.org/terms/science/Topic> ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/science/processe> ],
-        [ sh:class <https://example.org/terms/science/Topic> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/grid> ],
-        [ sh:class <https://example.org/terms/science/Topic> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/science/keyProperties> ],
         [ sh:class <https://example.org/terms/software/Implementation> ;
             sh:path <https://example.org/terms/science/softwareFramework> ],
+        [ sh:class <https://example.org/terms/science/Topic> ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/science/processe> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/canonicalName> ] ;
+            sh:path <https://example.org/terms/shared/canonicalName> ],
+        [ sh:class <https://example.org/terms/science/Topic> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/science/keyProperties> ] ;
     sh:targetClass <https://example.org/terms/science/Realm> .
 
 <https://example.org/shapes/science/RealmCoupling> a sh:NodeShape ;
@@ -889,7 +889,7 @@
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/science/variable> ],
+            sh:path <https://example.org/terms/science/timeFrequency> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -900,40 +900,40 @@
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/science/timeFrequency> ],
+            sh:path <https://example.org/terms/science/targetRealm> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/science/targetRealm> ] ;
+            sh:path <https://example.org/terms/science/variable> ] ;
     sh:targetClass <https://example.org/terms/science/RealmCoupling> .
 
 <https://example.org/shapes/science/TopicProperty> a sh:NodeShape ;
     sh:closed true ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/name> ],
+        [ sh:datatype xsd:string ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/science/value> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/science/specializationID> ],
         [ sh:datatype xsd:string ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/science/value> ] ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/description> ] ;
     sh:targetClass <https://example.org/terms/science/TopicProperty> .
 
 <https://example.org/shapes/science/TopicPropertySet> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:class <https://example.org/terms/science/TopicProperty> ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/science/property> ],
-        [ sh:datatype xsd:string ;
+    sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/science/specializationID> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/description> ],
+        [ sh:class <https://example.org/terms/science/TopicProperty> ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/science/property> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/name> ] ;
@@ -943,93 +943,96 @@
     sh:closed true ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/title> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/doi> ],
-        [ sh:datatype xsd:string ;
-            sh:path <https://example.org/terms/shared/author> ],
+            sh:path <https://example.org/terms/shared/citationDetail> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/collectiveTitle> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/bibtex> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/citationDetail> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/abstract> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/context> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/year> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/title> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/doi> ],
+        [ sh:datatype xsd:string ;
+            sh:path <https://example.org/terms/shared/author> ],
         [ sh:class <https://example.org/terms/shared/OnlineResource> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/url> ] ;
+            sh:path <https://example.org/terms/shared/url> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/bibtex> ] ;
     sh:targetClass <https://example.org/terms/shared/Citation> .
 
 <https://example.org/shapes/shared/DocMetaInfo> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
+    sh:property [ sh:class <https://example.org/terms/shared/Party> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/author> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/sortKey> ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/shared/createDate> ],
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/sourceKey> ],
         [ sh:datatype xsd:string ;
-            sh:path <https://example.org/terms/shared/externalID> ],
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/typeSortKey> ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/version> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
+            sh:minCount 1 ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/project> ],
+        [ sh:datatype xsd:string ;
+            sh:path <https://example.org/terms/shared/drsKey> ],
+        [ sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/updateDate> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/drsPath> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/institute> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/source> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/typeSortKey> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/typeDisplayName> ],
         [ sh:datatype xsd:string ;
-            sh:path <https://example.org/terms/shared/subProject> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/drsPath> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/sortKey> ],
-        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ],
-        [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/updateDate> ],
         [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ],
-        [ sh:class <https://example.org/terms/shared/Party> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/author> ],
+            sh:path <https://example.org/terms/shared/externalID> ],
         [ sh:datatype xsd:string ;
-            sh:path <https://example.org/terms/shared/drsKey> ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/createDate> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/institute> ] ;
+            sh:path <https://example.org/terms/shared/subProject> ] ;
     sh:targetClass <https://example.org/terms/shared/DocMetaInfo> .
 
 <https://example.org/shapes/shared/ExtraAttribute> a sh:NodeShape ;
     sh:closed true ;
     sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/doc> ],
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/value> ],
@@ -1038,9 +1041,6 @@
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/key> ],
         [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/doc> ],
-        [ sh:datatype xsd:string ;
             sh:maxCount 1 ] ;
     sh:targetClass <https://example.org/terms/shared/ExtraAttribute> .
 
@@ -1048,15 +1048,15 @@
     sh:class <https://example.org/terms/shared/DocReference> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/shared/DocReference> ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/associationID> ],
-        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
+    sh:property [ sh:class <https://example.org/terms/shared/OnlineResource> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/onlineAt> ],
         [ sh:class <https://example.org/terms/shared/OnlineResource> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/associationVocabulary> ] ;
+            sh:path <https://example.org/terms/shared/associationVocabulary> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/associationID> ] ;
     sh:targetClass <https://example.org/terms/shared/FormalAssociation> .
 
 <https://example.org/shapes/shared/NilReason> a sh:NodeShape ;
@@ -1066,16 +1066,16 @@
 
 <https://example.org/shapes/shared/Numeric> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/units> ],
-        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
+    sh:property [ sh:class <https://example.org/terms/shared/OnlineResource> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/unitSource> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/unitEnumeration> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/shared/units> ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/value> ],
@@ -1086,12 +1086,9 @@
 
 <https://example.org/shapes/shared/Party> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
+    sh:property [ sh:datatype xsd:float ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/email> ],
-        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/url> ],
+            sh:path <https://example.org/terms/shared/isOrganisation> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/orcidID> ],
@@ -1101,14 +1098,24 @@
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/name> ],
-        [ sh:datatype xsd:float ;
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/isOrganisation> ] ;
+            sh:path <https://example.org/terms/shared/email> ],
+        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/url> ] ;
     sh:targetClass <https://example.org/terms/shared/Party> .
 
 <https://example.org/shapes/shared/QualityReview> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:class <https://example.org/terms/shared/Party> ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/shared/date> ],
+        [ sh:class <https://example.org/terms/shared/QualityStatus> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/qualityStatus> ],
+        [ sh:class <https://example.org/terms/shared/Party> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/metadataReviewer> ],
@@ -1119,14 +1126,7 @@
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/qualityDescription> ],
-        [ sh:class <https://example.org/terms/shared/QualityStatus> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/qualityStatus> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/date> ] ;
+            sh:path <https://example.org/terms/shared/qualityDescription> ] ;
     sh:targetClass <https://example.org/terms/shared/QualityReview> .
 
 <https://example.org/shapes/shared/QualityStatus> a sh:NodeShape ;
@@ -1136,16 +1136,16 @@
 
 <https://example.org/shapes/shared/Responsibility> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:class <https://example.org/terms/time/TimePeriod> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/when> ],
+    sh:property [ sh:class <https://example.org/terms/shared/Party> ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/shared/party> ],
         [ sh:class <https://example.org/terms/shared/RoleCode> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/role> ],
-        [ sh:class <https://example.org/terms/shared/Party> ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/party> ] ;
+        [ sh:class <https://example.org/terms/time/TimePeriod> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/when> ] ;
     sh:targetClass <https://example.org/terms/shared/Responsibility> .
 
 <https://example.org/shapes/shared/RoleCode> a sh:NodeShape ;
@@ -1186,10 +1186,7 @@
 
 <https://example.org/shapes/software/DevelopmentPath> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/software/previousVersion> ],
-        [ sh:datatype xsd:float ;
+    sh:property [ sh:datatype xsd:float ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/software/wasDevelopedInHouse> ],
@@ -1199,7 +1196,10 @@
         [ sh:class <https://example.org/terms/shared/Responsibility> ;
             sh:path <https://example.org/terms/software/creator> ],
         [ sh:class <https://example.org/terms/shared/Responsibility> ;
-            sh:path <https://example.org/terms/software/fundingSource> ] ;
+            sh:path <https://example.org/terms/software/fundingSource> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/software/previousVersion> ] ;
     sh:targetClass <https://example.org/terms/software/DevelopmentPath> .
 
 <https://example.org/shapes/software/EntryPoint> a sh:NodeShape ;
@@ -1221,30 +1221,30 @@
     sh:closed true ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ],
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/shared/name> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/software/canonicalID> ],
+        [ sh:class <https://example.org/terms/software/DevelopmentPath> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/software/developmentHistory> ],
+        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/software/repository> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/longName> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/version> ],
+            sh:path <https://example.org/terms/shared/description> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/name> ],
-        [ sh:class <https://example.org/terms/software/DevelopmentPath> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/software/developmentHistory> ],
-        [ sh:maxCount 1 ;
-            sh:path <https://example.org/terms/software/releaseDate> ],
+            sh:path <https://example.org/terms/shared/version> ],
         [ sh:class <https://example.org/terms/shared/Citation> ;
             sh:path <https://example.org/terms/shared/citation> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/software/canonicalID> ],
-        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/software/repository> ] ;
+        [ sh:maxCount 1 ;
+            sh:path <https://example.org/terms/software/releaseDate> ] ;
     sh:targetClass <https://example.org/terms/software/Implementation> .
 
 <https://example.org/shapes/software/ProgrammingLanguage> a sh:NodeShape ;
@@ -1256,57 +1256,57 @@
     sh:class <https://example.org/terms/software/ComponentBase> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/software/ComponentBase> ;
-    sh:property [ sh:class <https://example.org/terms/software/Variable> ;
-            sh:path <https://example.org/terms/software/connectionPoint> ],
+    sh:property [ sh:class <https://example.org/terms/software/EntryPoint> ;
+            sh:path <https://example.org/terms/software/dependency> ],
+        [ sh:class <https://example.org/terms/software/SoftwareComponent> ;
+            sh:path <https://example.org/terms/software/subComponent> ],
+        [ sh:class <https://example.org/terms/software/CouplingFramework> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/software/couplingFramework> ],
         [ sh:class <https://example.org/terms/software/SoftwareComponent> ;
             sh:path <https://example.org/terms/software/dependsOn> ],
         [ sh:class <https://example.org/terms/software/Gridspec> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/grid> ],
-        [ sh:class <https://example.org/terms/software/CouplingFramework> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/software/couplingFramework> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/software/license> ],
+        [ sh:class <https://example.org/terms/software/Variable> ;
+            sh:path <https://example.org/terms/software/connectionPoint> ],
         [ sh:class <https://example.org/terms/software/ProgrammingLanguage> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/software/language> ],
-        [ sh:class <https://example.org/terms/software/EntryPoint> ;
-            sh:path <https://example.org/terms/software/dependency> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/software/license> ],
         [ sh:class <https://example.org/terms/software/Composition> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/software/composition> ],
-        [ sh:class <https://example.org/terms/software/SoftwareComponent> ;
-            sh:path <https://example.org/terms/software/subComponent> ] ;
+            sh:path <https://example.org/terms/software/composition> ] ;
     sh:targetClass <https://example.org/terms/software/SoftwareComponent> .
 
 <https://example.org/shapes/software/Variable> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:float ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/description> ],
+        [ sh:datatype xsd:float ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/software/isPrognostic> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/name> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ] ;
+            sh:path <https://example.org/terms/shared/name> ] ;
     sh:targetClass <https://example.org/terms/software/Variable> .
 
 <https://example.org/shapes/time/Calendar> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/name> ],
-        [ sh:datatype xsd:integer ;
+    sh:property [ sh:datatype xsd:integer ;
             sh:path <https://example.org/terms/time/monthLength> ],
         [ sh:class <https://example.org/terms/time/CalendarType> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/time/standardName> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/name> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/description> ] ;
@@ -1347,29 +1347,29 @@
     sh:class <https://example.org/terms/time/DatetimeSet> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/time/DatetimeSet> ;
-    sh:property [ sh:class <https://example.org/terms/time/DateTime> ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/time/length> ],
+        [ sh:class <https://example.org/terms/time/DateTime> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/startDate> ],
         [ sh:class <https://example.org/terms/time/TimePeriod> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:path <https://example.org/terms/time/increment> ],
-        [ sh:datatype xsd:integer ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/time/length> ] ;
+            sh:path <https://example.org/terms/time/increment> ] ;
     sh:targetClass <https://example.org/terms/time/RegularTimeset> .
 
 <https://example.org/shapes/time/TimePeriod> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:class <https://example.org/terms/time/PeriodDateType> ;
+    sh:property [ sh:class <https://example.org/terms/time/Calendar> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/calendar> ],
+        [ sh:class <https://example.org/terms/time/PeriodDateType> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/time/dateType> ],
-        [ sh:class <https://example.org/terms/time/Calendar> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/calendar> ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/time/length> ],
@@ -1391,80 +1391,80 @@
     sh:class <https://example.org/terms/activity/Activity> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/activity/Activity> ;
-    sh:property [ sh:class <https://example.org/terms/shared/OnlineResource> ;
-            sh:path <https://example.org/terms/shared/documentation> ],
-        [ sh:class <https://example.org/terms/activity/Simulation> ;
-            sh:path <https://example.org/terms/activity/member> ],
-        [ sh:class <https://example.org/terms/activity/Conformance> ;
-            sh:path <https://example.org/terms/activity/commonConformance> ],
+    sh:property [ sh:class <https://example.org/terms/activity/UberEnsemble> ;
+            sh:path <https://example.org/terms/activity/uberEnsemble> ],
         [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/activity/experiment> ],
-        [ sh:class <https://example.org/terms/activity/UberEnsemble> ;
-            sh:path <https://example.org/terms/activity/uberEnsemble> ],
         [ sh:class <https://example.org/terms/platform/Performance> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/activity/representativePerformance> ],
+        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
+            sh:path <https://example.org/terms/shared/documentation> ],
+        [ sh:class <https://example.org/terms/activity/Conformance> ;
+            sh:path <https://example.org/terms/activity/commonConformance> ],
         [ sh:class <https://example.org/terms/activity/EnsembleAxis> ;
-            sh:path <https://example.org/terms/activity/ensembleAxe> ] ;
+            sh:path <https://example.org/terms/activity/ensembleAxe> ],
+        [ sh:class <https://example.org/terms/activity/Simulation> ;
+            sh:path <https://example.org/terms/activity/member> ] ;
     sh:targetClass <https://example.org/terms/activity/Ensemble> .
 
 <https://example.org/shapes/data/Dataset> a sh:NodeShape ;
     sh:closed true ;
     sh:property [ sh:class <https://example.org/terms/data/VariableCollection> ;
             sh:path <https://example.org/terms/data/contain> ],
-        [ sh:class <https://example.org/terms/shared/Citation> ;
-            sh:path <https://example.org/terms/shared/citation> ],
+        [ sh:class <https://example.org/terms/shared/ExtraAttribute> ;
+            sh:path <https://example.org/terms/data/furtherAttribute> ],
+        [ sh:class <https://example.org/terms/shared/Responsibility> ;
+            sh:path <https://example.org/terms/shared/responsibleParty> ],
         [ sh:datatype xsd:string ;
-            sh:path <https://example.org/terms/shared/keywords> ],
-        [ sh:class <https://example.org/terms/iso/Lineage> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/data/lineage> ],
+            sh:path <https://example.org/terms/shared/description> ],
         [ sh:class <https://example.org/terms/iso/MdProgressCode> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/data/progress> ],
-        [ sh:class <https://example.org/terms/shared/ExtraAttribute> ;
-            sh:path <https://example.org/terms/data/furtherAttribute> ],
-        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
-            sh:path <https://example.org/terms/data/availability> ],
         [ sh:class <https://example.org/terms/shared/FormalAssociation> ;
             sh:path <https://example.org/terms/data/relatedToDataset> ],
+        [ sh:class <https://example.org/terms/shared/Citation> ;
+            sh:path <https://example.org/terms/shared/citation> ],
+        [ sh:class <https://example.org/terms/data/DatasetType> ;
+            sh:minCount 1 ],
+        [ sh:class <https://example.org/terms/iso/Lineage> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/data/lineage> ],
+        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
+            sh:path <https://example.org/terms/data/availability> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/name> ],
-        [ sh:class <https://example.org/terms/shared/Responsibility> ;
-            sh:path <https://example.org/terms/shared/responsibleParty> ],
-        [ sh:class <https://example.org/terms/data/DatasetType> ;
-            sh:minCount 1 ],
         [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ] ;
+            sh:path <https://example.org/terms/shared/keywords> ] ;
     sh:targetClass <https://example.org/terms/data/Dataset> .
 
 <https://example.org/shapes/iso/ProcessStep> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:datatype xsd:string ;
+    sh:property [ sh:class <https://example.org/terms/iso/ProcessStepReport> ;
+            sh:path <https://example.org/terms/iso/report> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/rationale> ],
+        [ sh:class <https://example.org/terms/iso/Processing> ;
+            sh:path <https://example.org/terms/iso/processingInformation> ],
+        [ sh:class <https://example.org/terms/data/Dataset> ;
+            sh:path <https://example.org/terms/shared/source> ],
+        [ sh:class <https://example.org/terms/shared/Citation> ;
+            sh:path <https://example.org/terms/iso/reference> ],
+        [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/description> ],
-        [ sh:class <https://example.org/terms/iso/Processing> ;
-            sh:path <https://example.org/terms/iso/processingInformation> ],
-        [ sh:class <https://example.org/terms/iso/ProcessStepReport> ;
-            sh:path <https://example.org/terms/iso/report> ],
-        [ sh:class <https://example.org/terms/shared/Citation> ;
-            sh:path <https://example.org/terms/iso/reference> ],
-        [ sh:class <https://example.org/terms/time/DateTime> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/iso/executionDateTime> ],
-        [ sh:class <https://example.org/terms/data/Dataset> ;
-            sh:path <https://example.org/terms/shared/source> ],
         [ sh:class <https://example.org/terms/shared/Responsibility> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/iso/processor> ],
-        [ sh:datatype xsd:string ;
+        [ sh:class <https://example.org/terms/time/DateTime> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/rationale> ] ;
+            sh:path <https://example.org/terms/iso/executionDateTime> ] ;
     sh:targetClass <https://example.org/terms/iso/ProcessStep> .
 
 <https://example.org/shapes/platform/Partition> a sh:NodeShape ;
@@ -1472,21 +1472,29 @@
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/operatingSystem> ],
-        [ sh:class <https://example.org/terms/platform/Interconnect> ;
+        [ sh:class <https://example.org/terms/platform/Partition> ;
+            sh:path <https://example.org/terms/platform/partition> ],
+        [ sh:class <https://example.org/terms/platform/ComputePool> ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/platform/computePool> ],
+        [ sh:class <https://example.org/terms/shared/Party> ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/interconnect> ],
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/shared/institution> ],
+        [ sh:class <https://example.org/terms/time/TimePeriod> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/platform/whenAvailable> ],
+        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
+            sh:path <https://example.org/terms/platform/onlineDocumentation> ],
         [ sh:class <https://example.org/terms/shared/Party> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/vendor> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/description> ],
-        [ sh:class <https://example.org/terms/platform/StoragePool> ;
-            sh:path <https://example.org/terms/platform/storagePool> ],
-        [ sh:class <https://example.org/terms/shared/Party> ;
+        [ sh:class <https://example.org/terms/platform/Interconnect> ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/shared/institution> ],
+            sh:path <https://example.org/terms/platform/interconnect> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/platform/modelNumber> ],
@@ -1494,47 +1502,39 @@
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/name> ],
-        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
-            sh:path <https://example.org/terms/platform/onlineDocumentation> ],
-        [ sh:class <https://example.org/terms/time/TimePeriod> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/platform/whenAvailable> ],
-        [ sh:class <https://example.org/terms/platform/ComputePool> ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/platform/computePool> ],
-        [ sh:class <https://example.org/terms/platform/Partition> ;
-            sh:path <https://example.org/terms/platform/partition> ] ;
+        [ sh:class <https://example.org/terms/platform/StoragePool> ;
+            sh:path <https://example.org/terms/platform/storagePool> ] ;
     sh:targetClass <https://example.org/terms/platform/Partition> .
 
 <https://example.org/shapes/science/Topic> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:class <https://example.org/terms/shared/Responsibility> ;
-            sh:path <https://example.org/terms/shared/responsibleParty> ],
-        [ sh:datatype xsd:integer ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/science/qcStatus> ],
+    sh:property [ sh:class <https://example.org/terms/science/Topic> ;
+            sh:path <https://example.org/terms/science/subTopic> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/science/overview> ],
-        [ sh:class <https://example.org/terms/science/TopicProperty> ;
-            sh:path <https://example.org/terms/science/property> ],
-        [ sh:class <https://example.org/terms/shared/Citation> ;
-            sh:path <https://example.org/terms/shared/citation> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/science/specializationID> ],
         [ sh:class <https://example.org/terms/science/TopicPropertySet> ;
             sh:path <https://example.org/terms/science/propertySet> ],
+        [ sh:class <https://example.org/terms/shared/Responsibility> ;
+            sh:path <https://example.org/terms/shared/responsibleParty> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/name> ],
         [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/description> ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/science/qcStatus> ],
+        [ sh:datatype xsd:string ;
             sh:path <https://example.org/terms/shared/keywords> ],
-        [ sh:class <https://example.org/terms/science/Topic> ;
-            sh:path <https://example.org/terms/science/subTopic> ] ;
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/science/specializationID> ],
+        [ sh:class <https://example.org/terms/shared/Citation> ;
+            sh:path <https://example.org/terms/shared/citation> ],
+        [ sh:class <https://example.org/terms/science/TopicProperty> ;
+            sh:path <https://example.org/terms/science/property> ] ;
     sh:targetClass <https://example.org/terms/science/Topic> .
 
 <https://example.org/shapes/shared/DocReference> a sh:NodeShape ;
@@ -1543,24 +1543,24 @@
             sh:maxCount 1 ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/context> ],
-        [ sh:datatype xsd:integer ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/version> ],
+            sh:path <https://example.org/terms/shared/furtherInfo> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/name> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/canonicalName> ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/version> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/context> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/relationship> ],
         [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/furtherInfo> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/canonicalName> ] ;
+            sh:maxCount 1 ] ;
     sh:targetClass <https://example.org/terms/shared/DocReference> .
 
 <https://example.org/shapes/shared/OnlineResource> a sh:NodeShape ;
@@ -1570,11 +1570,11 @@
             sh:path <https://example.org/terms/shared/protocol> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/linkage> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/description> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -1587,85 +1587,85 @@
     sh:node <https://example.org/shapes/iso/ProcessStep> ;
     sh:property [ sh:class <https://example.org/terms/activity/ChildSimulation> ;
             sh:path <https://example.org/terms/activity/parentOf> ],
+        [ sh:class <https://example.org/terms/time/DateTime> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/activity/endTime> ],
+        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/activity/errata> ],
+        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/documentation> ],
+        [ sh:class <https://example.org/terms/activity/Ensemble> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/activity/primaryEnsemble> ],
+        [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
+            sh:minCount 1 ;
+            sh:path <https://example.org/terms/activity/ranForExperiment> ],
+        [ sh:class <https://example.org/terms/shared/ExtraAttribute> ;
+            sh:path <https://example.org/terms/activity/extraAttribute> ],
+        [ sh:class <https://example.org/terms/platform/Performance> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/activity/hadPerformance> ],
+        [ sh:class <https://example.org/terms/time/Calendar> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/calendar> ],
+        [ sh:class <https://example.org/terms/time/DateTime> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/activity/startTime> ],
         [ sh:class <https://example.org/terms/science/Model> ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/activity/used> ],
-        [ sh:class <https://example.org/terms/activity/Ensemble> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/activity/primaryEnsemble> ],
-        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/documentation> ],
         [ sh:class <https://example.org/terms/designing/Project> ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/activity/partOfProject> ],
-        [ sh:class <https://example.org/terms/shared/OnlineResource> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/activity/errata> ],
-        [ sh:class <https://example.org/terms/shared/ExtraAttribute> ;
-            sh:path <https://example.org/terms/activity/extraAttribute> ],
-        [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
-            sh:minCount 1 ;
-            sh:path <https://example.org/terms/activity/ranForExperiment> ],
-        [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/activity/subExperiment> ],
-        [ sh:class <https://example.org/terms/activity/AxisMember> ;
-            sh:path <https://example.org/terms/activity/ensembleID> ],
-        [ sh:class <https://example.org/terms/time/DateTime> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/activity/startTime> ],
-        [ sh:class <https://example.org/terms/time/Calendar> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/calendar> ],
         [ sh:class <https://example.org/terms/shared/Party> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/institution> ],
+        [ sh:class <https://example.org/terms/activity/AxisMember> ;
+            sh:path <https://example.org/terms/activity/ensembleID> ],
+        [ sh:class <https://example.org/terms/designing/NumericalExperiment> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/activity/subExperiment> ],
         [ sh:class <https://example.org/terms/platform/Machine> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/activity/ranOn> ],
-        [ sh:class <https://example.org/terms/platform/Performance> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/activity/hadPerformance> ],
         [ sh:class <https://example.org/terms/data/Dataset> ;
-            sh:path <https://example.org/terms/activity/produced> ],
-        [ sh:class <https://example.org/terms/time/DateTime> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/activity/endTime> ] ;
+            sh:path <https://example.org/terms/activity/produced> ] ;
     sh:targetClass <https://example.org/terms/activity/Simulation> .
 
 <https://example.org/shapes/software/ComponentBase> a sh:NodeShape ;
     sh:closed true ;
-    sh:property [ sh:class <https://example.org/terms/shared/Citation> ;
-            sh:path <https://example.org/terms/shared/citation> ],
+    sh:property [ sh:class <https://example.org/terms/time/DateTime> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/software/releaseDate> ],
+        [ sh:class <https://example.org/terms/software/DevelopmentPath> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/software/developmentHistory> ],
         [ sh:class <https://example.org/terms/shared/OnlineResource> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/software/repository> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ],
-        [ sh:class <https://example.org/terms/time/DateTime> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/software/releaseDate> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/version> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
             sh:path <https://example.org/terms/shared/longName> ],
+        [ sh:class <https://example.org/terms/shared/Responsibility> ;
+            sh:path <https://example.org/terms/shared/responsibleParty> ],
+        [ sh:class <https://example.org/terms/shared/Citation> ;
+            sh:path <https://example.org/terms/shared/citation> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/software/canonicalID> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/description> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/shared/name> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/software/canonicalID> ],
-        [ sh:class <https://example.org/terms/software/DevelopmentPath> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/software/developmentHistory> ],
-        [ sh:class <https://example.org/terms/shared/Responsibility> ;
-            sh:path <https://example.org/terms/shared/responsibleParty> ] ;
+            sh:path <https://example.org/terms/shared/version> ] ;
     sh:targetClass <https://example.org/terms/software/ComponentBase> .
 
 <https://example.org/shapes/time/DatetimeSet> a sh:NodeShape ;
@@ -1680,20 +1680,28 @@
     sh:closed true ;
     sh:property [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/rationale> ],
+            sh:path <https://example.org/terms/shared/keywords> ],
         [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/canonicalName> ],
+            sh:path <https://example.org/terms/activity/alternativeName> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/activity/internalName> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/description> ],
         [ sh:class <https://example.org/terms/time/TimePeriod> ;
             sh:maxCount 1 ;
             sh:path <https://example.org/terms/activity/duration> ],
-        [ sh:class <https://example.org/terms/shared/Responsibility> ;
-            sh:path <https://example.org/terms/shared/responsibleParty> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/canonicalName> ],
         [ sh:class <https://example.org/terms/shared/Citation> ;
             sh:path <https://example.org/terms/shared/citation> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/shared/longName> ],
+        [ sh:class <https://example.org/terms/shared/Responsibility> ;
+            sh:path <https://example.org/terms/shared/responsibleParty> ],
         [ sh:datatype xsd:string ;
             sh:path <https://example.org/terms/activity/previouslyKnownAs> ],
         [ sh:datatype xsd:string ;
@@ -1702,25 +1710,14 @@
             sh:path <https://example.org/terms/shared/name> ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/description> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/longName> ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/shared/keywords> ],
-        [ sh:datatype xsd:string ;
-            sh:path <https://example.org/terms/activity/alternativeName> ] ;
+            sh:path <https://example.org/terms/shared/rationale> ] ;
     sh:targetClass <https://example.org/terms/activity/Activity> .
 
 <https://example.org/shapes/designing/NumericalRequirement> a sh:NodeShape ;
     sh:class <https://example.org/terms/activity/Activity> ;
     sh:closed true ;
     sh:node <https://example.org/shapes/activity/Activity> ;
-    sh:property [ sh:class <https://example.org/terms/designing/NumericalRequirementScope> ;
-            sh:maxCount 1 ;
-            sh:path <https://example.org/terms/designing/scope> ],
-        [ sh:datatype xsd:float ;
+    sh:property [ sh:datatype xsd:float ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:path <https://example.org/terms/designing/isConformanceRequested> ],
@@ -1729,6 +1726,9 @@
             sh:minCount 1 ;
             sh:path <https://example.org/terms/designing/isConformanceInfoRequired> ],
         [ sh:class <https://example.org/terms/designing/NumericalRequirement> ;
-            sh:path <https://example.org/terms/designing/additionalRequirement> ] ;
+            sh:path <https://example.org/terms/designing/additionalRequirement> ],
+        [ sh:class <https://example.org/terms/designing/NumericalRequirementScope> ;
+            sh:maxCount 1 ;
+            sh:path <https://example.org/terms/designing/scope> ] ;
     sh:targetClass <https://example.org/terms/designing/NumericalRequirement> .
 

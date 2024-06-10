@@ -598,6 +598,25 @@ def aggregate_by(grouping_filter):
     from_entries
 ) as $rdfsContext |
 
+(
+    [
+        (
+            {
+                "@version": 1.1,
+                "id": "@id",
+                "type": "@type",
+                "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+                "xsd": "http://www.w3.org/2001/XMLSchema#",
+                "owl": "http://www.w3.org/2002/07/owl#"
+            }
+            | to_entries | .[]
+        ),
+        ($nsExtensions | to_entries | .[]),
+        ($context | to_entries | .[])
+    ] |
+    from_entries
+) as $owlContext |
 
 def expand_prefix($refCtxt):
     if in($refCtxt)
@@ -670,6 +689,54 @@ def expand($refCtxt):
     ] | prune_nulls
 ) as $shapes |
 
+(
+    [
+        $classObjs | to_entries | .[] | 
+        (.value.base | (if (. == "None") then null else . end)) as $parentClass |
+        (.key | get_class_name) as $className |
+        {
+                "@id": $className | expand($mappingContext),
+                "@type": "owl:Class",
+                "rdfs:subclassOf": $parentClass | get_class_name | expand($mappingContext),
+                "rdfs:subclassOf": [
+                    ($parentClass | get_class_name | expand($mappingContext) | select(. != null)),
+                    (
+                        .value.properties | select(. != null) | .[] |
+                        .[0] as $property |
+                        .[1] as $propertyType |
+                        (.[2] | split(".")) as $cardinalityRestrs |
+                        $cardinalityRestrs[0] as $minCardinality |
+                        $cardinalityRestrs[1] as $maxCardinality |
+                        (if $minCardinality == $maxCardinality
+                            then {
+                                "@type": "owl:Restriction",
+                                "owl:onProperty": $property | get_property_name | expand($mappingContext),
+                                "owl:cardinality": $minCardinality | tonumber
+                            }
+                        elif $minCardinality != "0" or $maxCardinality != "N"
+                            then {
+                                "@type": "owl:Restriction",
+                                "owl:onProperty": $property | get_property_name | expand($mappingContext),
+                                "owl:minCardinality": (if $minCardinality == "0" then null else ($minCardinality | tonumber) end),
+                                "owl:maxCardinality": (if $maxCardinality == "N" then null else ($maxCardinality | tonumber) end)
+                            }
+                        else empty
+                        end, {
+                            "@type": "owl:Restriction",
+                            "owl:onProperty": $property | get_property_name | expand($mappingContext),
+                            "owl:allValuesFrom": (
+                                if ($propertyType | is_datatype)
+                                    then ($propertyType | convert_datatype)
+                                    else ($propertyType | get_class_name | expand($mappingContext))
+                                end
+                            )
+                        })
+                    )
+                ]
+        }
+    ] | prune_nulls
+) as $owl |
+
 {
     "@context": $mappingContext,
     "@shapes": {
@@ -679,5 +746,9 @@ def expand($refCtxt):
     "@rdfs": {
         "@context": $rdfsContext,
         "@graph": $rdfTerms
+    },
+    "@owl": {
+        "@context": $owlContext,
+        "@graph": $owl
     }
 }
